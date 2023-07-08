@@ -1,0 +1,15 @@
+footer{
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 1.5rem;
+    color: #495464;
+    border-top: 0.1rem solid #495464;
+    text-align: center;
+}

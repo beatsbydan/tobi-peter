@@ -1,0 +1,74 @@
+.whatsNew{
+    width:100%;
+}
+.comingSoon{
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 0.7rem;
+}
+.streamingPlatforms{
+    margin-top: 2.7em;
+    width: 100%;
+}
+.streamingPlatforms h5{
+    font-size: 0.9rem;
+    color: #1D3557;
+    text-align: center;
+}
+.streamingPlatforms ul{
+    width: 100%;
+    margin-top: 3em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.vip{
+    width: 100%;
+    margin-top: 3.5em;
+}
+.vip p {
+    font-size: 0.87rem;
+    font-weight: 500;
+    text-align: center;
+    color: #1D3557;
+}
+.vip form{
+    width: 80%;
+    max-width: 600px;
+    margin: 2em auto;
+    display: grid;
+    grid-template-columns: 75% 20%;
+    gap: 5%;
+    align-items: center;
+}
+.vip form input{
+    padding: 0.8rem;
+    border-radius: 0.3rem;
+    border: 0.1rem solid #1D3557;
+}
+.vip form input::placeholder{
+    font-weight: 600;
+    color: #0000002e;
+}
+.vip form input:focus{
+    outline: none;
+}
+.vip form button{
+    color:#1D3557;
+    padding: 0.8rem;
+    font-weight: 500;
+    border: 0.1rem solid #1D3557;
+    border-radius: 0.3rem;
+    cursor: pointer;
+}
+.socials{
+    width: 90%;
+    max-width: 250px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1.7em auto 0 auto;
+}
