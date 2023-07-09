@@ -29,3 +29,6 @@ main{
   margin: auto;
   margin-bottom: 8em;
 }
+p{
+  line-height: 1.8em;
+}

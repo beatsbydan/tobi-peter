@@ -11,16 +11,16 @@ const Navbar = () => {
                         </Link>
                     </div>
                     <div className="right">
-                        <Link to={'/'}>
+                        <Link to={'/music'}>
                             <li>MUSIC</li>
                         </Link>
-                        <Link to={'/'}>
+                        <Link to={'/shows'}>
                             <li>SHOWS</li>
                         </Link>
-                        <Link to={'/'}>
+                        <Link to={'/animation'}>
                             <li>ANIMATION</li>
                         </Link>
-                        <Link to={'/'}>
+                        <Link to={'/partner'}>
                             <li>PARTNER</li>
                         </Link>
                     </div>

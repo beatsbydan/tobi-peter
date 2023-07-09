@@ -7,22 +7,15 @@
     object-fit: cover;
     border-radius: 0.7rem;
 }
-.streamingPlatforms{
+.streamingPlatformsBlock{
     margin-top: 2.7em;
     width: 100%;
 }
-.streamingPlatforms h5{
+.streamingPlatformsBlock h5{
     font-size: 0.9rem;
     color: #1D3557;
     text-align: center;
-}
-.streamingPlatforms ul{
-    width: 100%;
-    margin-top: 3em;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    padding-bottom: 0.8rem;
 }
 .vip{
     width: 100%;
@@ -63,12 +56,6 @@
     border-radius: 0.3rem;
     cursor: pointer;
 }
-.socials{
-    width: 90%;
-    max-width: 250px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+.socialsBlock{
     margin: 1.7em auto 0 auto;
 }

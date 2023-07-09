@@ -1,0 +1,23 @@
+.music{
+    width: 100%;
+}
+.bioTop{
+    display: flex;
+    justify-content: space-between ;
+    align-items: center;
+}
+.bioTop h3{
+    color: #1D3557;
+    font-weight: 500;
+}
+.bio{
+    margin: 2.2em 0 3em 0;
+}
+.music p{
+    color:#495464;
+    font-size: 0.9rem;
+}
+.music a{
+    color:#495464;
+    font-size: 0.85rem;
+}
