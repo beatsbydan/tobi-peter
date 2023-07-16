@@ -2,12 +2,15 @@
   padding:0;
   margin:0;
   box-sizing: border-box;
+  font-family: var(--inter);
+}
+body,footer{
   background-color: #FFFBF4;
 }
 :root{
   /* FONT-FAMILIES */
-  --inter:'Caesar Dressing', cursive;
-  --caesar:'Inter', sans-serif;
+  --caesar:'Caesar Dressing', cursive;
+  --inter:'Inter', sans-serif;
 }
 ul{
   list-style: none;
@@ -18,17 +21,38 @@ a{
   font-size: 0.85rem;
 }
 .App{
+  min-height: 100vh;
   position: relative;
 }
 header{
   width: 100%;
+  max-width:1050px;
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%);
+  background-color: #FFFBF4;
+  padding:1.5rem 5% 0.1rem 5%;
+  border-bottom: 0.1rem solid #495464;
 }
 main{
-  width: 90%;
+  width: 85%;
   max-width: 1000px;
   margin: auto;
-  margin-bottom: 8em;
+  padding: 9em 0 8em 0;
 }
 p{
-  line-height: 1.8em;
+  font-size: 0.85rem;
+  line-height: 1.6em;
+}
+ul{
+  list-style:none;
+}
+@media screen and (max-width:750px){
+  header{
+    left: 0;
+    right: 0;
+    transform: unset;
+    z-index: 1;
+    margin: auto;
+  }
 }

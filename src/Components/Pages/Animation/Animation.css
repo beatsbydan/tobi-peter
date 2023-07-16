@@ -1,0 +1,83 @@
+.animation{
+    width: 100%;
+    max-width: 750px;
+    margin: auto;
+    font-family: var(--inter);
+}
+.bioBlock{
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+.bioBlock h3{
+    color:#1D3557;
+    font-weight: 500;
+}
+.bioBlock p{
+    color:#495464;
+    font-size: 0.9rem;
+}
+.portfolioBlock{
+    display: grid;
+    grid-template-columns: 45% 45%;
+    gap: 10%;
+    margin-top: 1rem;
+}
+.portfolioBlock div{
+    width: 100%;
+    padding: 2rem;
+    text-align: center;
+    background: #D9D9D936;
+    border-radius: 0.6rem;
+}
+.portfolioBlock div h5{
+    color: #495464;
+}
+.portfolioBlock div a{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    gap: 0.3rem;
+    color: #495464;
+    font-weight: 500;
+    font-size: 1.1rem;
+    transition: 0.3s ease;
+}
+.clientsList{
+    width: 80%;
+    margin: 2em auto 4em auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 3rem;
+}
+.clientsList li p{
+    font-family:var(--caesar);
+    font-size: 2rem;
+    color:#49546480;
+}
+.clients h3{
+    color: #1D3557;
+    font-size:1.3rem;
+    font-weight: 500;
+    padding: 2em 0 1em 0;
+}
+.individuals p, .organizations p{
+    color: #495464;
+    font-size: 0.85rem;
+}
+@media (hover: hover){
+    .portfolioBlock div a:hover{
+        gap: 1.2rem;
+    }
+}
+@media screen and (max-width:600px) {
+    .portfolioBlock{
+        grid-template-columns: unset;
+        margin-bottom: 1.5em;
+    }
+}

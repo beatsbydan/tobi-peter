@@ -1,8 +1,41 @@
 .streamingPlatforms{
-    width: 100%;
+    width: 90%;
     margin-top: 2em;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin: 2.5em auto 0 auto;
+}
+.streamingPlatforms a{
+    font-size: 0.7rem;
+}
+.streamingPlatforms a li{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.2rem;
+    transition: 0.3s ease;
+}
+.streamingPlatforms a li img{
+    width: 20px;
+}
+@media (hover: hover){
+    .streamingPlatforms a:hover{
+        font-size: 0.88rem;
+    }
+}
+@media screen and (max-width:900px){
+    .streamingPlatforms{
+        flex-wrap: wrap;
+        gap: 1.2rem;
+        justify-content: center;
+    }
+}
+@media screen and  (max-width:500px) {
+    .streamingPlatforms{
+        flex-direction: column;
+        align-items: flex-start;
+        flex-wrap: nowrap;
+    }
 }

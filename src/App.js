@@ -7,11 +7,11 @@ import Music from './Components/Pages/Music/Music';
 import Animation from './Components/Pages/Animation/Animation';
 import Shows from './Components/Pages/Shows/Shows';
 import Partner from './Components/Pages/Partner/Partner';
-import VipContextProvider from './Context/VipContextProvider'
+// import VipContextProvider from './Context/VipContextProvider'
 
 function App() {
   return (
-    <VipContextProvider>
+    // <VipContextProvider>
       <div className="App">
         <header>
           <Navbar/>
@@ -27,7 +27,7 @@ function App() {
         </main>
         <Footer/>
       </div>
-    </VipContextProvider>
+    // </VipContextProvider>
   );
 }
 

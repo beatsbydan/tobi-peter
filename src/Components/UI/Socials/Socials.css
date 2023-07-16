@@ -7,3 +7,8 @@
     align-items: center;
     margin: inherit;
 }
+@media (hover: hover){
+    .socials a:hover{
+        opacity: 0.8;
+    }
+}

@@ -1,0 +1,70 @@
+.partner{
+    width: 100%;
+    max-width: 750px;
+    margin: auto;
+}
+.partner p{
+    font-size: 0.9rem;
+}
+.partner h2{
+    color: #1D3557;
+    font-weight: 500;
+}
+.partnerBlock{
+    margin-top:2.2rem;
+}
+.partnerBlock p{
+    color:#495464;
+}
+.partners{
+    display:grid;
+    grid-template-columns: 45% 45%;
+    gap:10%;
+    margin-top: 2.5rem;
+}
+.partners div{
+    width: 100%;
+    border-radius: 0.5rem;
+    padding: 1.5rem 2.5rem;
+    background-color: #D9D9D936;
+    display:flex;
+    flex-direction:column;
+    gap: 1.2rem;
+    position: relative;
+}
+.partners div h5{
+    color: #495464;
+    text-align: center;
+}
+.partners div p{
+    color: #495464;
+    text-align: center;
+    padding-bottom: 4em;
+}
+.partners div a{
+    font-weight: 500;
+    font-size: 1.1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    color: #495464;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 2em 0;
+    transition: 0.3s ease;
+}
+@media (hover: hover){
+    .partners div a:hover{
+        gap:1.2rem;
+    }
+}
+@media screen and (max-width:700px) {
+    .partners{
+        grid-template-columns: unset;
+        margin-bottom: 4em;
+    }
+}

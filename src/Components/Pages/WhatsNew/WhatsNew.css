@@ -1,9 +1,10 @@
 .whatsNew{
     width:100%;
+    font-family: var(--inter);
 }
 .comingSoon{
     width: 100%;
-    max-height: 400px;
+    height: 400px;
     object-fit: cover;
     border-radius: 0.7rem;
 }
@@ -28,8 +29,8 @@
     color: #1D3557;
 }
 .vip form{
-    width: 80%;
-    max-width: 600px;
+    width: 100%;
+    max-width: 700px;
     margin: 2em auto;
     display: grid;
     grid-template-columns: 75% 20%;
@@ -40,10 +41,13 @@
     padding: 0.8rem;
     border-radius: 0.3rem;
     border: 0.1rem solid #1D3557;
+    background-color: transparent;
 }
 .vip form input::placeholder{
-    font-weight: 600;
+    font-weight: 400;
+    font-size: 0.85rem;
     color: #0000002e;
+    letter-spacing: 0.1rem;
 }
 .vip form input:focus{
     outline: none;
@@ -55,7 +59,20 @@
     border: 0.1rem solid #1D3557;
     border-radius: 0.3rem;
     cursor: pointer;
+    background-color: transparent;
+    transition: 0.3s ease;
+}
+.vip form button:active{
+    color: #FFFBF4;
+    background:#1D3557;
+    opacity: 1;
 }
 .socialsBlock{
     margin: 1.7em auto 0 auto;
+}
+@media (hover: hover){
+    .vip form button:hover{
+        color: #FFFBF4;
+        background:#1D3557;
+    }
 }

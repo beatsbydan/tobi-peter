@@ -1,6 +1,7 @@
 import Socials from '../../UI/Socials/Socials';
 import StreamingPlatforms from '../../UI/StreamingPlatforms/StreamingPlatforms';
 import './Music.css'
+import {BiRightArrowAlt} from 'react-icons/bi'
 const Music = () => {
     return ( 
         <div className="music">
@@ -18,7 +19,74 @@ const Music = () => {
                 <p>Check out my music on any of these streaming platforms: </p>
                 <StreamingPlatforms/>
             </div>
+            <div className="stats">
+                <div>
+                    <p><span>380k+</span>STREAMS ACROSS ALL PLATFORMS</p>
+                </div>
+                <div>
+                    <p><span>4.4M+</span>VIEWS ON TIKTOK</p>
+                </div>
+                <div>
+                    <p><span>4.3k+</span>MONTHLY LISTENERS</p>
+                </div>
+            </div>
+            <div className="statsExtras">
+                <div>
+                    <h5>DJs CHECK THIS OUT!</h5>
+                    <p>Would you like to have some songs from me to spin during your sets?</p>
+                    <p>Make a request below!</p>
+                    <a href='https://www.'>
+                        MAKE REQUEST 
+                        <BiRightArrowAlt className='arrow' size={15}/>
+                    </a>
+                </div>
+                <div>
+                    <h5>ESSENTIALS PLAYLIST</h5>
+                    <p>Check out an ESSENTIALS PLAYLIST curated by me.</p>
+                    <a href='https://www.'>
+                        APPLE MUSIC
+                        <BiRightArrowAlt size={15} className='arrow'/>
+                    </a>
+                    <a href='https://www.'>
+                        SPOTIFY
+                        <BiRightArrowAlt className='arrow' size={15}/>
+                    </a>
+                </div>
+            </div>
+            <div className="press">
+                <h4>PRESS</h4>
+                <div className="pressSection">
+                    <div>
+                        <section className="head">
+                            <h4>TOBI PETER DROPS NEW SINGLE</h4>
+                            <h5>BOUNCE NETWORK</h5>
+                        </section>
+                        <p>The fast rising DJ, Tobi Peter, releases viral TikTok sound titled “1 2 Shake Shake”.
+                        The song was a viral sound on TikTok with over 700,00 views and about...</p>
+                        <a href="https://www.">READ FULL ARTICLE</a>
+                    </div>
+                    <div>
+                        <section className="head">
+                            <h4>TOBI PETER DROPS NEW SINGLE</h4>
+                            <h5>BOUNCE NETWORK</h5>
+                        </section>
+                        <p>The fast rising DJ, Tobi Peter, releases viral TikTok sound titled “1 2 Shake Shake”.
+                        The song was a viral sound on TikTok with over 700,00 views and about...</p>
+                        <a href="https://www.">READ FULL ARTICLE</a>
+                    </div>
+                    <div>
+                        <section className="head">
+                            <h4>TOBI PETER DROPS NEW SINGLE</h4>
+                            <h5>BOUNCE NETWORK</h5>
+                        </section>
+                        <p>The fast rising DJ, Tobi Peter, releases viral TikTok sound titled “1 2 Shake Shake”.
+                        The song was a viral sound on TikTok with over 700,00 views and about...</p>
+                        <a href="https://www.">READ FULL ARTICLE</a>
+                    </div>
+                </div>
+            </div>
         </div>
+
     );
 }
 export default Music ;

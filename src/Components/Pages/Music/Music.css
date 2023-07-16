@@ -1,5 +1,8 @@
 .music{
     width: 100%;
+    max-width: 800px;
+    margin: auto;
+    font-family: var(--inter);
 }
 .bioTop{
     display: flex;
@@ -17,7 +20,138 @@
     color:#495464;
     font-size: 0.9rem;
 }
+.bio p{
+    line-height: 2.1em;
+}
 .music a{
     color:#495464;
+}
+.stats{
+    width: 100%;
+    margin-top:4em;
+    padding: 4.5rem 2.5rem;
+    border-radius: 0.6rem;
+    background-color: #D9D9D936;
+    display:flex;
+    justify-content: space-between;
+    align-items: stretch;
+}
+.stats div{
+    width: 33%;
+    padding: 0.8rem;
+    background-color: transparent;
+}
+.stats p{
+    background-color: transparent;
     font-size: 0.85rem;
+    text-align: center;
+}
+.stats p span{
+    background-color: transparent;
+    font-size: 3rem;
+    display: block;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+}
+.statsExtras{
+    margin-top: 2em;
+    display: grid;
+    grid-template-columns: 47% 47%;
+    gap: 6%;
+}
+.statsExtras div{
+    border-radius: 0.6rem;
+    background-color: #D9D9D936;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 1.2rem;
+    padding: 2rem;
+}
+.statsExtras div a{
+    font-weight: 500;
+    font-size: 1.1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    transition: 0.3s ease;
+}
+.statsExtras div h5{
+    color: #495464;
+    font-size: 0.87rem;
+    font-weight: 700;
+}
+.arrow{
+    transition: all 0.3 ease;
+}
+.press{
+    margin-top: 5em;
+}
+.press h4{
+    font-weight: 500;
+    color:#1D3557;
+}
+.pressSection{
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+}
+.pressSection div{
+    display: flex;
+    flex-direction: column;
+    gap: 1.7rem;
+}
+.pressSection div a{
+    width: 100%;
+    margin: auto;
+    padding: 1rem;
+    border: 0.1rem solid #1D3557;
+    border-radius: 0.3rem;
+    text-align: center;
+    transition: 0.3s ease;
+}
+.pressSection div a:active{
+    color: #FFFBF4;
+    background:#1D3557;
+}
+.head{
+    padding-bottom:0.8rem ;
+    border-bottom: 0.1rem solid #1D3557;
+}
+.head h4{
+    font-weight: 700;
+}
+.head h5{
+    padding-top: 0.7rem;
+    color: #495464;
+    font-size: 0.87rem;
+    font-weight: 700;
+}
+@media (hover: hover){
+    .pressSection div a:hover{
+        color: #FFFBF4;
+        background:#1D3557;
+    }
+    .statsExtras div a:hover{
+        gap: 1.2rem;
+    }
+}
+@media screen and (max-width:750px) {
+    .stats{
+        flex-direction: column;
+        gap: 1.2rem;
+        justify-content: center;
+    }
+    .stats div{
+        width: 80%;
+        margin: auto;
+    }
+}
+@media screen and (max-width:600px) {
+    .statsExtras{
+        grid-template-columns: unset;
+    }
 }
