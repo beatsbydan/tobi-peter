@@ -1,17 +1,12 @@
-import {useState} from 'react'
+import {useContext} from 'react'
 import './WhatsNew.css'
 import comingSoon from '../../../Assets/upcoming.svg'
 import Socials from '../../UI/Socials/Socials';
+import Context from '../../../Context/Context'
 import StreamingPlatforms from '../../UI/StreamingPlatforms/StreamingPlatforms';
 
 const WhatsNew = () => {
-    const [email, setEmail] = useState('')
-    const handleChange = (e) => {
-        setEmail(e.target.value)
-    }
-    const handleSubmit = (e) => {
-        e.preventDefault()
-    }
+    const ctx = useContext(Context)
     return ( 
         <div className="whatsNew">
             <img className='comingSoon' src={comingSoon} alt="" />
@@ -21,8 +16,11 @@ const WhatsNew = () => {
             </div>
             <div className="vip">
                 <p>DON’T BE A DED GUY, JOIN THE VIP LIST</p>
-                <form action="" onSubmit={handleSubmit}>
-                    <input type="email" placeholder='email address' value={email} onChange={handleChange} />
+                <form action="" onSubmit={ctx.handleSubmit}>
+                    <div className="formElement">
+                        <small>{ctx.error}</small>
+                        <input className={ctx.error ?'errorField': ''} type="text" placeholder='email address' value={ctx.email} onChange={ctx.handleChange} />
+                    </div>
                     <button type='submit'>JOIN</button>
                 </form>
             </div>

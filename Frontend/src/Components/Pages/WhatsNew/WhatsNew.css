@@ -31,25 +31,25 @@
 .vip form{
     width: 100%;
     max-width: 700px;
-    margin: 2em auto;
+    margin: 1.2em auto;
     display: grid;
     grid-template-columns: 75% 20%;
     gap: 5%;
-    align-items: center;
+    align-items: last baseline;
 }
-.vip form input{
+.formElement input{
     padding: 0.8rem;
     border-radius: 0.3rem;
     border: 0.1rem solid #1D3557;
     background-color: transparent;
 }
-.vip form input::placeholder{
+.formElement input::placeholder{
     font-weight: 400;
     font-size: 0.85rem;
     color: #0000002e;
     letter-spacing: 0.1rem;
 }
-.vip form input:focus{
+.formElement input:focus{
     outline: none;
 }
 .vip form button{
@@ -61,6 +61,21 @@
     cursor: pointer;
     background-color: transparent;
     transition: 0.3s ease;
+}
+.formElement{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 0.8rem;
+}
+.formElement small{
+    color: red;
+    font-weight: 600;
+    height: 0.8rem;
+}
+.formElement input.errorField{
+    border-color:red;
 }
 .vip form button:active{
     color: #FFFBF4;
@@ -74,5 +89,10 @@
     .vip form button:hover{
         color: #FFFBF4;
         background:#1D3557;
+    }
+}
+@media screen and (max-width:450px) {
+    .vip form{
+        
     }
 }

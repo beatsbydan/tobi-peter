@@ -1,16 +1,14 @@
 const ValidateWhatsNew = (entry) => {
-    let error = true;
+    let error = "";
     const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
     if(entry === ""){
-        alert('EMAIL CANNOT BE EMPTY!')
-        return
+        error = 'Email cannot be empty'
     }
     if(!emailRegex.test(entry)){
-        alert('ENTER A VALID EMAIL')
-        return
+        error = 'Enter a valid Email'
     }
     if(entry !== "" && emailRegex.test(entry)){
-        error = false
+        error = ""
     }
     return error;
 }

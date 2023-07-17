@@ -7,27 +7,34 @@ import Music from './Components/Pages/Music/Music';
 import Animation from './Components/Pages/Animation/Animation';
 import Shows from './Components/Pages/Shows/Shows';
 import Partner from './Components/Pages/Partner/Partner';
-// import VipContextProvider from './Context/VipContextProvider'
+import ContextProvider from './Context/ContextProvider'
 
 function App() {
   return (
-    // <VipContextProvider>
+    <ContextProvider>
       <div className="App">
         <header>
           <Navbar/>
         </header>
         <main>
           <Routes>
+            {/* USER ROUTES */}
             <Route exact path ='/' element={<WhatsNew/>}/>
-            <Route exact path ='/music' element={<Music/>}/>
-            <Route exact path ='/animation' element={<Animation/>}/>
-            <Route exact path ='/shows' element={<Shows/>}/>
-            <Route exact path ='/partner' element={<Partner/>}/>
+            <Route path ='/music' element={<Music/>}/>
+            <Route path ='/animation' element={<Animation/>}/>
+            <Route path ='/shows' element={<Shows/>}/>
+            <Route path ='/partner' element={<Partner/>}/>
+
+            {/* ADMIN ROUTES */}
+            {/* <Route path='/admin' element={}/>
+            <Route path='/admin/login' element={}/>
+            <Route path='/admin/home' element={}/>
+            <Route path='/admin/manage' element={}/> */}
           </Routes>
         </main>
         <Footer/>
       </div>
-    // </VipContextProvider>
+    </ContextProvider>
   );
 }
 
