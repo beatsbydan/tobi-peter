@@ -1,91 +1,73 @@
 import './Shows.css'
-import {BsTicketPerforated} from 'react-icons/bs'
+import {useContext} from 'react'
+import Context from '../../../Context/Context'
+import Show from './Show/Show'
 import {BiRightArrowAlt} from 'react-icons/bi'
+import {TfiFaceSad} from 'react-icons/tfi'
+import Loading from '../../UI/Loading/Loading'
 
 const Shows = () => {
+    const ctx = useContext(Context)
     return ( 
         <div className="shows">
             <div className="actionsBlock">
-                <a href="https://www.">BOOK TOBI PETER</a>
-                <a href="https://www.">DOWNLOAD EPK</a>
+                <a href="https://www.">
+                    BOOK TOBI PETER
+                    <BiRightArrowAlt/>
+                </a>
+                <a href="https://www.">
+                    DOWNLOAD EPK
+                    <BiRightArrowAlt/>
+                </a>
             </div>
             <div className="upcomingShows">
                 <h5>UPCOMING SHOWS</h5>
                 <ul className='showsList'>
-                    <li className='show'>
-                        <div className='left'>
-                            <div className='date'>
-                                <small className='month'>AUG</small>
-                                <h5 className='day'>23</h5>
-                            </div>
-                            <h5 className='desc'>DJ</h5>
-                            <div className='location'>
-                                <h5 className='title'>COACHELLA</h5>
-                                <small className='venue'>The Oasis Valley, Los Angeles, USA</small>
-                            </div>    
-                        </div>
-                        <a href='https://www.'>
-                            <BsTicketPerforated className={'ticket'} size={30}/>
-                            <BiRightArrowAlt className={'myArrow'}/>
-                            <span>GET TICKETS</span>
-                        </a>
-                    </li>
-                    <li className='show'>
-                        <div className='left'>
-                            <div className='date'>
-                                <small className='month'>APR</small>
-                                <h5 className='day'>15</h5>
-                            </div>
-                            <h5 className='desc'>DJ</h5>
-                            <div className='location'>
-                                <h5 className='title'>ULTRA MUSIC FEST</h5>
-                                <small className='venue'>Romo ria, Archies, Belgium</small>
-                            </div>    
-                        </div>
-                        <a href='https://www.'>
-                            <BsTicketPerforated className={'ticket'} size={30}/>
-                            <BiRightArrowAlt className={'myArrow'}/>
-                            <span>GET TICKETS</span>
-                        </a>
-                    </li>
-                    <li className='show'>
-                        <div className='left'>
-                            <div className='date'>
-                                <small className='month'>SEP</small>
-                                <h5 className='day'>24</h5>
-                            </div>
-                            <h5 className='desc'>DJ</h5>
-                            <div className='location'>
-                                <h5 className='title'>ACTIVITY FEST</h5>
-                                <small className='venue'>The Good Beach</small>
-                            </div>    
-                        </div>
-                        <a href='https://www.'>
-                            <BsTicketPerforated className={'ticket'} size={30}/>
-                            <BiRightArrowAlt className={'myArrow'}/>
-                            <span>GET TICKETS</span>
-                        </a>
-                    </li>
+                    {ctx.details.upcomingIsPending ? 
+                            <Loading isPending = {ctx.details.upcomingIsPending}/>
+                        : 
+                            (!ctx.shows.upcomingShows || ctx.shows.upcomingShows.length === 0 ? <h2 className="defaultText">No available shows <span><TfiFaceSad size={35}/></span></h2>                            
+                            : 
+                                ctx.shows.upcomingShows.map((show,index)=>{
+                            return(
+                                <Show
+                                    key={index}
+                                    title={show.title}
+                                    venue={show.venue}
+                                    date={show.date}
+                                    ticketLink={show.ticketLink}
+                                />
+                            )
+                        }))
+                    }
                 </ul>
+                <div className="myShowsActions">
+                    {ctx.details.upcomingType === 'less' ? <button onClick={ctx.handleUpcomingMoreType}>SEE MORE</button> : <button onClick={ctx.handleUpcomingLessType}>SEE LESS</button> }
+                </div>
             </div>
             <div className="pastShows">
                 <h5>PAST SHOWS</h5>
                 <ul className='showsList'>
-                    <li className='show'>
-                        <div className='left'>
-                            <div className='date'>
-                                <small className='month'>AUG</small>
-                                <h5 className='day'>23</h5>
-                            </div>
-                            <h5 className='desc'>DJ</h5>
-                            <div className='location'>
-                                <h5 className='title'>COACHELLA</h5>
-                                <small className='venue'>The Oasis Valley, Los Angeles, USA</small>
-                            </div>    
-                        </div>
-                    </li>
+                    {ctx.details.pastIsPending ? 
+                        <Loading isPending = {ctx.details.pastIsPending}/>
+                    : 
+                        (!ctx.shows.pastShows || ctx.shows.pastShows.length === 0? <h2 className="defaultText">No available shows <span><TfiFaceSad size={35}/></span></h2>
+                        :
+                            ctx.shows.pastShows.map((show,index)=>{
+                                return(
+                                    <Show
+                                        key={index}
+                                        title={show.title}
+                                        venue={show.venue}
+                                        date={show.date}
+                                    />
+                                )
+                        }))
+                }
                 </ul>
-                <button>SEE MORE</button>
+                <div className="myShowsActions">
+                    {ctx.details.pastType === 'less' ? <button onClick={ctx.handlePastMoreType}>SEE MORE</button> : <button onClick={ctx.handlePastLessType}>SEE LESS</button> }
+                </div>
             </div>
         </div>
     );

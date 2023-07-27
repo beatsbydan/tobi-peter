@@ -1,0 +1,11 @@
+.myNav{
+    max-width: 500px;
+}
+@media screen and (max-width:750px){
+    .myNav{
+        gap: 2rem;
+    }
+    .logout{
+        color:white;
+    }
+}

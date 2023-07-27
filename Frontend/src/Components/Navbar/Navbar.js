@@ -11,6 +11,9 @@ const Navbar = () => {
     const handleNav = () =>{
         setIsOpen(!isOpen)
     }
+    const closeNav = () => {
+        setIsOpen(false)
+    }
     return ( 
         <div className="navbar">
             <nav>
@@ -18,20 +21,20 @@ const Navbar = () => {
                     <img className='logo' src={logo} alt=''/>
                 </NavLink>
                 <ul className={isOpen ? 'responsiveNav' : ''} >
-                    <NavLink className={({isActive})=>(isActive ? activeClass: defaultClass)} to={'/'}>
+                    <NavLink onClick={closeNav} className={({isActive})=>(isActive ? activeClass: defaultClass)} to={'/'}>
                         <li>WHAT'S NEW</li>
                     </NavLink>
                     <div className="right">
-                        <NavLink className={({isActive})=>(isActive ? activeClass: defaultClass)} to={'/music'}>
+                        <NavLink onClick={closeNav} className={({isActive})=>(isActive ? activeClass: defaultClass)} to={'/music'}>
                             <li>MUSIC</li>
                         </NavLink>
-                        <NavLink className={({isActive})=>(isActive ? activeClass: defaultClass)} to={'/shows'}>
+                        <NavLink onClick={closeNav} className={({isActive})=>(isActive ? activeClass: defaultClass)} to={'/shows'}>
                             <li>SHOWS</li>
                         </NavLink>
-                        <NavLink className={({isActive})=>(isActive ? activeClass: defaultClass)} to={'/animation'}>
+                        <NavLink onClick={closeNav} className={({isActive})=>(isActive ? activeClass: defaultClass)} to={'/animation'}>
                             <li>ANIMATION</li>
                         </NavLink>
-                        <NavLink className={({isActive})=>(isActive ? activeClass: defaultClass)} to={'/partner'}>
+                        <NavLink onClick={closeNav} className={({isActive})=>(isActive ? activeClass: defaultClass)} to={'/partner'}>
                             <li>PARTNER</li>
                         </NavLink>
                     </div>

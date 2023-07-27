@@ -1,0 +1,66 @@
+.loadingText{
+    color: #1D3557;
+    text-align:center;
+    font-weight:500;
+}
+.loadingText span{
+    display: block;
+    margin-top: 1rem;
+}
+.loader{
+    width:90%;
+    max-width:150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    aspect-ratio: 1;
+}
+.loader svg{
+    width: 40%;
+    animation: rotate 1.5s linear infinite;
+}
+.loader circle{
+    animation: color 6s ease-in-out infinite, dash 1.5s ease-in-out infinite;
+    fill: none;
+    stroke: #1D3557;
+    stroke-width: 3;
+    stroke-linecap: round;
+}
+@keyframes rotate {
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+@keyframes color{
+    100%,0%{
+        stroke: #1D3557;
+    }
+    25%{
+        stroke: rgba(0, 0, 0, 0.311);
+    }
+    50%{
+        stroke: #1D3557;
+    }
+    75%{
+        stroke: rgba(0, 0, 0, 0.311);
+    }
+}
+@keyframes dash {
+    0%{
+        stroke-dasharray: 1,200;
+        stroke-dashoffset: 0;
+    }
+    50%{
+        stroke-dasharray: 89,200;
+        stroke-dashoffset: -35;
+    }
+    100%{
+        stroke-dasharray: 89,200;
+        stroke-dashoffset: -124;
+    }
+}

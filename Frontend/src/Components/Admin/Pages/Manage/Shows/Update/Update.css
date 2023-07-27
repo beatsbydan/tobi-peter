@@ -1,0 +1,52 @@
+.update{
+    width: 100%;
+    max-width: 700px;
+    margin: auto;
+}
+.update h2{
+    text-align: center;
+    color: #1D3557;
+    margin-bottom: 1.5rem;
+}
+.update h2 span{
+    display: block;
+    margin-top: 0.5rem;
+}
+.showsList h2{
+    color: #495464;
+}
+.defaultText span{
+    display: block;
+}
+.editableShow{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.4rem;
+}
+.editableActions{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+.altText{
+    color: #495464;
+    padding: 0.2rem;
+    border-radius: 0.2rem;
+    font-size: 0.2rem;
+    font-weight: 600;
+    background-color: #d9d9d97e;
+    visibility:hidden ;
+    transition: 0.3s ease;
+}
+.visible{
+    visibility: visible;
+}
+.complete,.remove{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items: center;
+    gap: 0.3rem;
+}

@@ -20,6 +20,9 @@ a{
   text-decoration: none;
   font-size: 0.85rem;
 }
+a:active, button:active{
+  outline: none;
+}
 .App{
   min-height: 100vh;
   position: relative;
@@ -29,10 +32,9 @@ header{
   max-width:1050px;
   position: fixed;
   left: 50%;
-  transform: translate(-50%);
+  z-index: 1;
+  transform: translateX(-50%);
   background-color: #FFFBF4;
-  padding:1.5rem 5% 0.1rem 5%;
-  border-bottom: 0.1rem solid #495464;
 }
 main{
   width: 85%;
@@ -44,8 +46,18 @@ p{
   font-size: 0.85rem;
   line-height: 1.6em;
 }
+button:focus{
+  outline: none;
+}
 ul{
   list-style:none;
+}
+input,
+textarea,
+button,
+select,
+a {
+    -webkit-tap-highlight-color: transparent;
 }
 @media screen and (max-width:750px){
   header{

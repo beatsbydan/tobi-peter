@@ -38,16 +38,11 @@
     align-items: last baseline;
 }
 .formElement input{
+    color: #495464;
     padding: 0.8rem;
     border-radius: 0.3rem;
     border: 0.1rem solid #1D3557;
     background-color: transparent;
-}
-.formElement input::placeholder{
-    font-weight: 400;
-    font-size: 0.85rem;
-    color: #0000002e;
-    letter-spacing: 0.1rem;
 }
 .formElement input:focus{
     outline: none;
@@ -67,7 +62,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    gap: 0.8rem;
+    gap: 0.5rem;
 }
 .formElement small{
     color: red;
@@ -93,6 +88,7 @@
 }
 @media screen and (max-width:450px) {
     .vip form{
-        
+        grid-template-columns: unset;
+        align-items: center;
     }
 }

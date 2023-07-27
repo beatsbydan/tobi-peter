@@ -18,20 +18,14 @@ const WhatsNew = () => {
                 <p>DON’T BE A DED GUY, JOIN THE VIP LIST</p>
                 <form action="" onSubmit={ctx.handleSubmit}>
                     <div className="formElement">
-                        <small>{ctx.error}</small>
-                        <input className={ctx.error ?'errorField': ''} type="text" placeholder='email address' value={ctx.email} onChange={ctx.handleChange} />
+                        <small>{ctx.error.email}</small>
+                        <input className={ctx.error.email ?'errorField': ''} type="text" placeholder='Email address' value={ctx.email} onChange={ctx.handleChange} />
                     </div>
                     <button type='submit'>JOIN</button>
                 </form>
             </div>
             <div className="socialsBlock">
-                <Socials
-                    facebook={"https://www."}
-                    snapchat={"https://www."}
-                    twitter={"https://www."}
-                    tiktok={"https://www."}
-                    instagram={"https://www."}
-                />
+                <Socials/>
             </div>
         </div>
     );

@@ -1,0 +1,61 @@
+.admin{
+    width: 100%;
+    max-width: 800px;
+    margin: -7em auto 0em auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    text-align: center;
+}
+.admin img{
+    width: 100%;
+    max-width: 250px;
+    margin: auto;
+}
+.admin h1{
+    font-size: 3rem;
+    color: #1D3557;
+}
+.admin p{
+    font-size: 1rem;
+    color:#495464;
+}
+.myActions{
+    width: 90%;
+    margin: 3em auto;
+    display: grid;
+    grid-template-columns: 45% 45%;
+    gap: 10%;
+    align-items: center;
+}
+.myActions a{
+    color:#1D3557;
+    padding: 0.8rem;
+    font-weight: 500;
+    border: 0.1rem solid #1D3557;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    background-color: transparent;
+    transition: 0.3s ease;
+}
+.admin p span a{
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+@media screen and (max-width:450px) {
+    .admin h1{
+        font-size: 2.3rem;
+    }
+}
+@media screen and (max-width:300px) {
+    .myActions{
+        grid-template-columns: unset;
+    }
+}
+@media (hover: hover) {
+    .myActions a:hover{
+        color: #FFFBF4;
+        background:#1D3557;
+    }
+}

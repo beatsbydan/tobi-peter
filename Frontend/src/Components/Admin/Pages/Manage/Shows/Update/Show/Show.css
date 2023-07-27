@@ -1,0 +1,33 @@
+.editableShow{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.4rem;
+}
+.editableActions{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.6rem;
+}
+.altText{
+    color: #495464;
+    padding: 0.2rem;
+    border-radius: 0.2rem;
+    font-size: 0.2rem;
+    font-weight: 600;
+    background-color: #d9d9d97e;
+    visibility:hidden ;
+    transition: 0.3s ease;
+}
+.visible{
+    visibility: visible;
+}
+.complete,.remove{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items: center;
+    gap: 0.3rem;
+}

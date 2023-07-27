@@ -4,6 +4,8 @@
     display:flex;
     align-items:center;
     justify-content:space-between;
+    padding:1.5rem 5% 0.1rem 5%;
+    border-bottom: 0.1rem solid #495464;
 }
 .logo{
     width:60px;
