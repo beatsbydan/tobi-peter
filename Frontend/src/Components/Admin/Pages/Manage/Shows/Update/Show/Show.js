@@ -4,7 +4,7 @@ import {BiRightArrowAlt} from 'react-icons/bi'
 import {MdOutlineDelete} from 'react-icons/md'
 import {FaRegThumbsUp} from 'react-icons/fa'
 import {useState} from 'react'
-import UpdateShow from '../UpdateShow/UpdateShow'
+import UpdateEvent from '../../../../../../UI/UpdateEvent/UpdateEvent'
 
 const Show = (props) => {
     const date = new Date(props.date)
@@ -44,17 +44,38 @@ const Show = (props) => {
             delete:!isVisible.delete
         })
     }
-    //Only pending shows should be completable
+    const deletePrompt = () => {
+        props.deletePrompt()
+        .then(success=>{
+            if(success.yes){
+                setIsOpen({
+                    delete: false,
+                })
+            }
+        })
+    }
+    const completePrompt = () => {
+        props.completePrompt()
+        .then(success=>{
+            if(success.yes){
+                setIsOpen({
+                    complete: false,
+                })
+            }
+        })
+    }
     return ( 
         <li className="editableShow">
             <div className="editableActions">
-                <div className="complete">
-                    <small className={isVisible.complete ? "visible altText" : "altText"}>Complete</small>
-                    <FaRegThumbsUp onMouseEnter={handleCompleteVisibility} onMouseLeave={handleCompleteVisibility} size={25} cursor={'pointer'} color='#1D3557'/>
-                </div>
+                {!props.isComplete &&
+                    <div className="complete">
+                        <small className={isVisible.complete ? "visible altText" : "altText"}>Complete</small>
+                        <FaRegThumbsUp onClick={handleCompleteIsOpen} onMouseEnter={handleCompleteVisibility} onMouseLeave={handleCompleteVisibility} size={25} cursor={'pointer'} color='#1D3557'/>
+                    </div>
+                }
                 <div className="remove">
                     <small className={isVisible.delete ?"visible altText" : "altText"}>Delete</small>
-                    <MdOutlineDelete onMouseEnter={handleDeleteVisibility} onMouseLeave={handleDeleteVisibility} size={27} cursor={'pointer'} color='#1D3557'/>
+                    <MdOutlineDelete onClick={handleDeleteIsOpen} onMouseEnter={handleDeleteVisibility} onMouseLeave={handleDeleteVisibility} size={27} cursor={'pointer'} color='#1D3557'/>
                 </div>
             </div>
             <div className='show'>
@@ -76,19 +97,21 @@ const Show = (props) => {
                 </a>}
             </div>
             {isOpen.complete&&
-                <UpdateShow
-                    type={'complete'}
+                <UpdateEvent
+                    type={'COMPLETE'}
+                    event={'SHOW'}
                     cancel={handleCompleteIsOpen}
-                    completePrompt={props.completePrompt}
-                    deletePrompt={props.deletePrompt}
+                    completePrompt={completePrompt}
+                    deletePrompt={deletePrompt}
                 />
             }
             {isOpen.delete&&
-                <UpdateShow
-                    type={'delete'}
+                <UpdateEvent
+                    type={'DELETE'}
+                    event={'SHOW'}
                     cancel={handleDeleteIsOpen}
-                    completePrompt={props.completePrompt}
-                    deletePrompt={props.deletePrompt}
+                    completePrompt={completePrompt}
+                    deletePrompt={deletePrompt}
                 />
             }
         </li>

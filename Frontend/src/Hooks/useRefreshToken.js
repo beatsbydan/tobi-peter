@@ -2,7 +2,7 @@ import axios from 'axios'
 import useAuth from './useAuth'
 
 const useRefreshToken = () => {
-    const refreshApi = 'https://'
+    const refreshApi = 'https:/toby-peter-production.up.railway.app/api/admin/refresh'
     const {setAccessToken} = useAuth()
     const refresh = async () => {
         const response = await axios.get(refreshApi,{

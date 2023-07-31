@@ -1,7 +1,7 @@
 .authCard{
     width:100%;
     max-width: 600px;
-    margin: -4em auto -4em auto;
+    margin: -8em auto -4em auto;
 }
 .top{
     width: 100%;
@@ -24,7 +24,7 @@
     color: #1D3557;
     text-align: center;
 }
-.authCard a svg{
+.authCard svg{
     margin-bottom:3.5em ;
 }
 .authCard p span a{
@@ -58,6 +58,28 @@
     color: #FFFBF4;
     background:#1D3557;
     outline: none;
+}
+.forgotText{
+    text-align:right;
+    text-decoration: underline;
+}
+.noteBlock{
+    width:100%;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+    margin: 4em 0;
+}
+.noteBlock h2{
+    color: #1D3557;
+    margin: 0;
+    text-decoration: underline;
+}
+.noteBlock p{
+    color: #495464;
+    text-align: left;
 }
 @media (hover: hover){
     .formActions button:hover{

@@ -16,7 +16,7 @@ const InputComponent = (props) => {
             {props.type === "password" ?
                 <div className="passwordBlock">
                     <input
-                        name={props.name}  
+                        id={props.id}  
                         className={props.error ? "errorField" : ""}
                         type={!isVisible ? "password":"text"} 
                         placeholder={props.placeholder} 
@@ -27,7 +27,7 @@ const InputComponent = (props) => {
                 </div>
                 :
                 <input 
-                    name={props.name}
+                    id={props.id}
                     className={props.error ? "errorField": ""} 
                     type={props.type} 
                     placeholder={props.placeholder} 

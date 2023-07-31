@@ -1,18 +1,94 @@
-import {useState} from 'react'
+import {useState, useEffect, useReducer} from 'react'
 import ManageContext from './ManageContext'
 import useAlert from '../../../../Hooks/useAlert'
-import ValidateCoverArt from '../../Pages/Manage/CoverArt/ValidateCoverArt'
-// import {Navigate} from 'react-router-dom'
-import ValidateUpdateLinks from '../../Pages/Manage/Links/ValidateUpdateLinks'
+import useAuth from '../../../../Hooks/useAuth'
+import ValidateSong from '../../Pages/Manage/Song/ValidateSong'
+import axios from 'axios'
+
 const ManageContextProvider = (props) => {
     const {setAlert} = useAlert()
-    const [dataErrors, setDataErrors] = useState({})
-    const [file, setFile] = useState('')
-    const [project, setProject] = useState({
+    const {authDetails} = useAuth()
+    const [song, setSong] = useState({})
+    const [allSongs, setAllSongs] = useState([])
+    const initialPendState = {
+        isPending: false   
+    }
+    const pendReducer = (state,action) =>{
+        if(action.type === 'PENDING'){
+            return{
+                isPending: true
+            }
+        }
+        if(action.type === 'COMPLETED'){
+            return{
+                isPending: false
+            }
+        }
+    }
+    const [pending, dispatchPending] = useReducer(pendReducer, initialPendState)
+    const getSongs = () => {
+        dispatchPending({type: 'PENDING'})
+        setTimeout(()=>{
+            axios.get('https://toby-peter-production.up.railway.app/api/song/')
+            .then(res=>{
+                if(res.status === 200){
+                    setAllSongs(res.data.allSongs)        
+                    dispatchPending({type: 'COMPLETED'})
+                }
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+        },3000)
+    }
+    const getSong = async (id) => {
+        dispatchPending({type: 'PENDING'})
+        await axios.get(`htps://toby-peter-production.up.railway.app/api/song/${id}`)
+        .then(res=>{
+            console.log(res)
+            if(res.status === 200){
+                setSong(res.data.song)
+                dispatchPending({type: 'COMPLETED'})
+            }
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+    }
+    const deleteSong = async (id) =>{
+        let success = {}
+        await axios.delete(`https://toby-peter-production.up.railway.app/api/song/delete/${id}`,{
+            headers:{
+                'Content-Type':'application/json',
+                "Authorization":`Bearer ${authDetails.accessToken}`
+            }
+        })
+        .then(res=>{
+            console.log(res)
+            if(res.status === 200){
+                success.yes = true
+                setAlert('success', 'Song Deleted!')
+                getSongs()
+            }
+        })
+        .catch(err=>{
+            success.yes = false
+            setAlert('failure', 'Song not deleted!')
+            console.log(err)
+        })
+        return success
+    }
+    useEffect(()=>{
+        getSongs()
+    },[])
+    
+    const [createDataErrors, setCreateDataErrors] = useState({})
+    const [updateDataErrors, setUpdateDataErrors] = useState({})
+    const [createFile, setCreateFile] = useState({})
+    const [updateFile, setUpdateFile] = useState(song.coverArt)
+    const [createData, setCreateData] = useState({
         date:'',
-        title:''
-    })
-    const [links, setLinks] = useState({
+        title:'',
         appleMusic: '',
         spotify: '',
         audiomack: '',
@@ -21,66 +97,134 @@ const ManageContextProvider = (props) => {
         boomPlay: '',
         youtubeMusic: ''
     })
-    const handleFileChange = (e) => {
-        setFile(e.target.files[0])
+    const [updateData, setUpdateData] = useState({
+        date:song?.releaseDate,
+        title:song?.title,
+        appleMusic: song?.streamingLinks?.appleMusic,
+        spotify: song?.streamingLinks?.spotify,
+        audiomack: song?.streamingLinks?.audiomack,
+        youtube: song?.streamingLinks?.youtube,
+        tidal: song?.streamingLinks?.tidal,
+        boomPlay: song?.streamingLinks?.boomPlay,
+        youtubeMusic: song?.streamingLinks?.youtubeMusic
+    })
+    const handleCreateFileChange = (e) => {
+        setCreateFile(e.target.files[0])
     }
-    const handleLinksChange = (e) => {
-        const {name, value} = e.target;
-        setLinks(prev=>{
-            return {...prev, [name]:value}
+    const handleUpdateFileChange = (e) => {
+        setUpdateFile(e.target.files[0])
+    }
+    const handleCreateDataChange = (e) => {
+        const {id, value} = e.target;
+        setCreateData(prev=>{
+            return {...prev, [id]:value}
         })
     }
-    const handleProjectChange = (e) => {
-        const {name, value} = e.target;
-        setProject(prev=>{
-            return {...prev, [name]:value}
+    const handleUpdateDataChange = (e) => {
+        const {id, value} = e.target;
+        setUpdateData(prev=>{
+            return {...prev, [id]:value}
         })
     }
-    const handleFileSubmit = (e) => {
-        e.preventDefault()
-        ValidateCoverArt(file)
-        .then(res=>{
-            if(res.none){
-                setAlert('success')
-            }
-            else{
-                setAlert('failure')
-            }
-        })
-    }
-    const handleSubmit = (e) => {
-        e.preventDefault()
+    const handleCreateSubmit = async () => {
+        let success = {}
         const data = {
-            links: links,
-            date:project.date,
-            title:project.title
+            title: createData.title,
+            releaseDate: createData.date,
+            streamingLinks: {
+                appleMusic: createData.appleMusic,
+                spotify: createData.spotify,
+                audiomack: createData.audiomack,
+                youtube: createData.youtube,
+                tidal: createData.tidal,
+                boomPlay: createData.boomPlay,
+                youtubeMusic: createData.youtubeMusic
+            },
+            coverArt: createFile,
+            type:'create'
         }
-        ValidateUpdateLinks(data)
+        ValidateSong(data, authDetails.accessToken)
         .then(res=>{
-            setDataErrors(res)
+            setCreateDataErrors(res)
             if(res.none){
-                setAlert('success')
-                // return <Navigate to={'/admin/home'}/>
+                getSongs()
+                setCreateData({
+                    date:'',
+                    title:'',
+                    appleMusic: '',
+                    spotify: '',
+                    audiomack: '',
+                    youtube: '',
+                    tidal: '',
+                    boomPlay: '',
+                    youtubeMusic: ''
+                })
+                success.yes = true
             }
             else{
-                setAlert('failure')
+                success.yes = false
+                setAlert('failure', 'Song not created!')
             }
         })
-        .catch(err=>{
-            console.log(err)
+        return success
+    }
+    const handleUpdateSubmit = async () => {
+        let success = {}
+        const data = {
+            title: updateData.title,
+            releaseDate: updateData.releaseDate,
+            streamingLinks: {
+                appleMusic: updateData.appleMusic,
+                spotify: updateData.spotify,
+                audiomack: updateData.audiomack,
+                youtube: updateData.youtube,
+                tidal: updateData.tidal,
+                boomPlay: updateData.boomPlay,
+                youtubeMusic: updateData.youtubeMusic
+            },
+            coverArt: updateFile,
+            type: 'update'
+        }
+        ValidateSong(data, authDetails.accessToken, song._id)
+        .then(res=>{
+            setUpdateDataErrors(res)
+            if(res.none){
+                getSongs()
+                setUpdateData({
+                    date:'',
+                    title:'',
+                    appleMusic: '',
+                    spotify: '',
+                    audiomack: '',
+                    youtube: '',
+                    tidal: '',
+                    boomPlay: '',
+                    youtubeMusic: ''
+                })
+                success.yes = true
+            }
+            else{
+                success.yes = false
+                setAlert('failure', 'Song not updated!')
+            }
         })
+        return success
     }
     const value = {
-        file: '',
-        title:project.title,
-        date:project.date,
-        links:links,
-        dataErrors:dataErrors,
-        handleFileChange:handleFileChange,
-        handleLinksChange:handleLinksChange,
-        handleProjectChange:handleProjectChange,
-        handleSubmit:handleSubmit,
-        handleFileSubmit:handleFileSubmit
+        pending:pending,
+        allSongs:allSongs,
+        createData:createData,
+        updateData:updateData,
+        createDataErrors:createDataErrors,
+        updateDataErrors:updateDataErrors,
+        getSong:getSong,
+        deleteSong:deleteSong,
+        handleCreateDataChange:handleCreateDataChange,
+        handleUpdateDataChange:handleUpdateDataChange,
+        handleCreateFileChange:handleCreateFileChange,
+        handleUpdateFileChange:handleUpdateFileChange,
+        handleCreateSubmit:handleCreateSubmit,
+        handleUpdateSubmit:handleUpdateSubmit,
     }
     return ( 
         <ManageContext.Provider value = {value}>

@@ -1,0 +1,72 @@
+.adminHome{
+    display: flex;
+    flex-direction: column;
+    gap: 4.5rem;
+}
+.adminHome p{
+    font-size: 1rem;
+}
+.adminHome p, .adminHome h5{
+    color: #495464;
+    text-align: center;
+}
+.adminHome h4{
+    color: #1D3557;
+    text-align: center;
+}
+.adminHome h3{
+    color: #1D3557;
+    font-weight: 500;
+    text-align: center;
+}
+.changeBlock{
+    width: 100%;
+    max-width: 500px;
+    margin: 2em auto;
+    display: flex;
+    flex-direction: column;
+}
+.homeIntro h1{
+    color: #1D3557;
+    text-align:center;
+}
+.subscribers p span {
+    color: #1D3557;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+.subscribers h5{
+    margin-bottom: 0.5rem;
+}
+.columnFlex{
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+.newSong{
+    margin-bottom: 3.8rem;
+}
+.nextShow{
+    width: 100%;
+    max-width: 700px;
+    margin: auto;
+}
+.nextShow .show{
+    margin-top:1rem;
+}
+.nextShow .show a{
+    font-weight: 600;
+}
+.myNewSong p span{
+    color: #1D3557;
+    font-weight: 600;
+}
+.nextShow h5, .nextShow small{
+    color:#495464;
+}
+.myNewSong p{
+    margin-bottom:4em;
+}
+.events h3{
+    margin-bottom:1.1rem;
+}

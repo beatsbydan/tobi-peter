@@ -1,8 +1,7 @@
 import axios from 'axios'
 
-const ValidateShows = async (entry) => {
+const ValidateShows = async (entry, token) => {
     let errors = {}
-    const token = ""
     const linkRegex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/
     const createShowApi = 'https://toby-peter-production.up.railway.app/api/show/create'
 
@@ -27,6 +26,15 @@ const ValidateShows = async (entry) => {
                 "Authorization":`Bearer ${token}`
             }
         }))
+        .then(res=>{
+            console.log(res)
+            if(res.status === 200){
+                errors.none = true
+            }
+        })
+        .catch(err=>{
+            console.log(err)  
+        })
     }
     return errors;
 }

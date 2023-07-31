@@ -3,14 +3,31 @@ import InputComponent from '../../../../../UI/InputComponent/InputComponent'
 import {BsEmojiWink} from 'react-icons/bs'
 import {useContext} from 'react'
 import ShowsContext from '../../../../Context/ManageContext/ShowsContext/ShowsContext'
+import {useNavigate} from 'react-router-dom'
+import useAlert from '../../../../../../Hooks/useAlert'
+
 const Create = () => {
     const ctx = useContext(ShowsContext)
+    const {setAlert} = useAlert()
+    const navigate = useNavigate()
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        ctx.handleCreateSubmit()
+        .then(success=>{
+            if(success.yes){
+                setAlert('success', 'Show Created!')
+                setTimeout(()=>{
+                    navigate('/admin/manage')
+                },1500)
+            }
+        })
+    }
     return(
         <div className="create">
-            <h2>ADD NEW SHOWS WITH EASE <span><BsEmojiWink size={35}/></span></h2>
-            <form action="" onSubmit={ctx.handleCreateSubmit}>
+            <h2>ADD A NEW SHOW WITH EASE <span><BsEmojiWink size={35}/></span></h2>
+            <form action="" onSubmit={handleSubmit}>
                 <InputComponent
-                    name={"title"}
+                    id={"title"}
                     label={"Title:"}
                     error={ctx.createErrors.title}
                     type={"text"}
@@ -19,7 +36,7 @@ const Create = () => {
                     onChange={ctx.handleChange}
                 />
                 <InputComponent
-                    name={"venue"}
+                    id={"venue"}
                     label={"Venue:"}
                     error={ctx.createErrors.venue}
                     type={"text"}
@@ -28,7 +45,7 @@ const Create = () => {
                     onChange={ctx.handleChange}
                 />
                 <InputComponent
-                    name={"date"}
+                    id={"date"}
                     label={"Date:"}
                     error={ctx.createErrors.date}
                     type={"date"}
@@ -37,7 +54,7 @@ const Create = () => {
                     onChange={ctx.handleChange}
                 />
                 <InputComponent
-                    name={"ticketLink"}
+                    id={"ticketLink"}
                     label={"Ticket-Link:"}
                     error={ctx.createErrors.ticketLink}
                     type={"link"}

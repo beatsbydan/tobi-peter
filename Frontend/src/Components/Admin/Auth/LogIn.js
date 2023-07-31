@@ -3,25 +3,29 @@ import { useContext } from 'react'
 import InputComponent from '../../UI/InputComponent/InputComponent'
 import Logo from '../../../Assets/logo.png'
 import AuthContext from '../Context/AuthContext/AuthContext'
-import {Link, Navigate, useLocation} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import useAlert from '../../../Hooks/useAlert'
 import {AiOutlineArrowLeft} from 'react-icons/ai'
 
 const LogIn = () => {
     const ctx = useContext(AuthContext)
     const {setAlert} = useAlert()
+    const navigate = useNavigate()
     const handleSubmit = (e) => {
         e.preventDefault()
         ctx.handleLogInSubmit()
-        .then(res=>{
-            if(res){
+        .then(success=>{
+            if(success.yes){
                 setAlert('success', 'Login Successful!')
+                setTimeout(()=>{
+                    navigate(ctx.authDetails.destinedLocation === "" ? '/admin/home' : ctx.authDetails.destinedLocation, {state:{from: ctx.authDetails.destinedLocation}, replace:true})
+                },1500)
             }
         })
     }
     return(
         <div className="authCard">
-            <Link to={'/admin'}><AiOutlineArrowLeft color='#1D3557' size={45}/></Link>
+            <AiOutlineArrowLeft cursor='pointer' onClick={()=> navigate(-1)} color='#1D3557' size={30}/>
             <div className="top">
                 <img src={Logo} alt=''/>
                 <h2>LOGIN</h2>
@@ -43,6 +47,7 @@ const LogIn = () => {
                     value={ctx.authDetails.logInPassword}
                     onChange={ctx.handleLogInPasswordChange}
                 />
+                <Link className='forgotText' to={'/admin/reset'}>Forgot Password?</Link>
                 <div className="formActions">
                     <button type="submit">LOGIN</button>
                 </div>

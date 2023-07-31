@@ -2,11 +2,13 @@ import ShowsContext from './ShowsContext'
 import {useState, useReducer, useEffect} from 'react'
 import ValidateShows from '../../../Pages/Manage/Shows/ValidateShows'
 import useAlert from '../../../../../Hooks/useAlert'
+import useAuth from '../../../../../Hooks/useAuth'
 import axios from 'axios'
 
 const ShowsContextProvider = (props) => {
     const {setAlert} = useAlert()
-    const token = ''
+    const {authDetails} = useAuth()
+    const token = authDetails.accessToken
     const initials = {
         upcomingType: 'less',
         pastType:'less',
@@ -117,15 +119,22 @@ const ShowsContextProvider = (props) => {
     const getShows = () => {
         dispatchDetails({type: 'IS_PENDING'})
             setTimeout(()=>{
-                axios.get(showsApi)
+                axios.get(showsApi, {
+                    header:{
+                        'Content-Type': 'application/json'
+                    }
+                })
                 .then(res=>{
                     if(res.status === 200){
+                        const allShows = {
+                            upcomingShows: res.data.pendingShows,
+                            pastShows: res.data.completedShows
+                        }
                         const myUpcomingShows = filterShows(res.data.pendingShows, 'less')
                         const myPastShows = filterShows(res.data.completedShows, 'less')
-                        dispatchShows({type:"SET_ALL_SHOWS", value:{
-                            upcomingShows: myUpcomingShows,
-                            pastShows: myPastShows
-                        }})
+                        dispatchShows({type:"SET_ALL_SHOWS", value:{...allShows}})
+                        dispatchShows({type:"SET_UPCOMING_SHOWS", value: myUpcomingShows})
+                        dispatchShows({type:"SET_PAST_SHOWS", value: myPastShows})
                         dispatchDetails({type: 'IS_NOT_PENDING'})
                     }
                 })
@@ -140,9 +149,11 @@ const ShowsContextProvider = (props) => {
     const filterShows = (shows, type) => {
         if(type === "more"){
             if(shows.length > 0){
+                let currentShows = []
                 for(let i = 0; i < shows.length; i++){
-                    return [...shows[i]]
+                    currentShows.push(shows[i])
                 }
+                return currentShows
             }
             else{
                 return []
@@ -150,55 +161,59 @@ const ShowsContextProvider = (props) => {
         }   
         else{
             if(shows.length > 0){
+                let currentShows = []
                 for(let i = 0; i < 3; i++){
-                    return [...shows[i]]
+                    currentShows.push(shows[i])                    
                 }
+                return currentShows
             }
             else{
                 return []
             }
         }
     }
-    const getUpcomingShows = () => {
+    const getUpcomingShows = (type) => {
         setTimeout(()=>{
-            const newShows = filterShows(shows.myShows.upcomingShows, details.upcomingType)
+            const newShows = filterShows(shows.myShows.upcomingShows, type)
             dispatchShows({type:"SET_UPCOMING_SHOWS", value:newShows})
             dispatchDetails({type: 'UPCOMING_DONE'})
             
         },3000)
     }
-    const getPastShows = () => {
+    const getPastShows = (type) => {
         setTimeout(()=>{
-                const newShows = filterShows(shows.myShows.pastShows, details.pastType)
+                const newShows = filterShows(shows.myShows.pastShows, type)
                 dispatchShows({type:"SET_PAST_SHOWS", value:newShows})
                 dispatchDetails({type: 'PAST_DONE'})
         },3000)
     }
     const deleteShow = async (id) => {
-        console.log('deleted')
-        await axios.post(`https://toby-peter-production.up.railway.app/api/show/delete/${id}`,{
+        let success = {}
+        await axios.delete(`https://toby-peter-production.up.railway.app/api/show/delete/${id}`,{
             headers:{
                 'Content-Type':'application/json',
                 "Authorization":`Bearer ${token}`
             }
         })
         .then(res=>{
-            console.log(res)
             if(res.status === 200){
-                setAlert('success')
+                success.yes = true
+                setAlert('success', 'Show Deleted!')
                 getShows()
             }
         })
         .catch(err=>{
             console.log(err)
             if(err.response.status !== 200){
-                setAlert('failure')
+                success.yes = false
+                setAlert('failure', 'Show not deleted!')
             }
         })
+        return success
     }
     const completeShow = async (id) => {
-        console.log('completed')
-        await axios.post(`https://toby-peter-production.up.railway.app/api/show/complete/${id}`,{
+        let success = {}
+        await axios.put(`https://toby-peter-production.up.railway.app/api/show/complete/${id}`,{
             headers:{
                 'Content-Type':'application/json',
                 "Authorization":`Bearer ${token}`
@@ -207,33 +222,35 @@ const ShowsContextProvider = (props) => {
         .then(res=>{
             console.log(res)
             if(res.status === 200){
-                setAlert('success')
+                success.yes = true
+                setAlert('success', 'Show Completed!')
                 getShows()
             }
         })
         .catch(err=>{
             console.log(err)
             if(err.response.status !== 200){
-                setAlert('failure')
+                success.yes = false
+                setAlert('failure', 'Show not completed!')
             }
         })
-        //create a function to get the new shows everytime there's an update i.e delete or complete  
+        return success
     }
     const handlePastMoreType = () => {
         dispatchDetails({type:'MORE_PAST'})
-        getPastShows()
+        getPastShows('more')
     }
     const handlePastLessType = () => {
         dispatchDetails({type:'LESS_PAST'})
-        getPastShows()
+        getPastShows('less')
     }
     const handleUpcomingMoreType = () => {
         dispatchDetails({type:'MORE_UPCOMING'})
-        getUpcomingShows()
+        getUpcomingShows('more')
     }
     const handleUpcomingLessType = () => {
         dispatchDetails({type:'LESS_UPCOMING'})
-        getUpcomingShows()
+        getUpcomingShows('less')
     }
 
     const [createData, setCreateData] = useState({
@@ -244,23 +261,31 @@ const ShowsContextProvider = (props) => {
     })
     const [createErrors, setCreateErrors] = useState({})
     const handleChange = (e) => {
-        const {name, value} = e.target;
+        const {id, value} = e.target;
         setCreateData(prev=>{
-            return {...prev, [name]:value}
+            return {...prev, [id]:value}
         })
     }
-    const handleCreateSubmit = (e) => {
-        e.preventDefault()
-        ValidateShows(createData)
+    const handleCreateSubmit = async () => {
+        let success = {}
+        await ValidateShows(createData, token)
         .then(res=>{
             setCreateErrors(res)
             if(res.none){
-                setAlert('success')
+                success.yes = true
+                setCreateData({
+                    title: '',
+                    venue: '',
+                    date: '',
+                    ticketLink: ''
+                })
             }
             else{
-                setAlert('failure')
+                success.yes = false
+                setAlert('failure', 'Show not created!')
             }
         })
+        return success
     }
     const value = {
         createData: createData,

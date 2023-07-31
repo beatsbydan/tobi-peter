@@ -14,18 +14,18 @@ const Register = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         ctx.handleRegisterSubmit()
-        .then(res=>{
-            if(res){
+        .then(success=>{
+            if(success.yes){
                 setAlert('success', 'Registration Successful!')
                 setTimeout(()=>{
                     navigate('/admin/login')
-                },2000)
+                },1500)
             }
         })
     }
     return ( 
         <div className="authCard">
-            <Link to={'/admin'}><AiOutlineArrowLeft color='#1D3557' size={45}/></Link>
+            <AiOutlineArrowLeft cursor='pointer' onClick={()=> navigate(-1)} color='#1D3557' size={30}/>
             <div className="top">
                 <img src={Logo} alt=''/>
                 <h2>REGISTER</h2>

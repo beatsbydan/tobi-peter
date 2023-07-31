@@ -9,6 +9,7 @@
 }
 .streamingPlatforms a{
     font-size: 0.7rem;
+    cursor: pointer;
 }
 .streamingPlatforms a li{
     display:flex;

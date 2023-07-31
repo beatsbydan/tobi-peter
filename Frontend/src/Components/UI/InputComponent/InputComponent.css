@@ -42,9 +42,10 @@
 .passwordBlock input{
     width: 100%;
 }
-.visibility{
+.passwordBlock .visibility{
     position:absolute;
     right:1rem;
+    margin-bottom: 0;
 }
 .formElement input:focus, .passwordBlock input:focus{
     outline: none;

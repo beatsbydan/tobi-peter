@@ -1,14 +1,16 @@
 import React from 'react'
 const ManageContext = React.createContext({
-    links: {},
-    title: '',
-    date: '',
-    file:'',
-    dataErrors:{},
-    handleFileChange: ()=>{},
-    handleProjectChange: ()=>{},
-    handleLinksChange: ()=>{},
-    handleSubmit: ()=>{},
-    handleFileSubmit: ()=>{}
+    pending: false,
+    allSongs: [],
+    createData: {},
+    updateData: {},
+    createDataErrors: {},
+    updateDataErrors: {},
+    handleCreateDataChange: ()=>{},
+    handleUpdateDataChange: ()=>{},
+    handleCreateFileChange: ()=>{},
+    handleUpdateFileChange: ()=>{},
+    handleCreateSubmit: ()=>{},
+    handleUpdateSubmit: ()=>{}  
 })
 export default ManageContext

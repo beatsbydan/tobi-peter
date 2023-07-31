@@ -5,7 +5,7 @@ const Admin = () => {
     return ( 
         <div className="admin">
             <img src={Logo} alt=''/>
-            <h1>WELCOME TOBI PETER</h1>
+            <h1>HI TOBI PETER</h1>
             <p>This is your Administrator Profile.</p>
             <p>Quickly create your account or Log back in if you have.</p>
             <div className='myActions'>
