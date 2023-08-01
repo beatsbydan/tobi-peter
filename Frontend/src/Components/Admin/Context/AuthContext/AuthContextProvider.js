@@ -251,7 +251,6 @@ const AuthContextProvider = (props) => {
                 success.yes = true
                 dispatchAuthDetails({type: "CLEAR"})
                 setAccessToken(res.parameters.accessToken)
-                setIsLoggedIn(true)
             }
             else{
                 success.yes = false
@@ -323,11 +322,9 @@ const AuthContextProvider = (props) => {
         return success
     }
     const setAccessToken = (token) => {
-        console.log(token)
         dispatchAuthDetails({type:'SET_ACCESS_TOKEN', value: token})
     }
     const setIsLoggedIn = (value) => {
-        console.log(value)
         dispatchAuthDetails({type:'SET_LOGGED_IN', value: value})
     }
     const setDestinedLocation = (location) => {
@@ -339,11 +336,11 @@ const AuthContextProvider = (props) => {
         await axios.get(logOutApi,{
             headers:{
                 'Content-Type':'application/json',
-                'Authorization': `Bearer ${authDetails.accessToken}`
-            }
+            },
+            withCredentials:true
         })
         .then(res=>{
-            if(res.status === 200){
+            if(res.status === 204){
                 success.yes = true
             }
         })

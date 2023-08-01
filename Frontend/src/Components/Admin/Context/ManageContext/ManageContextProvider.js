@@ -1,14 +1,16 @@
-import {useState, useEffect, useReducer} from 'react'
+import {useState, useEffect, useReducer, useContext} from 'react'
 import ManageContext from './ManageContext'
 import useAlert from '../../../../Hooks/useAlert'
 import useAuth from '../../../../Hooks/useAuth'
 import ValidateSong from '../../Pages/Manage/Song/ValidateSong'
 import axios from 'axios'
+import Context from '../../../User/Context/Context'
 
 const ManageContextProvider = (props) => {
     const {setAlert} = useAlert()
     const {authDetails} = useAuth()
     const [song, setSong] = useState({})
+    const userCtx = useContext(Context)
     const [allSongs, setAllSongs] = useState([])
     const initialPendState = {
         isPending: false   
@@ -69,6 +71,7 @@ const ManageContextProvider = (props) => {
                 success.yes = true
                 setAlert('success', 'Song Deleted!')
                 getSongs()
+                userCtx.getSong()
             }
         })
         .catch(err=>{
@@ -143,11 +146,13 @@ const ManageContextProvider = (props) => {
             coverArt: createFile,
             type:'create'
         }
-        ValidateSong(data, authDetails.accessToken)
+        console.log(data)
+        await ValidateSong(data, authDetails.accessToken)
         .then(res=>{
             setCreateDataErrors(res)
             if(res.none){
                 getSongs()
+                userCtx.getSong()
                 setCreateData({
                     date:'',
                     title:'',
@@ -185,11 +190,12 @@ const ManageContextProvider = (props) => {
             coverArt: updateFile,
             type: 'update'
         }
-        ValidateSong(data, authDetails.accessToken, song._id)
+        await ValidateSong(data, authDetails.accessToken, song._id)
         .then(res=>{
             setUpdateDataErrors(res)
             if(res.none){
                 getSongs()
+                userCtx.getSong()
                 setUpdateData({
                     date:'',
                     title:'',

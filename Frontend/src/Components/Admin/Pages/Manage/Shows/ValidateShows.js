@@ -27,7 +27,6 @@ const ValidateShows = async (entry, token) => {
             }
         }))
         .then(res=>{
-            console.log(res)
             if(res.status === 200){
                 errors.none = true
             }

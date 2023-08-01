@@ -4,6 +4,8 @@ const Context = React.createContext({
     error: '',
     details:{},
     song:[],
+    getShows: ()=>{},
+    getSong: ()=>{},
     handleChange: ()=>{},
     handleUpcomingMoreType: ()=>{},
     handlePastMoreType: ()=>{},

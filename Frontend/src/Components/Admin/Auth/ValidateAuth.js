@@ -6,7 +6,6 @@ const ValidateAuth = async (entry, token) => {
     const resetApi = 'https://toby-peter-production.up.railway.app/api/admin/forgot-pass'
     const changeApi = 'https://toby-peter-production.up.railway.app/api/admin/change-pass'
     const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-
     let result = {
         errors: {},
         parameters: {}
@@ -54,7 +53,8 @@ const ValidateAuth = async (entry, token) => {
             await axios.post(logInApi, {...data},{
                 headers:{
                     "Content-Type": "application/json"
-                }
+                },
+                withCredentials:true
             })
             .then(res=>{
                 if(res.data.status.toLowerCase() === 'success'){

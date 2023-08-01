@@ -18,6 +18,7 @@ const LogIn = () => {
             if(success.yes){
                 setAlert('success', 'Login Successful!')
                 setTimeout(()=>{
+                    ctx.setIsLoggedIn(true)
                     navigate(ctx.authDetails.destinedLocation === "" ? '/admin/home' : ctx.authDetails.destinedLocation, {state:{from: ctx.authDetails.destinedLocation}, replace:true})
                 },1500)
             }

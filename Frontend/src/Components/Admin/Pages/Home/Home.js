@@ -19,7 +19,7 @@ const Home = () => {
     
     const {setAlert} = useAlert()
     
-    const date = /*new Date(shows.upcomingShows[0]?.date) ||*/ new Date()
+    const date = new Date(shows.upcomingShows[0]?.date)
     const myDate = date.getDate()
     const myMonth = date.getMonth()
     const getMonth = (myMonth) => {
@@ -70,13 +70,13 @@ const Home = () => {
                     <div className="show">
                         <div className='left'>
                             <div className='date'>
-                                <small className='month'>{txtMonth}</small>
-                                <h5 className='day'>{myDate}</h5>
+                                <small className='month'>{txtMonth || 'None'}</small>
+                                <h5 className='day'>{myDate || 'None'}</h5>
                             </div>
                             <h5 className='desc'>DJ</h5>
                             <div className='location'>
-                                <h5 className='title'>{shows.upcomingShows[0]?.title || 'Waazabi'}</h5>
-                                <small className='venue'>{shows.upcomingShows[0]?.venue || 'Ikorodu'}</small>
+                                <h5 className='title'>{shows.upcomingShows[0]?.title || 'None'}</h5>
+                                <small className='venue'>{shows.upcomingShows[0]?.venue || 'None'}</small>
                             </div>    
                         </div>
                         {<a href={shows.upcomingShows[0]?.ticketLink}>

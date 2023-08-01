@@ -1,14 +1,15 @@
 import ShowsContext from './ShowsContext'
-import {useState, useReducer, useEffect} from 'react'
+import {useState, useReducer, useEffect, useContext} from 'react'
 import ValidateShows from '../../../Pages/Manage/Shows/ValidateShows'
 import useAlert from '../../../../../Hooks/useAlert'
 import useAuth from '../../../../../Hooks/useAuth'
+import Context from '../../../../User/Context/Context'
 import axios from 'axios'
 
 const ShowsContextProvider = (props) => {
     const {setAlert} = useAlert()
     const {authDetails} = useAuth()
-    const token = authDetails.accessToken
+    const userCtx = useContext(Context)
     const initials = {
         upcomingType: 'less',
         pastType:'less',
@@ -149,11 +150,7 @@ const ShowsContextProvider = (props) => {
     const filterShows = (shows, type) => {
         if(type === "more"){
             if(shows.length > 0){
-                let currentShows = []
-                for(let i = 0; i < shows.length; i++){
-                    currentShows.push(shows[i])
-                }
-                return currentShows
+                return shows.slice(0, shows.length)
             }
             else{
                 return []
@@ -161,11 +158,7 @@ const ShowsContextProvider = (props) => {
         }   
         else{
             if(shows.length > 0){
-                let currentShows = []
-                for(let i = 0; i < 3; i++){
-                    currentShows.push(shows[i])                    
-                }
-                return currentShows
+                return shows.slice(0, 3)
             }
             else{
                 return []
@@ -192,7 +185,7 @@ const ShowsContextProvider = (props) => {
         await axios.delete(`https://toby-peter-production.up.railway.app/api/show/delete/${id}`,{
             headers:{
                 'Content-Type':'application/json',
-                "Authorization":`Bearer ${token}`
+                "Authorization":`Bearer ${authDetails.accessToken}`
             }
         })
         .then(res=>{
@@ -200,6 +193,7 @@ const ShowsContextProvider = (props) => {
                 success.yes = true
                 setAlert('success', 'Show Deleted!')
                 getShows()
+                userCtx.getShows()
             }
         })
         .catch(err=>{
@@ -216,7 +210,7 @@ const ShowsContextProvider = (props) => {
         await axios.put(`https://toby-peter-production.up.railway.app/api/show/complete/${id}`,{
             headers:{
                 'Content-Type':'application/json',
-                "Authorization":`Bearer ${token}`
+                "Authorization":`Bearer ${authDetails.accessToken}`
             }
         })
         .then(res=>{
@@ -225,14 +219,13 @@ const ShowsContextProvider = (props) => {
                 success.yes = true
                 setAlert('success', 'Show Completed!')
                 getShows()
+                userCtx.getShows()
             }
         })
         .catch(err=>{
             console.log(err)
-            if(err.response.status !== 200){
-                success.yes = false
-                setAlert('failure', 'Show not completed!')
-            }
+            success.yes = false
+            setAlert('failure', 'Show not completed!')
         })
         return success
     }
@@ -268,11 +261,13 @@ const ShowsContextProvider = (props) => {
     }
     const handleCreateSubmit = async () => {
         let success = {}
-        await ValidateShows(createData, token)
+        await ValidateShows(createData, authDetails.accessToken)
         .then(res=>{
             setCreateErrors(res)
             if(res.none){
                 success.yes = true
+                getShows()
+                userCtx.getShows()
                 setCreateData({
                     title: '',
                     venue: '',

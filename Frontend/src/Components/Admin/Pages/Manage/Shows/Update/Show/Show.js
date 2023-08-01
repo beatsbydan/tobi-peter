@@ -8,7 +8,7 @@ import UpdateEvent from '../../../../../../UI/UpdateEvent/UpdateEvent'
 
 const Show = (props) => {
     const date = new Date(props.date)
-    const myDate = date.getDate()
+    const myDate = date.getDate().toString()
     const myMonth = date.getMonth()
     const getMonth = (myMonth) => {
         date.setMonth(myMonth)

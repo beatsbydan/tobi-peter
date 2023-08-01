@@ -17,7 +17,7 @@ const Update = () => {
                     {
                         ctx.details.upcomingIsPending ? <Loading isPending = {ctx.details.upcomingIsPending}/>
                         : 
-                        ctx.shows?.upcomingShows?.length === 0 ? <p className="defaultText">No available shows <span><TfiFaceSad size={25}/></span></p>                            
+                        ctx.shows.upcomingShows.length === 0 ? <p className="defaultText">No available shows <span><TfiFaceSad size={25}/></span></p>                            
                         : 
                         ctx.shows.upcomingShows.map((show, index)=>{
                             return(
@@ -45,7 +45,7 @@ const Update = () => {
                     {
                         ctx.details.pastIsPending ? <Loading isPending = {ctx.details.pastIsPending}/>
                         : 
-                        ctx.shows?.pastShows?.length === 0? <p className="defaultText">No available shows <span><TfiFaceSad size={25}/></span></p>
+                        ctx.shows.pastShows.length === 0? <p className="defaultText">No available shows <span><TfiFaceSad size={25}/></span></p>
                         :
                         ctx.shows.pastShows.map((show,index)=>{
                             return(

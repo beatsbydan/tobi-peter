@@ -40,11 +40,13 @@ const ValidateSong = async (entry, token, id) => {
     if(Object.values(entry.streamingLinks).every(link=>{
         return linkRegex.test(link)
     })&& entry.title !== "" && entry.releaseDate !== "" && allowedExtensions.exec(entry.coverArt.name)){
+        const formData = new FormData()
+        formData.append('image', entry.coverArt)
         const typeData = {
             title:entry.title,
             releaseDate:entry.releaseDate,
-            streamingLinks : {...entry.streamingLinks},
-            coverArt: entry.coverArt
+            streamingLink : {...entry.streamingLinks},
+            image: formData
         }
         if(entry.type === "create"){
             await axios.post(createSongApi, {...typeData}, {

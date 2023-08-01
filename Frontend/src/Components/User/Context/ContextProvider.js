@@ -114,7 +114,7 @@ const ContextProvider = (props) => {
     }
     const [shows, dispatchShows] = useReducer(showsReducer, initialShows)
     const showsApi = 'https://toby-peter-production.up.railway.app/api/show/'
-    useEffect(()=>{
+    const getShows = () =>{
         dispatchDetails({type: 'IS_PENDING'})
             setTimeout(()=>{
                 axios.get(showsApi)
@@ -136,16 +136,14 @@ const ContextProvider = (props) => {
                     console.log(err)
                 })
         },3000)
-
+    }
+    useEffect(()=>{
+        getShows()
     },[])
     const filterShows = (shows, type) => {
         if(type === "more"){
             if(shows.length > 0){
-                let myNewShows = []
-                for(let i = 0; i < shows.length; i++){
-                    myNewShows.push(shows[i])
-                }
-                return myNewShows
+                return shows.slice(0, shows.length)
             }
             else{
                 return []
@@ -153,11 +151,7 @@ const ContextProvider = (props) => {
         }   
         else{
             if(shows.length > 0){
-                let myNewShows = []
-                for(let i = 0; i < 3; i++){
-                    myNewShows.push(shows[i])
-                }
-                return myNewShows
+                return shows.slice(0, 3)
             }
             else{
                 return []
@@ -216,8 +210,8 @@ const ContextProvider = (props) => {
         })
     }
     const [song, setSong] = useState([])
-    useEffect(()=>{
-        axios.get('https://toby-peter-production.up.railway.app/api/song/recent',{
+    const getSong = async () =>{
+        await axios.get('https://toby-peter-production.up.railway.app/api/song/recent',{
             headers:{
                 'Content-Type': 'application/json',
             }
@@ -230,6 +224,9 @@ const ContextProvider = (props) => {
         .catch(err=>{
             console.log(err)
         })
+    }
+    useEffect(()=>{
+        getSong()
     },[])
     const value = {
         email:email,
@@ -237,6 +234,8 @@ const ContextProvider = (props) => {
         shows:shows,
         song:song,
         details:details,
+        getShows:getShows,
+        getSong:getSong,
         handleUpcomingMoreType:handleUpcomingMoreType,
         handlePastMoreType:handlePastMoreType,
         handleUpcomingLessType:handleUpcomingLessType,
