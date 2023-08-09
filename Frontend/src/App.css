@@ -4,6 +4,10 @@
   box-sizing: border-box;
   font-family: var(--inter);
 }
+body{
+  animation: 2s cubic-bezier(0, 0.67, 0.27, 1.22) myDisplay;
+  overflow-x:hidden;
+}
 body,footer{
   background-color: #FFFBF4;
 }
@@ -66,5 +70,13 @@ a {
     transform: unset;
     z-index: 1;
     margin: auto;
+  }
+}
+@keyframes myDisplay {
+  0% {
+    transform:translateY(-100%);
+  }
+  100% {
+    transform:translateY(0);
   }
 }

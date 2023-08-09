@@ -45,9 +45,6 @@
     width: 100%;
     margin-top: 3em;
 }
-.pastShows .show{
-    /* padding: 1.1rem; */
-}
 .upcomingShows h5, .pastShows h5{
     color: #1D3557;
     font-size: 0.9rem;
@@ -56,12 +53,17 @@
 }
 .showsList{
     width: 100%;
-    margin-top: 3.4em;
+    min-height:300px;
+    margin: 2.4em 0;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
 }
 .showsList h5{
+    color: #495464;
+    font-weight: 500;
+}
+.showsList small{
     color: #495464;
 }
 .showsList a{
@@ -72,29 +74,27 @@
     width:100%;
     max-width:150px;
     margin: auto;
-}
-.myShowsActions button{
-    width: 100%;
-    margin: 2em auto;
-    text-align: center;
-    border: none;
+    border: 0.1rem solid #1D3557;
     cursor: pointer;
     background-color: transparent;
     color: #1D3557;
     font-weight: 500;
     font-size: 0.85rem;
-    padding: 0.8rem;
-    border: 0.1rem solid #1D3557;
-    border-radius: 0.3rem;
+    text-align: center;
     transition: 0.3s ease;
+    border-radius: 0.3rem;
+    padding: 0.8rem;
 }
 @media (hover: hover){
     .actionsBlock a:hover{
         gap:1.2rem;
     }
-    .myShowsActions button:hover{
+    .myShowsActions:hover{
         color: #FFFBF4;
         background-color: #1D3557;
+    }
+    .myShowsActions:hover a{
+        color:#FFFBF4;
     }
 }
 @media screen and (max-width:750px) {

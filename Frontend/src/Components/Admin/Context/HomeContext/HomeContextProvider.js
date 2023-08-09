@@ -6,7 +6,7 @@ import useAuth from '../../../../Hooks/useAuth'
 const HomeContextProvider = (props) => {
     const {authDetails} = useAuth()
     const [subscribers, setSubscribers] = useState([])
-    useEffect(()=>{
+    useEffect(()=>{        
         authDetails.isLoggedIn && axios.get('https://toby-peter-production.up.railway.app/api/subscribe/',{
             headers:{
                 "Content-Type":"application/json",
@@ -21,15 +21,14 @@ const HomeContextProvider = (props) => {
         .catch(err=>{
             console.log(err)
         })
-    },[authDetails.isLoggedIn])
+    },[authDetails.isLoggedIn, authDetails.accessToken])
     const value = {
-        subscribers:subscribers
+        subscribers:subscribers,
     }
     return ( 
         <HomeContext.Provider value={value}>
             {props.children}
         </HomeContext.Provider>
-     );
+    );
 }
- 
 export default HomeContextProvider;

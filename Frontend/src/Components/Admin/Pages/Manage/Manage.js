@@ -1,10 +1,16 @@
 import './Manage.css'
 import {Link} from 'react-router-dom'
 import {BiRightArrowAlt} from 'react-icons/bi'
+import {motion} from 'framer-motion'
 
 const Manage = () => {
     return(
-        <div className='manage'>
+        <motion.div 
+            className='manage'
+            initial={{width:'100%'}}
+            animate={{width:'100%'}}
+            exit={{x:-window.innerWidth, transition: {duration: 0.5}}}
+        >
             <div className="showsBlock">
                 <h2>SHOWS</h2>
                 <div className="createBlock">
@@ -31,7 +37,7 @@ const Manage = () => {
                     </Link>
                 </div>
             </div>
-        </div>
+        </motion.div>
     )
 }
 export default Manage

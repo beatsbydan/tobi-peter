@@ -1,9 +1,15 @@
 import './Partner.css'
 import {BiRightArrowAlt} from 'react-icons/bi'
+import { motion } from 'framer-motion';
 
 const Partner = () => {
     return ( 
-        <div className="partner">
+        <motion.div 
+            className="partner"
+            initial={{width:'100%'}}
+            animate={{width:'100%'}}
+            exit={{x:-window.innerWidth, transition: {duration: 0.7}}}
+        >
             <h2>PARTNERSHIPS</h2>
             <div className='partnerBlock'>
                 <p>There are upcoming projects in which you can become a partner with Tobi Peter.</p>
@@ -15,7 +21,7 @@ const Partner = () => {
                         upcoming amapiano EP.
                         Contributions made with be used
                         mainly for marketing.</p>
-                        <a href='https://www.'>
+                        <a target='_blank' rel="noreferrer" href='https://www.'>
                             PARTNER
                             <BiRightArrowAlt/>
                         </a>
@@ -25,14 +31,14 @@ const Partner = () => {
                         <p>You can choose to contribute/partner
                         with Tobi Peter in the production of
                         his house music event, HMO.</p>
-                        <a href='https://www.'>
+                        <a target='_blank' rel="noreferrer" href='https://www.'>
                             PARTNER
                             <BiRightArrowAlt/>
                         </a>
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 }
 export default Partner;

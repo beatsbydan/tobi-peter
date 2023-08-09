@@ -6,6 +6,7 @@ import {useNavigate} from 'react-router-dom'
 import Logo from '../../../Assets/logo.png'
 import {AiOutlineArrowLeft} from 'react-icons/ai'
 import useAlert from '../../../Hooks/useAlert'
+import { motion } from 'framer-motion';
 
 const ForgotPassword = () => {
     const ctx = useContext(AuthContext)
@@ -24,7 +25,12 @@ const ForgotPassword = () => {
         })
     }
     return (
-        <div className="authCard">
+        <motion.div 
+            className="authCard"
+            initial={{width:'100%'}}
+            animate={{width:'100%'}}
+            exit={{x:-window.innerWidth, transition: {duration: 0.5}}}
+        >
             <AiOutlineArrowLeft cursor='pointer' onClick={()=> navigate(-1)} color='#1D3557' size={30}/>
             <div className="top">
                 <img src={Logo} alt=''/>
@@ -47,7 +53,7 @@ const ForgotPassword = () => {
                 <h2>ALERT:</h2>
                 <p>If successful, check your email for a password which would give you temporary access to your account after which you'd be able to reset your password in your profile.</p>
             </div>
-        </div>
+        </motion.div>
     )
 }
 

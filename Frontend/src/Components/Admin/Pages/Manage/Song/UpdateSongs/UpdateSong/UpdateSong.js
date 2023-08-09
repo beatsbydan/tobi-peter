@@ -3,10 +3,11 @@ import {useContext} from 'react'
 import InputComponent from '../../../../../../UI/InputComponent/InputComponent'
 import Loading from '../../../../../../UI/Loading/Loading'
 import ManageContext from '../../../../../Context/ManageContext/ManageContext'
-import {MdOutlineAdsClick, MdOutlineUpdate} from 'react-icons/md'
+import {MdOutlineUpdate} from 'react-icons/md'
 import {useNavigate} from 'react-router-dom'
 import useAlert from '../../../../../../../Hooks/useAlert'
 import './UpdateSong.css'
+import {motion} from 'framer-motion'
 
 const UpdateSong = () => {
     const ctx = useContext(ManageContext)
@@ -18,15 +19,18 @@ const UpdateSong = () => {
         .then(success=>{
             if(success.yes){
                 setAlert('success', 'Song Updated!')
-                setTimeout(()=>{
-                    navigate('/admin/manage')
-                },1500)
+                navigate('/admin/manage/UpdateSongs')
             }
         })
     }
 
   return (
-    <div className="updateSong">
+    <motion.div 
+        className="updateSong"
+        initial={{width:'100%'}}
+        animate={{width:'100%'}}
+        exit={{x:-window.innerWidth, transition: {duration: 0.5}}}
+    >
         <h2>UPDATE SONG <span>{<MdOutlineUpdate size={35}/>}</span></h2>
         {
             ctx.pending.isPending ? <Loading isPending = {ctx.pending.isPending}/>
@@ -119,21 +123,14 @@ const UpdateSong = () => {
                         onChange={ctx.handleUpdateDataChange}
                     />
                 </div>
-                <div className="customary">
-                    <h2>COVER-ART</h2>
-                    <div className="customFile">
-                        <input type="file" className='customFileInput' onChange={ctx.handleUpdateFileChange} />
-                    </div>
-                    <small>Click image to add a file <span><MdOutlineAdsClick size={25}/></span></small>
-                </div>
                 <div className="formActions">
                     <button type="submit">
-                        CREATE
+                        UPDATE
                     </button>
                 </div>
             </form>
         }
-    </div>
+    </motion.div>
   )
 }
 

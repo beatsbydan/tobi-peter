@@ -3,14 +3,15 @@ import React from "react";
 const ShowsContext = React.createContext({
     createData: {},
     createErrors: {},
-    details:{},
     shows:{},
+    pending:{},
+    chartData: [],
+    yearsData: [],
+    currYear:0,
+    getShows: ()=>{},
+    filterChartData:()=>{},
     deleteShow:()=>{},
     completeShow:()=>{},
-    handleUpcomingMoreType:()=>{},
-    handlePastMoreType:()=>{},
-    handleUpcomingLessType:()=>{},
-    handlePastLessType:()=>{},
     handleChange:()=>{},
     handleCreateSubmit:()=>{}
 })

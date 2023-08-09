@@ -5,12 +5,19 @@ import {useContext} from 'react'
 import ManageContext from '../../../../Context/ManageContext/ManageContext'
 import Song from './Song/Song'
 import Loading from '../../../../../UI/Loading/Loading'
+import {motion} from 'framer-motion'
 
 const UpdateSongs = () => {
     const ctx = useContext(ManageContext)
     return(
-        <div className="updateSongs">
+        <motion.div 
+            className="updateSongs"
+            initial={{width:'100%'}}
+            animate={{width:'100%'}}
+            exit={{x:-window.innerWidth, transition: {duration: 0.5}}}
+        >
             <h2>HERE ARE YOUR SONGS <span><GiLoveSong/></span></h2>
+            <h4>Click on a song to edit it...</h4>
             <ul className="songsList">
                 {   ctx.pending.isPending ? <Loading isPending = {ctx.pending.isPending}/> 
                     : 
@@ -30,7 +37,7 @@ const UpdateSongs = () => {
                     : <p className="defaultText">No available songs <span><TfiFaceSad size={25}/></span></p>
                 }
             </ul>
-        </div>
+        </motion.div>
     )
 }
 export default UpdateSongs

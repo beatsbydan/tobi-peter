@@ -42,7 +42,7 @@ const Song = (props) => {
                         <small className='month'>{txtMonth}</small>
                         <h5 className='day'>{myDate}</h5>
                     </div>
-                    <h5 className='title'>{props.title}</h5>
+                    <h3 className='title'>{props.title.toUpperCase()}</h3>
                 </div>
                 <img src={props.coverArt} alt=''/>
             </Link>

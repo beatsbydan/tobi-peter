@@ -1,6 +1,7 @@
 import React from 'react'
 
 const HomeContext = React.createContext({
-    subscribers:[]
+    subscribers:[],
+    
 })
 export default HomeContext

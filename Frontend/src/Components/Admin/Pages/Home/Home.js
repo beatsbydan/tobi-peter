@@ -9,16 +9,16 @@ import StreamingPlatforms from '../../../UI/StreamingPlatforms/StreamingPlatform
 import useAlert from '../../../../Hooks/useAlert'
 import {BsTicketPerforated} from 'react-icons/bs'
 import {BiRightArrowAlt} from 'react-icons/bi'
+import Chart from './Chart/Chart'
 import React from 'react'
+import {motion} from 'framer-motion'
 
 const Home = () => {
     const authCtx = useContext(AuthContext)
     const homeCtx = useContext(HomeContext)
     const {shows} = useContext(ShowsContext)
     const {song} = useContext(Context)
-    
     const {setAlert} = useAlert()
-    
     const date = new Date(shows.upcomingShows[0]?.date)
     const myDate = date.getDate()
     const myMonth = date.getMonth()
@@ -38,7 +38,12 @@ const Home = () => {
         })
     }
     return ( 
-        <div className="adminHome">
+        <motion.div 
+            className="adminHome"
+            initial={{width:'100%'}}
+            animate={{width:'100%'}}
+            exit={{x:-window.innerWidth, transition: {duration: 0.5}}}
+        >
             <div className="homeIntro">
                 <h1>Welcome back!</h1>
             </div>
@@ -46,7 +51,7 @@ const Home = () => {
                 <h3>STATISTICS</h3>
                 <p>Let's map out your progress with your shows and events!</p>
                 <div className="showsChart">
-
+                    <Chart/>
                 </div>
                 <div className="subscribers">
                     <h5>SUBSCRIBERS</h5>
@@ -59,14 +64,14 @@ const Home = () => {
                 <div className="newSong">
                     <p>The world ain't ready for this new project!</p>
                     <div className="myNewSong">
-                        <img src={song?.coverArt} alt =''/>
+                        <img className='newSongImg' src={song?.coverArt} alt =''/>
                         <p>Title: <span>{song.title?.toUpperCase()}</span></p>
                         <StreamingPlatforms/>
                     </div>
                 </div>
                 <h5>NEXT SHOW</h5>
                 <div className="nextShow">
-                    <p>You getting set for {shows.upcomingShows[0]?.title}?</p>
+                    <p>Here's your next show...</p>
                     <div className="show">
                         <div className='left'>
                             <div className='date'>
@@ -79,7 +84,7 @@ const Home = () => {
                                 <small className='venue'>{shows.upcomingShows[0]?.venue || 'None'}</small>
                             </div>    
                         </div>
-                        {<a href={shows.upcomingShows[0]?.ticketLink}>
+                        {<a target='_blank' rel="noreferrer" href={shows.upcomingShows[0]?.ticketLink}>
                             <BsTicketPerforated className={'ticket'} size={30}/>
                             <BiRightArrowAlt className={'myArrow'}/>
                             <span>GET TICKETS</span>
@@ -111,7 +116,7 @@ const Home = () => {
                     </div>
                 </form>
             </div>
-        </div>
+        </motion.div>
     );
 }
 export default Home;

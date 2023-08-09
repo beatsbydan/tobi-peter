@@ -7,6 +7,14 @@ import axios from 'axios'
 import Context from '../../../User/Context/Context'
 
 const ManageContextProvider = (props) => {
+    const getFormattedDate = (date) => {
+        const myDate = new Date(date)
+        const year = myDate.toLocaleString("default", { year: "numeric" });
+        const month = myDate.toLocaleString("default", { month: "2-digit" });
+        const day = myDate.toLocaleString("default", { day: "2-digit" });
+        const formattedDate = year + "-" + month + "-" + day;
+        return formattedDate
+    }
     const {setAlert} = useAlert()
     const {authDetails} = useAuth()
     const [song, setSong] = useState({})
@@ -39,22 +47,32 @@ const ManageContextProvider = (props) => {
                 }
             })
             .catch(err=>{
-                console.log(err)
+                return
             })
         },3000)
     }
     const getSong = async (id) => {
         dispatchPending({type: 'PENDING'})
-        await axios.get(`htps://toby-peter-production.up.railway.app/api/song/${id}`)
+        await axios.get(`https://toby-peter-production.up.railway.app/api/song/${id}`)
         .then(res=>{
-            console.log(res)
             if(res.status === 200){
                 setSong(res.data.song)
+                setUpdateData({
+                    date: getFormattedDate(res.data.song.releaseDate),
+                    title: res.data.song.title,
+                    appleMusic: res.data.song.streamingLink?.appleMusic,
+                    spotify: res.data.song.streamingLink?.spotify,
+                    audiomack: res.data.song.streamingLink?.audiomack,
+                    youtube: res.data.song.streamingLink?.youtube,
+                    tidal: res.data.song.streamingLink?.tidal,
+                    boomPlay: res.data.song.streamingLink?.boomPlay,
+                    youtubeMusic: res.data.song.streamingLink?.youtubeMusic
+                })
                 dispatchPending({type: 'COMPLETED'})
             }
         })
         .catch(err=>{
-            console.log(err)
+            return
         })
     }
     const deleteSong = async (id) =>{
@@ -66,7 +84,6 @@ const ManageContextProvider = (props) => {
             }
         })
         .then(res=>{
-            console.log(res)
             if(res.status === 200){
                 success.yes = true
                 setAlert('success', 'Song Deleted!')
@@ -77,7 +94,7 @@ const ManageContextProvider = (props) => {
         .catch(err=>{
             success.yes = false
             setAlert('failure', 'Song not deleted!')
-            console.log(err)
+            return
         })
         return success
     }
@@ -88,7 +105,6 @@ const ManageContextProvider = (props) => {
     const [createDataErrors, setCreateDataErrors] = useState({})
     const [updateDataErrors, setUpdateDataErrors] = useState({})
     const [createFile, setCreateFile] = useState({})
-    const [updateFile, setUpdateFile] = useState(song.coverArt)
     const [createData, setCreateData] = useState({
         date:'',
         title:'',
@@ -101,21 +117,18 @@ const ManageContextProvider = (props) => {
         youtubeMusic: ''
     })
     const [updateData, setUpdateData] = useState({
-        date:song?.releaseDate,
-        title:song?.title,
-        appleMusic: song?.streamingLinks?.appleMusic,
-        spotify: song?.streamingLinks?.spotify,
-        audiomack: song?.streamingLinks?.audiomack,
-        youtube: song?.streamingLinks?.youtube,
-        tidal: song?.streamingLinks?.tidal,
-        boomPlay: song?.streamingLinks?.boomPlay,
-        youtubeMusic: song?.streamingLinks?.youtubeMusic
+        date:'',
+        title:'',
+        appleMusic: '',
+        spotify: '',
+        audiomack: '',
+        youtube: '',
+        tidal: '',
+        boomPlay: '',
+        youtubeMusic: ''
     })
     const handleCreateFileChange = (e) => {
         setCreateFile(e.target.files[0])
-    }
-    const handleUpdateFileChange = (e) => {
-        setUpdateFile(e.target.files[0])
     }
     const handleCreateDataChange = (e) => {
         const {id, value} = e.target;
@@ -146,7 +159,6 @@ const ManageContextProvider = (props) => {
             coverArt: createFile,
             type:'create'
         }
-        console.log(data)
         await ValidateSong(data, authDetails.accessToken)
         .then(res=>{
             setCreateDataErrors(res)
@@ -164,6 +176,7 @@ const ManageContextProvider = (props) => {
                     boomPlay: '',
                     youtubeMusic: ''
                 })
+                setCreateFile({})
                 success.yes = true
             }
             else{
@@ -177,7 +190,7 @@ const ManageContextProvider = (props) => {
         let success = {}
         const data = {
             title: updateData.title,
-            releaseDate: updateData.releaseDate,
+            releaseDate: updateData.date,
             streamingLinks: {
                 appleMusic: updateData.appleMusic,
                 spotify: updateData.spotify,
@@ -187,7 +200,6 @@ const ManageContextProvider = (props) => {
                 boomPlay: updateData.boomPlay,
                 youtubeMusic: updateData.youtubeMusic
             },
-            coverArt: updateFile,
             type: 'update'
         }
         await ValidateSong(data, authDetails.accessToken, song._id)
@@ -228,7 +240,6 @@ const ManageContextProvider = (props) => {
         handleCreateDataChange:handleCreateDataChange,
         handleUpdateDataChange:handleUpdateDataChange,
         handleCreateFileChange:handleCreateFileChange,
-        handleUpdateFileChange:handleUpdateFileChange,
         handleCreateSubmit:handleCreateSubmit,
         handleUpdateSubmit:handleUpdateSubmit,
     }

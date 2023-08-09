@@ -2,9 +2,15 @@ import Socials from '../../../UI/Socials/Socials';
 import StreamingPlatforms from '../../../UI/StreamingPlatforms/StreamingPlatforms';
 import './Music.css'
 import {BiRightArrowAlt} from 'react-icons/bi'
+import { motion } from 'framer-motion';
 const Music = () => {
     return ( 
-        <div className="music">
+        <motion.div 
+            className="music"
+            initial={{width:'100%'}}
+            animate={{width:'100%'}}
+            exit={{x:-window.innerWidth, transition: {duration: 0.7}}}
+        >
             <div className="bioTop">
                 <h3>BIO</h3>
                 <Socials/>
@@ -35,7 +41,7 @@ const Music = () => {
                     <h5>DJs CHECK THIS OUT!</h5>
                     <p>Would you like to have some songs from me to spin during your sets?</p>
                     <p>Make a request below!</p>
-                    <a href='https://www.'>
+                    <a target='_blank' rel="noreferrer" href='https://www.'>
                         MAKE REQUEST 
                         <BiRightArrowAlt className='arrow' size={15}/>
                     </a>
@@ -43,11 +49,11 @@ const Music = () => {
                 <div>
                     <h5>ESSENTIALS PLAYLIST</h5>
                     <p>Check out an ESSENTIALS PLAYLIST curated by me.</p>
-                    <a href='https://www.'>
+                    <a target='_blank' rel="noreferrer" href='https://www.'>
                         APPLE MUSIC
                         <BiRightArrowAlt size={15} className='arrow'/>
                     </a>
-                    <a href='https://www.'>
+                    <a target='_blank' rel="noreferrer" href='https://www.'>
                         SPOTIFY
                         <BiRightArrowAlt className='arrow' size={15}/>
                     </a>
@@ -63,7 +69,7 @@ const Music = () => {
                         </section>
                         <p>The fast rising DJ, Tobi Peter, releases viral TikTok sound titled “1 2 Shake Shake”.
                         The song was a viral sound on TikTok with over 700,00 views and about...</p>
-                        <a href="https://www.">READ FULL ARTICLE</a>
+                        <a target='_blank' rel="noreferrer" href="https://www.">READ FULL ARTICLE</a>
                     </div>
                     <div>
                         <section className="head">
@@ -72,7 +78,7 @@ const Music = () => {
                         </section>
                         <p>The fast rising DJ, Tobi Peter, releases viral TikTok sound titled “1 2 Shake Shake”.
                         The song was a viral sound on TikTok with over 700,00 views and about...</p>
-                        <a href="https://www.">READ FULL ARTICLE</a>
+                        <a target='_blank' rel="noreferrer" href="https://www.">READ FULL ARTICLE</a>
                     </div>
                     <div>
                         <section className="head">
@@ -81,11 +87,11 @@ const Music = () => {
                         </section>
                         <p>The fast rising DJ, Tobi Peter, releases viral TikTok sound titled “1 2 Shake Shake”.
                         The song was a viral sound on TikTok with over 700,00 views and about...</p>
-                        <a href="https://www.">READ FULL ARTICLE</a>
+                        <a target='_blank' rel="noreferrer" href="https://www.">READ FULL ARTICLE</a>
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div>
 
     );
 }

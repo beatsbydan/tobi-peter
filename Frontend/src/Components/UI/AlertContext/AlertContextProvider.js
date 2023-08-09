@@ -2,7 +2,7 @@ import AlertContext from './AlertContext'
 import {useState} from 'react'
 
 const AlertContextProvider = (props) => {
-    const ALERT_TIME = 6000;
+    const ALERT_TIME = 2000;
     const [type, setType] = useState('');
     const [message, setMessage] = useState('');
     const setAlert = (type, message) => {

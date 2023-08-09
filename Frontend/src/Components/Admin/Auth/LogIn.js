@@ -6,6 +6,7 @@ import AuthContext from '../Context/AuthContext/AuthContext'
 import {Link, useNavigate} from 'react-router-dom'
 import useAlert from '../../../Hooks/useAlert'
 import {AiOutlineArrowLeft} from 'react-icons/ai'
+import { motion } from 'framer-motion';
 
 const LogIn = () => {
     const ctx = useContext(AuthContext)
@@ -25,7 +26,12 @@ const LogIn = () => {
         })
     }
     return(
-        <div className="authCard">
+        <motion.div 
+            className="authCard"
+            initial={{width:'100%'}}
+            animate={{width:'100%'}}
+            exit={{x:-window.innerWidth, transition: {duration: 0.5}}}
+        >
             <AiOutlineArrowLeft cursor='pointer' onClick={()=> navigate(-1)} color='#1D3557' size={30}/>
             <div className="top">
                 <img src={Logo} alt=''/>
@@ -54,7 +60,7 @@ const LogIn = () => {
                 </div>
                 <p>Don't have an account? Click <span><Link to={'/admin/register'}>HERE</Link> to register.</span></p>
             </form>
-        </div>
+        </motion.div>
     )
 }
 export default LogIn

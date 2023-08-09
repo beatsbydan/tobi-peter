@@ -1,3 +1,0 @@
-for admin home, show stats of upcoming shows, total number of VIPs registered
-try to graph out number of shows in a year on a monthly basis
-try to show the next available show and the most recent show (How was your past show.. Ready for the next?.. something like this)

@@ -13,7 +13,7 @@ const AdminNavbar = () => {
     const activeClass = 'currPage'
     const defaultClass = ''
     const [isOpen, setIsOpen] = useState(false)
-    const {authDetails} = useAuth()
+    const {authDetails, setIsLoggedIn} = useAuth()
     const {setAlert} = useAlert()
     const ctx = useContext(AuthContext)
     const navigate = useNavigate()
@@ -29,10 +29,8 @@ const AdminNavbar = () => {
         .then(success=>{
             if(success.yes){
                 setAlert('success', 'Logout Successful!')
-                setTimeout(()=>{
-                    ctx.setIsLoggedIn(false)
-                    navigate('/admin/login')
-                },1800)
+                navigate('/admin/login')
+                setIsLoggedIn(false)
             }
         })
     }

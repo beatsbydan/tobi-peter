@@ -14,7 +14,7 @@
     position: fixed;
     left: 0;
     right: 0;
-    animation: successful 5s backwards;
+    animation: successful 2s ease-in-out;
 }
 .alert p{
     font-size: 0.9rem;
@@ -30,7 +30,7 @@
         transform: translateY(0%);
     }
     50%{
-        transform: translateY(190%);
+        transform: translateY(200%);
     }
     100%{
         transform: translateY(0%);

@@ -5,17 +5,24 @@ import Show from './Show/Show'
 import {BiRightArrowAlt} from 'react-icons/bi'
 import {TfiFaceSad} from 'react-icons/tfi'
 import Loading from '../../../UI/Loading/Loading'
+import { motion } from 'framer-motion';
+import {Link} from 'react-router-dom'
 
 const Shows = () => {
     const ctx = useContext(Context)
     return ( 
-        <div className="shows">
+        <motion.div 
+            className="shows"
+            initial={{width:'100%'}}
+            animate={{width:'100%'}}
+            exit={{x:-window.innerWidth, transition: {duration: 0.7}}}
+        >
             <div className="actionsBlock">
-                <a href="https://www.">
+                <a target='_blank' rel="noreferrer" href="https://www.">
                     BOOK TOBI PETER
                     <BiRightArrowAlt/>
                 </a>
-                <a href="https://www.">
+                <a target='_blank' rel="noreferrer" href="https://www.">
                     DOWNLOAD EPK
                     <BiRightArrowAlt/>
                 </a>
@@ -24,7 +31,7 @@ const Shows = () => {
                 <h5>UPCOMING SHOWS</h5>
                 <ul className='showsList'>
                     {
-                        ctx.details.upcomingIsPending ? <Loading isPending = {ctx.details.upcomingIsPending}/>
+                        ctx.pending.isPending ? <Loading isPending = {ctx.pending.isPending}/>
                         : 
                         ctx.shows.upcomingShows.length === 0 ? <p className="defaultText">No available shows <span><TfiFaceSad size={25}/></span></p>                            
                         : 
@@ -42,14 +49,14 @@ const Shows = () => {
                     }
                 </ul>
                 <div className="myShowsActions">
-                    {ctx.details.upcomingType === 'less' ? <button onClick={ctx.handleUpcomingMoreType}>SEE MORE</button> : <button onClick={ctx.handleUpcomingLessType}>SEE LESS</button> }
+                    <Link onClick={ctx.getShows} to={'/shows/allUpcomingShows'}>SEE MORE</Link>
                 </div>
             </div>
             <div className="pastShows">
                 <h5>PAST SHOWS</h5>
                 <ul className='showsList'>
                     {
-                        ctx.details.pastIsPending ? <Loading isPending = {ctx.details.pastIsPending}/>
+                        ctx.pending.isPending ? <Loading isPending = {ctx.pending.isPending}/>
                         : 
                         ctx.shows?.pastShows?.length === 0? <p className="defaultText">No available shows <span><TfiFaceSad size={25}/></span></p>
                         :
@@ -66,10 +73,10 @@ const Shows = () => {
                     }
                 </ul>
                 <div className="myShowsActions">
-                    {ctx.details.pastType === 'less' ? <button onClick={ctx.handlePastMoreType}>SEE MORE</button> : <button onClick={ctx.handlePastLessType}>SEE LESS</button> }
+                    <Link onClick={ctx.getShows} to={'/shows/allPastShows'}>SEE MORE</Link>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 }
 export default Shows;

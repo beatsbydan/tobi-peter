@@ -19,43 +19,43 @@ const StreamingPlatforms = () => {
     }
     return ( 
         <ul className='streamingPlatforms'>
-            <a onClick={notify} href={ctx.song.streamingLink?.appleMusic}>
+            <a rel="noreferrer" target="_blank" onClick={notify} href={ctx.song.streamingLink?.appleMusic}>
                 <li>
                     <BiSolidMusic size={20}/>
                     APPLE MUSIC
                 </li>
             </a>
-            <a onClick={notify} href={ctx.song.streamingLink?.spotify}>
+            <a rel="noreferrer" target="_blank" onClick={notify} href={ctx.song.streamingLink?.spotify}>
                 <li>
                     <BiLogoSpotify size={20}/>
                     SPOTIFY
                 </li>
             </a>
-            <a onClick={notify} href={ctx.song.streamingLink?.audiomack}>
+            <a rel="noreferrer" target="_blank" onClick={notify} href={ctx.song.streamingLink?.audiomack}>
                 <li>
                     <SiAudiomack size={20}/>
                     AUDIOMACK
                 </li>
             </a>
-            <a onClick={notify} href={ctx.song.streamingLink?.youtube}>
+            <a rel="noreferrer" target="_blank" onClick={notify} href={ctx.song.streamingLink?.youtube}>
                 <li>
                     <BiLogoYoutube size={20}/>
                     YOUTUBE
                 </li>
             </a>
-            <a onClick={notify} href={ctx.song.streamingLink?.tidal}>
+            <a rel="noreferrer" target="_blank" onClick={notify} href={ctx.song.streamingLink?.tidal}>
                 <li>
                     <PiTidalLogoBold size={20}/>
                     TIDAL
                 </li>
             </a>
-            <a onClick={notify} href={ctx.song.streamingLink?.boomPlay}>
+            <a rel="noreferrer" target="_blank" onClick={notify} href={ctx.song.streamingLink?.boomPlay}>
                 <li>
                     <img src={boomplay} alt=''/>
                     BOOMPLAY
                 </li>
             </a>
-            <a onClick={notify} href={ctx.song.streamingLink?.youtubeMusic}>
+            <a rel="noreferrer" target="_blank" onClick={notify} href={ctx.song.streamingLink?.youtubeMusic}>
                 <li>
                     <BiLogoYoutube size={20}/>
                     YOUTUBE MUSIC

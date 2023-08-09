@@ -1,9 +1,16 @@
 import './Admin.css'
 import {Link} from 'react-router-dom'
 import Logo from '../../Assets/logo.png'
+import { motion } from 'framer-motion';
+
 const Admin = () => {
     return ( 
-        <div className="admin">
+        <motion.div 
+            className="admin"
+            initial={{width:'100%'}}
+            animate={{width:'100%'}}
+            exit={{x:-window.innerWidth, transition: {duration: 0.5}}}
+        >
             <img src={Logo} alt=''/>
             <h1>HI TOBI PETER</h1>
             <p>This is your Administrator Profile.</p>
@@ -13,7 +20,7 @@ const Admin = () => {
                 <Link to={'/admin/login'}>LOGIN</Link>
             </div>
             <p>Click <span><Link to={'/'}>HERE</Link></span> to go to tobipeter.com.</p>
-        </div>
+        </motion.div>
     );
 }
 export default Admin;

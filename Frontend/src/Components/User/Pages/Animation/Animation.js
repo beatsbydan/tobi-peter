@@ -1,9 +1,15 @@
 import './Animation.css'
 import {BiRightArrowAlt} from 'react-icons/bi'
+import { motion } from 'framer-motion';
 
 const Animation = () => {
     return ( 
-        <div className="animation">
+        <motion.div 
+            className="animation"
+            initial={{width:'100%'}}
+            animate={{width:'100%'}}
+            exit={{x:-window.innerWidth, transition: {duration: 0.7}}}    
+        >
             <div className="bioBlock">
                 <h3>BIO</h3>
                 <p>Yeah I make animations as well.</p>
@@ -11,14 +17,14 @@ const Animation = () => {
                 <div className="portfolioBlock">
                     <div>
                         <h5>VIEW PORTFOLIO</h5>
-                        <a href='https://www.'>
+                        <a target='_blank' rel="noreferrer" href='https://www.'>
                             BEHANCE
                             <BiRightArrowAlt/>
                         </a>
                     </div>
                     <div>
                         <h5>ANIMATION</h5>
-                        <a href='https://www.'>
+                        <a target='_blank' rel="noreferrer" href='https://www.'>
                             MAKE REQUEST
                             <BiRightArrowAlt/>
                         </a>
@@ -50,7 +56,7 @@ const Animation = () => {
                     </ul>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 }
 

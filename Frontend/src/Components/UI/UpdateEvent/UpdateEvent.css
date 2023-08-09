@@ -27,12 +27,7 @@
 .updateModal p{
     color: #495464;
     text-align: center;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
     font-size: 1.1rem;
-    gap:0.3rem;
 }
 .updateModal p span{
     font-size: 1.1rem;

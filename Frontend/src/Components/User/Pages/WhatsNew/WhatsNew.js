@@ -4,11 +4,17 @@ import comingSoon from '../../../../Assets/upcoming.svg'
 import Socials from '../../../UI/Socials/Socials';
 import Context from '../../Context/Context'
 import StreamingPlatforms from '../../../UI/StreamingPlatforms/StreamingPlatforms';
+import { motion } from 'framer-motion';
 
 const WhatsNew = () => {
     const ctx = useContext(Context)
     return ( 
-        <div className="whatsNew">
+        <motion.div 
+            className="whatsNew"
+            initial={{width:'100%'}}
+            animate={{width:'100%'}}
+            exit={{x:-window.innerWidth, transition: {duration: 0.7}}}
+        >
             <img className='comingSoon' src={comingSoon || ctx.song?.coverArt} alt="" />
             <div className="streamingPlatformsBlock">
                 <h5>CHOOSE YOUR PREFERRED STREAMING PLATFORM</h5>
@@ -27,7 +33,7 @@ const WhatsNew = () => {
             <div className="socialsBlock">
                 <Socials/>
             </div>
-        </div>
+        </motion.div>
     );
 }
 export default WhatsNew;

@@ -5,6 +5,7 @@ import {useContext} from 'react'
 import ShowsContext from '../../../../Context/ManageContext/ShowsContext/ShowsContext'
 import {useNavigate} from 'react-router-dom'
 import useAlert from '../../../../../../Hooks/useAlert'
+import {motion} from 'framer-motion'
 
 const Create = () => {
     const ctx = useContext(ShowsContext)
@@ -23,7 +24,12 @@ const Create = () => {
         })
     }
     return(
-        <div className="create">
+        <motion.div 
+            className="create"
+            initial={{width:'100%'}}
+            animate={{width:'100%'}}
+            exit={{x:-window.innerWidth, transition: {duration: 0.5}}}
+        >
             <h2>ADD A NEW SHOW WITH EASE <span><BsEmojiWink size={35}/></span></h2>
             <form action="" onSubmit={handleSubmit}>
                 <InputComponent
@@ -66,7 +72,7 @@ const Create = () => {
                     <button type='submit'>CREATE</button>
                 </div>
             </form>
-        </div>
+        </motion.div>
     )
 }
 export default Create

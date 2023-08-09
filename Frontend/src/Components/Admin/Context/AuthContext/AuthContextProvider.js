@@ -342,6 +342,7 @@ const AuthContextProvider = (props) => {
         .then(res=>{
             if(res.status === 204){
                 success.yes = true
+                setIsLoggedIn(false)
             }
         })
         .catch(err=>{
