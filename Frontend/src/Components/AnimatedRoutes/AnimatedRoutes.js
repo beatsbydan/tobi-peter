@@ -42,7 +42,6 @@ const AnimatedRoutes = () => {
             
             {/* NOT_FOUND */}
             <Route path="*" element={<NotFound/>}/>
-            <Route path="/notFound" element={<NotFound/>}/>
 
             {/* ADMIN ROUTES */}
             <Route path='/admin' element={<Admin/>}/>
