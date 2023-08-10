@@ -24,7 +24,7 @@ const Show = (props) => {
                     <small className='venue'>{props.venue}</small>
                 </div>    
             </div>
-            {<a target='_blank' rel="noreferrer" href={props.ticketLink}>
+            {props.ticketLink && <a target='_blank' rel="noreferrer" href={props.ticketLink}>
                 <BsTicketPerforated className={'ticket'} size={30}/>
                 <BiRightArrowAlt className={'myArrow'}/>
                 <span>GET TICKETS</span>

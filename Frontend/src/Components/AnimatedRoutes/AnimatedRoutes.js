@@ -22,6 +22,8 @@ import Unauthorized from '../Admin/Pages/Unauthorized/Unauthorized';
 import {Routes, Route, useLocation} from 'react-router-dom'
 import {AnimatePresence} from 'framer-motion'
 import AllPastShows from '../User/Pages/Shows/AllShows/AllPastShows';
+import AdminPastShows  from '../Admin/Pages/Manage/Shows/AllShows/AdminPastShows';
+import AdminUpcomingShows from '../Admin/Pages/Manage/Shows/AllShows/AdminUpcomingShows';
 import AllUpcomingShows from '../User/Pages/Shows/AllShows/AllUpcomingShows';
 import ScrollToTop from '../ScrollToTop';
 
@@ -57,8 +59,8 @@ const AnimatedRoutes = () => {
                     <Route path='/admin/manage' element={<Manage/>}/>
                     <Route path='/admin/manage/createShow' element={<Create/>}/>
                     <Route path='/admin/manage/updateShows' element={<Update/>}/>
-                    <Route path='/admin/manage/updateShows/allUpcomingShows' element={<Update/>}/>
-                    <Route path='/admin/manage/updateShows/allPastShows' element={<Update/>}/>
+                    <Route path='/admin/manage/updateShows/allUpcomingShows' element={<AdminUpcomingShows/>}/>
+                    <Route path='/admin/manage/updateShows/allPastShows' element={<AdminPastShows/>}/>
                     <Route path='/admin/manage/createSong' element={<CreateSong/>}/>
                     <Route path='/admin/manage/updateSongs' element={<UpdateSongs/>}/>
                     <Route path='/admin/manage/updateSongs/updateSong/:id' element={<UpdateSong/>}/>

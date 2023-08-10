@@ -1,13 +1,16 @@
 import {useContext} from 'react'
-import ShowsContext from '../../../../ManageContext/ShowsContext/ShowsContext'
+import ShowsContext from '../../../../Context/ManageContext/ShowsContext/ShowsContext'
 import Show from '../Update/Show/Show'
 import './AllShows.css'
+import {AiOutlineArrowLeft} from 'react-icons/ai'
 import {motion} from 'framer-motion'
-import {BiSolidSlideshow} from 'react-icons/bi'
 import Loading from '../../../../../UI/Loading/Loading'
+import {useNavigate} from 'react-router-dom'
 
-const AllUpcomingShows = () => {
+const AdminUpcomingShows = () => {
     const ctx = useContext(ShowsContext)
+        const navigate = useNavigate()
+
     return (
         <motion.div 
             className = "allMyShows"
@@ -15,7 +18,8 @@ const AllUpcomingShows = () => {
             animate={{width:'100%'}}
             exit={{x:-window.innerWidth, transition: {duration: 0.5}}}
         >
-            <h3>HERE ARE MY UPCOMING SHOWS <span><BiSolidSlideshow size={35}/></span></h3>
+            <AiOutlineArrowLeft cursor='pointer' onClick={()=> navigate(-1)} color='#1D3557' size={30}/>
+            <h5>UPCOMING SHOWS</h5>
             <ul className="ShowsList allShows">
                 {ctx.pending.isPending? <Loading isPending={ctx.pending.isPending}/> : 
                         ctx.shows.myShows.upcomingShows.map((show,index)=>{
@@ -35,4 +39,4 @@ const AllUpcomingShows = () => {
     )
 }
 
-export default AllUpcomingShows
+export default AdminUpcomingShows
