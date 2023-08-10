@@ -1,7 +1,7 @@
 .allMyShows{
     width:100%;
 }
-.allMyShows h5{
+.allMyShows .theShow{
     color: #1D3557;
     font-size: 0.9rem;
     font-weight:500;

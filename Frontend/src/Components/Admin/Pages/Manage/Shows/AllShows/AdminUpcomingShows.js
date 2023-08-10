@@ -19,7 +19,7 @@ const AdminUpcomingShows = () => {
             exit={{x:-window.innerWidth, transition: {duration: 0.5}}}
         >
             <AiOutlineArrowLeft cursor='pointer' onClick={()=> navigate(-1)} color='#1D3557' size={30}/>
-            <h5>UPCOMING SHOWS</h5>
+            <h5 className="theShow">UPCOMING SHOWS</h5>
             <ul className="ShowsList allShows">
                 {ctx.pending.isPending? <Loading isPending={ctx.pending.isPending}/> : 
                         ctx.shows.myShows.upcomingShows.map((show,index)=>{
