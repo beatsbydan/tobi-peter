@@ -250,6 +250,7 @@ const AuthContextProvider = (props) => {
             if(res.errors.none){
                 success.yes = true
                 dispatchAuthDetails({type: "CLEAR"})
+                setIsLoggedIn(true)
                 setAccessToken(res.parameters.accessToken)
             }
             else{
