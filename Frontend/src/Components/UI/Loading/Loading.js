@@ -5,7 +5,7 @@ const Loading = (props) => {
         return ( 
             <div className="loader">
                 <div className="chillBlock">
-                    <img src={logo} alt=''/>
+                    <img src={logo} alt={'logo'}/>
                     <h2 className = "loadingText">Alright chill..</h2>    
                 </div>
                 <svg viewBox = "0 0 100 100">
