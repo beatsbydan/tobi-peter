@@ -29,7 +29,7 @@
 .left{
     display: flex;
     flex-direction: row;
-    align-items: stretch;
+    align-items: center;
     gap:2.4rem;
 }
 .desc{
