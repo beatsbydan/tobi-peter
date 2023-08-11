@@ -1,5 +1,6 @@
 .allMyShows{
     width:100%;
+    max-width: 800px;
 }
 .allMyShows .theShow{
     color: #1D3557;
