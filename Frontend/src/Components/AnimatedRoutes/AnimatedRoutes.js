@@ -29,46 +29,46 @@ import ScrollToTop from '../ScrollToTop';
 
 const AnimatedRoutes = () => {
     const location = useLocation()
-  return (
-    <AnimatePresence>
-        <ScrollToTop/>
-        <Routes location={location} key={location.pathname}>
-            {/* USER ROUTES */}
-            <Route exact path ='/' element={<WhatsNew/>}/>
-            <Route path ='/music' element={<Music/>}/>
-            <Route path ='/animation' element={<Animation/>}/>
-            <Route path ='/shows' element={<Shows/>}/>
-            <Route path ='/partner' element={<Partner/>}/>
-            <Route path='/shows/allPastShows' element={<AllPastShows/>}/>
-            <Route path='/shows/allUpcomingShows' element={<AllUpcomingShows/>}/>
-            
-            {/* NOT_FOUND */}
-            <Route path="*" element={<NotFound/>}/>
+    return (
+        <AnimatePresence>
+            <ScrollToTop/>
+            <Routes location={location} key={location.pathname}>
+                {/* USER ROUTES */}
+                <Route exact path ='/' element={<WhatsNew/>}/>
+                <Route path ='/music' element={<Music/>}/>
+                <Route path ='/animation' element={<Animation/>}/>
+                <Route path ='/shows' element={<Shows/>}/>
+                <Route path ='/partner' element={<Partner/>}/>
+                <Route path='/shows/allPastShows' element={<AllPastShows/>}/>
+                <Route path='/shows/allUpcomingShows' element={<AllUpcomingShows/>}/>
+                
+                {/* NOT_FOUND */}
+                <Route path="*" element={<NotFound/>}/>
 
-            {/* ADMIN ROUTES */}
-            <Route path='/admin' element={<Admin/>}/>
-            <Route path='/admin/login' element={<LogIn/>}/>
-            <Route path='/admin/register' element={<Register/>}/>
-            <Route path = '/unatuhorized' element = {<Unauthorized/>}/>
-            <Route path = '/admin/reset' element={<ForgotPassword/>}/>
+                {/* ADMIN ROUTES */}
+                <Route path='/admin' element={<Admin/>}/>
+                <Route path='/admin/login' element={<LogIn/>}/>
+                <Route path='/admin/register' element={<Register/>}/>
+                <Route path = '/unatuhorized' element = {<Unauthorized/>}/>
+                <Route path = '/admin/reset' element={<ForgotPassword/>}/>
 
-            {/* PROTECTED ROUTES */}
-            <Route element = {<PersistLogin/>}>
-                <Route element={<ProtectedRoutes/>}>
-                    <Route path='/admin/home' element={<Home/>}/>
-                    <Route path='/admin/manage' element={<Manage/>}/>
-                    <Route path='/admin/manage/createShow' element={<Create/>}/>
-                    <Route path='/admin/manage/updateShows' element={<Update/>}/>
-                    <Route path='/admin/manage/updateShows/allUpcomingShows' element={<AdminUpcomingShows/>}/>
-                    <Route path='/admin/manage/updateShows/allPastShows' element={<AdminPastShows/>}/>
-                    <Route path='/admin/manage/createSong' element={<CreateSong/>}/>
-                    <Route path='/admin/manage/updateSongs' element={<UpdateSongs/>}/>
-                    <Route path='/admin/manage/updateSongs/updateSong/:id' element={<UpdateSong/>}/>
+                {/* PROTECTED ROUTES */}
+                <Route element = {<PersistLogin/>}>
+                    <Route element={<ProtectedRoutes/>}>
+                        <Route path='/admin/home' element={<Home/>}/>
+                        <Route path='/admin/manage' element={<Manage/>}/>
+                        <Route path='/admin/manage/createShow' element={<Create/>}/>
+                        <Route path='/admin/manage/updateShows' element={<Update/>}/>
+                        <Route path='/admin/manage/updateShows/allUpcomingShows' element={<AdminUpcomingShows/>}/>
+                        <Route path='/admin/manage/updateShows/allPastShows' element={<AdminPastShows/>}/>
+                        <Route path='/admin/manage/createSong' element={<CreateSong/>}/>
+                        <Route path='/admin/manage/updateSongs' element={<UpdateSongs/>}/>
+                        <Route path='/admin/manage/updateSongs/updateSong/:id' element={<UpdateSong/>}/>
+                    </Route>
                 </Route>
-            </Route>
-        </Routes>
-    </AnimatePresence>
-  )
+            </Routes>
+        </AnimatePresence>
+    )
 }
 
 export default AnimatedRoutes

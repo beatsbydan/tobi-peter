@@ -25,16 +25,16 @@ const Navbar = () => {
                         <li>WHAT'S NEW</li>
                     </NavLink>
                     <div className="right">
-                        <NavLink onClick={closeNav} className={({isActive})=>(isActive ? activeClass: defaultClass)} to={'/music'}>
+                        <NavLink onClick={closeNav} className={({isActive})=>(isActive ? activeClass: defaultClass)} to={'music'}>
                             <li>MUSIC</li>
                         </NavLink>
-                        <NavLink onClick={closeNav} className={({isActive})=>(isActive ? activeClass: defaultClass)} to={'/shows'}>
+                        <NavLink onClick={closeNav} className={({isActive})=>(isActive ? activeClass: defaultClass)} to={'shows'}>
                             <li>SHOWS</li>
                         </NavLink>
-                        <NavLink onClick={closeNav} className={({isActive})=>(isActive ? activeClass: defaultClass)} to={'/animation'}>
+                        <NavLink onClick={closeNav} className={({isActive})=>(isActive ? activeClass: defaultClass)} to={'animation'}>
                             <li>ANIMATION</li>
                         </NavLink>
-                        <NavLink onClick={closeNav} className={({isActive})=>(isActive ? activeClass: defaultClass)} to={'/partner'}>
+                        <NavLink onClick={closeNav} className={({isActive})=>(isActive ? activeClass: defaultClass)} to={'partner'}>
                             <li>PARTNER</li>
                         </NavLink>
                     </div>
