@@ -10,9 +10,6 @@
     transition: all 0.3s ease;
     cursor: pointer;
 }
-.loaded{
-    animation: loadListItem 1s cubic-bezier(0,-0.34, 0, 1.33);
-}
 .show a{
     border-radius: 0.6rem;
     width: 90%;
@@ -96,7 +93,7 @@
         justify-content: space-between;
     }
 }
-@keyframes loadListItem{
+@keyframes loaded{
     0%{
         transform: translateX(-100%);
     }

@@ -38,7 +38,7 @@
         margin: auto;
     }
 }
-@keyframes loadListItem{
+@keyframes loaded{
     0%{
         transform: translateX(-100%);
     }

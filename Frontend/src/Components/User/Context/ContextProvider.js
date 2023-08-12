@@ -134,6 +134,7 @@ const ContextProvider = (props) => {
             }
         })
         .then(res=>{
+            console.log(res)
             if(res.status === 200){
                 setSong(res.data.recentSong)
             }
