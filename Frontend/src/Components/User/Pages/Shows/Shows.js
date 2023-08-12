@@ -62,14 +62,13 @@ const Shows = () => {
                         :
                         ctx.shows.pastShows.map((show,index)=>{
                             return(
-                                setTimeout(()=>{
-                                    <Show
-                                        key={index}
-                                        title={show.title}
-                                        venue={show.venue}
-                                        date={show.date}
-                                    />
-                                },1000*index)
+                                <Show
+                                    key={index}
+                                    myId={index}
+                                    title={show.title}
+                                    venue={show.venue}
+                                    date={show.date}
+                                />
                             )
                         })
                     }
