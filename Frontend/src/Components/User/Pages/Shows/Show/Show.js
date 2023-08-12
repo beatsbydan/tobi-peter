@@ -13,7 +13,7 @@ const Show = (props) => {
     }
     const txtMonth = getMonth(myMonth)
     return ( 
-        <li className='loaded show' style={{ animationDelay: `${props.myId * delay}ms` }}>
+        <li className='show' style={{ animationDelay: `${props.myId * delay}ms` }}>
             <div className='left'>
                 <div className='date'>
                     <small className='month'>{txtMonth}</small>

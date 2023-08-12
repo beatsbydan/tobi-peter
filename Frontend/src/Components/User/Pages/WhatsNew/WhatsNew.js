@@ -14,7 +14,7 @@ const WhatsNew = () => {
             animate={{width:'100%'}}
             exit={{x:-window.innerWidth, transition: {duration: 0.7}}}
         >
-            <img className='comingSoon' src={ctx.song?.coverArt} alt="" />
+            {<img className='comingSoon' src={ctx.song?.coverArt} alt="" />}
             <div className="streamingPlatformsBlock">
                 <h5>CHOOSE YOUR PREFERRED STREAMING PLATFORM</h5>
                 <StreamingPlatforms/>
