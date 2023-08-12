@@ -35,16 +35,22 @@
 }
 @media screen and  (max-width:500px) {
     .streamingPlatforms a{
-        font-size: 1rem;
+        width: 100%;
+        font-size: 0.9rem;
         padding: 0.8rem;
         border-radius: 0.5rem;
         background-color: #D9D9D936;
     }
     .streamingPlatforms{
         flex-direction: column;
+        gap: 0.7rem;
         flex-wrap: nowrap;
     }
     .streamingPlatforms a li{
         gap: 0.7rem;
+        width: 100%;
+        margin: auto;
+        position: relative;
+        justify-content: center;
     }
 }

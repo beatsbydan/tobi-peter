@@ -14,6 +14,7 @@
     position: fixed;
     left: 0;
     right: 0;
+    z-index: 1;
     animation: successful 2s ease-in-out;
 }
 .alert p{
