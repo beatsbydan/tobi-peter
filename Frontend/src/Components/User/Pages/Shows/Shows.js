@@ -39,6 +39,7 @@ const Shows = () => {
                             return(
                                 <Show
                                     key={index}
+                                    myId={index}
                                     title={show.title}
                                     venue={show.venue}
                                     date={show.date}
