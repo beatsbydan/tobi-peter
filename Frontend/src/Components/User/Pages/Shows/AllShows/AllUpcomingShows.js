@@ -10,9 +10,6 @@ import {useNavigate} from 'react-router-dom'
 const AllUpcomingShows = () => {
     const ctx = useContext(Context)
     const navigate = useNavigate()
-    const duration = 1000; // ms
-    const delay = 500; // ms
-    const animStr = (i) => `loaded ${duration}ms ease-out ${delay * (i + 1)}ms forwards`;
     return (
         <motion.div 
             className = "allMyShows"
@@ -28,7 +25,6 @@ const AllUpcomingShows = () => {
                         return(
                             <Show
                                 key={index}
-                                animation={()=>animStr(index)}
                                 title={show.title}
                                 venue={show.venue}
                                 date={show.date}

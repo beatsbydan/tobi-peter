@@ -3,6 +3,7 @@ import {BsTicketPerforated} from 'react-icons/bs'
 import {BiRightArrowAlt} from 'react-icons/bi'
 
 const Show = (props) => {
+    const delay = 1200;
     const date = new Date(props.date)
     const myDate = date.getDate().toString()
     const myMonth = date.getMonth()
@@ -12,7 +13,7 @@ const Show = (props) => {
     }
     const txtMonth = getMonth(myMonth)
     return ( 
-        <li className='show' style={{animation: props.animation}}>
+        <li className='loaded show' style={{ animationDelay: `${(props.myId + 1) * delay}ms` }}>
             <div className='left'>
                 <div className='date'>
                     <small className='month'>{txtMonth}</small>
