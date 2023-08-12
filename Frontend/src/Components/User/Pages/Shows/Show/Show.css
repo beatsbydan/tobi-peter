@@ -9,6 +9,8 @@
     border-radius: 0.6rem;
     cursor: pointer;
     transform: translateX(-100%);
+}
+.loaded{
     animation: loaded 1.5s cubic-bezier(0,-0.34, 0, 1.33);
 }
 .show a{
