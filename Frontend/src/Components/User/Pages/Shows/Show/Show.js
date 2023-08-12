@@ -32,7 +32,7 @@ const Show = (props) => {
                     <span>GET TICKETS</span>
                 </a>}
             </li>
-        },timer)
+        },1200)
     );
 }
 export default Show;
