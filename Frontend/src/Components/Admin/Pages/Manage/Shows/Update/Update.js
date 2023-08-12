@@ -43,7 +43,7 @@ const Update = () => {
                     }
                 </ul>
                 <div className="myShowsActions">
-                    <Link onClick={ctx.getShows} to={'/admin/manage/updateShows/allUpcomingShows'}>SEE MORE</Link>
+                    <Link onClick={ctx.getShows} to={'/admin/manage/shows/updateShows/allUpcomingShows'}>SEE MORE</Link>
                 </div>
             </div>
             <div className="pastShows">
@@ -70,7 +70,7 @@ const Update = () => {
                     }
                 </ul>
                 <div className="myShowsActions">
-                    <Link onClick={ctx.getShows}  to={'/admin/manage/updateShows/allPastShows'}>SEE MORE</Link>
+                    <Link onClick={ctx.getShows}  to={'/admin/manage/shows/updateShows/allPastShows'}>SEE MORE</Link>
                 </div>
             </div>
         </motion.div>

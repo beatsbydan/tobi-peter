@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: flex-end;
     gap: 0.4rem;
+    animation: loadListItem 2s ease-in;
 }
 .editableActions{
     display: flex;
@@ -36,5 +37,13 @@
     .editableActions{
         max-width: 550px;
         margin: auto;
+    }
+}
+@keyframes loadListItem{
+    0%{
+        transform: translateY(-50%);
+    }
+    100%{
+        transform: translateY(0%);
     }
 }

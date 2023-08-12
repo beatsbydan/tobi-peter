@@ -26,6 +26,10 @@ import AdminPastShows  from '../Admin/Pages/Manage/Shows/AllShows/AdminPastShows
 import AdminUpcomingShows from '../Admin/Pages/Manage/Shows/AllShows/AdminUpcomingShows';
 import AllUpcomingShows from '../User/Pages/Shows/AllShows/AllUpcomingShows';
 import ScrollToTop from '../ScrollToTop';
+import CreateBlogs from '../Admin/Pages/Manage/Blogs/CreateBlogs/CreateBlogs';
+import CreateImages from '../Admin/Pages/Manage/Images/CreateImages/CreateImages';
+import UpdateImages from '../Admin/Pages/Manage/Images/UpdateImages/UpdateImages';
+import UpdateBlogs from '../Admin/Pages/Manage/Blogs/UpdateBlogs/UpdateBlogs';
 
 const AnimatedRoutes = () => {
     const location = useLocation()
@@ -57,13 +61,17 @@ const AnimatedRoutes = () => {
                     <Route element={<ProtectedRoutes/>}>
                         <Route path='/admin/home' element={<Home/>}/>
                         <Route path='/admin/manage' element={<Manage/>}/>
-                        <Route path='/admin/manage/createShow' element={<Create/>}/>
-                        <Route path='/admin/manage/updateShows' element={<Update/>}/>
-                        <Route path='/admin/manage/updateShows/allUpcomingShows' element={<AdminUpcomingShows/>}/>
-                        <Route path='/admin/manage/updateShows/allPastShows' element={<AdminPastShows/>}/>
-                        <Route path='/admin/manage/createSong' element={<CreateSong/>}/>
-                        <Route path='/admin/manage/updateSongs' element={<UpdateSongs/>}/>
-                        <Route path='/admin/manage/updateSongs/updateSong/:id' element={<UpdateSong/>}/>
+                        <Route path='/admin/manage/shows/createShow' element={<Create/>}/>
+                        <Route path='/admin/manage/shows/updateShows' element={<Update/>}/>
+                        <Route path='/admin/manage/shows/updateShows/allUpcomingShows' element={<AdminUpcomingShows/>}/>
+                        <Route path='/admin/manage/shows/updateShows/allPastShows' element={<AdminPastShows/>}/>
+                        <Route path='/admin/manage/songs/createSong' element={<CreateSong/>}/>
+                        <Route path='/admin/manage/songs/updateSongs' element={<UpdateSongs/>}/>
+                        <Route path='/admin/manage/songs/updateSongs/updateSong/:id' element={<UpdateSong/>}/>
+                        <Route path='/admin/manage/blogs/createBlog' element={<CreateBlogs/>}/>
+                        <Route path='/admin/manage/blogs/updateBlogs' element={<UpdateBlogs/>}/>
+                        <Route path='/admin/manage/images/addImage' element={<CreateImages/>}/>
+                        <Route path='/admin/manage/images/updateImages' element={<UpdateImages/>}/>
                     </Route>
                 </Route>
             </Routes>

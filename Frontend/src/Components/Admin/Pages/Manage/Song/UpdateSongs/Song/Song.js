@@ -36,7 +36,7 @@ const Song = (props) => {
                 <small className={isVisible ?"visible altText" : "altText"}>Delete</small>
                 <MdOutlineDelete onClick={handleIsOpen} onMouseEnter={handleVisibility} onMouseLeave={handleVisibility} size={27} cursor={'pointer'} color='#1D3557'/>
             </div>
-            <Link onClick={props.fetch} className= "mySong" to ={`/admin/manage/updateSongs/updateSong/${props.id}`}>
+            <Link onClick={props.fetch} className= "mySong" to ={`/admin/manage/songs/updateSongs/updateSong/${props.id}`}>
                 <div className="songLeft">
                     <div className='date'>
                         <small className='month'>{txtMonth}</small>

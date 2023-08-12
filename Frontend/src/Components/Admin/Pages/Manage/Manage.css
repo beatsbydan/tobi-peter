@@ -1,3 +1,10 @@
+.manage{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 4em;
+    margin-bottom: 3em;
+}
 .manage h2{
     font-size: 1.3rem;
     color: #495464;
@@ -26,9 +33,6 @@
     gap: 0.5rem;
     transition: 0.3s ease;
     background: #D9D9D936;
-}
-.musicBlock{
-    margin-top: 5em;
 }
 @media (hover: hover){
     .createBlock a:hover{

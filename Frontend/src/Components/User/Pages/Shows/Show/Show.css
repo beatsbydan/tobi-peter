@@ -9,6 +9,7 @@
     border-radius: 0.6rem;
     transition: all 0.3s ease;
     cursor: pointer;
+    animation: loadListItem 2s ease-in;
 }
 .show a{
     border-radius: 0.6rem;
@@ -91,5 +92,13 @@
     .date{
         gap: 0.1rem;
         justify-content: space-between;
+    }
+}
+@keyframes loadListItem{
+    0%{
+        transform: translateY(-50%);
+    }
+    100%{
+        transform: translateY(0%);
     }
 }
