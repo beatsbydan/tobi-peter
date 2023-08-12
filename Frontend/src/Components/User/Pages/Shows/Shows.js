@@ -36,11 +36,9 @@ const Shows = () => {
                         ctx.shows.upcomingShows.length === 0 ? <p className="defaultText">No available shows <span><TfiFaceSad size={25}/></span></p>                            
                         : 
                         setTimeout(()=>{
-                            const animatedUpcomingShows = ctx.animateShows(ctx.shows.upcomingShows)
                             ctx.shows.upcomingShows.map((show,index)=>{
                                 return(
                                     <Show
-                                        isAnimated = {animatedUpcomingShows[index]}
                                         key={index}
                                         title={show.title}
                                         venue={show.venue}
@@ -65,11 +63,9 @@ const Shows = () => {
                         ctx.shows?.pastShows?.length === 0? <p className="defaultText">No available shows <span><TfiFaceSad size={25}/></span></p>
                         :
                         setTimeout(()=>{
-                            const animatedPastShows = ctx.animateShows(ctx.shows.pastShows)
                             ctx.shows.pastShows.map((show,index)=>{
                                 return(
                                     <Show
-                                        isAnimated = {animatedPastShows[index]}
                                         key={index}
                                         title={show.title}
                                         venue={show.venue}
