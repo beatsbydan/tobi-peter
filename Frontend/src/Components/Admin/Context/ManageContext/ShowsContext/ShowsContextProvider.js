@@ -185,6 +185,15 @@ const ShowsContextProvider = (props) => {
         })
         return success
     }
+    const animateShows = (items) => {
+        const allShows = new Array(items.length).fill(false)
+        let animatedShows = []
+        setTimeout(()=>{
+            animatedShows = allShows.map(show => !show)
+        },1200)
+        return animatedShows
+    }
+
 
     // CHART
 
@@ -319,6 +328,7 @@ const ShowsContextProvider = (props) => {
         completeShow:completeShow,
         handleChange:handleChange,
         handleCreateSubmit: handleCreateSubmit,
+        animateShows: animateShows
     }
     return ( 
         <ShowsContext.Provider value = {value}>

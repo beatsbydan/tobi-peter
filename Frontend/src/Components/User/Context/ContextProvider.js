@@ -93,6 +93,16 @@ const ContextProvider = (props) => {
             return []
         }
     }
+    const animateShows = (items) => {
+        const allShows = new Array(items.length).fill(false)
+        let animatedShows = []
+        for (let i = 0; i < allShows.length; i++){
+            setTimeout(()=>{
+                animatedShows.push(true)
+                return animatedShows
+            },1200)
+        }
+    }
     
     // SUBSCRIBERS
     const [email, setEmail] = useState('')
@@ -136,6 +146,7 @@ const ContextProvider = (props) => {
         getSong()
     },[])
 
+
     // CONTEXT VALUES
     const value = {
         email:email,
@@ -146,7 +157,8 @@ const ContextProvider = (props) => {
         getShows:getShows,
         getSong:getSong,
         handleChange:handleChange,
-        handleSubmit:handleSubmit
+        handleSubmit:handleSubmit,
+        animateShows:animateShows
     }
 
     return ( 

@@ -3,6 +3,8 @@
     flex-direction: column;
     align-items: flex-end;
     gap: 0.4rem;
+}
+.loadList{
     animation: loadListItem 2s ease-in;
 }
 .editableActions{
@@ -41,9 +43,9 @@
 }
 @keyframes loadListItem{
     0%{
-        transform: translateY(-50%);
+        transform: translateX(-100%);
     }
     100%{
-        transform: translateY(0%);
+        transform: translateX(0%);
     }
 }

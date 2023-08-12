@@ -12,7 +12,7 @@ const Show = (props) => {
     }
     const txtMonth = getMonth(myMonth)
     return ( 
-        <li className='show'>
+        <li className={props.isAnimated ? 'loaded show' : 'show'}>
             <div className='left'>
                 <div className='date'>
                     <small className='month'>{txtMonth}</small>

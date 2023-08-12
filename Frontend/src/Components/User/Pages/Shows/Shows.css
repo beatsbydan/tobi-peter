@@ -37,7 +37,7 @@
     justify-content: center;
     gap: 0.5rem;
     font-weight: 600;
-    transition: 0.3s ease;
+    /* transition: 0.3s ease; */
     background: #D9D9D936;
 }
 .upcomingShows, .pastShows{

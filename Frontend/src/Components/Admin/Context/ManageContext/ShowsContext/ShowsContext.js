@@ -13,6 +13,7 @@ const ShowsContext = React.createContext({
     deleteShow:()=>{},
     completeShow:()=>{},
     handleChange:()=>{},
-    handleCreateSubmit:()=>{}
+    handleCreateSubmit:()=>{},
+    animateShows: ()=>{}
 })
 export default ShowsContext

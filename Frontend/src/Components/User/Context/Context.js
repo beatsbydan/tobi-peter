@@ -7,6 +7,7 @@ const Context = React.createContext({
     getShows: ()=>{},
     getSong: ()=>{},
     handleChange: ()=>{},
-    handleSubmit: ()=>{}
+    handleSubmit: ()=>{},
+    animateShows: ()=>{}
 })
 export default Context;
