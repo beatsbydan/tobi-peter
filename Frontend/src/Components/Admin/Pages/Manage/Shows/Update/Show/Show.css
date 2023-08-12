@@ -4,8 +4,8 @@
     align-items: flex-end;
     gap: 0.4rem;
 }
-.loadList{
-    animation: loadListItem 2s ease-in;
+.loaded{
+    animation: loadListItem 1s cubic-bezier(0,-0.34, 0, 1.33);
 }
 .editableActions{
     display: flex;

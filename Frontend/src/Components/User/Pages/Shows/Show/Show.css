@@ -11,7 +11,7 @@
     cursor: pointer;
 }
 .loaded{
-    animation: loadListItem 2s ease-in;
+    animation: loadListItem 1s cubic-bezier(0,-0.34, 0, 1.33);
 }
 .show a{
     border-radius: 0.6rem;
