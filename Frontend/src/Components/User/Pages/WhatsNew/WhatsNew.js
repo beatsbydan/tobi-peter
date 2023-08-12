@@ -1,6 +1,5 @@
 import {useContext} from 'react'
 import './WhatsNew.css'
-import comingSoon from '../../../../Assets/upcoming.svg'
 import Socials from '../../../UI/Socials/Socials';
 import Context from '../../Context/Context'
 import StreamingPlatforms from '../../../UI/StreamingPlatforms/StreamingPlatforms';
@@ -15,7 +14,7 @@ const WhatsNew = () => {
             animate={{width:'100%'}}
             exit={{x:-window.innerWidth, transition: {duration: 0.7}}}
         >
-            <img className='comingSoon' src={comingSoon || ctx.song?.coverArt} alt="" />
+            <img className='comingSoon' src={ctx.song?.coverArt} alt="" />
             <div className="streamingPlatformsBlock">
                 <h5>CHOOSE YOUR PREFERRED STREAMING PLATFORM</h5>
                 <StreamingPlatforms/>

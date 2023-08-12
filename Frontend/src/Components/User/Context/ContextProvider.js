@@ -126,7 +126,7 @@ const ContextProvider = (props) => {
     }
 
     // SONG
-    const [song, setSong] = useState([])
+    const [song, setSong] = useState({})
     const getSong = async () =>{
         await axios.get('https://toby-peter-production.up.railway.app/api/song/recent',{
             headers:{

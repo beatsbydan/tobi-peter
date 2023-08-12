@@ -4,7 +4,7 @@ import {BiRightArrowAlt} from 'react-icons/bi'
 
 const Show = (props) => {
     const duration = 1000; 
-    const delay = 500;
+    const delay = 1000;
     const animateShow = (i) => `loaded ${duration}ms cubic-bezier(0,-0.34, 0, 1.33) ${delay * (i+1)}ms forwards`;
     const date = new Date(props.date)
     const myDate = date.getDate().toString()
