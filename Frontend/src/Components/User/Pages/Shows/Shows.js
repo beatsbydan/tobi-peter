@@ -35,19 +35,17 @@ const Shows = () => {
                         : 
                         ctx.shows.upcomingShows.length === 0 ? <p className="defaultText">No available shows <span><TfiFaceSad size={25}/></span></p>                            
                         : 
-                        setTimeout(()=>{
-                            ctx.shows.upcomingShows.map((show,index)=>{
-                                return(
-                                    <Show
-                                        key={index}
-                                        title={show.title}
-                                        venue={show.venue}
-                                        date={show.date}
-                                        ticketLink={show.ticketLink}
-                                    />
-                                )
-                            })
-                        },2000)
+                        ctx.shows.upcomingShows.map((show,index)=>{
+                            return(
+                                <Show
+                                    key={index}
+                                    title={show.title}
+                                    venue={show.venue}
+                                    date={show.date}
+                                    ticketLink={show.ticketLink}
+                                />
+                            )
+                        })
                     }
                 </ul>
                 <div className="myShowsActions">
@@ -62,18 +60,16 @@ const Shows = () => {
                         : 
                         ctx.shows?.pastShows?.length === 0? <p className="defaultText">No available shows <span><TfiFaceSad size={25}/></span></p>
                         :
-                        setTimeout(()=>{
-                            ctx.shows.pastShows.map((show,index)=>{
-                                return(
-                                    <Show
-                                        key={index}
-                                        title={show.title}
-                                        venue={show.venue}
-                                        date={show.date}
-                                    />
-                                )
-                            })
-                        },2000)
+                        ctx.shows.pastShows.map((show,index)=>{
+                            return(
+                                <Show
+                                    key={index}
+                                    title={show.title}
+                                    venue={show.venue}
+                                    date={show.date}
+                                />
+                            )
+                        })
                     }
                 </ul>
                 <div className="myShowsActions">
