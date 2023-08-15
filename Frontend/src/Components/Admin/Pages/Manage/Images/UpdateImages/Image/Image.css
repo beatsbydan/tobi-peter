@@ -1,0 +1,30 @@
+.imageItem{
+    width:45%;
+    display:flex;
+    flex-direction:column;
+    align-items: flex-end;
+    gap: 1.2rem;
+    opacity:0;
+    animation:loadImg 1.5s ease-in-out 1 forwards;
+}
+.myPicture{
+    width:100%;
+    background-size: cover;
+    background-position: center 0px;
+    aspect-ratio: 1;
+    background-repeat: no-repeat;
+    border-radius: 0.6rem;
+}
+@media screen and (max-width:500px) {
+    .imageItem{
+        width: 100%;
+    }
+}
+@keyframes loadImg {
+    0%{
+        opacity:0;
+    }
+    100%{
+        opacity: 1;
+    }
+}

@@ -93,48 +93,8 @@
     font-weight: 500;
     color:#1D3557;
 }
-.pressSection{
-    margin-top: 2em;
-    display: flex;
-    flex-direction: column;
-    gap: 5rem;
-}
-.pressSection div{
-    display: flex;
-    flex-direction: column;
-    gap: 1.7rem;
-}
-.pressSection div a{
-    width: 100%;
-    margin: auto;
-    padding: 1rem;
-    border: 0.1rem solid #1D3557;
-    border-radius: 0.3rem;
-    text-align: center;
-    transition: 0.3s ease;
-}
-.pressSection div a:active{
-    color: #FFFBF4;
-    background:#1D3557;
-}
-.head{
-    padding-bottom:0.8rem ;
-    border-bottom: 0.1rem solid #1D3557;
-}
-.head h4{
-    font-weight: 700;
-}
-.head h5{
-    padding-top: 0.7rem;
-    color: #495464;
-    font-size: 0.87rem;
-    font-weight: 700;
-}
+
 @media (hover: hover){
-    .pressSection div a:hover{
-        color: #FFFBF4;
-        background:#1D3557;
-    }
     .statsExtras div a:hover{
         gap: 1.2rem;
     }

@@ -3,7 +3,21 @@ import StreamingPlatforms from '../../../UI/StreamingPlatforms/StreamingPlatform
 import './Music.css'
 import {BiRightArrowAlt} from 'react-icons/bi'
 import { motion } from 'framer-motion';
+import Blogs from './Blogs/Blogs';
+import ImageCarousel from './ImageCarousel/ImageCarousel';
+
 const Music = () => {
+    const song = {
+        streamingLink: {
+            appleMusic: 'https://music.apple.com/ng/artist/tobi-peter/1459306113',
+            spotify: 'https://open.spotify.com/artist/6akFVTtPvrAsoyLSv8U6nw',
+            audiomack: 'https://audiomack.com/tobi-peter',
+            youtube: 'https://youtube.com/channel/UCO4KidrAHVyduGJUiOkGJNw',
+            tidal: 'https://tidal.com/browse/artist/15111616',
+            boomPlay: 'https://music.youtube.com/channel/UCO4KidrAHVyduGJUiOkGJNw',
+            youtubeMusic: 'https://music.youtube.com/channel/UCO4KidrAHVyduGJUiOkGJNw'
+        }
+    }
     return ( 
         <motion.div 
             className="music"
@@ -21,9 +35,12 @@ const Music = () => {
                 <p>My major genres are EDM, Afrobeat, Amapiano, Pop, Dance and House music.</p>
                 <p>You might recognize me from Instagram as the guy that makes remixes in a blue agbada and the overhyped reactions.</p>
             </div>
+            <ImageCarousel/>
             <div className="streamingPlatformsBlock">
                 <p>Check out my music on any of these streaming platforms: </p>
-                <StreamingPlatforms/>
+                {song && <StreamingPlatforms
+                    song={song}
+                />}
             </div>
             <div className="stats">
                 <div>
@@ -61,35 +78,7 @@ const Music = () => {
             </div>
             <div className="press">
                 <h4>PRESS</h4>
-                <div className="pressSection">
-                    <div>
-                        <section className="head">
-                            <h4>TOBI PETER DROPS NEW SINGLE</h4>
-                            <h5>BOUNCE NETWORK</h5>
-                        </section>
-                        <p>The fast rising DJ, Tobi Peter, releases viral TikTok sound titled “1 2 Shake Shake”.
-                        The song was a viral sound on TikTok with over 700,00 views and about...</p>
-                        <a target='_blank' rel="noreferrer" href="https://www.">READ FULL ARTICLE</a>
-                    </div>
-                    <div>
-                        <section className="head">
-                            <h4>TOBI PETER DROPS NEW SINGLE</h4>
-                            <h5>BOUNCE NETWORK</h5>
-                        </section>
-                        <p>The fast rising DJ, Tobi Peter, releases viral TikTok sound titled “1 2 Shake Shake”.
-                        The song was a viral sound on TikTok with over 700,00 views and about...</p>
-                        <a target='_blank' rel="noreferrer" href="https://www.">READ FULL ARTICLE</a>
-                    </div>
-                    <div>
-                        <section className="head">
-                            <h4>TOBI PETER DROPS NEW SINGLE</h4>
-                            <h5>BOUNCE NETWORK</h5>
-                        </section>
-                        <p>The fast rising DJ, Tobi Peter, releases viral TikTok sound titled “1 2 Shake Shake”.
-                        The song was a viral sound on TikTok with over 700,00 views and about...</p>
-                        <a target='_blank' rel="noreferrer" href="https://www.">READ FULL ARTICLE</a>
-                    </div>
-                </div>
+                <Blogs/>
             </div>
         </motion.div>
 

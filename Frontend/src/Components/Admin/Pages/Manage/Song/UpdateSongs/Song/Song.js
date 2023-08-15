@@ -30,8 +30,9 @@ const Song = (props) => {
             }
         })
     }
+    const delay = 300
     return(
-        <li className="editableSong">
+        <li className="editableSong" style={{animationDelay: `${props.myId * delay}ms`}}>
             <div className="remove">
                 <small className={isVisible ?"visible altText" : "altText"}>Delete</small>
                 <MdOutlineDelete onClick={handleIsOpen} onMouseEnter={handleVisibility} onMouseLeave={handleVisibility} size={27} cursor={'pointer'} color='#1D3557'/>

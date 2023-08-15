@@ -80,7 +80,7 @@
 .newSongImg{
     width: 100%;
     max-width: 600px;
-    margin: auto;
+    margin: 2em auto;
     aspect-ratio: 1;
     object-fit: cover;
     position: relative;

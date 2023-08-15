@@ -1,0 +1,19 @@
+.createBlogs{
+    width: 100%;
+    max-width: 700px;
+    margin: auto;
+}
+.createBlogs h2{
+    text-align: center;
+    color: #1D3557;
+    margin-bottom: 1.5rem;
+}
+.createBlogs h2 span{
+    display: block;
+    margin-top:0.5rem
+}
+.createBlogs form{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}

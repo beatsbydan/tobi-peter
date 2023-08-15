@@ -5,6 +5,8 @@ import useAuth from '../../../../Hooks/useAuth'
 import ValidateSong from '../../Pages/Manage/Song/ValidateSong'
 import axios from 'axios'
 import Context from '../../../User/Context/Context'
+import { ValidateFiles } from '../../Pages/Manage/Images/CreateImages/ValidateFiles'
+import { ValidateBlogs } from '../../Pages/Manage/Blogs/CreateBlogs/ValidateBlogs'
 
 const ManageContextProvider = (props) => {
     const getFormattedDate = (date) => {
@@ -36,6 +38,9 @@ const ManageContextProvider = (props) => {
         }
     }
     const [pending, dispatchPending] = useReducer(pendReducer, initialPendState)
+
+    // SONG
+
     const getSongs = () => {
         dispatchPending({type: 'PENDING'})
         setTimeout(()=>{
@@ -84,6 +89,7 @@ const ManageContextProvider = (props) => {
             }
         })
         .then(res=>{
+            console.log(res)
             if(res.status === 200){
                 success.yes = true
                 setAlert('success', 'Song Deleted!')
@@ -228,20 +234,184 @@ const ManageContextProvider = (props) => {
         })
         return success
     }
+
+    // BLOGS
+    const [blogData, setBlogData] = useState({
+        title: '',
+        author: '',
+        text: '',
+        link: ''
+    })
+    const [blogErrors, setBlogErrors] = useState({})
+    const [blogs, setBlogs] = useState([])
+    const handleBlogDataChange = (e) => {
+        const {id, value} = e.target
+        setBlogData(prev=>{
+            return {...prev, [id]: value}
+        })
+    }
+    const handleBlogSubmit = async () => {
+        let success = {}
+        await ValidateBlogs(blogData, authDetails.accessToken)
+        .then(res=>{
+            setBlogErrors(res)
+            if(res.none){
+                getBlogs()
+                userCtx.getBlogs()
+                success.yes = true
+                setBlogData({
+                    title: '',
+                    author: '',
+                    text: '',
+                    link: ''
+                })
+            }
+            else{
+                success.yes = false
+                setAlert('failure', 'Blog not created!')
+            }
+        })
+        return success
+    }
+    const getBlogs = () => {
+        dispatchPending({type: 'PENDING'})
+        setTimeout(()=>{
+            axios.get('https://toby-peter-production.up.railway.app/api/blog/')
+            .then(res=>{
+                if(res.status === 200){
+                    setBlogs(res.data.AllBlogs)
+                    dispatchPending({type: 'COMPLETED'})
+                }
+            })
+            .catch(err=>{
+                return err
+            })
+        },3000)
+        
+    }
+    useEffect(()=>{
+        getBlogs()
+    },[])
+    const deleteBlog = async (id) => {
+        let success = {}
+        await axios.delete(`https://toby-peter-production.up.railway.app/api/blog/delete/${id}`,{
+            headers:{
+                'Content-Type': 'applicstion/json',
+                'Authorization': `Bearer ${authDetails.accessToken}`
+            }
+        })
+        .then(res=>{
+            if(res.status === 200){
+                getBlogs()
+                userCtx.getBlogs()
+                success.yes = true
+                setAlert('success', 'Blog deleted!')
+            }
+        })
+        .catch(err=>{
+            setAlert('failure', 'Blog not deleted!')
+            success.yes = false
+            console.log(err)
+            return err
+        })
+        return success
+    }
+
+    // BIO-IMAGES
+    const [files, setFiles] = useState({})
+    const [images, setImages] = useState([])
+    const handleFilesChange = (e) => {
+        setFiles(e.target.files)
+    }
+    const handleFilesSubmit = async () => {
+        let success = {}
+        await ValidateFiles(files, authDetails.accessToken)
+        .then(res=>{
+            if(res.none){
+                getImages()
+                userCtx.getImages()
+                success.yes = true
+                setFiles({})
+            }
+            else{
+                success.yes = false
+                setAlert('failure', 'Image(s) not uploaded!')
+            }
+        })
+        return success
+    }
+    const getImages = () => {
+        dispatchPending({type: 'PENDING'})
+        setTimeout(()=>{
+            axios.get('https://toby-peter-production.up.railway.app/api/admin/album')
+            .then(res=>{
+                if(res.status === 200){
+                    setImages(res.data.album)
+                    dispatchPending({type: 'COMPLETED'})
+                }
+            })
+            .catch(err=>{
+                return err
+            })
+        },3000)
+    }
+    useEffect(()=>{
+        getImages()
+    },[])
+    const deleteImage = async (url) => {
+        let success = {}
+        const data = {
+            url: url
+        }
+        await axios.put('https://toby-peter-production.up.railway.app/api/admin/delete-slide', {...data},{
+            headers:{
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${authDetails.accessToken}`
+            }
+        })
+        .then(res=>{
+            if(res.status === 200){
+                success.yes = true
+                getImages()
+                userCtx.getImages()
+                setAlert('success', 'Image deleted!')
+            }
+        })
+        .catch(err=>{
+            console.log(err)
+            setAlert('failure', 'Image not deleted!')
+            success.yes = false
+            return err
+        })
+        return success
+    }
+
+    // CONTEXT VALUES
     const value = {
+        blogs:blogs,
+        images: images,
+        files:files,
         pending:pending,
         allSongs:allSongs,
+        blogData:blogData,
+        blogErrors: blogErrors,
         createData:createData,
         updateData:updateData,
         createDataErrors:createDataErrors,
         updateDataErrors:updateDataErrors,
         getSong:getSong,
         deleteSong:deleteSong,
+        deleteImage:deleteImage,
+        deleteBlog:deleteBlog,
         handleCreateDataChange:handleCreateDataChange,
         handleUpdateDataChange:handleUpdateDataChange,
         handleCreateFileChange:handleCreateFileChange,
+        handleBlogDataChange: handleBlogDataChange,
+        handleBlogSubmit: handleBlogSubmit,
+        handleFilesChange:handleFilesChange,
         handleCreateSubmit:handleCreateSubmit,
         handleUpdateSubmit:handleUpdateSubmit,
+        handleFilesSubmit:handleFilesSubmit
     }
     return ( 
         <ManageContext.Provider value = {value}>

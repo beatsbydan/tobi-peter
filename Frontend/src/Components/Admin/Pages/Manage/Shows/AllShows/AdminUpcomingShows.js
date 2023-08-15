@@ -20,13 +20,17 @@ const AdminUpcomingShows = () => {
         >
             <AiOutlineArrowLeft cursor='pointer' onClick={()=> navigate(-1)} color='#1D3557' size={30}/>
             <h5 className="theShow">UPCOMING SHOWS</h5>
-            <ul className="ShowsList allShows">
+            <ul className="showsList allShows">
                 {ctx.pending.isPending? <Loading isPending={ctx.pending.isPending}/> : 
                         ctx.shows.myShows.upcomingShows.map((show,index)=>{
                         return(
                             <Show
+                                completePrompt={()=>ctx.completeShow(show._id)}
+                                deletePrompt={()=>ctx.deleteShow(show._id)}
                                 key={index}
+                                myId={index}
                                 title={show.title}
+                                isComplete ={false}
                                 venue={show.venue}
                                 date={show.date}
                                 ticketLink={show.ticketLink}

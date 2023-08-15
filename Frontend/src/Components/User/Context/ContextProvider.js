@@ -59,25 +59,25 @@ const ContextProvider = (props) => {
     const showsApi = 'https://toby-peter-production.up.railway.app/api/show/'
     const getShows = useCallback(() =>{
         dispatchPending({type: 'PENDING'})
-            setTimeout(()=>{
-                axios.get(showsApi)
-                .then(res=>{
-                    if(res.status === 200){
-                        const allShows = {
-                            upcomingShows: res.data.pendingShows,
-                            pastShows: res.data.completedShows
-                        }
-                        const myUpcomingShows = filterShows(res.data.pendingShows)
-                        const myPastShows = filterShows(res.data.completedShows)
-                        dispatchShows({type:"SET_ALL_SHOWS", value:{...allShows}})
-                        dispatchShows({type:"SET_UPCOMING_SHOWS", value: myUpcomingShows})
-                        dispatchShows({type:"SET_PAST_SHOWS", value: myPastShows})
-                        dispatchPending({type: 'COMPLETED'})
+        setTimeout(()=>{
+            axios.get(showsApi)
+            .then(res=>{
+                if(res.status === 200){
+                    const allShows = {
+                        upcomingShows: res.data.pendingShows,
+                        pastShows: res.data.completedShows
                     }
-                })
-                .catch(err=>{
-                    console.log(err)
-                })
+                    const myUpcomingShows = filterShows(res.data.pendingShows)
+                    const myPastShows = filterShows(res.data.completedShows)
+                    dispatchShows({type:"SET_ALL_SHOWS", value:{...allShows}})
+                    dispatchShows({type:"SET_UPCOMING_SHOWS", value: myUpcomingShows})
+                    dispatchShows({type:"SET_PAST_SHOWS", value: myPastShows})
+                    dispatchPending({type: 'COMPLETED'})
+                }
+            })
+            .catch(err=>{
+                console.log(err)
+            })
         },3000)
     },[])
 
@@ -93,17 +93,6 @@ const ContextProvider = (props) => {
             return []
         }
     }
-    const animateShows = (items) => {
-        const allShows = new Array(items.length).fill(false)
-        let animatedShows = []
-        for (let i = 0; i < allShows.length; i++){
-            setTimeout(()=>{
-                animatedShows.push(true)
-                return animatedShows
-            },1200)
-        }
-    }
-    
     // SUBSCRIBERS
     const [email, setEmail] = useState('')
     const [error, setError] = useState({})
@@ -128,25 +117,70 @@ const ContextProvider = (props) => {
     // SONG
     const [song, setSong] = useState({})
     const getSong = async () =>{
-        await axios.get('https://toby-peter-production.up.railway.app/api/song/recent',{
-            headers:{
-                'Content-Type': 'application/json',
-            }
-        })
-        .then(res=>{
-            console.log(res)
-            if(res.status === 200){
-                setSong(res.data.recentSong)
-            }
-        })
-        .catch(err=>{
-            console.log(err)
-        })
+        dispatchPending({type: 'PENDING'})
+        setTimeout(()=>{
+            axios.get('https://toby-peter-production.up.railway.app/api/song/recent',{
+                headers:{
+                    'Content-Type': 'application/json',
+                }
+            })
+            .then(res=>{
+                if(res.status === 200){
+                    setSong(res.data.recentSong)
+                    dispatchPending({type: 'COMPLETED'})
+                }
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+        },3000)
     }
     useEffect(()=>{
         getSong()
     },[])
 
+    // BLOGS
+    const [blogs, setBlogs] = useState([])
+    const getBlogs = () => {
+        dispatchPending({type: 'PENDING'})
+        setTimeout(()=>{
+            axios.get('https://toby-peter-production.up.railway.app/api/blog/')
+            .then(res=>{
+                if(res.status === 200){
+                    setBlogs(res.data.AllBlogs)
+                    dispatchPending({type: 'COMPLETED'})
+                }
+            })
+            .catch(err=>{
+                return err
+            })
+        },3000)
+        
+    }
+    useEffect(()=>{
+        getBlogs()
+    },[])
+
+    // BIO-IMAGES
+    const [images, setImages] = useState([])
+    const getImages = () => {
+        dispatchPending({type: 'PENDING'})
+        setTimeout(()=>{
+            axios.get('https://toby-peter-production.up.railway.app/api/admin/album')
+            .then(res=>{
+                if(res.status === 200){
+                    setImages(res.data.album)
+                    dispatchPending({type: 'COMPLETED'})
+                }
+            })
+            .catch(err=>{
+                return err
+            })
+        },3000)
+    }
+    useEffect(()=>{
+        getImages()
+    },[])
 
     // CONTEXT VALUES
     const value = {
@@ -154,12 +188,15 @@ const ContextProvider = (props) => {
         error:error,
         shows:shows,
         song:song,
+        blogs: blogs,
+        images:images,
         pending:pending,
         getShows:getShows,
+        getImages:getImages,
+        getBlogs: getBlogs,
         getSong:getSong,
         handleChange:handleChange,
         handleSubmit:handleSubmit,
-        animateShows:animateShows
     }
 
     return ( 

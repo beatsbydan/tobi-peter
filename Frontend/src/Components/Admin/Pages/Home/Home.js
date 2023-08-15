@@ -66,7 +66,9 @@ const Home = () => {
                     <div className="myNewSong">
                         <img className='newSongImg' src={song?.coverArt} alt =''/>
                         <p>Title: <span>{song.title?.toUpperCase()}</span></p>
-                        <StreamingPlatforms/>
+                        {song && <StreamingPlatforms
+                            song={song}
+                        />}
                     </div>
                 </div>
                 <h5>NEXT SHOW</h5>

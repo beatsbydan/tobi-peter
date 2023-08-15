@@ -52,6 +52,7 @@ const ValidateSong = async (entry, token, id) => {
                     }
                 })
                 .then(async res=>{
+                    console.log(res)
                     if(res.status === 200){
                         const typeData = {
                             title:entry.title,
@@ -66,6 +67,7 @@ const ValidateSong = async (entry, token, id) => {
                             }
                         })
                         .then(res=>{
+                            console.log(res)
                             if(res.status === 200){
                                 errors.none = true
                             }

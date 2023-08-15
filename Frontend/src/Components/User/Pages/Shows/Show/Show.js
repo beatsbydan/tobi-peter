@@ -3,7 +3,7 @@ import {BsTicketPerforated} from 'react-icons/bs'
 import {BiRightArrowAlt} from 'react-icons/bi'
 
 const Show = (props) => {
-    const delay = 500;
+    const delay = 100;
     const date = new Date(props.date)
     const myDate = date.getDate().toString()
     const myMonth = date.getMonth()

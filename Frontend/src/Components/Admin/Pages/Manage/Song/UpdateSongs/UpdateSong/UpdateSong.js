@@ -19,7 +19,7 @@ const UpdateSong = () => {
         .then(success=>{
             if(success.yes){
                 setAlert('success', 'Song Updated!')
-                navigate('/admin/manage/UpdateSongs')
+                navigate('/admin/manage/songs/UpdateSongs')
             }
         })
     }

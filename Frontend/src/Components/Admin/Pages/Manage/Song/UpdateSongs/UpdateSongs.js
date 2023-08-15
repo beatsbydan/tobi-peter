@@ -26,6 +26,7 @@ const UpdateSongs = () => {
                             <Song
                                 id={song._id}
                                 key={index}
+                                myId={index}
                                 title={song.title}
                                 releaseDate={song.releaseDate}
                                 coverArt={song.coverArt}

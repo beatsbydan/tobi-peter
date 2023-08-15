@@ -10,8 +10,9 @@
     object-fit: cover;
     position: relative;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-150%);
     border-radius: 0.7rem;
+    animation: loadedImg 1.5s cubic-bezier(0,-0.34, 0, 1.33) forwards;
 }
 .streamingPlatformsBlock{
     margin-top: 2.7em;
@@ -95,5 +96,13 @@
     .vip form{
         grid-template-columns: unset;
         align-items: center;
+    }
+}
+@keyframes loadedImg{
+    0%{
+        transform: translateX(-150%);
+    }
+    100%{
+        transform: translateX(-50%);
     }
 }

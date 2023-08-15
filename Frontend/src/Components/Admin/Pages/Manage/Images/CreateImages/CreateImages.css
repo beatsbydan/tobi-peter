@@ -1,0 +1,63 @@
+.createImages{
+    width: 100%;
+    max-width: 700px;
+    margin:auto;
+}
+.createImages h2{
+    text-align: center;
+    color: #1D3557;
+}
+.createImages h2 span{
+    display: block;
+    margin-top:0.5rem
+}
+.createImages form{
+    width:100%;
+    margin-top: 2em;
+}
+.customFile{
+    width: 90%;
+    margin: auto;
+    max-width: 500px;
+    padding: 1rem;
+}
+.customary{
+    width:100%;
+    margin: 2em auto 0 auto;
+}
+.customary h2{
+    font-weight: 500;
+}
+.customary small{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    font-weight: 500;
+    justify-content: center;
+    color:#1D3557;
+    gap: 0.6rem;
+    font-size: 0.8rem;
+}
+.crossInput{
+    width: 100%;
+}
+.customFileInput{
+    width: 100%;
+}
+.customFileInput::-webkit-file-upload-button{
+    visibility: hidden;
+}
+.customFileInput::before{
+    content: '';
+    background-image: url(https://media.istockphoto.com/id/1427908400/photo/cloud-computing-and-folder-file-management-database-server-technology-upload-background-3d.jpg?s=612x612&w=0&k=20&c=tATAmfCGQIjyLcf3z3jl_eUKQrcTmv7mL62d5xTASJ4=);
+    cursor: pointer;
+    width: 100%;
+    aspect-ratio: 1;
+    background-size: cover;
+    background-position: center center;
+    display: inline-block;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    user-select: none;
+    border-radius: 0.5rem;
+}

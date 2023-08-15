@@ -1,0 +1,19 @@
+.updateBlogs{
+    width: 100%;
+    max-width: 700px;
+    margin: auto;
+}
+.updateBlogs h2{
+    text-align: center;
+    color: #1D3557;
+}
+.blogsList{
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin-top:2.4rem ;
+}
+.updateBlogs h2 span{
+    display: block;
+    margin-top:0.5rem
+}

@@ -32,6 +32,7 @@ const Update = () => {
                                     completePrompt={()=>ctx.completeShow(show._id)}
                                     deletePrompt={()=>ctx.deleteShow(show._id)}
                                     key={index}
+                                    myId={index}
                                     isComplete ={false}
                                     title={show.title}
                                     venue={show.venue}

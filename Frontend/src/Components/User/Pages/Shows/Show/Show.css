@@ -8,7 +8,8 @@
     align-items: center;
     border-radius: 0.6rem;
     cursor: pointer;
-    animation: 1.5s cubic-bezier(0,-0.34, 0, 1.33) loaded;
+    transform: translateX(-150%);
+    animation: loaded 1.5s cubic-bezier(0,-0.34, 0, 1.33) forwards;
 }
 .show a{
     border-radius: 0.6rem;
@@ -95,7 +96,7 @@
 }
 @keyframes loaded{
     0%{
-        transform: translateX(-100%);
+        transform: translateX(-150%);
     }
     100%{
         transform: translateX(0);

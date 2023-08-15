@@ -4,10 +4,12 @@ const Context = React.createContext({
     error: '',
     pending: {},
     song:[],
+    blogs:[],
     getShows: ()=>{},
     getSong: ()=>{},
+    getImages:()=>{},
+    getBlogs: ()=>{},
     handleChange: ()=>{},
     handleSubmit: ()=>{},
-    animateShows: ()=>{}
 })
 export default Context;

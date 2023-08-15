@@ -33,7 +33,7 @@ const Shows = () => {
                     {
                         ctx.pending.isPending ? <Loading isPending = {ctx.pending.isPending}/>
                         : 
-                        ctx.shows.upcomingShows.length === 0 ? <p className="defaultText">No available shows <span><TfiFaceSad size={25}/></span></p>                            
+                        ctx.shows.upcomingShows.length === 0 ? <p className="defaultText">No shows available <span><TfiFaceSad size={25}/></span></p>                            
                         : 
                         ctx.shows.upcomingShows.map((show,index)=>{
                             return(

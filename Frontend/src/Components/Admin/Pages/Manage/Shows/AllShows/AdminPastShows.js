@@ -25,7 +25,11 @@ const AdminPastShows = () => {
                     ctx.shows.myShows.upcomingShows.map((show,index)=>{
                         return(
                             <Show
+                                completePrompt={()=>ctx.completeShow(show._id)}
+                                deletePrompt={()=>ctx.deleteShow(show._id)}
                                 key={index}
+                                isComplete ={true}
+                                myId={index}
                                 title={show.title}
                                 venue={show.venue}
                                 date={show.date}

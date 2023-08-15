@@ -7,6 +7,7 @@ import {useState} from 'react'
 import UpdateEvent from '../../../../../../UI/UpdateEvent/UpdateEvent'
 
 const Show = (props) => {
+    const delay = 100;
     const date = new Date(props.date)
     const myDate = date.getDate().toString()
     const myMonth = date.getMonth()
@@ -65,7 +66,7 @@ const Show = (props) => {
         })
     }
     return ( 
-        <li className="editableShow">
+        <li className="editableShow" style={{ animationDelay: `${props.myId * delay}ms` }}>
             <div className="editableActions">
                 {!props.isComplete &&
                     <div className="complete">

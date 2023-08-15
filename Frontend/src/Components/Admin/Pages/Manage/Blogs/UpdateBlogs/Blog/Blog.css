@@ -1,11 +1,21 @@
-.blog{
+.blogItem{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.7rem;
+    align-items: flex-end;
+    transform: translateX(-150%);
+    animation: loaded 1.5s cubic-bezier(0,-0.34, 0, 1.33) forwards;
+}
+.myBlogItem{
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 1.7rem;
     transform: translateX(-150%);
     animation: loaded 1.5s cubic-bezier(0,-0.34, 0, 1.33) forwards;
 }
-.blog a{
+.myBlogItem a{
     width: 100%;
     margin: auto;
     padding: 1rem;
@@ -14,7 +24,7 @@
     text-align: center;
     transition: 0.3s ease;
 }
-.blog a:active{
+.myBlogItem a:active{
     color: #FFFBF4;
     background:#1D3557;
 }
@@ -23,6 +33,7 @@
     border-bottom: 0.1rem solid #1D3557;
 }
 .head h4{
+    color: #1D3557;
     font-weight: 700;
 }
 .head h5{
@@ -31,8 +42,11 @@
     font-size: 0.87rem;
     font-weight: 700;
 }
+.myBlogItem p{
+    color: #495464;
+}
 @media (hover: hover){
-    .blog a:hover{
+    .myBlogItem a:hover{
         color: #FFFBF4;
         background:#1D3557;
     }

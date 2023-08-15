@@ -1,9 +1,11 @@
 import {useContext} from 'react'
 import './WhatsNew.css'
 import Socials from '../../../UI/Socials/Socials';
+import Loading from '../../../UI/Loading/Loading';
 import Context from '../../Context/Context'
 import StreamingPlatforms from '../../../UI/StreamingPlatforms/StreamingPlatforms';
 import { motion } from 'framer-motion';
+import {TfiFaceSad} from 'react-icons/tfi'
 
 const WhatsNew = () => {
     const ctx = useContext(Context)
@@ -14,10 +16,18 @@ const WhatsNew = () => {
             animate={{width:'100%'}}
             exit={{x:-window.innerWidth, transition: {duration: 0.7}}}
         >
-            {<img className='comingSoon' src={ctx.song?.coverArt} alt="" />}
+            {   
+                ctx.pending.isPending ? <Loading isPending={ctx.pending.isPending}/> 
+                : 
+                !ctx.song.coverArt ? <p className="defaultText">No song available <span><TfiFaceSad size={25}/></span></p> 
+                :
+                <img className='comingSoon' src={ctx.song?.coverArt} alt="" />
+            }
             <div className="streamingPlatformsBlock">
                 <h5>CHOOSE YOUR PREFERRED STREAMING PLATFORM</h5>
-                <StreamingPlatforms/>
+                {ctx.song && <StreamingPlatforms
+                    song={ctx.song}
+                />}
             </div>
             <div className="vip">
                 <p>DON’T BE A DED GUY, JOIN THE VIP LIST</p>

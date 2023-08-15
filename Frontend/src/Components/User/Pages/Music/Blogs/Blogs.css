@@ -1,0 +1,6 @@
+.pressSection{
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
