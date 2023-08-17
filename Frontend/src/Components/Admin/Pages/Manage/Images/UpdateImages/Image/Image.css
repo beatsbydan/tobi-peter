@@ -10,7 +10,8 @@
 .myPicture{
     width:100%;
     background-size: cover;
-    background-position: center 0px;
+    background-position: center center;
+    background-clip: content-box;
     aspect-ratio: 1;
     background-repeat: no-repeat;
     border-radius: 0.6rem;

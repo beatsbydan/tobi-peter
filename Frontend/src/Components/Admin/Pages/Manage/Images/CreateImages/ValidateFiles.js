@@ -18,7 +18,6 @@ export const ValidateFiles = async (entry, token) =>{
             }
         })
         .then(res=>{
-            console.log(res)
             if(res.status === 201){
                 errors.none = true
             }

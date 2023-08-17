@@ -15,8 +15,8 @@ const ImageCarousel = () => {
         <div className='imageCarousel'>
             <Swiper
                 modules={[Autoplay]}
-                spaceBetween={50}
-                slidesPerView={1}
+                spaceBetween={20}
+                slidesPerView={2}
                 autoplay={{
                     delay: 8000,
                     disableOnInteraction: false

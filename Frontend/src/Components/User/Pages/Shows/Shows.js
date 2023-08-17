@@ -18,14 +18,22 @@ const Shows = () => {
             exit={{x:-window.innerWidth, transition: {duration: 0.7}}}
         >
             <div className="actionsBlock">
-                <a target='_blank' rel="noreferrer" href="https://www.">
+                {/* <a target='_blank' rel="noreferrer" href="https://www.">
                     BOOK TOBI PETER
                     <BiRightArrowAlt/>
-                </a>
-                <a target='_blank' rel="noreferrer" href="https://www.">
+                </a> */}
+                <Link to={'/unavailable'}>
+                    BOOK TOBI PETER 
+                    <BiRightArrowAlt className='arrow' size={15}/>
+                </Link>
+                {/* <a target='_blank' rel="noreferrer" href="https://www.">
                     DOWNLOAD EPK
                     <BiRightArrowAlt/>
-                </a>
+                </a> */}
+                <Link to={'/unavailable'}>
+                    DOWNLOAD EPK 
+                    <BiRightArrowAlt className='arrow' size={15}/>
+                </Link>
             </div>
             <div className="upcomingShows">
                 <h5>UPCOMING SHOWS</h5>

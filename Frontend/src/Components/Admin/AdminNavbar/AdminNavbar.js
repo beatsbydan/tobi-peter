@@ -29,7 +29,9 @@ const AdminNavbar = () => {
         .then(success=>{
             if(success.yes){
                 setAlert('success', 'Logout Successful!')
-                navigate('/admin/login')
+                setTimeout(()=>{
+                    navigate('/admin/login')
+                },3000)
                 setIsLoggedIn(false)
             }
         })

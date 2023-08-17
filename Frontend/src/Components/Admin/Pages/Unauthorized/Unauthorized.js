@@ -1,17 +1,9 @@
 import './Unauthorized.css'
 import {MdNoEncryptionGmailerrorred} from 'react-icons/md'
 import { Link } from 'react-router-dom';
-import useAlert from '../../../../Hooks/useAlert'
-import useAuth from '../../../../Hooks/useAuth'
-import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const Unauthorized = () => {
-    const {authDetails} = useAuth()
-    const {setAlert} = useAlert()
-    useEffect(()=>{
-        authDetails.isLoggedIn && setAlert('failure', 'Unauthorized!')
-    },[])
     return(
         <motion.div 
             className = "unauthorized"

@@ -94,7 +94,6 @@ const ManageContextProvider = (props) => {
             }
         })
         .then(res=>{
-            console.log(res)
             if(res.status === 200){
                 success.yes = true
                 setAlert('success', 'Song Deleted!')
@@ -380,7 +379,6 @@ const ManageContextProvider = (props) => {
             }
         })
         .catch(err=>{
-            console.log(err)
             setAlert('failure', 'Image not deleted!')
             success.yes = false
             return err

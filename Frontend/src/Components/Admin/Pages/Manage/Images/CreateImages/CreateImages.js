@@ -41,7 +41,7 @@ const CreateImages = () => {
             <div className="customFile">
                 <input type="file" className='customFileInput' multiple onChange={ctx.handleFilesChange} />
             </div>
-            <small>Click image to add a file(s) <span><MdOutlineAdsClick size={25}/></span></small>
+            <small>Click image to add file(s) <span><MdOutlineAdsClick size={25}/></span></small>
         </div>
         <div className="formActions">
             <button type="submit">
