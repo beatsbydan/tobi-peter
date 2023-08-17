@@ -6,9 +6,11 @@ import ShowsContext from '../../../../Context/ManageContext/ShowsContext/ShowsCo
 import {useNavigate} from 'react-router-dom'
 import useAlert from '../../../../../../Hooks/useAlert'
 import {motion} from 'framer-motion'
+import Context from '../../../../../User/Context/Context'
 
 const Create = () => {
     const ctx = useContext(ShowsContext)
+    const userCtx = useContext(Context)
     const {setAlert} = useAlert()
     const navigate = useNavigate()
     const handleSubmit = (e) => {
@@ -17,6 +19,7 @@ const Create = () => {
         .then(success=>{
             if(success.yes){
                 setAlert('success', 'Show Created!')
+                userCtx.getShows()
                 setTimeout(()=>{
                     navigate('/admin/manage')
                 },1500)

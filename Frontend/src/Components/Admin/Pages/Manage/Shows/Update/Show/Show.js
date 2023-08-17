@@ -3,14 +3,16 @@ import {BsTicketPerforated} from 'react-icons/bs'
 import {BiRightArrowAlt} from 'react-icons/bi'
 import {MdOutlineDelete} from 'react-icons/md'
 import {FaRegThumbsUp} from 'react-icons/fa'
-import {useState} from 'react'
+import {useState, useContext} from 'react'
 import UpdateEvent from '../../../../../../UI/UpdateEvent/UpdateEvent'
+import Context from '../../../../../../User/Context/Context'
 
 const Show = (props) => {
     const delay = 100;
     const date = new Date(props.date)
     const myDate = date.getDate().toString()
     const myMonth = date.getMonth()
+    const userCtx = useContext(Context)
     const getMonth = (myMonth) => {
         date.setMonth(myMonth)
         return date.toLocaleString('en-US', { month: 'short' }).toUpperCase();
@@ -49,6 +51,7 @@ const Show = (props) => {
         props.deletePrompt()
         .then(success=>{
             if(success.yes){
+                userCtx.getShows()
                 setIsOpen({
                     delete: false,
                 })
@@ -59,6 +62,7 @@ const Show = (props) => {
         props.completePrompt()
         .then(success=>{
             if(success.yes){
+                userCtx.getShows()
                 setIsOpen({
                     complete: false,
                 })

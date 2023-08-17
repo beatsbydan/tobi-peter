@@ -1,10 +1,12 @@
 import './Song.css'
 import {Link} from 'react-router-dom'
-import {useState} from 'react'
+import {useState, useContext} from 'react'
 import {MdOutlineDelete} from 'react-icons/md'
 import UpdateEvent from '../../../../../../UI/UpdateEvent/UpdateEvent'
+import Context from '../../../../../../User/Context/Context'
 
 const Song = (props) => {
+    const userCtx = useContext(Context)
     const date = new Date(props.releaseDate)
     const myDate = date.getDate()
     const myMonth = date.getMonth()
@@ -26,6 +28,7 @@ const Song = (props) => {
         props.deletePrompt()
         .then(success=>{
             if(success.yes){
+                userCtx.getSong()
                 setIsOpen(false)
             }
         })

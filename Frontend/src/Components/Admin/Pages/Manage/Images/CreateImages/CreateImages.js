@@ -6,8 +6,11 @@ import {motion} from 'framer-motion'
 import {useNavigate} from 'react-router-dom'
 import useAlert from '../../../../../../Hooks/useAlert'
 import {BiImages} from 'react-icons/bi'
+import Context from '../../../../../User/Context/Context'
+
 const CreateImages = () => {
   const ctx = useContext(ManageContext)
+  const userCtx = useContext(Context)
   const navigate = useNavigate()
   const {setAlert} = useAlert()
 
@@ -17,6 +20,7 @@ const CreateImages = () => {
     .then(success=>{
         if(success.yes){
             setAlert('success', 'Image(s) Uploaded!')
+            userCtx.getImages()
             setTimeout(()=>{
                 navigate('/admin/manage')
             },1500)

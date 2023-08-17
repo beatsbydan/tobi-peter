@@ -1,0 +1,33 @@
+.unavailable{
+    position: relative;
+}
+.element{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+.element h1{
+    color:#1D3557;
+    text-align: center;
+}
+.caution{
+    animation: rotate 1.5s linear infinite;
+}
+.unavailable p{
+    color: #1D3557;
+    text-align: center;
+}
+.unavailable p span a{
+    font-weight: 600;
+    font-size: 1rem;
+}
+@keyframes rotate {
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}

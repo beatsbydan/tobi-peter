@@ -9,6 +9,14 @@ import { ValidateFiles } from '../../Pages/Manage/Images/CreateImages/ValidateFi
 import { ValidateBlogs } from '../../Pages/Manage/Blogs/CreateBlogs/ValidateBlogs'
 
 const ManageContextProvider = (props) => {
+    const {setAlert} = useAlert()
+    const {authDetails} = useAuth()
+    const [song, setSong] = useState({})
+    const userCtx = useContext(Context)
+    const [allSongs, setAllSongs] = useState([])
+
+    // HELPER FUNCTIONS
+
     const getFormattedDate = (date) => {
         const myDate = new Date(date)
         const year = myDate.toLocaleString("default", { year: "numeric" });
@@ -17,11 +25,8 @@ const ManageContextProvider = (props) => {
         const formattedDate = year + "-" + month + "-" + day;
         return formattedDate
     }
-    const {setAlert} = useAlert()
-    const {authDetails} = useAuth()
-    const [song, setSong] = useState({})
-    const userCtx = useContext(Context)
-    const [allSongs, setAllSongs] = useState([])
+
+    // PEND STATE
     const initialPendState = {
         isPending: false   
     }
@@ -257,7 +262,6 @@ const ManageContextProvider = (props) => {
             setBlogErrors(res)
             if(res.none){
                 getBlogs()
-                userCtx.getBlogs()
                 success.yes = true
                 setBlogData({
                     title: '',
@@ -287,7 +291,6 @@ const ManageContextProvider = (props) => {
                 return err
             })
         },3000)
-        
     }
     useEffect(()=>{
         getBlogs()
@@ -303,7 +306,6 @@ const ManageContextProvider = (props) => {
         .then(res=>{
             if(res.status === 200){
                 getBlogs()
-                userCtx.getBlogs()
                 success.yes = true
                 setAlert('success', 'Blog deleted!')
             }

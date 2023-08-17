@@ -6,9 +6,11 @@ import InputComponent from '../../../../../UI/InputComponent/InputComponent'
 import useAlert from '../../../../../../Hooks/useAlert'
 import { useNavigate } from 'react-router-dom'
 import {FaBlog} from 'react-icons/fa'
+import Context from '../../../../../User/Context/Context'
 
 const CreateBlogs = () => {
   const ctx = useContext(ManageContext)
+  const userCtx = useContext(Context)
   const navigate = useNavigate()
   const {setAlert} = useAlert()
   const handleSubmit = (e) => {
@@ -17,6 +19,7 @@ const CreateBlogs = () => {
     .then(success=>{
       if(success.yes){
         setAlert('success', 'Blog created!')
+        userCtx.getBlogs()
         setTimeout(()=>{
             navigate('/admin/manage')
         },1500)

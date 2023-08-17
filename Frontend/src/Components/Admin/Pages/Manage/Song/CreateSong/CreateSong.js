@@ -8,9 +8,11 @@ import {useNavigate} from 'react-router-dom'
 import useAlert from '../../../../../../Hooks/useAlert'
 import './CreateSong.css'
 import {motion} from 'framer-motion'
+import Context from '../../../../../User/Context/Context'
 
 const CreateSong = () => {
     const ctx = useContext(ManageContext)
+    const userCtx = useContext(Context)
     const navigate = useNavigate()
     const {setAlert} = useAlert()
     const handleSubmit = (e) => {
@@ -19,6 +21,7 @@ const CreateSong = () => {
         .then(success=>{
             if(success.yes){
                 setAlert('success', 'Song Created!')
+                userCtx.getSong()
                 setTimeout(()=>{
                     navigate('/admin/manage')
                 },1500)

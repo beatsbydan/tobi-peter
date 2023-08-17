@@ -1,10 +1,11 @@
 import {RiDeleteBin5Line} from 'react-icons/ri'
 import './Image.css'
-import {useState} from 'react'
+import {useState, useContext} from 'react'
 import UpdateEvent from '../../../../../../UI/UpdateEvent/UpdateEvent'
-
+import Context from '../../../../../../User/Context/Context'
 const Image = (props) => {
     const delay = 300
+    const userCtx = useContext(Context)
     const [isOpen, setIsOpen] = useState(false)
     const handleOpen = () => {
         setIsOpen(!isOpen)
@@ -13,6 +14,7 @@ const Image = (props) => {
         props.delete()
             .then(success=>{
                 if(success.yes){
+                    userCtx.getImages()
                     setIsOpen(false)
                 }
             })

@@ -38,6 +38,7 @@
     gap: 0.5rem;
     font-weight: 600;
     background: #D9D9D936;
+    transition:0.3s ease;
 }
 .upcomingShows, .pastShows{
     width: 100%;

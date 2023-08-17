@@ -2,9 +2,12 @@ import './Blog.css'
 import {RiDeleteBin5Line} from 'react-icons/ri'
 import { useState } from 'react'
 import UpdateEvent from '../../../../../../UI/UpdateEvent/UpdateEvent'
+import Context from '../../../../../../User/Context/Context'
+import {useContext} from 'react'
 
 const Blog = (props) => {
     const [isOpen, setIsOpen] = useState(false)
+    const userCtx = useContext(Context)
     const delay = 100;
     const handleOpen = () => {
         setIsOpen(!isOpen)
@@ -14,6 +17,7 @@ const Blog = (props) => {
         .then(success=>{
             if(success.yes){
                 setIsOpen(false)
+                userCtx.getBlogs()
             }
         })
     }

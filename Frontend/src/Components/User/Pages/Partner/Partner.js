@@ -1,7 +1,7 @@
 import './Partner.css'
 import {BiRightArrowAlt} from 'react-icons/bi'
 import { motion } from 'framer-motion';
-
+import {Link} from 'react-router-dom'
 const Partner = () => {
     return ( 
         <motion.div 
@@ -21,20 +21,28 @@ const Partner = () => {
                         upcoming amapiano EP.
                         Contributions made with be used
                         mainly for marketing.</p>
-                        <a target='_blank' rel="noreferrer" href='https://www.'>
+                        {/* <a target='_blank' rel="noreferrer" href='https://www.'>
                             PARTNER
                             <BiRightArrowAlt/>
-                        </a>
+                        </a> */}
+                        <Link to={'/unavailable'}>
+                            PARTNER 
+                            <BiRightArrowAlt className='arrow' size={15}/>
+                        </Link>
                     </div>
                     <div>
                         <h5>HMO SECOND EDITION</h5>
                         <p>You can choose to contribute/partner
                         with Tobi Peter in the production of
                         his house music event, HMO.</p>
-                        <a target='_blank' rel="noreferrer" href='https://www.'>
+                        {/* <a target='_blank' rel="noreferrer" href='https://www.'>
                             PARTNER
                             <BiRightArrowAlt/>
-                        </a>
+                        </a> */}
+                        <Link to={'/unavailable'}>
+                            PARTNER 
+                            <BiRightArrowAlt className='arrow' size={15}/>
+                        </Link>
                     </div>
                 </div>
             </div>

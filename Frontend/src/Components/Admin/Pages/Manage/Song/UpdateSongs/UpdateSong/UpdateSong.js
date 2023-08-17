@@ -8,9 +8,10 @@ import {useNavigate} from 'react-router-dom'
 import useAlert from '../../../../../../../Hooks/useAlert'
 import './UpdateSong.css'
 import {motion} from 'framer-motion'
-
+import Context from '../../../../../../User/Context/Context'
 const UpdateSong = () => {
     const ctx = useContext(ManageContext)
+    const userCtx = useContext(Context)
     const navigate = useNavigate()
     const {setAlert} = useAlert()
     const handleSubmit = (e) => {
@@ -18,6 +19,7 @@ const UpdateSong = () => {
         ctx.handleUpdateSubmit()
         .then(success=>{
             if(success.yes){
+                userCtx.getSong()
                 setAlert('success', 'Song Updated!')
                 navigate('/admin/manage/songs/UpdateSongs')
             }

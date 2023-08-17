@@ -8,7 +8,6 @@ import {BiImages} from 'react-icons/bi'
 
 const UpdateImages = () => {
   const ctx = useContext(ManageContext)
-  
 
   return (
     <div className="updateImages">

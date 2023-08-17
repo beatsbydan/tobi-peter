@@ -6,6 +6,9 @@ import useAlert from '../../../Hooks/useAlert'
 
 const ContextProvider = (props) => {
     const {setAlert} = useAlert()
+
+    // PEND STATE
+
     const initialPendState = {
         isPending: false   
     }
@@ -93,7 +96,9 @@ const ContextProvider = (props) => {
             return []
         }
     }
+
     // SUBSCRIBERS
+    
     const [email, setEmail] = useState('')
     const [error, setError] = useState({})
     const handleChange = (e) => {
@@ -114,7 +119,8 @@ const ContextProvider = (props) => {
         })
     }
 
-    // SONG
+    // RECENT SONG
+    
     const [song, setSong] = useState({})
     const getSong = async () =>{
         dispatchPending({type: 'PENDING'})
@@ -140,6 +146,7 @@ const ContextProvider = (props) => {
     },[])
 
     // BLOGS
+    
     const [blogs, setBlogs] = useState([])
     const getBlogs = () => {
         dispatchPending({type: 'PENDING'})
@@ -162,6 +169,7 @@ const ContextProvider = (props) => {
     },[])
 
     // BIO-IMAGES
+    
     const [images, setImages] = useState([])
     const getImages = () => {
         dispatchPending({type: 'PENDING'})
@@ -183,6 +191,7 @@ const ContextProvider = (props) => {
     },[])
 
     // CONTEXT VALUES
+    
     const value = {
         email:email,
         error:error,

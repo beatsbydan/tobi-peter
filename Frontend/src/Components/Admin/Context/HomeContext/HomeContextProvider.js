@@ -5,6 +5,9 @@ import useAuth from '../../../../Hooks/useAuth'
 
 const HomeContextProvider = (props) => {
     const {authDetails} = useAuth()
+
+    // SUBSCRIBERS
+
     const [subscribers, setSubscribers] = useState([])
     useEffect(()=>{        
         authDetails.isLoggedIn && axios.get('https://toby-peter-production.up.railway.app/api/subscribe/',{
@@ -22,6 +25,9 @@ const HomeContextProvider = (props) => {
             console.log(err)
         })
     },[authDetails.isLoggedIn, authDetails.accessToken])
+    
+    // CONTEXT VALUE
+    
     const value = {
         subscribers:subscribers,
     }

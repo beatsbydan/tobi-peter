@@ -1,5 +1,5 @@
 import ShowsContext from './ShowsContext'
-import {useState, useReducer, useEffect, useContext} from 'react'
+import {useState, useReducer, useEffect, useContext, useCallback} from 'react'
 import ValidateShows from '../../../Pages/Manage/Shows/ValidateShows'
 import useAlert from '../../../../../Hooks/useAlert'
 import useAuth from '../../../../../Hooks/useAuth'
@@ -7,11 +7,13 @@ import Context from '../../../../User/Context/Context'
 import axios from 'axios'
 
 const ShowsContextProvider = (props) => {
+    const userCtx = useContext(Context)
     const {setAlert} = useAlert()
+    const {authDetails} = useAuth()
     const date = new Date()
     const currYear = date.getFullYear()
-    const {authDetails} = useAuth()
-    const userCtx = useContext(Context)
+
+    // PEND STATE
     const initialPendState = {
         isPending: false   
     }
@@ -63,9 +65,9 @@ const ShowsContextProvider = (props) => {
     }
     const [shows, dispatchShows] = useReducer(showsReducer, initialShows)
     const showsApi = 'https://toby-peter-production.up.railway.app/api/show/'
-    const getShows = async () => {
+    const getShows = () => {
         dispatchPending({type: 'PENDING'})
-        await axios.get(showsApi, {
+        axios.get(showsApi, {
             header:{
                 'Content-Type': 'application/json'
             }
@@ -117,7 +119,6 @@ const ShowsContextProvider = (props) => {
                 success.yes = true
                 setAlert('success', 'Show Deleted!')
                 getShows()
-                userCtx.getShows()
             }
         })
         .catch(err=>{
@@ -139,7 +140,6 @@ const ShowsContextProvider = (props) => {
                 success.yes = true
                 setAlert('success', 'Show Completed!')
                 getShows()
-                userCtx.getShows()
             }
         })
         .catch(err=>{
@@ -185,15 +185,6 @@ const ShowsContextProvider = (props) => {
         })
         return success
     }
-    const animateShows = (items) => {
-        const allShows = new Array(items.length).fill(false)
-        let animatedShows = []
-        setTimeout(()=>{
-            animatedShows = allShows.map(show => !show)
-        },1200)
-        return animatedShows
-    }
-
 
     // CHART
 
@@ -328,7 +319,6 @@ const ShowsContextProvider = (props) => {
         completeShow:completeShow,
         handleChange:handleChange,
         handleCreateSubmit: handleCreateSubmit,
-        animateShows: animateShows
     }
     return ( 
         <ShowsContext.Provider value = {value}>

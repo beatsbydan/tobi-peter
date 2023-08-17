@@ -1,6 +1,7 @@
 import './Animation.css'
 import {BiRightArrowAlt} from 'react-icons/bi'
 import { motion } from 'framer-motion';
+import {Link} from 'react-router-dom'
 
 const Animation = () => {
     return ( 
@@ -17,17 +18,25 @@ const Animation = () => {
                 <div className="portfolioBlock">
                     <div>
                         <h5>VIEW PORTFOLIO</h5>
-                        <a target='_blank' rel="noreferrer" href='https://www.'>
+                        {/* <a target='_blank' rel="noreferrer" href='https://www.'>
                             BEHANCE
                             <BiRightArrowAlt/>
-                        </a>
+                        </a> */}
+                        <Link to={'/unavailable'}>
+                            BEHANCE 
+                            <BiRightArrowAlt className='arrow' size={15}/>
+                        </Link>
                     </div>
                     <div>
                         <h5>ANIMATION</h5>
-                        <a target='_blank' rel="noreferrer" href='https://www.'>
+                        {/* <a target='_blank' rel="noreferrer" href='https://www.'>
                             MAKE REQUEST
                             <BiRightArrowAlt/>
-                        </a>
+                        </a> */}
+                        <Link to={'/unavailable'}>
+                            MAKE REQUEST 
+                            <BiRightArrowAlt className='arrow' size={15}/>
+                        </Link>
                     </div>
                 </div>
             </div>

@@ -6,6 +6,9 @@ import axios from 'axios'
 
 const AuthContextProvider = (props) => {
     const {setAlert} = useAlert()
+
+    // AUTH DETAILS
+
     const initialAuthDetails = {
         regEmail:'',
         logInEmail:'',
@@ -180,6 +183,10 @@ const AuthContextProvider = (props) => {
             }
         }
     }
+    const [authDetails, dispatchAuthDetails] = useReducer(authReducer, initialAuthDetails)
+    
+    // AUTH ERRORS
+
     const authErrorsReducer = (state,action) => {
         if(action.type === "SET_LOGIN_ERRORS"){
             return{
@@ -215,27 +222,14 @@ const AuthContextProvider = (props) => {
         }
     }
     const [authErrors, dispatchAuthErrors] = useReducer(authErrorsReducer, initialAuthErrors)
-    const [authDetails, dispatchAuthDetails] = useReducer(authReducer, initialAuthDetails)
+    
+    // LOGIN
+
     const handleLogInEmailChange = (e) => {
         dispatchAuthDetails({type: 'CHANGE_LOGIN_EMAIL', value: e.target.value})
     }
     const handleLogInPasswordChange = (e) => {
         dispatchAuthDetails({type: 'CHANGE_LOGIN_PASSWORD', value: e.target.value})
-    }
-    const handleRegisterEmailChange = (e) => {
-        dispatchAuthDetails({type: 'CHANGE_REG_EMAIL', value: e.target.value})
-    }
-    const handleRegisterPasswordChange = (e) => {
-        dispatchAuthDetails({type: 'CHANGE_REG_PASSWORD', value: e.target.value})
-    }
-    const handleNewPasswordChange = (e) => {
-        dispatchAuthDetails({type: 'SET_NEW_PASSWORD', value: e.target.value})
-    }
-    const handleConfirmPasswordChange = (e) => {
-        dispatchAuthDetails({type: 'SET_CONFIRM_PASSWORD', value: e.target.value})
-    }
-    const handleResetEmailChange = (e) => {
-        dispatchAuthDetails({type: 'SET_RESET_EMAIL', value: e.target.value})
     }
     const handleLogInSubmit = async () => {
         let success = {};
@@ -260,6 +254,15 @@ const AuthContextProvider = (props) => {
         })
         return success;
     }
+
+    // REGISTER
+    
+    const handleRegisterEmailChange = (e) => {
+        dispatchAuthDetails({type: 'CHANGE_REG_EMAIL', value: e.target.value})
+    }
+    const handleRegisterPasswordChange = (e) => {
+        dispatchAuthDetails({type: 'CHANGE_REG_PASSWORD', value: e.target.value})
+    }
     const handleRegisterSubmit = async () => {
         let success = {}
         const resetData = {
@@ -281,6 +284,12 @@ const AuthContextProvider = (props) => {
         })
         return success
     }
+
+    // RESET
+    
+    const handleResetEmailChange = (e) => {
+        dispatchAuthDetails({type: 'SET_RESET_EMAIL', value: e.target.value})
+    }
     const handleResetEmailSubmit = async () => {
         let success = {}
         const regData = {
@@ -300,6 +309,15 @@ const AuthContextProvider = (props) => {
             }
         })
         return success
+    }
+    
+    // CHANGE PASSWORD
+    
+    const handleNewPasswordChange = (e) => {
+        dispatchAuthDetails({type: 'SET_NEW_PASSWORD', value: e.target.value})
+    }
+    const handleConfirmPasswordChange = (e) => {
+        dispatchAuthDetails({type: 'SET_CONFIRM_PASSWORD', value: e.target.value})
     }
     const handleChangePasswordSubmit = async () => {
         let success = {}
@@ -322,6 +340,9 @@ const AuthContextProvider = (props) => {
         })
         return success
     }
+
+    // POST-LOGIN
+
     const setAccessToken = (token) => {
         dispatchAuthDetails({type:'SET_ACCESS_TOKEN', value: token})
     }
@@ -331,6 +352,9 @@ const AuthContextProvider = (props) => {
     const setDestinedLocation = (location) => {
         dispatchAuthDetails({type:"SET_DESTINED_LOCATION", value: location})
     }
+
+    // LOGOUT
+
     const logOut = async () => {
         let success = {}
         const logOutApi = 'https://toby-peter-production.up.railway.app/api/admin/logout'
@@ -349,10 +373,12 @@ const AuthContextProvider = (props) => {
         .catch(err=>{
             success.yes = false
             setAlert('failure', 'Logout unsuccessful!')
-            console.log(err)
         })
         return success
     }
+
+    // CONTEXT VALUES
+
     const value ={
         authDetails: authDetails,
         authErrors: authErrors,

@@ -5,6 +5,7 @@ import {BiRightArrowAlt} from 'react-icons/bi'
 import { motion } from 'framer-motion';
 import Blogs from './Blogs/Blogs';
 import ImageCarousel from './ImageCarousel/ImageCarousel';
+import {Link} from 'react-router-dom'
 
 const Music = () => {
     const song = {
@@ -58,22 +59,34 @@ const Music = () => {
                     <h5>DJs CHECK THIS OUT!</h5>
                     <p>Would you like to have some songs from me to spin during your sets?</p>
                     <p>Make a request below!</p>
-                    <a target='_blank' rel="noreferrer" href='https://www.'>
+                    {/* <a target='_blank' rel="noreferrer" href='https://www.'>
                         MAKE REQUEST 
                         <BiRightArrowAlt className='arrow' size={15}/>
-                    </a>
+                    </a> */}
+                    <Link to={'/unavailable'}>
+                        MAKE REQUEST 
+                        <BiRightArrowAlt className='arrow' size={15}/>
+                    </Link>
                 </div>
                 <div>
                     <h5>ESSENTIALS PLAYLIST</h5>
                     <p>Check out an ESSENTIALS PLAYLIST curated by me.</p>
-                    <a target='_blank' rel="noreferrer" href='https://www.'>
+                    {/* <a target='_blank' rel="noreferrer" href='https://www.'>
                         APPLE MUSIC
                         <BiRightArrowAlt size={15} className='arrow'/>
-                    </a>
-                    <a target='_blank' rel="noreferrer" href='https://www.'>
+                    </a> */}
+                    <Link to={'/unavailable'}>
+                        APPLE MUSIC 
+                        <BiRightArrowAlt className='arrow' size={15}/>
+                    </Link>
+                    {/* <a target='_blank' rel="noreferrer" href='https://www.'>
                         SPOTIFY
                         <BiRightArrowAlt className='arrow' size={15}/>
-                    </a>
+                    </a> */}
+                    <Link to={'/unavailable'}>
+                        SPOTIFY 
+                        <BiRightArrowAlt className='arrow' size={15}/>
+                    </Link>
                 </div>
             </div>
             <div className="press">

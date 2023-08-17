@@ -30,6 +30,7 @@ import CreateBlogs from '../Admin/Pages/Manage/Blogs/CreateBlogs/CreateBlogs';
 import CreateImages from '../Admin/Pages/Manage/Images/CreateImages/CreateImages';
 import UpdateImages from '../Admin/Pages/Manage/Images/UpdateImages/UpdateImages';
 import UpdateBlogs from '../Admin/Pages/Manage/Blogs/UpdateBlogs/UpdateBlogs';
+import Unavailable from '../UI/Unavailable/Unavailable';
 
 const AnimatedRoutes = () => {
     const location = useLocation()
@@ -45,6 +46,7 @@ const AnimatedRoutes = () => {
                 <Route path ='/partner' element={<Partner/>}/>
                 <Route path='/shows/allPastShows' element={<AllPastShows/>}/>
                 <Route path='/shows/allUpcomingShows' element={<AllUpcomingShows/>}/>
+                <Route path='/unavailable' element={<Unavailable/>}/>
                 
                 {/* NOT_FOUND */}
                 <Route path="*" element={<NotFound/>}/>
