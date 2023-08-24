@@ -1,9 +1,9 @@
 import React from 'react'
-import WhatsNew from '../User/Pages/WhatsNew/WhatsNew';
-import Music from '../User/Pages/Music/Music';
-import Animation from '../User/Pages/Animation/Animation';
-import Shows from '../User/Pages/Shows/Shows';
-import Partner from '../User/Pages/Partner/Partner';
+// import WhatsNew from '../User/Pages/WhatsNew/WhatsNew';
+// import Music from '../User/Pages/Music/Music';
+// import Animation from '../User/Pages/Animation/Animation';
+// import Shows from '../User/Pages/Shows/Shows';
+// import Partner from '../User/Pages/Partner/Partner';
 import NotFound from '../UI/NotFound/NotFound';
 import Admin from '../Admin/Admin'
 import LogIn from '../Admin/Auth/LogIn'
@@ -31,6 +31,15 @@ import CreateImages from '../Admin/Pages/Manage/Images/CreateImages/CreateImages
 import UpdateImages from '../Admin/Pages/Manage/Images/UpdateImages/UpdateImages';
 import UpdateBlogs from '../Admin/Pages/Manage/Blogs/UpdateBlogs/UpdateBlogs';
 import Unavailable from '../UI/Unavailable/Unavailable';
+import Loading from '../UI/Loading/Loading'
+
+// LAZY ROUTES
+
+const LazyWhatsNew = React.lazy(()=> import('../User/Pages/WhatsNew/WhatsNew'))
+const LazyMusic = React.lazy(()=> import('../User/Pages/Music/Music'))
+const LazyAnimation = React.lazy(()=> import('../User/Pages/Animation/Animation'))
+const LazyShows = React.lazy(()=> import('../User/Pages/Shows/Shows'))
+const LazyPartner = React.lazy(()=> import('../User/Pages/Partner/Partner'))
 
 const AnimatedRoutes = () => {
     const location = useLocation()
@@ -39,11 +48,31 @@ const AnimatedRoutes = () => {
             <ScrollToTop/>
             <Routes location={location} key={location.pathname}>
                 {/* USER ROUTES */}
-                <Route exact path ='/' element={<WhatsNew/>}/>
-                <Route path ='/music' element={<Music/>}/>
-                <Route path ='/animation' element={<Animation/>}/>
-                <Route path ='/shows' element={<Shows/>}/>
-                <Route path ='/partner' element={<Partner/>}/>
+                <Route exact path ='/' element={
+                    <React.Suspense fallback = {<Loading/>}>
+                        <LazyWhatsNew/>
+                    </React.Suspense>
+                }/>
+                <Route path ='/music' element={
+                    <React.Suspense fallback = {<Loading/>}>
+                        <LazyMusic/>
+                    </React.Suspense>
+                }/>
+                <Route path ='/animation' element={
+                    <React.Suspense fallback = {<Loading/>}>
+                        <LazyAnimation/>
+                    </React.Suspense>
+                }/>
+                <Route path ='/shows' element={
+                    <React.Suspense fallback = {<Loading/>}>
+                        <LazyShows/>
+                    </React.Suspense>
+                }/>
+                <Route path ='/partner' element={
+                    <React.Suspense fallback = {<Loading/>}>
+                        <LazyPartner/>
+                    </React.Suspense>
+                }/>
                 <Route path='/shows/allPastShows' element={<AllPastShows/>}/>
                 <Route path='/shows/allUpcomingShows' element={<AllUpcomingShows/>}/>
                 <Route path='/unavailable' element={<Unavailable/>}/>

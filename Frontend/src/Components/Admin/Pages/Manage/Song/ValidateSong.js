@@ -1,9 +1,9 @@
 import axios from 'axios'
 
 const ValidateSong = async (entry, token, id) => {
-    const createSongApi = 'https://toby-peter-production.up.railway.app/api/song/create'
-    const createCoverApi = 'https://toby-peter-production.up.railway.app/api/song/upload-cover'
-    const updateSongApi = `https://toby-peter-production.up.railway.app/api/song/update/${id}`
+    const createSongApi = `${process.env.REACT_APP_BASE_URL}/song/create`
+    const createCoverApi = `${process.env.REACT_APP_BASE_URL}/song/upload-cover`
+    const updateSongApi = `${process.env.REACT_APP_BASE_URL}/song/update/${id}`
     let errors = {}
     const linkRegex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/
     const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i

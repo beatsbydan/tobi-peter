@@ -16,7 +16,7 @@ export const ValidateBlogs = async (entry, token) => {
         errors.link = "Link cannot be empty."
     }
     if(Object.values(entry).every(value => value !== "") && linkRegex.exec(entry.link)){
-        await axios.post('https://toby-peter-production.up.railway.app/api/blog/create ', {...entry}, {
+        await axios.post(`${process.env.REACT_APP_BASE_URL}/blog/create` , {...entry}, {
             headers:{
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`

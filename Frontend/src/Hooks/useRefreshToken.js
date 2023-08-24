@@ -2,7 +2,7 @@ import axios from 'axios'
 import useAuth from './useAuth'
 
 const useRefreshToken = () => {
-    const refreshApi = 'https:/toby-peter-production.up.railway.app/api/admin/refresh'
+    const refreshApi = `${process.env.REACT_APP_BASE_URL}/admin/refresh`
     const {setIsLoggedIn, setAccessToken} = useAuth()
     const refresh = async () => {
         await axios.get(refreshApi,{

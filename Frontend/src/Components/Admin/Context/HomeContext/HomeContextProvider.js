@@ -10,7 +10,7 @@ const HomeContextProvider = (props) => {
 
     const [subscribers, setSubscribers] = useState([])
     useEffect(()=>{        
-        authDetails.isLoggedIn && axios.get('https://toby-peter-production.up.railway.app/api/subscribe/',{
+        authDetails.isLoggedIn && axios.get(`${process.env.REACT_APP_BASE_URL}/subscribe/`,{
             headers:{
                 "Content-Type":"application/json",
                 "Authorization":`Bearer ${authDetails.accessToken}`

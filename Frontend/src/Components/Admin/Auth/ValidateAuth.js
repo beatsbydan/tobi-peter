@@ -1,10 +1,10 @@
 import axios from 'axios'
 
 const ValidateAuth = async (entry, token) => {
-    const regApi = 'https://toby-peter-production.up.railway.app/api/admin/register'
-    const logInApi = 'https://toby-peter-production.up.railway.app/api/admin/login'
-    const resetApi = 'https://toby-peter-production.up.railway.app/api/admin/forgot-pass'
-    const changeApi = 'https://toby-peter-production.up.railway.app/api/admin/change-pass'
+    const regApi = `${process.env.REACT_APP_BASE_URL}/admin/register`
+    const logInApi = `${process.env.REACT_APP_BASE_URL}/admin/login`
+    const resetApi = `${process.env.REACT_APP_BASE_URL}/admin/forgot-pass`
+    const changeApi = `${process.env.REACT_APP_BASE_URL}/admin/change-pass`
     const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
     let result = {
         errors: {},

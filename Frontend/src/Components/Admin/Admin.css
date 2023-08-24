@@ -23,13 +23,15 @@
 }
 .myActions{
     width: 90%;
-    margin: 3em auto;
+    margin: 3em auto 1.5em auto;
     display: grid;
-    grid-template-columns: 45% 45%;
-    gap: 10%;
+    grid-template-columns: 47% 47%;
+    gap: 6%;
     align-items: center;
 }
 .myActions a{
+    width: 85%;
+    margin: auto;
     color:#1D3557;
     padding: 0.8rem;
     font-weight: 500;

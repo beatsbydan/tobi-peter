@@ -59,7 +59,7 @@ const ContextProvider = (props) => {
         }
     }
     const [shows, dispatchShows] = useReducer(showsReducer, initialShows)
-    const showsApi = 'https://toby-peter-production.up.railway.app/api/show/'
+    const showsApi = `${process.env.REACT_APP_BASE_URL}/show/`
     const getShows = useCallback(() =>{
         dispatchPending({type: 'PENDING'})
         setTimeout(()=>{
@@ -125,7 +125,7 @@ const ContextProvider = (props) => {
     const getSong = async () =>{
         dispatchPending({type: 'PENDING'})
         setTimeout(()=>{
-            axios.get('https://toby-peter-production.up.railway.app/api/song/recent',{
+            axios.get(`${process.env.REACT_APP_BASE_URL}/song/recent`,{
                 headers:{
                     'Content-Type': 'application/json',
                 }
@@ -151,7 +151,7 @@ const ContextProvider = (props) => {
     const getBlogs = () => {
         dispatchPending({type: 'PENDING'})
         setTimeout(()=>{
-            axios.get('https://toby-peter-production.up.railway.app/api/blog/')
+            axios.get(`${process.env.REACT_APP_BASE_URL}/blog/`)
             .then(res=>{
                 if(res.status === 200){
                     setBlogs(res.data.AllBlogs)
@@ -174,7 +174,7 @@ const ContextProvider = (props) => {
     const getImages = () => {
         dispatchPending({type: 'PENDING'})
         setTimeout(()=>{
-            axios.get('https://toby-peter-production.up.railway.app/api/admin/album')
+            axios.get(`${process.env.REACT_APP_BASE_URL}/admin/album`)
             .then(res=>{
                 if(res.status === 200){
                     setImages(res.data.album)

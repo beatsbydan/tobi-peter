@@ -3,7 +3,7 @@ import axios from 'axios'
 const ValidateShows = async (entry, token) => {
     let errors = {}
     const linkRegex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/
-    const createShowApi = 'https://toby-peter-production.up.railway.app/api/show/create'
+    const createShowApi = `${process.env.REACT_APP_BASE_URL}/show/create`
 
     if(entry.title === ""){
         errors.title = "Title cannot be empty."

@@ -19,7 +19,6 @@ const Admin = () => {
                 <Link to={'/admin/register'}>REGISTER</Link>
                 <Link to={'/admin/login'}>LOGIN</Link>
             </div>
-            <p>Click <span><Link to={'/'}>HERE</Link></span> to go to tobipeter.com.</p>
         </motion.div>
     );
 }

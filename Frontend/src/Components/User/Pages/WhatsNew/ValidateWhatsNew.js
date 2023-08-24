@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const ValidateWhatsNew = async (entry) => {
-    const api = "https://toby-peter-production.up.railway.app/api/subscribe/create"
+    const api = `${process.env.REACT_APP_BASE_URL}/subscribe/create`
     let errors = {};
     const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
     if(!emailRegex.test(entry)){

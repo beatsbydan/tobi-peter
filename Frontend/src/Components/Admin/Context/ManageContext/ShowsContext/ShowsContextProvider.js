@@ -64,7 +64,7 @@ const ShowsContextProvider = (props) => {
         }
     }
     const [shows, dispatchShows] = useReducer(showsReducer, initialShows)
-    const showsApi = 'https://toby-peter-production.up.railway.app/api/show/'
+    const showsApi = `${process.env.REACT_APP_BASE_URL}/show/`
     const getShows = () => {
         dispatchPending({type: 'PENDING'})
         axios.get(showsApi, {
@@ -108,7 +108,7 @@ const ShowsContextProvider = (props) => {
     }
     const deleteShow = async (id) => {
         let success = {}
-        await axios.delete(`https://toby-peter-production.up.railway.app/api/show/delete/${id}`,{
+        await axios.delete(`${process.env.REACT_APP_BASE_URL}/show/delete/${id}`,{
             headers:{
                 'Content-Type':'application/json',
                 "Authorization":`Bearer ${authDetails.accessToken}`
@@ -129,7 +129,7 @@ const ShowsContextProvider = (props) => {
     }
     const completeShow = async (id) => {
         let success = {}
-        await axios.get(`https://toby-peter-production.up.railway.app/api/show/complete/${id}`,{
+        await axios.get(`${process.env.REACT_APP_BASE_URL}/show/complete/${id}`,{
             headers:{
                 'Content-Type':'application/json',
                 "Authorization":`Bearer ${authDetails.accessToken}`

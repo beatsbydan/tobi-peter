@@ -1,4 +1,4 @@
-import { NavLink, Link, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import logo from '../../../Assets/logo.png'
 import React from 'react'
 import {useState, useContext} from 'react'
@@ -50,7 +50,7 @@ const AdminNavbar = () => {
                         <NavLink onClick={closeNav} className={({isActive})=>(isActive ? activeClass: defaultClass)} to={'/admin/manage'}>
                             <li>MANAGE</li>
                         </NavLink>
-                        <Link className='logout' onClick={logOut}>LOGOUT</Link>
+                        <button className='logout' onClick={logOut}>LOGOUT</button>
                     </ul>
                     {isOpen ? <VscChromeClose size={30} onClick={handleNav} color='#FFFBF4' className='close'/> : <RxHamburgerMenu onClick={handleNav} size={30} className='hamburger'/>}
                 </nav>

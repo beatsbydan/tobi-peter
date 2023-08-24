@@ -11,7 +11,7 @@ export const ValidateFiles = async (entry, token) =>{
         for(let i = 0; i < entry.length; i++){
             formData.append(`images`, entry[i])
         }        
-        await axios.post('https://toby-peter-production.up.railway.app/api/admin/upload', formData, {
+        await axios.post(`${process.env.REACT_APP_BASE_URL}/admin/upload`, formData, {
             headers:{
                 "Content-Type":"multipart/form-data",
                 "Authorization": `Bearer ${token}`

@@ -357,7 +357,7 @@ const AuthContextProvider = (props) => {
 
     const logOut = async () => {
         let success = {}
-        const logOutApi = 'https://toby-peter-production.up.railway.app/api/admin/logout'
+        const logOutApi = `${process.env.REACT_APP_BASE_URL}/admin/logout`
         await axios.get(logOutApi,{
             headers:{
                 'Content-Type':'application/json',

@@ -49,7 +49,7 @@ const ManageContextProvider = (props) => {
     const getSongs = () => {
         dispatchPending({type: 'PENDING'})
         setTimeout(()=>{
-            axios.get('https://toby-peter-production.up.railway.app/api/song/')
+            axios.get(`${process.env.REACT_APP_BASE_URL}/song/`)
             .then(res=>{
                 if(res.status === 200){
                     setAllSongs(res.data.allSongs)        
@@ -63,7 +63,7 @@ const ManageContextProvider = (props) => {
     }
     const getSong = async (id) => {
         dispatchPending({type: 'PENDING'})
-        await axios.get(`https://toby-peter-production.up.railway.app/api/song/${id}`)
+        await axios.get(`${process.env.REACT_APP_BASE_URL}/song/${id}`)
         .then(res=>{
             if(res.status === 200){
                 setSong(res.data.song)
@@ -87,7 +87,7 @@ const ManageContextProvider = (props) => {
     }
     const deleteSong = async (id) =>{
         let success = {}
-        await axios.delete(`https://toby-peter-production.up.railway.app/api/song/delete/${id}`,{
+        await axios.delete(`${process.env.REACT_APP_BASE_URL}/song/delete/${id}`,{
             headers:{
                 'Content-Type':'application/json',
                 "Authorization":`Bearer ${authDetails.accessToken}`
@@ -279,7 +279,7 @@ const ManageContextProvider = (props) => {
     const getBlogs = () => {
         dispatchPending({type: 'PENDING'})
         setTimeout(()=>{
-            axios.get('https://toby-peter-production.up.railway.app/api/blog/')
+            axios.get(`${process.env.REACT_APP_BASE_URL}/blog/`)
             .then(res=>{
                 if(res.status === 200){
                     setBlogs(res.data.AllBlogs)
@@ -296,7 +296,7 @@ const ManageContextProvider = (props) => {
     },[])
     const deleteBlog = async (id) => {
         let success = {}
-        await axios.delete(`https://toby-peter-production.up.railway.app/api/blog/delete/${id}`,{
+        await axios.delete(`${process.env.REACT_APP_BASE_URL}/blog/delete/${id}`,{
             headers:{
                 'Content-Type': 'applicstion/json',
                 'Authorization': `Bearer ${authDetails.accessToken}`
@@ -344,7 +344,7 @@ const ManageContextProvider = (props) => {
     const getImages = () => {
         dispatchPending({type: 'PENDING'})
         setTimeout(()=>{
-            axios.get('https://toby-peter-production.up.railway.app/api/admin/album')
+            axios.get(`${process.env.REACT_APP_BASE_URL}/admin/album`)
             .then(res=>{
                 if(res.status === 200){
                     setImages(res.data.album)
@@ -364,7 +364,7 @@ const ManageContextProvider = (props) => {
         const data = {
             url: url
         }
-        await axios.put('https://toby-peter-production.up.railway.app/api/admin/delete-slide', {...data},{
+        await axios.put(`${process.env.REACT_APP_BASE_URL}/delete-slide`, {...data},{
             headers:{
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${authDetails.accessToken}`
