@@ -11,7 +11,7 @@ const Blogs = () => {
         <ul className="pressSection">
             {ctx.pending.isPending ? <Loading isPending={ctx.pending.isPending}/> 
             : 
-            ctx.blogs.length === 0 ? <p className="defaultText">No blogs available <span><TfiFaceSad size={25}/></span></p> 
+            ctx.blogs.length === 0 ? <p className="defaultText">No blogs available. <span><TfiFaceSad size={25}/></span></p> 
             : 
             ctx.blogs.map((blog, index)=>{
                 return(

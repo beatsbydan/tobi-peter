@@ -7,9 +7,9 @@ const Admin = () => {
     return ( 
         <motion.div 
             className="admin"
-            initial={{width:'100%'}}
-            animate={{width:'100%'}}
-            exit={{x:-window.innerWidth, transition: {duration: 0.5}}}
+            initial={{width:'100%', opacity: 0}}
+            animate={{width:'100%', opacity: 1}}
+            exit={{x:-window.innerWidth, opacity:0, transition: {duration: 0.7}}}
         >
             <img src={Logo} alt=''/>
             <h1>HI TOBI PETER</h1>

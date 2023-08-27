@@ -6,9 +6,9 @@ const Partner = () => {
     return ( 
         <motion.div 
             className="partner"
-            initial={{width:'100%'}}
-            animate={{width:'100%'}}
-            exit={{x:-window.innerWidth, transition: {duration: 0.7}}}
+            initial={{width:'100%', opacity: 0}}
+            animate={{width:'100%', opacity: 1}}
+            exit={{x:-window.innerWidth, opacity:0, transition: {duration: 0.7}}}
         >
             <h2>PARTNERSHIPS</h2>
             <div className='partnerBlock'>

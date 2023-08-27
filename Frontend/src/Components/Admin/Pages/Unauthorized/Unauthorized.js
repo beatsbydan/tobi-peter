@@ -7,9 +7,9 @@ const Unauthorized = () => {
     return(
         <motion.div 
             className = "unauthorized"
-            initial={{width:'100%'}}
-            animate={{width:'100%'}}
-            exit={{x:-window.innerWidth, transition: {duration: 0.7}}}
+            initial={{width:'100%', opacity: 0}}
+            animate={{width:'100%', opacity: 1}}
+            exit={{x:-window.innerWidth, opacity:0, transition: {duration: 0.7}}}
         >
             <div className="element">
                 <MdNoEncryptionGmailerrorred className='caution' size={70} color='#1D3557'/>

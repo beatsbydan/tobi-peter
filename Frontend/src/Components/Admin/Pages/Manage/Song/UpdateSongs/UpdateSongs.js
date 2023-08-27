@@ -12,9 +12,9 @@ const UpdateSongs = () => {
     return(
         <motion.div 
             className="updateSongs"
-            initial={{width:'100%'}}
-            animate={{width:'100%'}}
-            exit={{x:-window.innerWidth, transition: {duration: 0.5}}}
+            initial={{width:'100%', opacity: 0}}
+            animate={{width:'100%', opacity: 1}}
+            exit={{x:-window.innerWidth, opacity:0, transition: {duration: 0.7}}}
         >
             <h2>HERE ARE YOUR SONGS <span><GiLoveSong/></span></h2>
             <h4>Click on a song to edit it...</h4>
@@ -35,7 +35,7 @@ const UpdateSongs = () => {
                             />
                         )
                     })
-                    : <p className="defaultText">No available songs <span><TfiFaceSad size={25}/></span></p>
+                    : <p className="defaultText">No available songs. <span><TfiFaceSad size={25}/></span></p>
                 }
             </ul>
         </motion.div>

@@ -5,17 +5,23 @@ import Image from './Image/Image'
 import Loading from '../../../../../UI/Loading/Loading'
 import {TfiFaceSad} from 'react-icons/tfi'
 import {BiImages} from 'react-icons/bi'
+import {motion} from 'framer-motion'
 
 const UpdateImages = () => {
   const ctx = useContext(ManageContext)
 
   return (
-    <div className="updateImages">
+    <motion.div 
+      className="updateImages"
+      initial={{width:'100%', opacity: 0}}
+      animate={{width:'100%', opacity: 1}}
+      exit={{x:-window.innerWidth, opacity:0, transition: {duration: 0.7}}}
+    >
       <h2>UPDATE IMAGES <span><BiImages/></span></h2>
       <ul className="imagesList">
         {ctx.pending.isPending ? <Loading isPending={ctx.pending.isPending}/> 
         : 
-        ctx.images.length === 0 ?  <p className="defaultText">No available shows <span><TfiFaceSad size={25}/></span></p>
+        ctx.images.length === 0 ?  <p className="defaultText">No images available. <span><TfiFaceSad size={25}/></span></p>
         : 
         ctx.images.map((image, index)=>{
           return(
@@ -28,7 +34,7 @@ const UpdateImages = () => {
           )
         })}
       </ul>
-    </div>
+    </motion.div>
   )
 }
 

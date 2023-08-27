@@ -6,6 +6,7 @@ import {motion} from 'framer-motion'
 import Loading from '../../../../UI/Loading/Loading'
 import {AiOutlineArrowLeft} from 'react-icons/ai'
 import {useNavigate} from 'react-router-dom'
+import {TfiFaceSad} from 'react-icons/tfi'
 
 const AllUpcomingShows = () => {
     const ctx = useContext(Context)
@@ -20,7 +21,11 @@ const AllUpcomingShows = () => {
             <AiOutlineArrowLeft cursor='pointer' onClick={()=> navigate(-1)} color='#1D3557' size={30}/>
             <h5 className="theShow">UPCOMING SHOWS</h5>
             <ul className="showsList">
-                {ctx.pending.isPending? <Loading isPending={ctx.pending.isPending}/> :
+                {
+                    ctx.pending.isPending? <Loading isPending={ctx.pending.isPending}/>
+                :
+                    ctx.shows.myShows.upcomingShows.length === 0 ? <p className="defaultText">No shows available. <span><TfiFaceSad size={25}/></span></p>                            
+                :
                     ctx.shows.myShows.upcomingShows.map((show,index)=>{
                         return(
                             <Show

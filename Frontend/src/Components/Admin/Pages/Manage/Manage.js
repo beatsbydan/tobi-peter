@@ -7,9 +7,9 @@ const Manage = () => {
     return(
         <motion.div 
             className='manage'
-            initial={{width:'100%'}}
-            animate={{width:'100%'}}
-            exit={{x:-window.innerWidth, transition: {duration: 0.5}}}
+            initial={{width:'100%', opacity: 0}}
+            animate={{width:'100%', opacity: 1}}
+            exit={{x:-window.innerWidth, opacity:0, transition: {duration: 0.7}}}
         >
             <div className="showsBlock">
                 <h2>SHOWS</h2>

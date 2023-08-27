@@ -1,5 +1,5 @@
 import AuthContext from './AuthContext'
-import {useReducer} from 'react'
+import {useCallback, useReducer} from 'react'
 import ValidateAuth from '../../Auth/ValidateAuth'
 import useAlert from '../../../../Hooks/useAlert'
 import axios from 'axios'
@@ -349,9 +349,9 @@ const AuthContextProvider = (props) => {
     const setIsLoggedIn = (value) => {
         dispatchAuthDetails({type:'SET_LOGGED_IN', value: value})
     }
-    const setDestinedLocation = (location) => {
+    const setDestinedLocation = useCallback((location) => {
         dispatchAuthDetails({type:"SET_DESTINED_LOCATION", value: location})
-    }
+    },[])
 
     // LOGOUT
 
@@ -373,6 +373,7 @@ const AuthContextProvider = (props) => {
         .catch(err=>{
             success.yes = false
             setAlert('failure', 'Logout unsuccessful!')
+            return err
         })
         return success
     }

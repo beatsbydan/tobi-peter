@@ -29,9 +29,9 @@ const Create = () => {
     return(
         <motion.div 
             className="create"
-            initial={{width:'100%'}}
-            animate={{width:'100%'}}
-            exit={{x:-window.innerWidth, transition: {duration: 0.5}}}
+            initial={{width:'100%', opacity: 0}}
+            animate={{width:'100%', opacity: 1}}
+            exit={{x:-window.innerWidth, opacity:0, transition: {duration: 0.7}}}
         >
             <h2>ADD A NEW SHOW WITH EASE <span><BsEmojiWink size={35}/></span></h2>
             <form action="" onSubmit={handleSubmit}>

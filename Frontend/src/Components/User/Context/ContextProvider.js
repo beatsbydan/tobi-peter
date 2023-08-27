@@ -59,11 +59,10 @@ const ContextProvider = (props) => {
         }
     }
     const [shows, dispatchShows] = useReducer(showsReducer, initialShows)
-    const showsApi = `${process.env.REACT_APP_BASE_URL}/show/`
     const getShows = useCallback(() =>{
         dispatchPending({type: 'PENDING'})
-        setTimeout(()=>{
-            axios.get(showsApi)
+        setTimeout( async ()=>{
+            await axios.get(`${process.env.REACT_APP_BASE_URL}/show/`)
             .then(res=>{
                 if(res.status === 200){
                     const allShows = {
@@ -79,7 +78,7 @@ const ContextProvider = (props) => {
                 }
             })
             .catch(err=>{
-                console.log(err)
+                return err
             })
         },3000)
     },[])
@@ -124,8 +123,8 @@ const ContextProvider = (props) => {
     const [song, setSong] = useState({})
     const getSong = async () =>{
         dispatchPending({type: 'PENDING'})
-        setTimeout(()=>{
-            axios.get(`${process.env.REACT_APP_BASE_URL}/song/recent`,{
+        setTimeout( async ()=>{
+            await axios.get(`${process.env.REACT_APP_BASE_URL}/song/recent`,{
                 headers:{
                     'Content-Type': 'application/json',
                 }
@@ -137,7 +136,7 @@ const ContextProvider = (props) => {
                 }
             })
             .catch(err=>{
-                console.log(err)
+                return err;
             })
         },3000)
     }
@@ -150,8 +149,8 @@ const ContextProvider = (props) => {
     const [blogs, setBlogs] = useState([])
     const getBlogs = () => {
         dispatchPending({type: 'PENDING'})
-        setTimeout(()=>{
-            axios.get(`${process.env.REACT_APP_BASE_URL}/blog/`)
+        setTimeout(async ()=>{
+            await axios.get(`${process.env.REACT_APP_BASE_URL}/blog/`)
             .then(res=>{
                 if(res.status === 200){
                     setBlogs(res.data.AllBlogs)
@@ -173,8 +172,8 @@ const ContextProvider = (props) => {
     const [images, setImages] = useState([])
     const getImages = () => {
         dispatchPending({type: 'PENDING'})
-        setTimeout(()=>{
-            axios.get(`${process.env.REACT_APP_BASE_URL}/admin/album`)
+        setTimeout( async ()=>{
+            await axios.get(`${process.env.REACT_APP_BASE_URL}/admin/album`)
             .then(res=>{
                 if(res.status === 200){
                     setImages(res.data.album)

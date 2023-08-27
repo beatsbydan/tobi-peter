@@ -30,161 +30,6 @@ const ShowsContextProvider = (props) => {
         }
     }
     const [pending, dispatchPending] = useReducer(pendReducer, initialPendState)
-    
-    // SHOWS
-    const initialShows = {
-        myShows:{
-            upcomingShows: [],
-            pastShows: [],
-        },
-        upcomingShows: [],
-        pastShows: []
-    }
-    const showsReducer = (state,action) => {
-        if(action.type === "SET_ALL_SHOWS"){
-            return{
-                myShows: action.value,
-                upcomingShows: state.upcomingShows,
-                pastShows: state.pastShows
-            }
-        }
-        if(action.type === "SET_UPCOMING_SHOWS"){
-            return{
-                myShows: state.myShows,
-                upcomingShows: [...action.value],
-                pastShows: state.pastShows
-            }
-        }
-        if(action.type === "SET_PAST_SHOWS"){
-            return{
-                myShows: state.myShows,
-                upcomingShows: state.upcomingShows,
-                pastShows: [...action.value]
-            }
-        }
-    }
-    const [shows, dispatchShows] = useReducer(showsReducer, initialShows)
-    const showsApi = `${process.env.REACT_APP_BASE_URL}/show/`
-    const getShows = () => {
-        dispatchPending({type: 'PENDING'})
-        axios.get(showsApi, {
-            header:{
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(res=>{
-            if(res.status === 200){
-                const allShows = {
-                    upcomingShows: res.data.pendingShows,
-                    pastShows: res.data.completedShows
-                }
-                const myUpcomingShows = filterShows(res.data.pendingShows)
-                const myPastShows = filterShows(res.data.completedShows)
-                dispatchShows({type:"SET_ALL_SHOWS", value:{...allShows}})
-                dispatchShows({type:"SET_UPCOMING_SHOWS", value: myUpcomingShows})
-                dispatchShows({type:"SET_PAST_SHOWS", value: myPastShows})
-                createChartData(currYear, res.data.pendingShows, res.data.completedShows)
-            }
-        })
-        .catch(err=>{
-            console.log(err)
-        })
-        setTimeout(()=>{
-            dispatchPending({type: 'COMPLETED'})
-        },3000)
-    }
-
-    useEffect(()=>{
-        getShows()
-    },[])
-    
-    const filterShows = (shows) => {
-        if(shows.length > 0){
-            return shows.slice(0, 3)
-        }
-        else{
-            return []
-        }
-    }
-    const deleteShow = async (id) => {
-        let success = {}
-        await axios.delete(`${process.env.REACT_APP_BASE_URL}/show/delete/${id}`,{
-            headers:{
-                'Content-Type':'application/json',
-                "Authorization":`Bearer ${authDetails.accessToken}`
-            }
-        })
-        .then(res=>{
-            if(res.status === 200){
-                success.yes = true
-                setAlert('success', 'Show Deleted!')
-                getShows()
-            }
-        })
-        .catch(err=>{
-            success.yes = false
-            setAlert('failure', 'Show not deleted!')
-        })
-        return success
-    }
-    const completeShow = async (id) => {
-        let success = {}
-        await axios.get(`${process.env.REACT_APP_BASE_URL}/show/complete/${id}`,{
-            headers:{
-                'Content-Type':'application/json',
-                "Authorization":`Bearer ${authDetails.accessToken}`
-            }
-        })
-        .then(res=>{
-            if(res.status === 200){
-                success.yes = true
-                setAlert('success', 'Show Completed!')
-                getShows()
-            }
-        })
-        .catch(err=>{
-            console.log(err)
-            success.yes = false
-            setAlert('failure', 'Show not completed!')
-        })
-        return success
-    }
-    const [createData, setCreateData] = useState({
-        title: '',
-        venue: '',
-        date: '',
-        ticketLink: ''
-    })
-    const [createErrors, setCreateErrors] = useState({})
-    const handleChange = (e) => {
-        const {id, value} = e.target;
-        setCreateData(prev=>{
-            return {...prev, [id]:value}
-        })
-    }
-    const handleCreateSubmit = async () => {
-        let success = {}
-        await ValidateShows(createData, authDetails.accessToken)
-        .then(res=>{
-            setCreateErrors(res)
-            if(res.none){
-                success.yes = true
-                getShows()
-                userCtx.getShows()
-                setCreateData({
-                    title: '',
-                    venue: '',
-                    date: '',
-                    ticketLink: ''
-                })
-            }
-            else{
-                success.yes = false
-                setAlert('failure', 'Show not created!')
-            }
-        })
-        return success
-    }
 
     // CHART
 
@@ -204,7 +49,7 @@ const ShowsContextProvider = (props) => {
         date.setMonth(myMonth)
         return date.toLocaleString('en-US', { month: 'short' }).toUpperCase();
     }
-    const createChartData = (year, upcoming, past) => {
+    const createChartData = useCallback((year, upcoming, past) => {
         const totalShows = [...upcoming, ...past] 
         let chartShows = []
         for (let show of totalShows){
@@ -285,7 +130,7 @@ const ShowsContextProvider = (props) => {
         }
         setYearsData(yearsData)
         return [chartData,yearsData];
-    }
+    }, [])
     const filterChartData = (year) => {
         const [chartData,yearsData] = createChartData(year, shows.myShows.upcomingShows, shows.myShows.pastShows)
         dispatchPending({type:'PENDING'})
@@ -305,6 +150,163 @@ const ShowsContextProvider = (props) => {
             dispatchPending({type: 'COMPLETED'})
         },3000)
     }
+
+    
+    // SHOWS
+    const initialShows = {
+        myShows:{
+            upcomingShows: [],
+            pastShows: [],
+        },
+        upcomingShows: [],
+        pastShows: []
+    }
+    const showsReducer = (state,action) => {
+        if(action.type === "SET_ALL_SHOWS"){
+            return{
+                myShows: action.value,
+                upcomingShows: state.upcomingShows,
+                pastShows: state.pastShows
+            }
+        }
+        if(action.type === "SET_UPCOMING_SHOWS"){
+            return{
+                myShows: state.myShows,
+                upcomingShows: [...action.value],
+                pastShows: state.pastShows
+            }
+        }
+        if(action.type === "SET_PAST_SHOWS"){
+            return{
+                myShows: state.myShows,
+                upcomingShows: state.upcomingShows,
+                pastShows: [...action.value]
+            }
+        }
+    }
+    const [shows, dispatchShows] = useReducer(showsReducer, initialShows)
+    const getShows = useCallback( async () => {
+        dispatchPending({type: 'PENDING'})
+        await axios.get(`${process.env.REACT_APP_BASE_URL}/show/`, {
+            header:{
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res=>{
+            if(res.status === 200){
+                const allShows = {
+                    upcomingShows: res.data.pendingShows,
+                    pastShows: res.data.completedShows
+                }
+                const myUpcomingShows = filterShows(res.data.pendingShows)
+                const myPastShows = filterShows(res.data.completedShows)
+                dispatchShows({type:"SET_ALL_SHOWS", value:{...allShows}})
+                dispatchShows({type:"SET_UPCOMING_SHOWS", value: myUpcomingShows})
+                dispatchShows({type:"SET_PAST_SHOWS", value: myPastShows})
+                createChartData(currYear, res.data.pendingShows, res.data.completedShows)
+            }
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+        setTimeout(()=>{
+            dispatchPending({type: 'COMPLETED'})
+        },3000)
+    },[createChartData, currYear])
+
+    useEffect(()=>{
+        getShows()
+    },[getShows])
+    
+    const filterShows = (shows) => {
+        if(shows.length > 0){
+            return shows.slice(0, 3)
+        }
+        else{
+            return []
+        }
+    }
+    const deleteShow = async (id) => {
+        let success = {}
+        await axios.delete(`${process.env.REACT_APP_BASE_URL}/show/delete/${id}`,{
+            headers:{
+                'Content-Type':'application/json',
+                "Authorization":`Bearer ${authDetails.accessToken}`
+            }
+        })
+        .then(res=>{
+            if(res.status === 200){
+                success.yes = true
+                setAlert('success', 'Show Deleted!')
+                getShows()
+            }
+        })
+        .catch(err=>{
+            success.yes = false
+            setAlert('failure', 'Show not deleted!')
+        })
+        return success
+    }
+    const completeShow = async (id) => {
+        let success = {}
+        await axios.get(`${process.env.REACT_APP_BASE_URL}/show/complete/${id}`,{
+            headers:{
+                'Content-Type':'application/json',
+                "Authorization":`Bearer ${authDetails.accessToken}`
+            }
+        })
+        .then(res=>{
+            if(res.status === 200){
+                success.yes = true
+                setAlert('success', 'Show Completed!')
+                getShows()
+            }
+        })
+        .catch(err=>{
+            success.yes = false
+            setAlert('failure', 'Show not completed!')
+            return err
+        })
+        return success
+    }
+    const [createData, setCreateData] = useState({
+        title: '',
+        venue: '',
+        date: '',
+        ticketLink: ''
+    })
+    const [createErrors, setCreateErrors] = useState({})
+    const handleChange = (e) => {
+        const {id, value} = e.target;
+        setCreateData(prev=>{
+            return {...prev, [id]:value}
+        })
+    }
+    const handleCreateSubmit = async () => {
+        let success = {}
+        await ValidateShows(createData, authDetails.accessToken)
+        .then(res=>{
+            setCreateErrors(res)
+            if(res.none){
+                success.yes = true
+                getShows()
+                userCtx.getShows()
+                setCreateData({
+                    title: '',
+                    venue: '',
+                    date: '',
+                    ticketLink: ''
+                })
+            }
+            else{
+                success.yes = false
+                setAlert('failure', 'Show not created!')
+            }
+        })
+        return success
+    }
+
+    // CONTEXT VALUE
     const value = {
         createData: createData,
         createErrors:createErrors,

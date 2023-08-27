@@ -22,9 +22,9 @@ const Music = () => {
     return ( 
         <motion.div 
             className="music"
-            initial={{width:'100%'}}
-            animate={{width:'100%'}}
-            exit={{x:-window.innerWidth, transition: {duration: 0.7}}}
+            initial={{width:'100%', opacity: 0}}
+            animate={{width:'100%', opacity: 1}}
+            exit={{x:-window.innerWidth, opacity:0, transition: {duration: 0.7}}}
         >
             <div className="bioTop">
                 <h3>BIO</h3>

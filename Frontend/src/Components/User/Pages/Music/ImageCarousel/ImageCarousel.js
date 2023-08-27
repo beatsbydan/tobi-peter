@@ -13,29 +13,33 @@ const ImageCarousel = () => {
 
     return (
         <div className='imageCarousel'>
-            <Swiper
-                modules={[Autoplay]}
-                spaceBetween={20}
-                slidesPerView={2}
-                autoplay={{
-                    delay: 8000,
-                    disableOnInteraction: false
+            {
+                ctx.pending.isPending? <Loading isPending={ctx.pending.isPending}/>
+                :
+                ctx.images.length === 0 ? <p className="defaultText">Album unavailable.  <span><TfiFaceSad size={25}/></span></p>
+                :
+                <Swiper
+                    modules={[Autoplay]}
+                    spaceBetween={20}
+                    slidesPerView={2}
+                    autoplay={{
+                        delay: 8000,
+                        disableOnInteraction: false
                 }}
-                onSlideChange={() => console.log('slide change')}
-                onSwiper={(swiper) => console.log(swiper)}
+                    onSlideChange={() => console.log('slide change')}
+                    onSwiper={(swiper) => console.log(swiper)}
                 >
-                {ctx.pending.isPending? <Loading isPending={ctx.pending.isPending}/>
-                    :
-                    ctx.images.length === 0 ? <p className="defaultText">No images available  <span><TfiFaceSad size={25}/></span></p>
-                    :
-                    ctx.images.map((image, index)=>{
-                    return(
-                        <SwiperSlide key={index}>
-                            <div className='slide' style={{backgroundImage : `url(${image.url})`}} alt=''/>
-                        </SwiperSlide>
-                    )
-                })}
-            </Swiper>
+                    {
+                        ctx.images.map((image, index)=>{
+                            return(
+                                <SwiperSlide key={index}>
+                                    <div className='slide' style={{backgroundImage : `url(${image.url})`}} alt=''/>
+                                </SwiperSlide>
+                            )
+                        })
+                    }
+                </Swiper>
+            }
         </div>
     )
 }

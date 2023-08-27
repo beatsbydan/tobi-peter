@@ -2,10 +2,15 @@
     width:100%;
     font-family: var(--inter);
 }
-.comingSoon{
+.coverArtSection{
     width: 100%;
+    min-height: 200px;
     max-width: 600px;
     margin: auto;
+    position: relative;
+}
+.comingSoon{
+    width: 100%;
     aspect-ratio: 1;
     object-fit: cover;
     position: relative;

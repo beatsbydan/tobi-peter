@@ -1,5 +1,6 @@
 .unavailable{
     position: relative;
+    margin-top: 3em;
 }
 .element{
     display:flex;
@@ -14,14 +15,6 @@
 }
 .caution{
     animation: rotate 1.5s linear infinite;
-}
-.unavailable p{
-    color: #1D3557;
-    text-align: center;
-}
-.unavailable p span a{
-    font-weight: 600;
-    font-size: 1rem;
 }
 @keyframes rotate {
     from{

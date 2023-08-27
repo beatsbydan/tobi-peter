@@ -10,10 +10,13 @@ import useAlert from '../../../Hooks/useAlert'
 const StreamingPlatforms = (props) => {
     const {setAlert} = useAlert()
     const notify = () => {
-        if(Object.values(props.song.streamingLink).every(link=> link === "")){
+        if(Object.values(props.song.streamingLink).every(link=> link === "") && !props.isEmpty){
             setAlert('failure', 'Song isn\'t released' )
         }
-        else{
+        if(Object.values(props.song.streamingLink).every(link=> link === "") && props.isEmpty){
+            setAlert('failure', 'No Song available' )
+        }
+        if(Object.values(props.song.streamingLink).every(link=> link !== "") && !props.empty){
             return props.song.streamingLink
         }
     }

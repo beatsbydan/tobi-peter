@@ -13,9 +13,9 @@ const Shows = () => {
     return ( 
         <motion.div 
             className="shows"
-            initial={{width:'100%'}}
-            animate={{width:'100%'}}
-            exit={{x:-window.innerWidth, transition: {duration: 0.7}}}
+            initial={{width:'100%', opacity: 0}}
+            animate={{width:'100%', opacity: 1}}
+            exit={{x:-window.innerWidth, opacity:0, transition: {duration: 0.7}}}
         >
             <div className="actionsBlock">
                 {/* <a target='_blank' rel="noreferrer" href="https://www.">
@@ -41,7 +41,7 @@ const Shows = () => {
                     {
                         ctx.pending.isPending ? <Loading isPending = {ctx.pending.isPending}/>
                         : 
-                        ctx.shows.upcomingShows.length === 0 ? <p className="defaultText">No shows available <span><TfiFaceSad size={25}/></span></p>                            
+                        ctx.shows.upcomingShows.length === 0 ? <p className="defaultText">No shows available. <span><TfiFaceSad size={25}/></span></p>                            
                         : 
                         ctx.shows.upcomingShows.map((show,index)=>{
                             return(
@@ -67,7 +67,7 @@ const Shows = () => {
                     {
                         ctx.pending.isPending ? <Loading isPending = {ctx.pending.isPending}/>
                         : 
-                        ctx.shows?.pastShows?.length === 0? <p className="defaultText">No available shows <span><TfiFaceSad size={25}/></span></p>
+                        ctx.shows.pastShows.length === 0? <p className="defaultText">No shows available. <span><TfiFaceSad size={25}/></span></p>
                         :
                         ctx.shows.pastShows.map((show,index)=>{
                             return(

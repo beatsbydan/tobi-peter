@@ -6,6 +6,7 @@ import {AiOutlineArrowLeft} from 'react-icons/ai'
 import { motion } from 'framer-motion';
 import Loading from '../../../../../UI/Loading/Loading';
 import {useNavigate} from 'react-router-dom'
+import {TfiFaceSad} from 'react-icons/tfi'
 
 const AdminPastShows = () => {
     const ctx = useContext(ShowsContext)
@@ -14,15 +15,19 @@ const AdminPastShows = () => {
     return (
         <motion.div 
             className="allMyShows"
-            initial={{width:'100%'}}
-            animate={{width:'100%'}}
-            exit={{x:-window.innerWidth, transition: {duration: 0.5}}}    
+            initial={{width:'100%', opacity: 0}}
+            animate={{width:'100%', opacity: 1}}
+            exit={{x:-window.innerWidth, opacity:0, transition: {duration: 0.7}}}    
         >   
             <AiOutlineArrowLeft cursor='pointer' onClick={()=> navigate(-1)} color='#1D3557' size={30}/>
             <h5 className="theShow">PAST SHOWS</h5>
             <ul className="showsList allShows">
-                {ctx.pending.isPending? <Loading isPending={ctx.pending.isPending}/>:
-                    ctx.shows.myShows.upcomingShows.map((show,index)=>{
+                { 
+                    ctx.pending.isPending? <Loading isPending={ctx.pending.isPending}/>
+                :
+                    ctx.shows.myShows.pastShows.length === 0 ? <p className="defaultText">No shows available. <span><TfiFaceSad size={25}/></span></p>                            
+                :
+                    ctx.shows.myShows.pastShows.map((show,index)=>{
                         return(
                             <Show
                                 completePrompt={()=>ctx.completeShow(show._id)}

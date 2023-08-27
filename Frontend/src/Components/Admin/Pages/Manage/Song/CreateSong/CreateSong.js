@@ -31,9 +31,9 @@ const CreateSong = () => {
   return (
     <motion.div 
         className="createSong"
-        initial={{width:'100%'}}
-        animate={{width:'100%'}}
-        exit={{x:-window.innerWidth, transition: {duration: 0.5}}}
+        initial={{width:'100%', opacity: 0}}
+        animate={{width:'100%', opacity: 1}}
+        exit={{x:-window.innerWidth, opacity:0, transition: {duration: 0.7}}}
     >
         <h2>NEW RELEASE? <span>{<FaHandSpock size={35}/>}</span></h2>
         <form action ="" onSubmit={handleSubmit}>

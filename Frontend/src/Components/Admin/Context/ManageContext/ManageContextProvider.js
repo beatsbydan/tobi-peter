@@ -364,7 +364,7 @@ const ManageContextProvider = (props) => {
         const data = {
             url: url
         }
-        await axios.put(`${process.env.REACT_APP_BASE_URL}/delete-slide`, {...data},{
+        await axios.put(`${process.env.REACT_APP_BASE_URL}/admin/delete-slide`, {...data},{
             headers:{
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${authDetails.accessToken}`

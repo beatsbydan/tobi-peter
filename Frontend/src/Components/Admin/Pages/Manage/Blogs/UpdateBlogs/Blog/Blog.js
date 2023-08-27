@@ -29,7 +29,7 @@ const Blog = (props) => {
                     <h4>{props.title}</h4>
                     <h5>{props.author}</h5>
                 </div>
-                <p>{props.text}</p>
+                <p>{props.text}...</p>
                 <a target='_blank' rel="noreferrer" href={props.link}>READ FULL ARTICLE</a>
             </div>
             {isOpen && <UpdateEvent

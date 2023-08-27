@@ -8,7 +8,7 @@ const ProtectedRoutes = () => {
     const location = useLocation()
     useEffect(()=>{
         setDestinedLocation(location.pathname)
-    },[location])
+    },[location, setDestinedLocation])
     
     return authDetails.isLoggedIn ? <Outlet/> : <Unauthorized/>
 }

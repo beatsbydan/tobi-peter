@@ -3,6 +3,7 @@
     max-width: 650px;
     margin:3em auto;
     position:relative;
+    min-height:150px;
     z-index: -1;
 }
 .slide{

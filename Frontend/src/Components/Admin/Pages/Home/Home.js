@@ -11,6 +11,7 @@ import {BsTicketPerforated} from 'react-icons/bs'
 import {BiRightArrowAlt} from 'react-icons/bi'
 import Chart from './Chart/Chart'
 import React from 'react'
+import {TfiFaceSad} from 'react-icons/tfi'
 import {motion} from 'framer-motion'
 
 const Home = () => {
@@ -37,12 +38,24 @@ const Home = () => {
             }
         })
     }
+    const defaultSong = {
+        streamingLink: {
+            appleMusic: '',
+            spotify: '',
+            audiomack: '',
+            youtube: '',
+            tidal: '',
+            boomPlay: '',
+            youtubeMusic: ''
+        }
+    }
+
     return ( 
         <motion.div 
             className="adminHome"
-            initial={{width:'100%'}}
-            animate={{width:'100%'}}
-            exit={{x:-window.innerWidth, transition: {duration: 0.5}}}
+            initial={{width:'100%', opacity: 0}}
+            animate={{width:'100%', opacity: 1}}
+            exit={{x:-window.innerWidth, opacity:0, transition: {duration: 0.7}}}
         >
             <div className="homeIntro">
                 <h1>Welcome back!</h1>
@@ -64,34 +77,45 @@ const Home = () => {
                 <div className="newSong">
                     <p>The world ain't ready for this new project!</p>
                     <div className="myNewSong">
-                        <img className='newSongImg' src={song?.coverArt} alt =''/>
-                        <p>Title: <span>{song.title?.toUpperCase()}</span></p>
-                        {song && <StreamingPlatforms
-                            song={song}
-                        />}
+                        <div className="myNewSongBlock">
+                            {!song ? <p className="defaultText">Song unavailable. <span><TfiFaceSad size={25}/></span></p> : <img className='newSongImg' src={song?.coverArt} alt =''/>}
+                        </div>
+                        <p>Title: <span>{!song ? 'Unavailable.' : song.title?.toUpperCase()}</span></p>
+                        {
+                            song ? <StreamingPlatforms song={song} isEmpty={false}/>
+                            :
+                            <StreamingPlatforms song={defaultSong} isEmpty={true}/>
+                        }
                     </div>
                 </div>
                 <h5>NEXT SHOW</h5>
-                <div className="nextShow">
-                    <p>Here's your next show...</p>
-                    <div className="show">
-                        <div className='left'>
-                            <div className='date'>
-                                <small className='month'>{txtMonth || 'None'}</small>
-                                <h5 className='day'>{myDate || 'None'}</h5>
+                <div className="nextShowBlock">
+                    {
+                        shows.upcomingShows[0] ?
+                        <div className="nextShow">
+                            <p>Here's your next show...</p>
+                            <div className="show">
+                                <div className='left'>
+                                    <div className='date'>
+                                        <small className='month'>{txtMonth || 'None'}</small>
+                                        <h5 className='day'>{myDate || 'None'}</h5>
+                                    </div>
+                                    <h5 className='desc'>DJ</h5>
+                                    <div className='location'>
+                                        <h5 className='title'>{shows.upcomingShows[0].title || 'None'}</h5>
+                                        <small className='venue'>{shows.upcomingShows[0].venue || 'None'}</small>
+                                    </div>    
+                                </div>
+                                {<a target='_blank' rel="noreferrer" href={shows.upcomingShows[0].ticketLink}>
+                                    <BsTicketPerforated className={'ticket'} size={30}/>
+                                    <BiRightArrowAlt className={'myArrow'}/>
+                                    <span>GET TICKETS</span>
+                                </a>}
                             </div>
-                            <h5 className='desc'>DJ</h5>
-                            <div className='location'>
-                                <h5 className='title'>{shows.upcomingShows[0]?.title || 'None'}</h5>
-                                <small className='venue'>{shows.upcomingShows[0]?.venue || 'None'}</small>
-                            </div>    
                         </div>
-                        {<a target='_blank' rel="noreferrer" href={shows.upcomingShows[0]?.ticketLink}>
-                            <BsTicketPerforated className={'ticket'} size={30}/>
-                            <BiRightArrowAlt className={'myArrow'}/>
-                            <span>GET TICKETS</span>
-                        </a>}
-                    </div>
+                        :
+                        <p className="defaultText">No show available. <span><TfiFaceSad size={25}/></span></p>
+                    }
                 </div>
             </div>
             <div className="changeBlock">
