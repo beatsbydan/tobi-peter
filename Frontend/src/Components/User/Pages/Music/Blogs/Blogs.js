@@ -3,7 +3,7 @@ import {useContext} from 'react'
 import Context from '../../../Context/Context'
 import Blog from './Blog/Blog'
 import Loading from '../../../../UI/Loading/Loading'
-import {TfiFaceSad} from 'react-icons/tfi'
+import logo from '../../../../../Assets/logo.png'
 
 const Blogs = () => {
     const ctx = useContext(Context)
@@ -11,7 +11,7 @@ const Blogs = () => {
         <ul className="pressSection">
             {ctx.pending.isPending ? <Loading isPending={ctx.pending.isPending}/> 
             : 
-            ctx.blogs.length === 0 ? <p className="defaultText">No blogs available. <span><TfiFaceSad size={25}/></span></p> 
+            ctx.blogs.length === 0 ? <p className="defaultText"><span><img src={logo} alt=""/></span> No blogs available. </p> 
             : 
             ctx.blogs.map((blog, index)=>{
                 return(

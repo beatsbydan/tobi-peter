@@ -5,7 +5,7 @@ import Loading from '../../../UI/Loading/Loading';
 import Context from '../../Context/Context'
 import StreamingPlatforms from '../../../UI/StreamingPlatforms/StreamingPlatforms';
 import { motion } from 'framer-motion';
-import {TfiFaceSad} from 'react-icons/tfi'
+import logo from '../../../../Assets/logo.png'
 
 const WhatsNew = () => {
     const ctx = useContext(Context)
@@ -32,7 +32,7 @@ const WhatsNew = () => {
             {   
                 ctx.pending.isPending ? <Loading isPending={ctx.pending.isPending}/> 
                 : 
-                !ctx.song?.coverArt ? <p className="defaultText">Song unavailable. <span><TfiFaceSad size={25}/></span></p> 
+                !ctx.song?.coverArt ? <p className="defaultText"><span><img src={logo} alt=""/></span>Song unavailable.</p> 
                 :
                 <img className='comingSoon' src={ctx.song?.coverArt} alt="" />
             }

@@ -73,6 +73,14 @@ a {
   transform:translate(-50%, -50%);
   margin-bottom: 1.5rem;
 }
+.defaultText span{
+  display:block;
+}
+.defaultText span img{
+  width:45px;
+  height:45px;
+  margin-bottom:1.3rem;
+}
 .showsList{
   position: relative;
   min-height:150px;

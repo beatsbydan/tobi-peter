@@ -3,8 +3,8 @@ import {useContext} from 'react'
 import Context from '../../Context/Context'
 import Show from './Show/Show'
 import {BiRightArrowAlt} from 'react-icons/bi'
-import {TfiFaceSad} from 'react-icons/tfi'
 import Loading from '../../../UI/Loading/Loading'
+import logo from '../../../../Assets/logo.png'
 import { motion } from 'framer-motion';
 import {Link} from 'react-router-dom'
 
@@ -41,7 +41,7 @@ const Shows = () => {
                     {
                         ctx.pending.isPending ? <Loading isPending = {ctx.pending.isPending}/>
                         : 
-                        ctx.shows.upcomingShows.length === 0 ? <p className="defaultText">No shows available. <span><TfiFaceSad size={25}/></span></p>                            
+                        ctx.shows.upcomingShows.length === 0 ? <p className="defaultText"><span><img src={logo} alt=""/></span>No shows available. </p>                            
                         : 
                         ctx.shows.upcomingShows.map((show,index)=>{
                             return(
@@ -67,7 +67,7 @@ const Shows = () => {
                     {
                         ctx.pending.isPending ? <Loading isPending = {ctx.pending.isPending}/>
                         : 
-                        ctx.shows.pastShows.length === 0? <p className="defaultText">No shows available. <span><TfiFaceSad size={25}/></span></p>
+                        ctx.shows.pastShows.length === 0? <p className="defaultText"><span><img src={logo} alt=""/></span>No shows available. </p>
                         :
                         ctx.shows.pastShows.map((show,index)=>{
                             return(

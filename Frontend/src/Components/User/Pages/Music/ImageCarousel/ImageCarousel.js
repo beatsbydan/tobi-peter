@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import {Autoplay} from 'swiper/modules'
 import 'swiper/css/autoplay';
-import {TfiFaceSad} from 'react-icons/tfi'
+import logo from '../../../../../Assets/logo.png'
 import Loading from '../../../../UI/Loading/Loading'
 
 const ImageCarousel = () => {
@@ -16,7 +16,7 @@ const ImageCarousel = () => {
             {
                 ctx.pending.isPending? <Loading isPending={ctx.pending.isPending}/>
                 :
-                ctx.images.length === 0 ? <p className="defaultText">Album unavailable.  <span><TfiFaceSad size={25}/></span></p>
+                ctx.images.length === 0 ? <p className="defaultText"><span><img src={logo} alt=""/></span> Album unavailable. </p>
                 :
                 <Swiper
                     modules={[Autoplay]}

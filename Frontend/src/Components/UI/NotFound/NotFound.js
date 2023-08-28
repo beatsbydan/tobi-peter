@@ -1,9 +1,9 @@
 import './NotFound.css'
 import { useLocation, useNavigate } from 'react-router-dom';
 import {useEffect} from 'react'
-import {BiError} from 'react-icons/bi'
 import useAuth from '../../../Hooks/useAuth';
 import { motion } from 'framer-motion';
+import logo from '../../../Assets/logo.png'
 
 const NotFound = () => {
     const location = useLocation()
@@ -36,8 +36,8 @@ const NotFound = () => {
             exit={{x:-window.innerWidth, transition: {duration: 0.5}}}
         >
             <div className="element">
-                <BiError className='caution' size={100} color='#1D3557'/>
-                <h1>The page you're looking for does not exist...</h1>
+                <img src={logo} alt=""/>
+                <p>THE PAGE YOU'RE LOOKING FOR DOES NOT EXIST...</p>
             </div>
         </motion.section>
     );

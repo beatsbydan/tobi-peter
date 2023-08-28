@@ -11,7 +11,13 @@ const Chart = () => {
     return (
         <div className='chart'>
             <ChartFilter yearsData={ctx.yearsData}/>
-            {ctx.pending.isPending ? <Loading isPending={ctx.pending.isPending}/> : ctx.chartData.datasets[0].data.length > 0 ? <Bar data={ctx.chartData}/> : <h3 className='emptyChart'>No data for this year.</h3>}
+            {
+                ctx.pending.isPending ? <Loading isPending={ctx.pending.isPending}/> 
+                : 
+                ctx.chartData.datasets[0].data.length > 0 ? <Bar data={ctx.chartData}/> 
+                : 
+                <h3 className='emptyChart'>No data for this year.</h3>
+            }
         </div>
     )
 }
