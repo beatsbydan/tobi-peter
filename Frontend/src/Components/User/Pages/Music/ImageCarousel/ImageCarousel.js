@@ -16,7 +16,7 @@ const ImageCarousel = () => {
             {
                 ctx.pending.isPending? <Loading isPending={ctx.pending.isPending}/>
                 :
-                ctx.images.length === 0 ? <p className="defaultText"><span><img src={logo} alt=""/></span> Album unavailable. </p>
+                ctx.images.length === 0 ? <p className="defaultText"><span><img src={logo} alt=""/></span>ALBUM UNAVAILABLE. </p>
                 :
                 <Swiper
                     modules={[Autoplay]}

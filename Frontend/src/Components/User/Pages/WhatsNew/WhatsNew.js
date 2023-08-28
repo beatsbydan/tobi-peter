@@ -32,7 +32,7 @@ const WhatsNew = () => {
             {   
                 ctx.pending.isPending ? <Loading isPending={ctx.pending.isPending}/> 
                 : 
-                !ctx.song?.coverArt ? <p className="defaultText"><span><img src={logo} alt=""/></span>Song unavailable.</p> 
+                !ctx.song?.coverArt ? <p className="defaultText"><span><img src={logo} alt=""/></span>SONG UNAVAILABLE.</p> 
                 :
                 <img className='comingSoon' src={ctx.song?.coverArt} alt="" />
             }
