@@ -25,7 +25,7 @@ const AllPastShows = () => {
                 {
                     ctx.pending.isPending? <Loading isPending={ctx.pending.isPending}/> 
                 :
-                    ctx.shows.myShows.pastShows.length === 0 ? <p className="defaultText"><span><img src={logo} alt=""/></span>No shows available.</p>                            
+                    ctx.shows.myShows.pastShows.length === 0 ? <p className="defaultText"><span><img src={logo} alt=""/></span>COMING SOON.</p>                            
                 :
                     ctx.shows.myShows.pastShows.map((show,index)=>{
                         return(

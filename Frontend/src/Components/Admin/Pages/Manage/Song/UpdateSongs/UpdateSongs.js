@@ -1,6 +1,6 @@
 import './UpdateSongs.css'
 import {GiLoveSong} from 'react-icons/gi'
-import {TfiFaceSad} from 'react-icons/tfi'
+import logo from '../../../../../../Assets/logo.png'
 import {useContext} from 'react'
 import ManageContext from '../../../../Context/ManageContext/ManageContext'
 import Song from './Song/Song'
@@ -35,7 +35,7 @@ const UpdateSongs = () => {
                             />
                         )
                     })
-                    : <p className="defaultText">No available songs. <span><TfiFaceSad size={25}/></span></p>
+                    : <p className="defaultText"><span><img src={logo} alt=""/></span>NO AVAILABLE SONGS. </p>
                 }
             </ul>
         </motion.div>

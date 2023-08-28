@@ -24,7 +24,7 @@ const AllUpcomingShows = () => {
                 {
                     ctx.pending.isPending? <Loading isPending={ctx.pending.isPending}/>
                 :
-                    ctx.shows.myShows.upcomingShows.length === 0 ? <p className="defaultText"><span><img src={logo} alt=""/></span>No shows available.</p>                            
+                    ctx.shows.myShows.upcomingShows.length === 0 ? <p className="defaultText"><span><img src={logo} alt=""/></span>COMING SOON.</p>                            
                 :
                     ctx.shows.myShows.upcomingShows.map((show,index)=>{
                         return(

@@ -3,9 +3,9 @@ import './UpdateBlogs.css'
 import ManageContext from '../../../../Context/ManageContext/ManageContext'
 import Blog from './Blog/Blog'
 import Loading from '../../../../../UI/Loading/Loading'
-import {TfiFaceSad} from 'react-icons/tfi'
 import {FaBlog} from 'react-icons/fa'
 import {motion} from 'framer-motion'
+import logo from '../../../../../../Assets/logo.png'
 
 const UpdateBlogs = () => {
   const ctx = useContext(ManageContext)
@@ -21,7 +21,7 @@ const UpdateBlogs = () => {
         {
           ctx.pending.isPending ? <Loading isPending = {ctx.pending.isPending}/> 
           : 
-          ctx.blogs.length === 0 ? <p className="defaultText">No blogs available. <span><TfiFaceSad size={25}/></span></p> 
+          ctx.blogs.length === 0 ? <p className="defaultText"><span><img src={logo} alt=""/></span>NO BLOGS AVAILABLE. </p> 
           :
           ctx.blogs.map((blog,index)=>{
             return(

@@ -1,6 +1,6 @@
 import './Update.css'
 import {VscSortPrecedence} from 'react-icons/vsc'
-import {TfiFaceSad} from 'react-icons/tfi'
+import logo from '../../../../../../Assets/logo.png'
 import {useContext} from 'react'
 import Loading from '../../../../../UI/Loading/Loading'
 import ShowsContext from '../../../../Context/ManageContext/ShowsContext/ShowsContext'
@@ -24,7 +24,7 @@ const Update = () => {
                     {
                         ctx.pending.isPending ? <Loading isPending = {ctx.pending.isPending}/>
                         : 
-                        ctx.shows.upcomingShows.length === 0 ? <p className="defaultText">No available shows <span><TfiFaceSad size={25}/></span></p>                            
+                        ctx.shows.upcomingShows.length === 0 ? <p className="defaultText"><span><img src={logo} alt=""/></span>NO AVAILABLE SHOWS. </p>                            
                         : 
                         ctx.shows.upcomingShows.map((show, index)=>{
                             return(
@@ -53,7 +53,7 @@ const Update = () => {
                     {
                         ctx.pending.isPending ? <Loading isPending = {ctx.pending.isPending}/>
                         : 
-                        ctx.shows.pastShows.length === 0? <p className="defaultText">No available shows <span><TfiFaceSad size={25}/></span></p>
+                        ctx.shows.pastShows.length === 0? <p className="defaultText"><span><img src={logo} alt=""/></span>NO AVAILABLE SHOWS. </p>
                         :
                         ctx.shows.pastShows.map((show,index)=>{
                             return(

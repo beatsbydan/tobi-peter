@@ -1,7 +1,7 @@
 import './Unauthorized.css'
-import {MdNoEncryptionGmailerrorred} from 'react-icons/md'
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import logo from '../../../../Assets/logo.png'
 
 const Unauthorized = () => {
     return(
@@ -12,8 +12,8 @@ const Unauthorized = () => {
             exit={{x:-window.innerWidth, opacity:0, transition: {duration: 0.7}}}
         >
             <div className="element">
-                <MdNoEncryptionGmailerrorred className='caution' size={70} color='#1D3557'/>
-                <h1>You're not logged in...</h1>
+                <img src={logo} alt=""/>
+                <h3>YOU'RE NOT LOGGED IN...</h3>
                 <p>Click<span> <Link to ={'/admin/login'}>HERE</Link> </span>to login.</p>
             </div>
         </motion.div>

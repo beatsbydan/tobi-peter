@@ -41,7 +41,7 @@ const Shows = () => {
                     {
                         ctx.pending.isPending ? <Loading isPending = {ctx.pending.isPending}/>
                         : 
-                        ctx.shows.upcomingShows.length === 0 ? <p className="defaultText"><span><img src={logo} alt=""/></span>No shows available. </p>                            
+                        ctx.shows.upcomingShows.length === 0 ? <p className="defaultText"><span><img src={logo} alt=""/></span>COMING SOON. </p>                            
                         : 
                         ctx.shows.upcomingShows.map((show,index)=>{
                             return(
@@ -67,7 +67,7 @@ const Shows = () => {
                     {
                         ctx.pending.isPending ? <Loading isPending = {ctx.pending.isPending}/>
                         : 
-                        ctx.shows.pastShows.length === 0? <p className="defaultText"><span><img src={logo} alt=""/></span>No shows available. </p>
+                        ctx.shows.pastShows.length === 0? <p className="defaultText"><span><img src={logo} alt=""/></span>COMING SOON. </p>
                         :
                         ctx.shows.pastShows.map((show,index)=>{
                             return(

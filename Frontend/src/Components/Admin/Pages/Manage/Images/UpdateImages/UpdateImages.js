@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import ManageContext from '../../../../Context/ManageContext/ManageContext'
 import Image from './Image/Image'
 import Loading from '../../../../../UI/Loading/Loading'
-import {TfiFaceSad} from 'react-icons/tfi'
+import logo from '../../../../../../Assets/logo.png'
 import {BiImages} from 'react-icons/bi'
 import {motion} from 'framer-motion'
 
@@ -21,7 +21,7 @@ const UpdateImages = () => {
       <ul className="imagesList">
         {ctx.pending.isPending ? <Loading isPending={ctx.pending.isPending}/> 
         : 
-        ctx.images.length === 0 ?  <p className="defaultText">No images available. <span><TfiFaceSad size={25}/></span></p>
+        ctx.images.length === 0 ?  <p className="defaultText"><span><img src={logo} alt=""/></span>NO IMAGES AVAILABLE.</p>
         : 
         ctx.images.map((image, index)=>{
           return(

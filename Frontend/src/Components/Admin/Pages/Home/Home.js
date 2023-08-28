@@ -11,8 +11,8 @@ import {BsTicketPerforated} from 'react-icons/bs'
 import {BiRightArrowAlt} from 'react-icons/bi'
 import Chart from './Chart/Chart'
 import React from 'react'
-import {TfiFaceSad} from 'react-icons/tfi'
 import {motion} from 'framer-motion'
+import logo from '../../../../Assets/logo.png'
 
 const Home = () => {
     const authCtx = useContext(AuthContext)
@@ -78,7 +78,10 @@ const Home = () => {
                     <p>The world ain't ready for this new project!</p>
                     <div className="myNewSong">
                         <div className="myNewSongBlock">
-                            {!song ? <p className="defaultText">Song unavailable. <span><TfiFaceSad size={25}/></span></p> : <img className='newSongImg' src={song?.coverArt} alt =''/>}
+                            {
+                                !song ? <p className="defaultText"><span><img src={logo} alt=""/></span>SONG UNAVAILABLE. </p> 
+                                : <img className='newSongImg' src={song.coverArt} alt =''/>
+                            }
                         </div>
                         <p>Title: <span>{!song ? 'Unavailable.' : song.title?.toUpperCase()}</span></p>
                         {
@@ -114,7 +117,7 @@ const Home = () => {
                             </div>
                         </div>
                         :
-                        <p className="defaultText">No show available. <span><TfiFaceSad size={25}/></span></p>
+                        <p className="defaultText"><span><img src={logo} alt=""/></span>NO SHOW AVAILABLE. </p>
                     }
                 </div>
             </div>

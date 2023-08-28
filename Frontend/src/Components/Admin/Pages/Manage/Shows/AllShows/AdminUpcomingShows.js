@@ -6,7 +6,7 @@ import {AiOutlineArrowLeft} from 'react-icons/ai'
 import {motion} from 'framer-motion'
 import Loading from '../../../../../UI/Loading/Loading'
 import {useNavigate} from 'react-router-dom'
-import {TfiFaceSad} from 'react-icons/tfi'
+import logo from '../../../../../../Assets/logo.png'
 
 const AdminUpcomingShows = () => {
     const ctx = useContext(ShowsContext)
@@ -25,7 +25,7 @@ const AdminUpcomingShows = () => {
                 {
                     ctx.pending.isPending? <Loading isPending={ctx.pending.isPending}/> 
                 :
-                    ctx.shows.myShows.upcomingShows.length === 0 ? <p className="defaultText">No shows available. <span><TfiFaceSad size={25}/></span></p>                            
+                    ctx.shows.myShows.upcomingShows.length === 0 ? <p className="defaultText"><span><img src={logo} alt=""/></span>NO AVAILABLE SHOWS. </p>                            
                 :
                     ctx.shows.myShows.upcomingShows.map((show,index)=>{
                         return(
