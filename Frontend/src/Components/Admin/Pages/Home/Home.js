@@ -68,7 +68,7 @@ const Home = () => {
                 </div>
                 <div className="subscribers">
                     <h5>SUBSCRIBERS</h5>
-                    <p>Yoo! You've got <span>{homeCtx.subscribers?.length || 0}</span> subscribers!</p>
+                    <p>Yoo! You've got <span>{homeCtx.subscribers?.length || 0}</span> subscriber(s)!</p>
                 </div>
             </div>
             <div className="events columnFlex">
@@ -83,7 +83,7 @@ const Home = () => {
                                 : <img className='newSongImg' src={song.coverArt} alt =''/>
                             }
                         </div>
-                        <p>Title: <span>{!song ? 'Unavailable.' : song.title?.toUpperCase()}</span></p>
+                        {!song ? '' : <p>Title: {song.title?.toUpperCase()}</p>}
                         {
                             song ? <StreamingPlatforms song={song} isEmpty={false}/>
                             :

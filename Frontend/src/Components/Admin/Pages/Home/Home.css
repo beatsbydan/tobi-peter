@@ -13,6 +13,9 @@
     color: #495464;
     text-align: center;
 }
+.myNewSongBlock .defaultText{
+    margin-top: 1.5rem;
+}
 .adminHome h4{
     color: #1D3557;
     text-align: center;
