@@ -6,9 +6,6 @@
 .adminHome p{
     font-size: 1rem;
 }
-.adminHome .defaultText{
-    font-size: 1.1rem;
-}
 .adminHome p, .adminHome h5{
     color: #495464;
     text-align: center;
