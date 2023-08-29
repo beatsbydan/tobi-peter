@@ -10,7 +10,7 @@ import Loading from '../../../../UI/Loading/Loading'
 
 const ImageCarousel = () => {
     const ctx = useContext(Context)
-
+    // Create a way to make the carousel's view dynamic at the mobile end
     return (
         <div className='imageCarousel'>
             {

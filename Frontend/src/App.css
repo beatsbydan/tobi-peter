@@ -63,6 +63,7 @@ a {
     -webkit-tap-highlight-color: transparent;
 }
 .defaultText{
+  width: 100%;
   font-weight: 500;
   font-size:0.85rem;
   color: #495464;

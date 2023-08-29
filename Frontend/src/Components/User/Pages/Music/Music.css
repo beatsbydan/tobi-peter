@@ -26,15 +26,12 @@
 .music a{
     color:#495464;
 }
-.stats{
+.imageCarouselBlock{
     width: 100%;
-    margin-top:4em;
+    margin:4em auto;
     padding: 4.5rem 2.5rem;
     border-radius: 0.6rem;
     background-color: #D9D9D936;
-    display:flex;
-    justify-content: space-between;
-    align-items: stretch;
 }
 .stats div{
     width: 33%;

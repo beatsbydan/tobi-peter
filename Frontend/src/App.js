@@ -11,6 +11,7 @@ import HomeContextProvider from './Components/Admin/Context/HomeContext/HomeCont
 import AlertContextProvider from './Components/UI/AlertContext/AlertContextProvider'
 import AlertPopUp from './Components/UI/AlertPopUp/AlertPopUp'
 import AnimatedRoutes from './Components/AnimatedRoutes/AnimatedRoutes';
+import UnderMaintenance from './Components/UI/UnderMaintenance/UnderMaintenance';
 
 function App() {
   const location = useLocation()
@@ -24,10 +25,11 @@ function App() {
                   <div className="App">
                     <AlertPopUp/>
                     <header>
-                      {location.pathname.includes("/admin") ? <AdminNavbar/> : <Navbar/>}
+                      {/* { location.pathname.includes("/admin") ? <AdminNavbar/> : <Navbar/>} */}
                     </header>
                     <main>
-                      <AnimatedRoutes/>
+                      {/* <AnimatedRoutes/> */}
+                      <UnderMaintenance/>
                     </main>
                     <Footer/>
                   </div>

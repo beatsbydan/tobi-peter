@@ -36,23 +36,14 @@ const Music = () => {
                 <p>My major genres are EDM, Afrobeat, Amapiano, Pop, Dance and House music.</p>
                 <p>You might recognize me from Instagram as the guy that makes remixes in a blue agbada and the overhyped reactions.</p>
             </div>
-            <ImageCarousel/>
+            <div className="imageCarouselBlock">
+                <ImageCarousel/>
+            </div>
             <div className="streamingPlatformsBlock">
                 <p>Check out my music on any of these streaming platforms: </p>
                 {song && <StreamingPlatforms
                     song={song}
                 />}
-            </div>
-            <div className="stats">
-                <div>
-                    <p><span>380k+</span>STREAMS ACROSS ALL PLATFORMS</p>
-                </div>
-                <div>
-                    <p><span>4.4M+</span>VIEWS ON TIKTOK</p>
-                </div>
-                <div>
-                    <p><span>4.3k+</span>MONTHLY LISTENERS</p>
-                </div>
             </div>
             <div className="statsExtras">
                 <div>
