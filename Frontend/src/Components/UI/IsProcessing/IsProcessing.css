@@ -12,7 +12,7 @@
     right: 0;
     top: 20.7%;
     transform: translateX(150%);
-    border-radius: 0.6rem;
+    border-radius: 0.3rem;
 }
 .true{
     animation: popIn 1s cubic-bezier(1,-0.04, 0, 1.56) forwards;
