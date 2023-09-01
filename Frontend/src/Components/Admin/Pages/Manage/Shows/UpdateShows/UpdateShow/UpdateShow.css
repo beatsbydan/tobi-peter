@@ -1,18 +1,18 @@
-.updateBlog{
+.update{
     width: 100%;
     max-width: 700px;
     margin: auto;
 }
-.updateBlog h2{
+.update h2{
     text-align: center;
     color: #1D3557;
     margin-bottom: 1.5rem;
 }
-.updateBlog h2 span{
+.update h2 span{
     display: block;
     margin-top:0.5rem
 }
-.updateBlog form{
+.update form{
     display: flex;
     flex-direction: column;
     gap: 1rem;

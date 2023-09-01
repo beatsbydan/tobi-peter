@@ -1,4 +1,4 @@
-import './Create.css'
+import './CreateShows.css'
 import InputComponent from '../../../../../UI/InputComponent/InputComponent'
 import {BsEmojiWink} from 'react-icons/bs'
 import {useContext} from 'react'
@@ -6,11 +6,9 @@ import ShowsContext from '../../../../Context/ManageContext/ShowsContext/ShowsCo
 import {useNavigate} from 'react-router-dom'
 import useAlert from '../../../../../../Hooks/useAlert'
 import {motion} from 'framer-motion'
-import Context from '../../../../../User/Context/Context'
 
-const Create = () => {
+const CreateShows = () => {
     const ctx = useContext(ShowsContext)
-    const userCtx = useContext(Context)
     const {setAlert} = useAlert()
     const navigate = useNavigate()
     const handleSubmit = (e) => {
@@ -19,7 +17,6 @@ const Create = () => {
         .then(success=>{
             if(success.yes){
                 setAlert('success', 'Show Created!')
-                userCtx.getShows()
                 setTimeout(()=>{
                     navigate('/admin/manage')
                 },1500)
@@ -42,7 +39,7 @@ const Create = () => {
                     type={"text"}
                     placeholder={"Enter Title"}
                     value={ctx.createData.title}
-                    onChange={ctx.handleChange}
+                    onChange={ctx.handleCreateChange}
                 />
                 <InputComponent
                     id={"venue"}
@@ -51,7 +48,7 @@ const Create = () => {
                     type={"text"}
                     placeholder={"Enter Venue"}
                     value={ctx.createData.venue}
-                    onChange={ctx.handleChange}
+                    onChange={ctx.handleCreateChange}
                 />
                 <InputComponent
                     id={"date"}
@@ -60,7 +57,7 @@ const Create = () => {
                     type={"date"}
                     placeholder={"Enter Date"}
                     value={ctx.createData.date}
-                    onChange={ctx.handleChange}
+                    onChange={ctx.handleCreateChange}
                 />
                 <InputComponent
                     id={"ticketLink"}
@@ -69,7 +66,7 @@ const Create = () => {
                     type={"link"}
                     placeholder={"Enter Link"}
                     value={ctx.createData.ticketLink}
-                    onChange={ctx.handleChange}
+                    onChange={ctx.handleCreateChange}
                 />
                 <div className = "formActions">
                     <button type='submit'>CREATE</button>
@@ -78,4 +75,4 @@ const Create = () => {
         </motion.div>
     )
 }
-export default Create
+export default CreateShows

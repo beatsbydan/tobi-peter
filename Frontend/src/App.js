@@ -11,33 +11,38 @@ import HomeContextProvider from './Components/Admin/Context/HomeContext/HomeCont
 import AlertContextProvider from './Components/UI/AlertContext/AlertContextProvider'
 import AlertPopUp from './Components/UI/AlertPopUp/AlertPopUp'
 import AnimatedRoutes from './Components/AnimatedRoutes/AnimatedRoutes';
-import UnderMaintenance from './Components/UI/UnderMaintenance/UnderMaintenance';
+import Processing from './Components/UI/IsProcessing/Processing';
+import ProcessingContextProvider from './Components/UI/IsProcessing/ProcessingContext/ProcessingContextProvider';
+// import UnderMaintenance from './Components/UI/UnderMaintenance/UnderMaintenance';
 
 function App() {
   const location = useLocation()
   return (
     <AlertContextProvider>
-      <ContextProvider>
-        <AuthContextProvider>
-            <ManageContextProvider>
-              <ShowsContextProvider>
-                <HomeContextProvider>
-                  <div className="App">
-                    <AlertPopUp/>
-                    <header>
-                      {/* { location.pathname.includes("/admin") ? <AdminNavbar/> : <Navbar/>} */}
-                    </header>
-                    <main>
-                      {/* <AnimatedRoutes/> */}
-                      <UnderMaintenance/>
-                    </main>
-                    <Footer/>
-                  </div>
-                </HomeContextProvider>
-              </ShowsContextProvider>
-            </ManageContextProvider>
-        </AuthContextProvider>
-      </ContextProvider>
+      <ProcessingContextProvider>
+        <ContextProvider>
+          <AuthContextProvider>
+              <ManageContextProvider>
+                <ShowsContextProvider>
+                  <HomeContextProvider>
+                    <div className="App">
+                      <AlertPopUp/>
+                      <header>
+                        { location.pathname.includes("/admin") ? <AdminNavbar/> : <Navbar/>}
+                      </header>
+                      <main>
+                        <Processing/>
+                        <AnimatedRoutes/>
+                        {/* <UnderMaintenance/> */}
+                      </main>
+                      <Footer/>
+                    </div>
+                  </HomeContextProvider>
+                </ShowsContextProvider>
+              </ManageContextProvider>
+          </AuthContextProvider>
+        </ContextProvider>
+      </ProcessingContextProvider>
     </AlertContextProvider>
   );
 }

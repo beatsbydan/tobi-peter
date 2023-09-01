@@ -20,7 +20,6 @@ const WhatsNew = () => {
             youtubeMusic: ''
         }
     }
-
     return ( 
         <motion.div 
             className="whatsNew"

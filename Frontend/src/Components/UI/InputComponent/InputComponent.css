@@ -15,16 +15,19 @@
     font-weight: 500;
 }
 .formElement label small{
-    color: red;
+    color: rgba(255, 0, 0, 0.936);
     font-size: 0.75rem;
     font-weight: 600;
 }
-.formElement input{
+.formElement input, .formElement textarea{
     padding: 0.8rem;
     border-radius: 0.3rem;
     border: 0.1rem solid #1D3557;
     color: #495464;
     background-color: transparent;
+}
+.formElement textarea{
+    height: 150px;
 }
 .formElement input::placeholder{
     font-weight: 400;
@@ -47,9 +50,9 @@
     right:1rem;
     margin-bottom: 0;
 }
-.formElement input:focus, .passwordBlock input:focus{
+.formElement input:focus, .passwordBlock input:focus, .formElement textarea:focus{
     outline: none;
 }
-.formElement input.errorField, .passwordBlock input.errorField{
+.formElement input.errorField, .passwordBlock input.errorField, .formElement textarea.errorField{
     border-color: red;
 }

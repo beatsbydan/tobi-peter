@@ -6,6 +6,8 @@ import {FaRegThumbsUp} from 'react-icons/fa'
 import {useState, useContext} from 'react'
 import UpdateEvent from '../../../../../../UI/UpdateEvent/UpdateEvent'
 import Context from '../../../../../../User/Context/Context'
+import {Link} from 'react-router-dom'
+import {TiEdit} from 'react-icons/ti'
 
 const Show = (props) => {
     const delay = 100;
@@ -21,7 +23,7 @@ const Show = (props) => {
     
     const [isOpen,setIsOpen] = useState({
         complete:false,
-        delete:false
+        delete:false,
     })
     const handleCompleteIsOpen = () => {
         setIsOpen({
@@ -35,11 +37,17 @@ const Show = (props) => {
     }
     const [isVisible, setIsVisible] = useState({
         complete:false,
-        delete:false
+        delete:false,
+        edit: false,
     })
     const handleCompleteVisibility = () => {
         setIsVisible({
             complete:!isVisible.complete
+        })
+    }
+    const handleEditVisibility = () => {
+        setIsVisible({
+            edit:!isVisible.edit
         })
     }
     const handleDeleteVisibility = () => {
@@ -72,18 +80,28 @@ const Show = (props) => {
     return ( 
         <li className="editableShow" style={{ animationDelay: `${props.myId * delay}ms` }}>
             <div className="editableActions">
-                {!props.isComplete &&
-                    <div className="complete">
-                        <small className={isVisible.complete ? "visible altText" : "altText"}>Complete</small>
-                        <FaRegThumbsUp onClick={handleCompleteIsOpen} onMouseEnter={handleCompleteVisibility} onMouseLeave={handleCompleteVisibility} size={25} cursor={'pointer'} color='#1D3557'/>
+                <div className="editLeft">
+                    <div className="edit">
+                        <small className={isVisible.edit ? "visible altText" : "altText"}>Edit</small>
+                        <Link onClick={props.getShow} to={`/admin/manage/shows/updateShows/updateShow/${props.id}`}>
+                            <TiEdit size={27} onMouseEnter={handleEditVisibility} onMouseLeave={handleEditVisibility}/>
+                        </Link>
                     </div>
-                }
-                <div className="remove">
-                    <small className={isVisible.delete ?"visible altText" : "altText"}>Delete</small>
-                    <MdOutlineDelete onClick={handleDeleteIsOpen} onMouseEnter={handleDeleteVisibility} onMouseLeave={handleDeleteVisibility} size={27} cursor={'pointer'} color='#1D3557'/>
                 </div>
+                <div className="editRight">
+                    {!props.isComplete &&
+                        <div className="complete">
+                            <small className={isVisible.complete ? "visible altText" : "altText"}>Complete</small>
+                            <FaRegThumbsUp onClick={handleCompleteIsOpen} onMouseEnter={handleCompleteVisibility} onMouseLeave={handleCompleteVisibility} size={25} cursor={'pointer'} color='#1D3557'/>
+                        </div>
+                    }
+                    <div className="remove">
+                        <small className={isVisible.delete ?"visible altText" : "altText"}>Delete</small>
+                        <MdOutlineDelete onClick={handleDeleteIsOpen} onMouseEnter={handleDeleteVisibility} onMouseLeave={handleDeleteVisibility} size={27} cursor={'pointer'} color='rgba(255, 0, 0, 0.936)'/>
+                    </div>
+                </div>                
             </div>
-            <div className='show'>
+            <div className="show">
                 <div className='left'>
                     <div className='date'>
                         <small className='month'>{txtMonth}</small>

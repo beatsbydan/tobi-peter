@@ -1,4 +1,4 @@
-import './Update.css'
+import './UpdateShows.css'
 import {VscSortPrecedence} from 'react-icons/vsc'
 import logo from '../../../../../../Assets/logo.png'
 import {useContext} from 'react'
@@ -33,6 +33,8 @@ const Update = () => {
                                     deletePrompt={()=>ctx.deleteShow(show._id)}
                                     key={index}
                                     myId={index}
+                                    id={show._id}
+                                    getShow={()=>ctx.getShow(show._id)}
                                     isComplete ={false}
                                     title={show.title}
                                     venue={show.venue}
@@ -61,6 +63,9 @@ const Update = () => {
                                     completePrompt={()=>ctx.completeShow(show._id)}
                                     deletePrompt={()=>ctx.deleteShow(show._id)}
                                     key={index}
+                                    myId={index}
+                                    id={show._id}
+                                    getShow={()=>ctx.getShow(show._id)}
                                     isComplete ={true}
                                     title={show.title}
                                     venue={show.venue}

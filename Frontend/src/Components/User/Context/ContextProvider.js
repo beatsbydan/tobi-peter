@@ -3,9 +3,11 @@ import {useState, useEffect, useReducer, useCallback} from 'react'
 import ValidateWhatsNew from '../Pages/WhatsNew/ValidateWhatsNew'
 import axios from 'axios'
 import useAlert from '../../../Hooks/useAlert'
+import useIsProcessing from '../../../Hooks/useIsProcessing'
 
 const ContextProvider = (props) => {
     const {setAlert} = useAlert()
+    const {setProcessing} = useIsProcessing()
 
     // PEND STATE
 
@@ -104,16 +106,21 @@ const ContextProvider = (props) => {
         setEmail(e.target.value)
     }
     const handleSubmit = (e) => {
+        setProcessing(true)
         e.preventDefault()
         ValidateWhatsNew(email)
         .then((res)=>{
             setError(res)
             if(res.none){
                 setEmail('');
+                setProcessing(false)
                 setAlert('success', 'Subscription Successful!')
             }
             else{
-                setAlert('failure', 'Subscription Unsuccessful')
+                setTimeout(()=>{
+                    setProcessing(false)
+                }, 1000)
+                setAlert('failure', 'Something went wrong!')
             }
         })
     }

@@ -3,9 +3,11 @@ import {useCallback, useReducer} from 'react'
 import ValidateAuth from '../../Auth/ValidateAuth'
 import useAlert from '../../../../Hooks/useAlert'
 import axios from 'axios'
+import useIsProcessing from '../../../../Hooks/useIsProcessing'
 
 const AuthContextProvider = (props) => {
     const {setAlert} = useAlert()
+    const {setProcessing} = useIsProcessing()
 
     // AUTH DETAILS
 
@@ -232,6 +234,7 @@ const AuthContextProvider = (props) => {
         dispatchAuthDetails({type: 'CHANGE_LOGIN_PASSWORD', value: e.target.value})
     }
     const handleLogInSubmit = async () => {
+        setProcessing(true)
         let success = {};
         const logInData = {
             email: authDetails.logInEmail,
@@ -245,9 +248,13 @@ const AuthContextProvider = (props) => {
                 success.yes = true
                 dispatchAuthDetails({type: "CLEAR"})
                 setIsLoggedIn(true)
+                setProcessing(false)
                 setAccessToken(res.parameters.accessToken)
             }
             else{
+                setTimeout(()=>{
+                    setProcessing(false)
+                },1000)
                 success.yes = false
                 setAlert('failure', 'Login Unsuccessful!')
             }
@@ -264,6 +271,7 @@ const AuthContextProvider = (props) => {
         dispatchAuthDetails({type: 'CHANGE_REG_PASSWORD', value: e.target.value})
     }
     const handleRegisterSubmit = async () => {
+        setProcessing(true)
         let success = {}
         const resetData = {
             email: authDetails.regEmail,
@@ -275,9 +283,13 @@ const AuthContextProvider = (props) => {
             dispatchAuthErrors({type:"SET_REG_ERRORS", value:res.errors})
             if(res.errors.none){
                 success.yes = true
+                setProcessing(false)
                 dispatchAuthDetails({type: "CLEAR"})
             }
             else{
+                setTimeout(()=>{
+                    setProcessing(false)
+                },1000)
                 setAlert('failure', 'Registration Unsuccessful!')
                 success.yes = false
             }
@@ -291,6 +303,7 @@ const AuthContextProvider = (props) => {
         dispatchAuthDetails({type: 'SET_RESET_EMAIL', value: e.target.value})
     }
     const handleResetEmailSubmit = async () => {
+        setProcessing(true)
         let success = {}
         const regData = {
             email: authDetails.resetEmail,
@@ -301,9 +314,13 @@ const AuthContextProvider = (props) => {
             dispatchAuthErrors({type:"SET_RESET_ERRORS", value:res.errors})
             if(res.errors.none){
                 success.yes = true
+                setProcessing(false)
                 dispatchAuthDetails({type: "CLEAR"})
             }
             else{
+                setTimeout(()=>{
+                    setProcessing(false)
+                },1000)
                 setAlert('failure', 'Reset Unsuccessful!')
                 success.yes = false
             }
@@ -320,6 +337,7 @@ const AuthContextProvider = (props) => {
         dispatchAuthDetails({type: 'SET_CONFIRM_PASSWORD', value: e.target.value})
     }
     const handleChangePasswordSubmit = async () => {
+        setProcessing(true)
         let success = {}
         const changeData = {
             newPassword: authDetails.newPassword,
@@ -330,10 +348,14 @@ const AuthContextProvider = (props) => {
         .then(res=>{
             dispatchAuthErrors({type:"SET_CHANGE_ERRORS", value:res.errors})
             if(res.errors.none){
+                setProcessing(false)
                 success.yes = true
                 dispatchAuthDetails({type: "CLEAR"})
             }
             else{
+                setTimeout(()=>{
+                    setProcessing(false)
+                },1000)
                 setAlert('failure', 'Change Unsuccessful!')
                 success.yes = false
             }
@@ -356,6 +378,7 @@ const AuthContextProvider = (props) => {
     // LOGOUT
 
     const logOut = async () => {
+        setProcessing(true)
         let success = {}
         const logOutApi = `${process.env.REACT_APP_BASE_URL}/admin/logout`
         await axios.get(logOutApi,{
@@ -368,9 +391,13 @@ const AuthContextProvider = (props) => {
             if(res.status === 204){
                 success.yes = true
                 setIsLoggedIn(false)
+                setProcessing(false)
             }
         })
         .catch(err=>{
+            setTimeout(()=>{
+                setProcessing(false)
+            },1000)
             success.yes = false
             setAlert('failure', 'Logout unsuccessful!')
             return err

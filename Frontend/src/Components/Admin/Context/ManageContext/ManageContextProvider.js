@@ -1,18 +1,20 @@
-import {useState, useEffect, useReducer, useContext} from 'react'
+import {useState, useEffect, useReducer} from 'react'
 import ManageContext from './ManageContext'
 import useAlert from '../../../../Hooks/useAlert'
 import useAuth from '../../../../Hooks/useAuth'
 import ValidateSong from '../../Pages/Manage/Song/ValidateSong'
 import axios from 'axios'
-import Context from '../../../User/Context/Context'
 import { ValidateFiles } from '../../Pages/Manage/Images/CreateImages/ValidateFiles'
 import { ValidateBlogs } from '../../Pages/Manage/Blogs/CreateBlogs/ValidateBlogs'
+import useIsProcessing from '../../../../Hooks/useIsProcessing' 
+import useUserContext from '../../../../Hooks/useUserContext'
 
 const ManageContextProvider = (props) => {
     const {setAlert} = useAlert()
+    const {setProcessing} = useIsProcessing()
+    const {getBlogs: getUserBlogs, getSong: getRecentSong, getImages: getUserImages} = useUserContext()
     const {authDetails} = useAuth()
     const [song, setSong] = useState({})
-    const userCtx = useContext(Context)
     const [allSongs, setAllSongs] = useState([])
 
     // HELPER FUNCTIONS
@@ -27,9 +29,11 @@ const ManageContextProvider = (props) => {
     }
 
     // PEND STATE
+    
     const initialPendState = {
         isPending: false   
     }
+    
     const pendReducer = (state,action) =>{
         if(action.type === 'PENDING'){
             return{
@@ -42,6 +46,7 @@ const ManageContextProvider = (props) => {
             }
         }
     }
+    
     const [pending, dispatchPending] = useReducer(pendReducer, initialPendState)
 
     // SONG
@@ -57,16 +62,19 @@ const ManageContextProvider = (props) => {
                 }
             })
             .catch(err=>{
-                return
+                return err
             })
         },3000)
     }
+    
     const getSong = async (id) => {
+        setProcessing(true)
         dispatchPending({type: 'PENDING'})
         await axios.get(`${process.env.REACT_APP_BASE_URL}/song/${id}`)
         .then(res=>{
             if(res.status === 200){
                 setSong(res.data.song)
+                setProcessing(false)
                 setUpdateData({
                     date: getFormattedDate(res.data.song.releaseDate),
                     title: res.data.song.title,
@@ -82,10 +90,16 @@ const ManageContextProvider = (props) => {
             }
         })
         .catch(err=>{
-            return
+            setTimeout(()=>{
+                setProcessing(false)
+            },1000)
+            setAlert('failure', 'Something went wrong!')
+            return err
         })
     }
+    
     const deleteSong = async (id) =>{
+        setProcessing(true)
         let success = {}
         await axios.delete(`${process.env.REACT_APP_BASE_URL}/song/delete/${id}`,{
             headers:{
@@ -98,23 +112,31 @@ const ManageContextProvider = (props) => {
                 success.yes = true
                 setAlert('success', 'Song Deleted!')
                 getSongs()
-                userCtx.getSong()
+                setProcessing(false)
+                getRecentSong()
             }
         })
         .catch(err=>{
             success.yes = false
-            setAlert('failure', 'Song not deleted!')
-            return
+            setTimeout(()=>{
+                setProcessing(false)
+            },1000)
+            setAlert('failure', 'Something went wrong!')
+            return err
         })
         return success
     }
+    
     useEffect(()=>{
         getSongs()
     },[])
     
     const [createDataErrors, setCreateDataErrors] = useState({})
+    
     const [updateDataErrors, setUpdateDataErrors] = useState({})
+    
     const [createFile, setCreateFile] = useState({})
+    
     const [createData, setCreateData] = useState({
         date:'',
         title:'',
@@ -126,6 +148,7 @@ const ManageContextProvider = (props) => {
         boomPlay: '',
         youtubeMusic: ''
     })
+    
     const [updateData, setUpdateData] = useState({
         date:'',
         title:'',
@@ -137,22 +160,27 @@ const ManageContextProvider = (props) => {
         boomPlay: '',
         youtubeMusic: ''
     })
+    
     const handleCreateFileChange = (e) => {
         setCreateFile(e.target.files[0])
     }
+    
     const handleCreateDataChange = (e) => {
         const {id, value} = e.target;
         setCreateData(prev=>{
             return {...prev, [id]:value}
         })
     }
+    
     const handleUpdateDataChange = (e) => {
         const {id, value} = e.target;
         setUpdateData(prev=>{
             return {...prev, [id]:value}
         })
     }
+    
     const handleCreateSubmit = async () => {
+        setProcessing(true)
         let success = {}
         const data = {
             title: createData.title,
@@ -173,8 +201,9 @@ const ManageContextProvider = (props) => {
         .then(res=>{
             setCreateDataErrors(res)
             if(res.none){
+                setProcessing(false)
                 getSongs()
-                userCtx.getSong()
+                getRecentSong()
                 setCreateData({
                     date:'',
                     title:'',
@@ -190,13 +219,18 @@ const ManageContextProvider = (props) => {
                 success.yes = true
             }
             else{
+                setTimeout(()=>{
+                    setProcessing(false)
+                },1000)
                 success.yes = false
-                setAlert('failure', 'Song not created!')
+                setAlert('failure', 'Something went wrong!')
             }
         })
         return success
     }
+    
     const handleUpdateSubmit = async () => {
+        setProcessing(true)
         let success = {}
         const data = {
             title: updateData.title,
@@ -216,8 +250,9 @@ const ManageContextProvider = (props) => {
         .then(res=>{
             setUpdateDataErrors(res)
             if(res.none){
+                setProcessing(false)
                 getSongs()
-                userCtx.getSong()
+                getRecentSong()
                 setUpdateData({
                     date:'',
                     title:'',
@@ -232,37 +267,71 @@ const ManageContextProvider = (props) => {
                 success.yes = true
             }
             else{
+                setTimeout(()=>{
+                    setProcessing(false)
+                },1000)
                 success.yes = false
-                setAlert('failure', 'Song not updated!')
+                setAlert('failure', 'Something went wrong!')
             }
         })
         return success
     }
 
     // BLOGS
-    const [blogData, setBlogData] = useState({
+    
+    const [createBlogData, setCreateBlogData] = useState({
         title: '',
         author: '',
         text: '',
         link: ''
     })
-    const [blogErrors, setBlogErrors] = useState({})
+    
+    const [updateBlogData, setUpdateBlogData] = useState({
+        title: '',
+        author: '',
+        text: '',
+        link: ''
+    })
+    
+    const [createBlogErrors, setCreateBlogErrors] = useState({})
+    
+    const [updateBlogErrors, setUpdateBlogErrors] = useState({})
+    
     const [blogs, setBlogs] = useState([])
-    const handleBlogDataChange = (e) => {
+    
+    const handleCreateBlogDataChange = (e) => {
         const {id, value} = e.target
-        setBlogData(prev=>{
+        setCreateBlogData(prev=>{
             return {...prev, [id]: value}
         })
     }
-    const handleBlogSubmit = async () => {
+    
+    const handleUpdateBlogDataChange = (e) => {
+        const {id, value} = e.target
+        setUpdateBlogData(prev=>{
+            return {...prev, [id]: value}
+        })
+    }
+    
+    const handleCreateBlogSubmit = async () => {
+        setProcessing(true)
         let success = {}
-        await ValidateBlogs(blogData, authDetails.accessToken)
+        const data = {
+            title: createBlogData.title,
+            author: createBlogData.author,
+            text: createBlogData.text,
+            link: createBlogData.link,
+            type: 'create'
+        }
+        await ValidateBlogs(data, authDetails.accessToken)
         .then(res=>{
-            setBlogErrors(res)
+            setCreateBlogErrors(res)
             if(res.none){
                 getBlogs()
+                getUserBlogs()
+                setProcessing(false)
                 success.yes = true
-                setBlogData({
+                setCreateBlogData({
                     title: '',
                     author: '',
                     text: '',
@@ -270,12 +339,52 @@ const ManageContextProvider = (props) => {
                 })
             }
             else{
+                setTimeout(()=>{
+                    setProcessing(false)
+                },1000)
                 success.yes = false
-                setAlert('failure', 'Blog not created!')
+                setAlert('failure', 'Something went wrong!')
             }
         })
         return success
     }
+    
+    const handleUpdateBlogSubmit = async () => {
+        setProcessing(true)
+        let success = {}
+        const data = {
+            title: updateBlogData.title,
+            author: updateBlogData.author,
+            text: updateBlogData.text,
+            link: updateBlogData.link,
+            type: 'update'
+        }
+        await ValidateBlogs(data, authDetails.accessToken, blog._id)
+        .then(res=>{
+            setUpdateBlogErrors(res)
+            if(res.none){
+                getBlogs()
+                setProcessing(false)
+                getUserBlogs()
+                success.yes = true
+                setUpdateBlogData({
+                    title: '',
+                    author: '',
+                    text: '',
+                    link: ''
+                })
+            }
+            else{
+                setTimeout(()=>{
+                    setProcessing(false)
+                },1000)
+                success.yes = false
+                setAlert('failure', 'Something went wrong!')
+            }
+        })
+        return success
+    }
+    
     const getBlogs = () => {
         dispatchPending({type: 'PENDING'})
         setTimeout(()=>{
@@ -291,10 +400,13 @@ const ManageContextProvider = (props) => {
             })
         },3000)
     }
+    
     useEffect(()=>{
         getBlogs()
     },[])
+    
     const deleteBlog = async (id) => {
+        setProcessing(true)
         let success = {}
         await axios.delete(`${process.env.REACT_APP_BASE_URL}/blog/delete/${id}`,{
             headers:{
@@ -305,42 +417,86 @@ const ManageContextProvider = (props) => {
         .then(res=>{
             if(res.status === 200){
                 getBlogs()
+                getUserBlogs()
+                setProcessing(false)
                 success.yes = true
                 setAlert('success', 'Blog deleted!')
             }
         })
         .catch(err=>{
-            setAlert('failure', 'Blog not deleted!')
+            setTimeout(()=>{
+                setProcessing(false)
+            },1000)
+            setAlert('failure', 'Something went wrong!')
             success.yes = false
-            console.log(err)
             return err
         })
         return success
     }
+    
+    const [blog, setBlog] = useState({})
+    
+    const getBlog = (id) => {
+        setProcessing(true)
+        dispatchPending({type: 'PENDING'})
+        setTimeout(()=>{
+            axios.get(`${process.env.REACT_APP_BASE_URL}/blog/${id}`)
+            .then(res=>{
+                if(res.status === 200){
+                    setBlog(res.data.blog)
+                    setProcessing(false)
+                    setUpdateBlogData({
+                        title: res.data.blog.title,
+                        author: res.data.blog.author,
+                        text: res.data.blog.text,
+                        link: res.data.blog.link
+                    })
+                    dispatchPending({type: 'COMPLETED'})
+                }
+            })
+            .catch(err=>{
+                setTimeout(()=>{
+                    setProcessing(false)
+                },1000)
+                setAlert('failure', 'Something went wrong!')
+                return err
+            })
+        },3000)
+    }
 
     // BIO-IMAGES
+    
     const [files, setFiles] = useState({})
+    
     const [images, setImages] = useState([])
+    
     const handleFilesChange = (e) => {
         setFiles(e.target.files)
     }
+    
     const handleFilesSubmit = async () => {
+        setProcessing(true)
         let success = {}
         await ValidateFiles(files, authDetails.accessToken)
         .then(res=>{
             if(res.none){
                 getImages()
-                userCtx.getImages()
+                getUserImages()
+                setProcessing(false)
                 success.yes = true
                 setFiles({})
             }
             else{
                 success.yes = false
-                setAlert('failure', 'Image(s) not uploaded!')
+                setTimeout(()=>{
+                    setProcessing(false)
+                },1000)
+                setAlert('failure', 'Something went wrong!')
             }
         })
         return success
     }
+    
     const getImages = () => {
         dispatchPending({type: 'PENDING'})
         setTimeout(()=>{
@@ -356,10 +512,13 @@ const ManageContextProvider = (props) => {
             })
         },3000)
     }
+    
     useEffect(()=>{
         getImages()
     },[])
+    
     const deleteImage = async (url) => {
+        setProcessing(true)
         let success = {}
         const data = {
             url: url
@@ -374,12 +533,16 @@ const ManageContextProvider = (props) => {
             if(res.status === 200){
                 success.yes = true
                 getImages()
-                userCtx.getImages()
+                setProcessing(false)
+                getUserImages()
                 setAlert('success', 'Image deleted!')
             }
         })
         .catch(err=>{
-            setAlert('failure', 'Image not deleted!')
+            setTimeout(()=>{
+                setProcessing(false)
+            },1000)
+            setAlert('failure', 'Something went wrong!')
             success.yes = false
             return err
         })
@@ -393,21 +556,26 @@ const ManageContextProvider = (props) => {
         files:files,
         pending:pending,
         allSongs:allSongs,
-        blogData:blogData,
-        blogErrors: blogErrors,
+        createBlogData:createBlogData,
+        updateBlogData:updateBlogData,
+        createBlogErrors: createBlogErrors,
+        updateBlogErrors: updateBlogErrors,
         createData:createData,
         updateData:updateData,
         createDataErrors:createDataErrors,
         updateDataErrors:updateDataErrors,
         getSong:getSong,
+        getBlog: getBlog,
         deleteSong:deleteSong,
         deleteImage:deleteImage,
         deleteBlog:deleteBlog,
         handleCreateDataChange:handleCreateDataChange,
         handleUpdateDataChange:handleUpdateDataChange,
         handleCreateFileChange:handleCreateFileChange,
-        handleBlogDataChange: handleBlogDataChange,
-        handleBlogSubmit: handleBlogSubmit,
+        handleCreateBlogDataChange: handleCreateBlogDataChange,
+        handleUpdateBlogDataChange: handleUpdateBlogDataChange,
+        handleCreateBlogSubmit: handleCreateBlogSubmit,
+        handleUpdateBlogSubmit: handleUpdateBlogSubmit,
         handleFilesChange:handleFilesChange,
         handleCreateSubmit:handleCreateSubmit,
         handleUpdateSubmit:handleUpdateSubmit,

@@ -6,11 +6,9 @@ import {motion} from 'framer-motion'
 import {useNavigate} from 'react-router-dom'
 import useAlert from '../../../../../../Hooks/useAlert'
 import {BiImages} from 'react-icons/bi'
-import Context from '../../../../../User/Context/Context'
 
 const CreateImages = () => {
   const ctx = useContext(ManageContext)
-  const userCtx = useContext(Context)
   const navigate = useNavigate()
   const {setAlert} = useAlert()
 
@@ -20,7 +18,6 @@ const CreateImages = () => {
     .then(success=>{
         if(success.yes){
             setAlert('success', 'Image(s) Uploaded!')
-            userCtx.getImages()
             setTimeout(()=>{
                 navigate('/admin/manage')
             },1500)
@@ -41,7 +38,7 @@ const CreateImages = () => {
             <div className="customFile">
                 <input type="file" className='customFileInput' multiple onChange={ctx.handleFilesChange} />
             </div>
-            <small>Click image to add file(s) <span><MdOutlineAdsClick size={25}/></span></small>
+            <small>Click to add image(s) <span><MdOutlineAdsClick size={25}/></span></small>
         </div>
         <div className="formActions">
             <button type="submit">

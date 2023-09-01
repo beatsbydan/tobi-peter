@@ -7,6 +7,39 @@
     transform: translateX(-150%);
     animation: loaded 1.5s cubic-bezier(0,-0.34, 0, 1.33) forwards;
 }
+.editableBlog{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+    width: 100%;
+}
+.editableBlog a{
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1D3557;
+}
+
+.altText{
+    color: #495464;
+    padding: 0.2rem;
+    border-radius: 0.2rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background-color: #d9d9d97e;
+    visibility:hidden ;
+    transition: 0.1s ease;
+}
+.visible{
+    visibility: visible;
+}
+.remove, .edit{
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    gap: 0.3rem;
+}
 .myBlogItem{
     width: 100%;
     display: flex;

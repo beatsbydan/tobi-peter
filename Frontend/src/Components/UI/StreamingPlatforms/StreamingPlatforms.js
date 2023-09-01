@@ -9,57 +9,59 @@ import useAlert from '../../../Hooks/useAlert'
 
 const StreamingPlatforms = (props) => {
     const {setAlert} = useAlert()
-    const notify = () => {
-        if(Object.values(props.song.streamingLink).every(link=> link === "") && !props.isEmpty){
+    const links = props.song?.streamingLink
+
+    const notify = (e) => {
+        if(links[e.target.id] === ""){
+            setAlert('failure', 'Link unavailable')
+        }
+        if(Object.values(props.song.streamingLink).every(link => link === "") && !props.isEmpty){
             setAlert('failure', 'Song isn\'t released' )
         }
-        if(Object.values(props.song.streamingLink).every(link=> link === "") && props.isEmpty){
+        if(props.isEmpty){
             setAlert('failure', 'No Song available' )
-        }
-        if(Object.values(props.song.streamingLink).every(link=> link !== "") && !props.empty){
-            return props.song.streamingLink
         }
     }
     return ( 
         <ul className='streamingPlatforms'>
-            <a rel="noreferrer" target="_blank" onClick={notify} href={notify.appleMusic} >
-                <li>
+            <a rel="noreferrer" target="_blank" onClick={notify} href={links?.appleMusic !== "" ? links?.appleMusic : undefined} >
+                <li id="appleMusic">
                     <BiSolidMusic size={20}/>
                     APPLE MUSIC
                 </li>
             </a>
-            <a rel="noreferrer" target="_blank" onClick={notify} href={notify.spotify} >
-                <li>
+            <a rel="noreferrer" target="_blank" onClick={notify} href={links?.spotify !== "" ? links?.spotify : undefined } >
+                <li id="spotify">
                     <BiLogoSpotify size={20}/>
                     SPOTIFY
                 </li>
             </a>
-            <a rel="noreferrer" target="_blank" onClick={notify} href={notify.audiomack} >
-                <li>
+            <a rel="noreferrer" target="_blank" onClick={notify} href={links?.audiomack !== "" ? links?.audiomack : undefined} >
+                <li id="audiomack">
                     <SiAudiomack size={20}/>
                     AUDIOMACK
                 </li>
             </a>
-            <a rel="noreferrer" target="_blank" onClick={notify} href={notify.youtube} >
-                <li>
+            <a rel="noreferrer" target="_blank" onClick={notify} href={links?.youtube !== "" ? links?.youtube : undefined} >
+                <li id="youtube">
                     <BiLogoYoutube size={20}/>
                     YOUTUBE
                 </li>
             </a>
-            <a rel="noreferrer" target="_blank" onClick={notify} href={notify.tidal} >
-                <li>
+            <a rel="noreferrer" target="_blank" onClick={notify} href={links?.tidal !== "" ? links?.tidal : undefined} >
+                <li id="tidal">
                     <PiTidalLogoBold size={20}/>
                     TIDAL
                 </li>
             </a>
-            <a rel="noreferrer" target="_blank" onClick={notify} href={notify.boomPlay} >
-                <li>
+            <a rel="noreferrer" target="_blank" onClick={notify} href={links?.boomPlay !== "" ? links?.boomPlay : undefined} >
+                <li id="boomPlay">
                     <img src={boomplay} alt=''/>
                     BOOMPLAY
                 </li>
             </a>
-            <a rel="noreferrer" target="_blank" onClick={notify} href={notify.youtubeMusic} >
-                <li>
+            <a rel="noreferrer" target="_blank" onClick={notify} href={links?.youtubeMusic !== "" ? links?.youtubeMusic : undefined} >
+                <li id="youtubeMusic">
                     <BiLogoYoutube size={20}/>
                     YOUTUBE MUSIC
                 </li>

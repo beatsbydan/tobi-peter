@@ -1,0 +1,69 @@
+.isProcessing{
+    width: 100%;
+    max-width: 230px;
+    background-color: #1D3557;
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: top;
+    position: fixed;
+    z-index: 1000;
+    right: 0;
+    top: 17%;
+    transform: translateX(150%);
+    border-radius: 0.6rem;
+}
+.true{
+    animation: popIn 1s cubic-bezier(1,-0.04, 0, 1.56) forwards;
+}
+.false{
+    animation: popOut 1s cubic-bezier(1,-0.04, 0, 1.56) forwards;
+}
+.isProcessing small{
+    color:white;
+    font-weight:600;
+}
+.loadingBar{
+    width: 100%;
+    max-width: 100px;
+    position:relative;
+}
+.bar{
+    width:10px;
+    aspect-ratio:1;
+    background-color: white;
+    border-radius: 100%;
+    position:absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: loadingBar 0.5s ease-in-out infinite
+}
+@keyframes loadingBar{
+    0%{
+        left:0;
+    }
+    50%{
+        left:100%;
+    }
+    100%{
+        left: 0%;
+    }
+}
+@keyframes popIn{
+    0%{
+        transform: translateX(150%);
+    }
+    100%{
+        transform: translateX(0);
+    }
+}
+@keyframes popOut{
+    0%{
+        transform: translateX(0);
+    }
+    100%{
+        transform: translateX(150%);
+    }
+}

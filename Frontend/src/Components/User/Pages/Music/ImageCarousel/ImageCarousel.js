@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext} from 'react';
 import './ImageCarousel.css'
 import Context from '../../../Context/Context';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -10,7 +10,6 @@ import Loading from '../../../../UI/Loading/Loading'
 
 const ImageCarousel = () => {
     const ctx = useContext(Context)
-    // Create a way to make the carousel's view dynamic at the mobile end
     return (
         <div className='imageCarousel'>
             {
@@ -21,7 +20,7 @@ const ImageCarousel = () => {
                 <Swiper
                     modules={[Autoplay]}
                     spaceBetween={20}
-                    slidesPerView={2}
+                    slidesPerView={window.innerWidth < 650 ? 1 : 2}
                     autoplay={{
                         delay: 8000,
                         disableOnInteraction: false

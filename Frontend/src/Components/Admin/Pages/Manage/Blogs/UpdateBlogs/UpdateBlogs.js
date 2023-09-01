@@ -30,7 +30,10 @@ const UpdateBlogs = () => {
                 myId={index}
                 title={blog.title}
                 author={blog.author}
+                id={blog._id}
+                createdAt={blog.createdAt}
                 delete={()=>ctx.deleteBlog(blog._id)}
+                getBlog={()=>ctx.getBlog(blog._id)}
                 text={blog.text}
                 link={blog.link}
               />

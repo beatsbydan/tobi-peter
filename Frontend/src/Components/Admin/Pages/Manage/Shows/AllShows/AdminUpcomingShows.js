@@ -1,6 +1,6 @@
 import {useContext} from 'react'
 import ShowsContext from '../../../../Context/ManageContext/ShowsContext/ShowsContext'
-import Show from '../Update/Show/Show'
+import Show from '../UpdateShows/Show/Show'
 import './AllShows.css'
 import {AiOutlineArrowLeft} from 'react-icons/ai'
 import {motion} from 'framer-motion'
@@ -32,6 +32,8 @@ const AdminUpcomingShows = () => {
                             <Show
                                 completePrompt={()=>ctx.completeShow(show._id)}
                                 deletePrompt={()=>ctx.deleteShow(show._id)}
+                                id={show._id}
+                                getShow={()=>ctx.getShow(show._id)}
                                 key={index}
                                 myId={index}
                                 title={show.title}

@@ -9,10 +9,18 @@
 .editableActions{
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: flex-end;
+    align-items: last baseline;
+    justify-content: space-between;
     gap: 0.6rem;
     width: 100%;
+}
+.editRight{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap:0.6rem;
+    width:100%;
 }
 .altText{
     color: #495464;
@@ -22,15 +30,14 @@
     font-weight: 600;
     background-color: #d9d9d97e;
     visibility:hidden ;
-    transition: 0.3s ease;
+    transition: 0.1s ease;
 }
 .visible{
     visibility: visible;
 }
-.complete,.remove{
+.complete,.remove, .edit{
     display:flex;
     flex-direction:column;
-    justify-content:center;
     align-items: center;
     gap: 0.3rem;
 }
