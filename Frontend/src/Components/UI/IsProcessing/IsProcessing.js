@@ -4,7 +4,7 @@ import './IsProcessing.css'
 const IsProcessing = (props) => {
     return (
         <div className={props.isProcessing === true ? "isProcessing true" : props.isProcessing === false ? "isProcessing false" : "isProcessing"}>
-            <small>Alright, chill</small>
+            <small>Processing</small>
             <div className="loadingBar">
                 <div className="bar"></div>
             </div>
