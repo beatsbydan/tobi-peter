@@ -62,22 +62,14 @@ const Music = () => {
                 <div>
                     <h5>ESSENTIALS PLAYLIST</h5>
                     <p>Check out an ESSENTIALS PLAYLIST curated by me.</p>
-                    {/* <a target='_blank' rel="noreferrer" href='https://www.'>
+                    <a target='_blank' rel="noreferrer" href='https://music.apple.com/ng/playlist/tobi-peter-essentials/pl.33827f1b0b494d7d953f49fe2488622c'>
                         APPLE MUSIC
                         <BiRightArrowAlt size={15} className='arrow'/>
-                    </a> */}
-                    <Link to={'/unavailable'}>
-                        APPLE MUSIC 
-                        <BiRightArrowAlt className='arrow' size={15}/>
-                    </Link>
-                    {/* <a target='_blank' rel="noreferrer" href='https://www.'>
+                    </a>
+                    <a target='_blank' rel="noreferrer" href='https://open.spotify.com/playlist/7v1D1eCj6GOq1pFWXa7U2w?si=97cdbca3b1404e2a'>
                         SPOTIFY
                         <BiRightArrowAlt className='arrow' size={15}/>
-                    </a> */}
-                    <Link to={'/unavailable'}>
-                        SPOTIFY 
-                        <BiRightArrowAlt className='arrow' size={15}/>
-                    </Link>
+                    </a>
                 </div>
             </div>
             <div className="press">
