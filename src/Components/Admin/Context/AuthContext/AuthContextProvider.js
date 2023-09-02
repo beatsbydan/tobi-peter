@@ -399,7 +399,7 @@ const AuthContextProvider = (props) => {
                 setProcessing(false)
             },1000)
             success.yes = false
-            setAlert('failure', 'Logout unsuccessful!')
+            setAlert('failure', 'Something went wrong!')
             return err
         })
         return success
