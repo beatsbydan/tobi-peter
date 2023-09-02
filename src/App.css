@@ -90,7 +90,6 @@ a {
     left: 0;
     right: 0;
     transform: unset;
-    z-index: 1;
     margin: auto;
   }
 }
