@@ -14,6 +14,7 @@ const Show = (props) => {
     const date = new Date(props.date)
     const myDate = date.getDate().toString()
     const myMonth = date.getMonth()
+    const year = date.getFullYear()
     const userCtx = useContext(Context)
     const getMonth = (myMonth) => {
         date.setMonth(myMonth)
@@ -106,6 +107,7 @@ const Show = (props) => {
                     <div className='date'>
                         <small className='month'>{txtMonth}</small>
                         <h5 className='day'>{myDate}</h5>
+                        <small>{year}</small>
                     </div>
                     <h5 className='desc'>DJ</h5>
                     <div className='location'>
