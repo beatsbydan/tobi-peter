@@ -85,6 +85,9 @@ a {
   position: relative;
   min-height:150px;
 }
+link{
+  display: block;
+}
 @media screen and (max-width:750px){
   header{
     left: 0;
