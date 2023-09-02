@@ -27,6 +27,9 @@
     position:relative;
     right:0;
 }
+.year{
+    font-size: 0.65rem;
+}
 .left{
     display: flex;
     flex-direction: row;

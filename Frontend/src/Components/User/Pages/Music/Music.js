@@ -34,7 +34,7 @@ const Music = () => {
                 <p>Was gonna write this in third person but I changed my mind.</p>
                 <p>I’m an independent music producer and DJ based in Lagos, Nigeria. </p>
                 <p>My major genres are EDM, Afrobeat, Amapiano, Pop, Dance and House music.</p>
-                <p>You might recognize me from Instagram as the guy that makes remixes in a blue agbada and the overhyped reactions.</p>
+                <p>You might recognize me from Instagram as the guy that makes remixes in a blue agbada.</p>
             </div>
             <div className="imageCarouselBlock">
                 <ImageCarousel/>
