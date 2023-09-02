@@ -18,14 +18,10 @@ const Animation = () => {
                 <div className="portfolioBlock">
                     <div>
                         <h5>VIEW PORTFOLIO</h5>
-                        {/* <a target='_blank' rel="noreferrer" href='https://www.'>
+                        <a target='_blank' rel="noreferrer" href='https://www.behance.net/tobipeter8'>
                             BEHANCE
                             <BiRightArrowAlt/>
-                        </a> */}
-                        <Link to={'/unavailable'}>
-                            BEHANCE 
-                            <BiRightArrowAlt className='arrow' size={15}/>
-                        </Link>
+                        </a>
                     </div>
                     <div>
                         <h5>ANIMATION</h5>
