@@ -8,7 +8,7 @@
     justify-content: space-between;
     align-items: top;
     position: fixed;
-    z-index: 1000;
+    z-index: 10000;
     right: 0;
     top: 20.7%;
     transform: translateX(150%);
