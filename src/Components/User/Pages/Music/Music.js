@@ -5,7 +5,6 @@ import {BiRightArrowAlt} from 'react-icons/bi'
 import { motion } from 'framer-motion';
 import Blogs from './Blogs/Blogs';
 import ImageCarousel from './ImageCarousel/ImageCarousel';
-import {Link} from 'react-router-dom'
 
 const Music = () => {
     const song = {
@@ -50,14 +49,10 @@ const Music = () => {
                     <h5>DJs CHECK THIS OUT!</h5>
                     <p>Would you like to have some songs from me to spin during your sets?</p>
                     <p>Make a request below!</p>
-                    {/* <a target='_blank' rel="noreferrer" href='https://www.'>
+                    <a target='_blank' rel="noreferrer" href='https://docs.google.com/forms/d/e/1FAIpQLSeCLsPi2jX7p9Nut5EVnCdMmsTsMPS9Iww-nHn6gvoWLfFw-g/closedform.'>
                         MAKE REQUEST 
                         <BiRightArrowAlt className='arrow' size={15}/>
-                    </a> */}
-                    <Link to={'/unavailable'}>
-                        MAKE REQUEST 
-                        <BiRightArrowAlt className='arrow' size={15}/>
-                    </Link>
+                    </a>
                 </div>
                 <div>
                     <h5>ESSENTIALS PLAYLIST</h5>
