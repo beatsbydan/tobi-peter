@@ -13,7 +13,7 @@ import AlertPopUp from './Components/UI/AlertPopUp/AlertPopUp'
 import AnimatedRoutes from './Components/AnimatedRoutes/AnimatedRoutes';
 import Processing from './Components/UI/IsProcessing/Processing';
 import ProcessingContextProvider from './Components/UI/IsProcessing/ProcessingContext/ProcessingContextProvider';
-// import UnderMaintenance from './Components/UI/UnderMaintenance/UnderMaintenance';
+import UnderMaintenance from './Components/UI/UnderMaintenance/UnderMaintenance';
 
 function App() {
   const location = useLocation()
