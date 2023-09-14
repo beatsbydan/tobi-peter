@@ -18,11 +18,7 @@ const Shows = () => {
             exit={{x:-window.innerWidth, opacity:0, transition: {duration: 0.7}}}
         >
             <div className="actionsBlock">
-                {/* <a target='_blank' rel="noreferrer" href="https://www.">
-                    BOOK TOBI PETER
-                    <BiRightArrowAlt/>
-                </a> */}
-                <Link to={'/unavailable'}>
+                <Link to={'/shows/book'}>
                     BOOK TOBI PETER 
                     <BiRightArrowAlt className='arrow' size={15}/>
                 </Link>

@@ -31,9 +31,9 @@ function App() {
                         { location.pathname.includes("/admin") ? <AdminNavbar/> : <Navbar/>}
                       </header>
                       <main>
-                        <Processing/>
-                        <AnimatedRoutes/>
-                        {/* <UnderMaintenance/> */}
+                        {/* <Processing/> */}
+                        {/* <AnimatedRoutes/> */}
+                        <UnderMaintenance/>
                       </main>
                       <Footer/>
                     </div>

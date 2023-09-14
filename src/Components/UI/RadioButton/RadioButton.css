@@ -1,0 +1,22 @@
+.radioButton{
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    gap:1rem;
+}
+.circle{
+    width: 20px;
+    aspect-ratio: 1;
+    border-radius: 100%;
+    border: 0.1rem solid black;
+    cursor: pointer;
+}
+.innerCircle{
+    width: 10px;
+    aspect-ratio: 1;
+    border-radius: 100%;
+    background-color: transparent;
+}
+.innerCircle.active{
+    background-color: ;
+}

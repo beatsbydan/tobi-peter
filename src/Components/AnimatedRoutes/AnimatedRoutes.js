@@ -34,6 +34,7 @@ import Unavailable from '../UI/Unavailable/Unavailable';
 import Loading from '../UI/Loading/Loading'
 import UpdateShow from '../Admin/Pages/Manage/Shows/UpdateShows/UpdateShow/UpdateShow';
 import UpdateBlog from '../Admin/Pages/Manage/Blogs/UpdateBlogs/UpdateBlog/UpdateBlog';
+import Book from '../User/Pages/Shows/Book/Book';
 
 // LAZY ROUTES
 
@@ -77,6 +78,7 @@ const AnimatedRoutes = () => {
                 }/>
                 <Route path='/shows/allPastShows' element={<AllPastShows/>}/>
                 <Route path='/shows/allUpcomingShows' element={<AllUpcomingShows/>}/>
+                <Route path='/shows/book' element={<Book/>}/>
                 <Route path='/unavailable' element={<Unavailable/>}/>
                 
                 {/* NOT_FOUND */}

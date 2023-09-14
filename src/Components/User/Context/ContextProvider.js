@@ -7,6 +7,7 @@ import useIsProcessing from '../../../Hooks/useIsProcessing'
 
 const ContextProvider = (props) => {
     const {setAlert} = useAlert()
+    
     const {setProcessing} = useIsProcessing()
 
     // PEND STATE
@@ -14,6 +15,7 @@ const ContextProvider = (props) => {
     const initialPendState = {
         isPending: false   
     }
+
     const pendReducer = (state,action) =>{
         if(action.type === 'PENDING'){
             return{
@@ -26,9 +28,11 @@ const ContextProvider = (props) => {
             }
         }
     }
+
     const [pending, dispatchPending] = useReducer(pendReducer, initialPendState)
     
     // SHOWS
+    
     const initialShows = {
         myShows:{
             upcomingShows: [],
@@ -37,6 +41,7 @@ const ContextProvider = (props) => {
         upcomingShows: [],
         pastShows: []
     }
+    
     const showsReducer = (state,action) => {
         if(action.type === "SET_ALL_SHOWS"){
             return{
@@ -60,7 +65,9 @@ const ContextProvider = (props) => {
             }
         }
     }
+    
     const [shows, dispatchShows] = useReducer(showsReducer, initialShows)
+    
     const getShows = useCallback(() =>{
         dispatchPending({type: 'PENDING'})
         setTimeout( async ()=>{
@@ -101,10 +108,13 @@ const ContextProvider = (props) => {
     // SUBSCRIBERS
     
     const [email, setEmail] = useState('')
+    
     const [error, setError] = useState({})
+    
     const handleChange = (e) => {
         setEmail(e.target.value)
     }
+    
     const handleSubmit = (e) => {
         setProcessing(true)
         e.preventDefault()
@@ -128,6 +138,7 @@ const ContextProvider = (props) => {
     // RECENT SONG
     
     const [song, setSong] = useState({})
+    
     const getSong = async () =>{
         dispatchPending({type: 'PENDING'})
         setTimeout( async ()=>{
@@ -147,6 +158,7 @@ const ContextProvider = (props) => {
             })
         },3000)
     }
+    
     useEffect(()=>{
         getSong()
     },[])
@@ -154,6 +166,7 @@ const ContextProvider = (props) => {
     // BLOGS
     
     const [blogs, setBlogs] = useState([])
+    
     const getBlogs = () => {
         dispatchPending({type: 'PENDING'})
         setTimeout(async ()=>{
@@ -170,6 +183,7 @@ const ContextProvider = (props) => {
         },3000)
         
     }
+
     useEffect(()=>{
         getBlogs()
     },[])
@@ -177,6 +191,7 @@ const ContextProvider = (props) => {
     // BIO-IMAGES
     
     const [images, setImages] = useState([])
+    
     const getImages = () => {
         dispatchPending({type: 'PENDING'})
         setTimeout( async ()=>{
@@ -196,6 +211,32 @@ const ContextProvider = (props) => {
         getImages()
     },[])
 
+    // BOOK TOBI PETER
+    
+    const [bookFields, setBookFields] = useState({
+        name: '',
+        email: '',
+        company: '',
+        date: '',
+        type: '', //Free or ticketed... radio button
+        expectedGuests: '', //Dropdown
+        location: '',
+        description: '' //Dropdown
+    })
+
+    const [bookFieldsErrors, setBookFieldsErrors] = useState({})
+    
+    const handleBookFieldsChange = (e) => {
+        const {id, value} = e.target
+        setBookFields(prev=>{
+            return {...prev, [id]: value}
+        })
+    }
+    
+    const handleBookFieldsSubmit = async () => {
+        
+    }
+
     // CONTEXT VALUES
     
     const value = {
@@ -206,11 +247,15 @@ const ContextProvider = (props) => {
         blogs: blogs,
         images:images,
         pending:pending,
+        bookFields: bookFields,
+        bookFieldsErrors: bookFieldsErrors,
         getShows:getShows,
         getImages:getImages,
         getBlogs: getBlogs,
         getSong:getSong,
         handleChange:handleChange,
+        handleBookFieldsChange:handleBookFieldsChange,
+        handleBookFieldsSubmit:handleBookFieldsSubmit,
         handleSubmit:handleSubmit,
     }
 
