@@ -4,6 +4,7 @@ import ValidateWhatsNew from '../Pages/WhatsNew/ValidateWhatsNew'
 import axios from 'axios'
 import useAlert from '../../../Hooks/useAlert'
 import useIsProcessing from '../../../Hooks/useIsProcessing'
+import ValidateBooks from '../Pages/Shows/Book/ValidateBooks'
 
 const ContextProvider = (props) => {
     const {setAlert} = useAlert()
@@ -213,28 +214,80 @@ const ContextProvider = (props) => {
 
     // BOOK TOBI PETER
     
-    const [bookFields, setBookFields] = useState({
+    const [bookFieldsRegular, setBookFieldsRegular] = useState({
         name: '',
+        eventName: '',
         email: '',
-        company: '',
+        companyName: '',
         date: '',
-        type: '', //Free or ticketed... radio button
-        expectedGuests: '', //Dropdown
         location: '',
-        description: '' //Dropdown
     })
 
+    const [bookFieldsSpecifics, setBookFieldsSpecifics] = useState({
+        type: '',
+        expectedGuests: '',
+        description: ''
+    })
     const [bookFieldsErrors, setBookFieldsErrors] = useState({})
     
     const handleBookFieldsChange = (e) => {
         const {id, value} = e.target
-        setBookFields(prev=>{
+        setBookFieldsRegular(prev=>{
             return {...prev, [id]: value}
+        })
+    }
+
+    const setShowType = (showType) => {
+        setBookFieldsSpecifics({
+            type: showType,
+            expectedGuests: bookFieldsSpecifics.expectedGuests,
+            description: bookFieldsSpecifics.description
+        })
+    }
+    const setShowGuests = (guests) => {
+        setBookFieldsSpecifics({
+            type: bookFieldsSpecifics.type,
+            expectedGuests: guests,
+            description: bookFieldsSpecifics.description
+        })
+    }
+    const setShowDescription = (desc) => {
+        setBookFieldsSpecifics({
+            type: bookFieldsSpecifics.type,
+            expectedGuests: bookFieldsSpecifics.expectedGuests,
+            description: desc
         })
     }
     
     const handleBookFieldsSubmit = async () => {
-        
+        setProcessing(true)
+        let success = {}
+        const bookFields = {
+            name:bookFieldsRegular.name ,
+            eventName:bookFieldsRegular.eventName ,
+            email:bookFieldsRegular.email ,
+            companyName:bookFieldsRegular.companyName ,
+            date:bookFieldsRegular.date ,
+            location:bookFieldsRegular.location,
+            type: bookFieldsSpecifics.type, 
+            expectedGuests: bookFieldsSpecifics.expectedGuests, 
+            description: bookFieldsSpecifics.description
+        }
+        console.log(bookFields)
+        await ValidateBooks(bookFields)
+        .then(res=>{
+            setBookFieldsErrors(res)
+            if(res.none){
+                success.yes = true
+                setProcessing(false)
+            }
+            else{
+                success.yes = false
+                setAlert('failure', 'Something went wrong!')
+                setProcessing(false)
+            }
+        })
+        return success
     }
 
     // CONTEXT VALUES
@@ -247,13 +300,17 @@ const ContextProvider = (props) => {
         blogs: blogs,
         images:images,
         pending:pending,
-        bookFields: bookFields,
+        bookFieldsRegular: bookFieldsRegular,
+        bookFieldsSpecifics: bookFieldsSpecifics,
         bookFieldsErrors: bookFieldsErrors,
         getShows:getShows,
         getImages:getImages,
         getBlogs: getBlogs,
         getSong:getSong,
         handleChange:handleChange,
+        setShowType: setShowType,
+        setShowGuests: setShowGuests,
+        setShowDescription: setShowDescription,
         handleBookFieldsChange:handleBookFieldsChange,
         handleBookFieldsSubmit:handleBookFieldsSubmit,
         handleSubmit:handleSubmit,

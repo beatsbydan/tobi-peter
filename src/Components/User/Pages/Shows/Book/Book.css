@@ -1,0 +1,81 @@
+.book{
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+}
+.book form{
+    margin:auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.7rem;
+}
+.dropdowns{
+    width:100%;
+    display:flex;
+    flex-direction:row;
+    align-items: center;
+    gap: 5%;
+}
+.innerFlex{
+    display: grid;
+    grid-template-columns: 60% 30%;
+    gap: 10%;
+    justify-items: space-between;
+}
+.showTypes{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.8rem;
+}
+.innerFormElement{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.innerFormElement label{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    color: #495464;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+.innerFormElement label small{
+    color: rgba(255, 0, 0, 0.936);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+.innerFormElement input.errorField{
+    border-color: red;
+}
+@media screen and (max-width:730px) {
+    .innerFlex{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media screen and (max-width:500px) {
+    .dropdowns{
+        flex-direction: column;
+        gap: 1.7rem;
+    }
+}
+@media screen and (max-width:450px) {
+    .innerFormElement{
+        margin: 1rem 0;
+    }
+    .innerFlex{
+        grid-template-columns: unset;
+        margin-bottom: 0.4rem;
+    }
+    .showTypes{
+        margin-top: unset;
+        justify-content: unset;
+    }
+}

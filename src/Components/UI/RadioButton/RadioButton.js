@@ -4,10 +4,10 @@ import './RadioButton.css'
 const RadioButton = (props) => {
     return (
         <div className="radioButton">
-            <div className='circle'>
-                <div className='innerCircle'></div>
+            <div onClick={props.onClick} className={props.error ? 'errorField circle' : 'circle'}>
+                <div className={props.isClicked ? 'innerCircle active' :'innerCircle'}></div>
             </div>
-            <div className='radioInput'>{props.radioInput} || XXXXXX</div>
+            <p className='radioInput'>{props.radioInput}</p>
         </div>
     )
 }

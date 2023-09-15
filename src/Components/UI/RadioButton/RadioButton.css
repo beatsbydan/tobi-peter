@@ -8,15 +8,26 @@
     width: 20px;
     aspect-ratio: 1;
     border-radius: 100%;
-    border: 0.1rem solid black;
+    border: 0.1rem solid #495464;
     cursor: pointer;
+    position:relative;
 }
 .innerCircle{
-    width: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
     aspect-ratio: 1;
     border-radius: 100%;
     background-color: transparent;
 }
 .innerCircle.active{
-    background-color: ;
+    background-color: #1D3557;
+}
+.radioInput{
+    color:#495464;
+}
+.circle.errorField{
+    border-color: red;
 }
