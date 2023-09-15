@@ -96,7 +96,7 @@ const Book = () => {
                     onChange={ctx.handleBookFieldsChange}
                 />
                 <InputComponent
-                    id={"company"}
+                    id={"companyName"}
                     label={"Company's name"}
                     error={ctx.bookFieldsErrors.companyName}
                     type={"text"}
