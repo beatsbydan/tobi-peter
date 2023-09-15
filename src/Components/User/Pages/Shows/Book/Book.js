@@ -70,7 +70,7 @@ const Book = () => {
             <form action="" onSubmit={handleSubmit}>
                 <InputComponent
                     id={"name"}
-                    label={"Name"}
+                    label={"Name:"}
                     error={ctx.bookFieldsErrors.name}
                     type={"text"}
                     placeholder={"Enter your name"}
@@ -79,7 +79,7 @@ const Book = () => {
                 />
                 <InputComponent
                     id={"eventName"}
-                    label={"Event's name"}
+                    label={"Event's name:"}
                     error={ctx.bookFieldsErrors.eventName}
                     type={"text"}
                     placeholder={"Enter event's name"}
@@ -88,7 +88,7 @@ const Book = () => {
                 />
                 <InputComponent
                     id={"email"}
-                    label={"Email"}
+                    label={"Email:"}
                     error={ctx.bookFieldsErrors.email}
                     type={"text"}
                     placeholder={"Enter your email"}
@@ -97,7 +97,7 @@ const Book = () => {
                 />
                 <InputComponent
                     id={"companyName"}
-                    label={"Company's name"}
+                    label={"Company's name:"}
                     error={ctx.bookFieldsErrors.companyName}
                     type={"text"}
                     placeholder={"Enter your company's name"}
@@ -106,7 +106,7 @@ const Book = () => {
                 />
                 <InputComponent
                     id={"location"}
-                    label={"Location"}
+                    label={"Location:"}
                     error={ctx.bookFieldsErrors.location}
                     type={"text"}
                     placeholder={"Enter event's location"}
@@ -116,7 +116,7 @@ const Book = () => {
                 <div className='innerFlex'>
                     <InputComponent
                         id={"date"}
-                        label={"Date"}
+                        label={"Date:"}
                         error={ctx.bookFieldsErrors.date}
                         type={"date"}
                         placeholder={"Enter event's Date"}

@@ -14,7 +14,7 @@ const InputComponent = (props) => {
     return ( 
         <div className="formElement">
             <label htmlFor="">
-                {props.label}:
+                {props.label}
                 <small className="error">{props.error}</small>
             </label>
             {
