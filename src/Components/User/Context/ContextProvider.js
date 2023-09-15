@@ -273,7 +273,6 @@ const ContextProvider = (props) => {
             expectedGuests: bookFieldsSpecifics.expectedGuests, 
             description: bookFieldsSpecifics.description
         }
-        console.log(bookFields)
         await ValidateBooks(bookFields)
         .then(res=>{
             setBookFieldsErrors(res)

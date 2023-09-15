@@ -39,14 +39,13 @@ const ValidateBooks = async (entry) => {
       }
     })
     .then(res=>{
-      console.log(res)
       if(res.status === 200){
         errors.none = true
       }
     })
     .catch(err=>{
       errors.none = false
-      console.log(err)
+      return err
     })
 
   }

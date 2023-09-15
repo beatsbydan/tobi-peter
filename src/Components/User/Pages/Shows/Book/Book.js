@@ -119,7 +119,7 @@ const Book = () => {
                         label={"Date"}
                         error={ctx.bookFieldsErrors.date}
                         type={"date"}
-                        placeholder={"Enter Date"}
+                        placeholder={"Enter event's Date"}
                         value={ctx.bookFieldsRegular.date}
                         onChange={ctx.handleBookFieldsChange}
                     />

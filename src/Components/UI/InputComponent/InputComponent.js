@@ -3,6 +3,10 @@ import {AiFillEyeInvisible, AiFillEye} from 'react-icons/ai'
 import {useState} from 'react'
 
 const InputComponent = (props) => {
+    const [dateState, setDateState] = useState("text")
+    const handleDateState = () => {
+        setDateState('date')
+    }
     const [isVisible, setIsVisible] = useState(false)
     const handleVisibility = () => {
         setIsVisible(!isVisible)
@@ -31,6 +35,17 @@ const InputComponent = (props) => {
                     <textarea
                         id={props.id}
                         className={props.error ? "errorField": ""}
+                        placeholder={props.placeholder} 
+                        value={props.value} 
+                        onChange={props.onChange}
+                    />
+                :
+                props.type === 'date' ? 
+                    <input 
+                        id={props.id}
+                        className={props.error ? "errorField": ""} 
+                        type={dateState} 
+                        onFocus={handleDateState}
                         placeholder={props.placeholder} 
                         value={props.value} 
                         onChange={props.onChange}
