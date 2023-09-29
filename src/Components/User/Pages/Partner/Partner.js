@@ -12,19 +12,19 @@ const Partner = () => {
         >
             <h2>PARTNERSHIPS</h2>
             <div className='partnerBlock'>
-                <p>There are upcoming projects in which you can become a partner with Tobi Peter.</p>
-                <div className='partners'>
+                <p>There are no upcoming projects in which you can become a partner with Tobi Peter.</p>
+                {/*<div className='partners'>
                     <div>
                         <h5>UPCOMING PROJECT (EP)</h5>
                         <p>You can choose to contribute/partner
                         with Tobi Peter in the release of his
                         upcoming amapiano EP.
-                        Contributions made with be used
+                        Contributions made will be used
                         mainly for marketing.</p>
-                        {/* <a target='_blank' rel="noreferrer" href='https://www.'>
+                        <a target='_blank' rel="noreferrer" href='https://www.'>
                             PARTNER
                             <BiRightArrowAlt/>
-                        </a> */}
+                        </a>
                         <Link to={'/unavailable'}>
                             PARTNER 
                             <BiRightArrowAlt className='arrow' size={15}/>
@@ -35,16 +35,16 @@ const Partner = () => {
                         <p>You can choose to contribute/partner
                         with Tobi Peter in the production of
                         his house music event, HMO.</p>
-                        {/* <a target='_blank' rel="noreferrer" href='https://www.'>
+                        <a target='_blank' rel="noreferrer" href='https://www.'>
                             PARTNER
                             <BiRightArrowAlt/>
-                        </a> */}
+                        </a>
                         <Link to={'/unavailable'}>
                             PARTNER 
                             <BiRightArrowAlt className='arrow' size={15}/>
                         </Link>
                     </div>
-                </div>
+                </div>*/}
             </div>
         </motion.div>
     );

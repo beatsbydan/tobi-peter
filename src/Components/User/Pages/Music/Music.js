@@ -49,7 +49,7 @@ const Music = () => {
                     <h5>DJs CHECK THIS OUT!</h5>
                     <p>Would you like to have some songs from me to spin during your sets?</p>
                     <p>Make a request below!</p>
-                    <a target='_blank' rel="noreferrer" href='https://docs.google.com/forms/d/e/1FAIpQLSeCLsPi2jX7p9Nut5EVnCdMmsTsMPS9Iww-nHn6gvoWLfFw-g/closedform.'>
+                    <a target='_blank' rel="noreferrer" href='https://docs.google.com/forms/d/e/1FAIpQLSeCLsPi2jX7p9Nut5EVnCdMmsTsMPS9Iww-nHn6gvoWLfFw-g/viewform?usp=sf_link'>
                         MAKE REQUEST 
                         <BiRightArrowAlt className='arrow' size={15}/>
                     </a>
