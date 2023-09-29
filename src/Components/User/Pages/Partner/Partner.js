@@ -1,7 +1,7 @@
 import './Partner.css'
-import {BiRightArrowAlt} from 'react-icons/bi'
+// import {BiRightArrowAlt} from 'react-icons/bi'
 import { motion } from 'framer-motion';
-import {Link} from 'react-router-dom'
+// import {Link} from 'react-router-dom'
 const Partner = () => {
     return ( 
         <motion.div 
