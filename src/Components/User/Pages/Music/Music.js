@@ -30,10 +30,17 @@ const Music = () => {
                 <Socials/>
             </div>
             <div className="bio">
-                <p>Was gonna write this in third person but I changed my mind.</p>
-                <p>I’m an independent music producer and DJ based in Lagos, Nigeria. </p>
-                <p>My major genres are EDM, Afrobeat, Amapiano, Pop, Dance and House music.</p>
-                <p>You might recognize me from Instagram as the guy that makes remixes in a blue agbada.</p>
+                <p>
+                    Tobi Peter is a songwriter, DJ, music producer & animator. The Lagos based producer takes musical inspiration from <span>Thomas Wesley</span> (also known as <span>Diplo</span>).
+                    Much like <span>Diplo</span>, Tobi Peter makes music across a wide range of genres. In recent times, he has established himself as a producer to be reckoned with as long as EDM, house or amapiano in Nigeria is concerned.
+                </p>
+                <p>
+                    While DJing, Tobi Peter can be seen wearing his signature blue agbada which serves as an appeal to the eyes while he serenades the audience with his unique set.
+                </p>
+                <p>
+                    He has received praise and commendation for his artistic display both as an animator and a producer from <span>Diplo, Walshy Fire, Major Lazer, Major League Djz, Don Jazzy, Dr Sid, M.I., Falz the Bahd Guy</span> amongst others.
+                </p>
+                <p>Tobi has put out 6 EPs in his career as a producer/DJ with his latest release cementing his status as an elite amapiano producer.</p>
             </div>
             <div className="imageCarouselBlock">
                 <ImageCarousel/>

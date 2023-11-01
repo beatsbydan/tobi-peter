@@ -20,6 +20,9 @@
     color:#495464;
     font-size: 0.9rem;
 }
+.music p span{
+    font-weight: 700;
+}
 .bio p{
     line-height: 2.1em;
 }
