@@ -23,6 +23,9 @@
 .music p span{
     font-weight: 700;
 }
+.bio p:nth-child(1), .bio p:nth-child(2){
+    margin-bottom: 1.2rem;
+}
 .bio p{
     line-height: 2.1em;
 }
