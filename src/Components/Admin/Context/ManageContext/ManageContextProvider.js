@@ -1,4 +1,4 @@
-import {useState, useEffect, useReducer} from 'react'
+import {useState, useReducer, useCallback} from 'react'
 import ManageContext from './ManageContext'
 import useAlert from '../../../../Hooks/useAlert'
 import useAuth from '../../../../Hooks/useAuth'
@@ -12,7 +12,7 @@ import useUserContext from '../../../../Hooks/useUserContext'
 const ManageContextProvider = (props) => {
     const {setAlert} = useAlert()
     const {setProcessing} = useIsProcessing()
-    const {getBlogs: getUserBlogs, getSong: getRecentSong, getImages: getUserImages} = useUserContext()
+    const { getSong: getRecentSong} = useUserContext()
     const {authDetails} = useAuth()
     const [song, setSong] = useState({})
     const [allSongs, setAllSongs] = useState([])
@@ -67,7 +67,7 @@ const ManageContextProvider = (props) => {
         },3000)
     }
     
-    const getSong = async (id) => {
+    const getSong = useCallback(async (id) => {
         setProcessing(true)
         dispatchPending({type: 'PENDING'})
         await axios.get(`${process.env.REACT_APP_BASE_URL}/song/${id}`)
@@ -96,7 +96,7 @@ const ManageContextProvider = (props) => {
             setAlert('failure', 'Something went wrong!')
             return err
         })
-    }
+    }, [setProcessing, setAlert])
     
     const deleteSong = async (id) =>{
         setProcessing(true)
@@ -127,9 +127,6 @@ const ManageContextProvider = (props) => {
         return success
     }
     
-    useEffect(()=>{
-        getSongs()
-    },[])
     
     const [createDataErrors, setCreateDataErrors] = useState({})
     
@@ -296,9 +293,7 @@ const ManageContextProvider = (props) => {
     const [createBlogErrors, setCreateBlogErrors] = useState({})
     
     const [updateBlogErrors, setUpdateBlogErrors] = useState({})
-    
-    const [blogs, setBlogs] = useState([])
-    
+        
     const handleCreateBlogDataChange = (e) => {
         const {id, value} = e.target
         setCreateBlogData(prev=>{
@@ -327,8 +322,6 @@ const ManageContextProvider = (props) => {
         .then(res=>{
             setCreateBlogErrors(res)
             if(res.none){
-                getBlogs()
-                getUserBlogs()
                 setProcessing(false)
                 success.yes = true
                 setCreateBlogData({
@@ -363,9 +356,7 @@ const ManageContextProvider = (props) => {
         .then(res=>{
             setUpdateBlogErrors(res)
             if(res.none){
-                getBlogs()
                 setProcessing(false)
-                getUserBlogs()
                 success.yes = true
                 setUpdateBlogData({
                     title: '',
@@ -385,26 +376,6 @@ const ManageContextProvider = (props) => {
         return success
     }
     
-    const getBlogs = () => {
-        dispatchPending({type: 'PENDING'})
-        setTimeout(()=>{
-            axios.get(`${process.env.REACT_APP_BASE_URL}/blog/`)
-            .then(res=>{
-                if(res.status === 200){
-                    setBlogs(res.data.AllBlogs)
-                    dispatchPending({type: 'COMPLETED'})
-                }
-            })
-            .catch(err=>{
-                return err
-            })
-        },3000)
-    }
-    
-    useEffect(()=>{
-        getBlogs()
-    },[])
-    
     const deleteBlog = async (id) => {
         setProcessing(true)
         let success = {}
@@ -416,8 +387,6 @@ const ManageContextProvider = (props) => {
         })
         .then(res=>{
             if(res.status === 200){
-                getBlogs()
-                getUserBlogs()
                 setProcessing(false)
                 success.yes = true
                 setAlert('success', 'Blog deleted!')
@@ -436,7 +405,7 @@ const ManageContextProvider = (props) => {
     
     const [blog, setBlog] = useState({})
     
-    const getBlog = (id) => {
+    const getBlog = useCallback((id) => {
         setProcessing(true)
         dispatchPending({type: 'PENDING'})
         setTimeout(()=>{
@@ -462,14 +431,12 @@ const ManageContextProvider = (props) => {
                 return err
             })
         },3000)
-    }
+    }, [setProcessing, setAlert])
 
     // BIO-IMAGES
     
     const [files, setFiles] = useState({})
-    
-    const [images, setImages] = useState([])
-    
+        
     const handleFilesChange = (e) => {
         setFiles(e.target.files)
     }
@@ -480,8 +447,6 @@ const ManageContextProvider = (props) => {
         await ValidateFiles(files, authDetails.accessToken)
         .then(res=>{
             if(res.none){
-                getImages()
-                getUserImages()
                 setProcessing(false)
                 success.yes = true
                 setFiles({})
@@ -496,26 +461,6 @@ const ManageContextProvider = (props) => {
         })
         return success
     }
-    
-    const getImages = () => {
-        dispatchPending({type: 'PENDING'})
-        setTimeout(()=>{
-            axios.get(`${process.env.REACT_APP_BASE_URL}/admin/album`)
-            .then(res=>{
-                if(res.status === 200){
-                    setImages(res.data.album)
-                    dispatchPending({type: 'COMPLETED'})
-                }
-            })
-            .catch(err=>{
-                return err
-            })
-        },3000)
-    }
-    
-    useEffect(()=>{
-        getImages()
-    },[])
     
     const deleteImage = async (url) => {
         setProcessing(true)
@@ -532,9 +477,7 @@ const ManageContextProvider = (props) => {
         .then(res=>{
             if(res.status === 200){
                 success.yes = true
-                getImages()
                 setProcessing(false)
-                getUserImages()
                 setAlert('success', 'Image deleted!')
             }
         })
@@ -551,8 +494,6 @@ const ManageContextProvider = (props) => {
 
     // CONTEXT VALUES
     const value = {
-        blogs:blogs,
-        images: images,
         files:files,
         pending:pending,
         allSongs:allSongs,

@@ -1,20 +1,25 @@
 import React from 'react'
-import {useContext} from 'react'
+import {useContext, useEffect} from 'react'
 import InputComponent from '../../../../../../UI/InputComponent/InputComponent'
 import Loading from '../../../../../../UI/Loading/Loading'
 import ManageContext from '../../../../../Context/ManageContext/ManageContext'
 import {MdOutlineUpdate} from 'react-icons/md'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, useParams} from 'react-router-dom'
 import useAlert from '../../../../../../../Hooks/useAlert'
+import useIsProcessing from '../../../../../../../Hooks/useIsProcessing'
 import './UpdateSong.css'
 import {motion} from 'framer-motion'
+import {IoArrowBackOutline} from 'react-icons/io5'
+
 const UpdateSong = () => {
-    const ctx = useContext(ManageContext)
+    const {id} = useParams()
+    const {isProcessing} = useIsProcessing()
+    const {getSong, handleUpdateSubmit, updateData, updateDataErrors, handleUpdateDataChange} = useContext(ManageContext)
     const navigate = useNavigate()
     const {setAlert} = useAlert()
     const handleSubmit = (e) => {
         e.preventDefault()
-        ctx.handleUpdateSubmit()
+        handleUpdateSubmit()
         .then(success=>{
             if(success.yes){
                 setAlert('success', 'Song Updated!')
@@ -23,6 +28,10 @@ const UpdateSong = () => {
         })
     }
 
+    useEffect(()=>{
+        getSong(id)
+    },[getSong, id])
+
   return (
     <motion.div 
         className="updateSong"
@@ -30,7 +39,8 @@ const UpdateSong = () => {
         animate={{width:'100%', opacity: 1}}
         exit={{x:-window.innerWidth, opacity:0, transition: {duration: 0.7}}}
     >
-        {ctx.pending.isPending ? <Loading isPending = {ctx.pending.isPending}/> :
+        <IoArrowBackOutline cursor='pointer' onClick={()=> navigate(-1)} color='#1D3557' size={30}/>   
+        {isProcessing ? <Loading/> :
             <>
                 <h2>UPDATE SONG <span>{<MdOutlineUpdate size={35}/>}</span></h2>
                 <form action ="" onSubmit={handleSubmit}>
@@ -39,20 +49,20 @@ const UpdateSong = () => {
                         <InputComponent
                             id={"title"}
                             label={"Title:"}
-                            error={ctx.updateDataErrors.title}
+                            error={updateDataErrors.title}
                             type={"text"}
                             placeholder={"Enter Title"}
-                            value={ctx.updateData.title}
-                            onChange={ctx.handleUpdateDataChange}
+                            value={updateData.title}
+                            onChange={handleUpdateDataChange}
                         />
                         <InputComponent
                             id={"date"}
                             label={"Release-Date:"}
-                            error={ctx.updateDataErrors.date}
+                            error={updateDataErrors.date}
                             type={"date"}
                             placeholder={"Enter Date"}
-                            value={ctx.updateData.date}
-                            onChange={ctx.handleUpdateDataChange}
+                            value={updateData.date}
+                            onChange={handleUpdateDataChange}
                         />
                     </div>
                     <div className="linksInput">
@@ -60,65 +70,65 @@ const UpdateSong = () => {
                         <InputComponent
                             id={"appleMusic"}
                             label={"Apple Music:"}
-                            error={ctx.updateDataErrors.appleMusic}
+                            error={updateDataErrors.appleMusic}
                             type={"link"}
                             placeholder={"Enter new Link"}
-                            value={ctx.updateData.appleMusic}
-                            onChange={ctx.handleUpdateDataChange}
+                            value={updateData.appleMusic}
+                            onChange={handleUpdateDataChange}
                         />
                         <InputComponent
                             id={"spotify"}
                             label={"Spotify:"}
-                            error={ctx.updateDataErrors.spotify}
+                            error={updateDataErrors.spotify}
                             type={"link"}
                             placeholder={"Enter new Link"}
-                            value={ctx.updateData.spotify}
-                            onChange={ctx.handleUpdateDataChange}
+                            value={updateData.spotify}
+                            onChange={handleUpdateDataChange}
                         />
                         <InputComponent
                             id={"audiomack"}
                             label={"Audiomack:"}
-                            error={ctx.updateDataErrors.audiomack}
+                            error={updateDataErrors.audiomack}
                             type={"link"}
                             placeholder={"Enter new Link"}
-                            value={ctx.updateData.audiomack}
-                            onChange={ctx.handleUpdateDataChange}
+                            value={updateData.audiomack}
+                            onChange={handleUpdateDataChange}
                         />
                         <InputComponent
                             id={"youtube"}
                             label={"Youtube:"}
-                            error={ctx.updateDataErrors.youtube}
+                            error={updateDataErrors.youtube}
                             type={"link"}
                             placeholder={"Enter new Link"}
-                            value={ctx.updateData.youtube}
-                            onChange={ctx.handleUpdateDataChange}
+                            value={updateData.youtube}
+                            onChange={handleUpdateDataChange}
                         />
                         <InputComponent
                             id={"tidal"}
                             label={"Tidal:"}
-                            error={ctx.updateDataErrors.tidal}
+                            error={updateDataErrors.tidal}
                             type={"link"}
                             placeholder={"Enter new Link"}
-                            value={ctx.updateData.tidal}
-                            onChange={ctx.handleUpdateDataChange}
+                            value={updateData.tidal}
+                            onChange={handleUpdateDataChange}
                         />
                         <InputComponent
                             id={"boomPlay"}
                             label={"Boomplay:"}
-                            error={ctx.updateDataErrors.boomPlay}
+                            error={updateDataErrors.boomPlay}
                             type={"link"}
                             placeholder={"Enter new Link"}
-                            value={ctx.updateData.boomPlay}
-                            onChange={ctx.handleUpdateDataChange}
+                            value={updateData.boomPlay}
+                            onChange={handleUpdateDataChange}
                         />
                         <InputComponent
                             id={"youtubeMusic"}
                             label={"Youtube Music:"}
-                            error={ctx.updateDataErrors.youtubeMusic}
+                            error={updateDataErrors.youtubeMusic}
                             type={"link"}
                             placeholder={"Enter new Link"}
-                            value={ctx.updateData.youtubeMusic}
-                            onChange={ctx.handleUpdateDataChange}
+                            value={updateData.youtubeMusic}
+                            onChange={handleUpdateDataChange}
                         />
                     </div>
                     <div className="formActions">

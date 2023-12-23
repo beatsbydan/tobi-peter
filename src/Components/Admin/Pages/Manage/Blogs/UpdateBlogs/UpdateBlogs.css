@@ -1,6 +1,8 @@
 .updateBlogs{
     width: 100%;
     max-width: 700px;
+    min-height: 400px;
+    position:relative;
     margin: auto;
 }
 .updateBlogs h2{

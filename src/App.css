@@ -93,3 +93,140 @@ a {
     margin: auto;
   }
 }
+.show{
+  background: #D9D9D936;
+  width: 100%;
+  padding: 1.1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0.6rem;
+  cursor: pointer;
+  transform: translateX(-150%);
+  animation: loaded 1.5s cubic-bezier(0,-0.34, 0, 1.33) forwards;
+}
+.show a{
+  border-radius: 0.6rem;
+  width: 90%;
+  max-width: 200px;
+  text-align: center;
+  transition: 0.3s ease;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+.delete{
+  position:relative;
+  right:0;
+}
+.left{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap:2.4rem;
+}
+.desc{
+  margin-top: 0.7rem;
+}
+.date, .location{
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.ticket{
+  transform:rotate(45deg)
+}
+.myArrow{
+  display:none;
+}
+.date{
+  text-align: center;
+  padding: 0.7rem;
+  border-radius: 0.5rem;
+  background: #D9D9D9B5;
+}
+.location{
+  align-items: flex-start;
+}
+@media (hover: hover) {
+  .show a:hover{
+      gap:1.2rem;
+  }
+  .show:hover{
+      box-shadow: 0px 1px 2px 4px #4954640c;
+  }
+}
+@media screen and (max-width:750px){
+  .show{
+      max-width: 550px;
+      margin: auto;
+      padding: 1.2rem;
+  }
+  .desc{
+      display: none;
+  }
+  .show a{
+      padding: unset;
+      width: 120px;
+  }
+  .left{
+      gap: 1.3rem;
+  }
+  .show a span{
+      display: none;
+  }
+  .myArrow{
+      display:block;
+  }
+  .location h5{
+      text-align: left;
+  }
+  .date{
+      gap: 0.1rem;
+      justify-content: space-between;
+  }
+}
+@keyframes loaded{
+  0%{
+      transform: translateX(-150%);
+  }
+  100%{
+      transform: translateX(0);
+  }
+}
+.formActions{
+  width:100%;
+  margin: auto;
+  text-align: center;
+}
+.formActions button{
+  width: 100%;
+  max-width: 150px;
+  color:#1D3557;
+  padding: 0.8rem;
+  font-weight: 500;
+  border: 0.1rem solid #1D3557;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  background-color: transparent;
+  transition: 0.3s ease;
+  margin: auto;
+  text-align: center;
+}
+@media (hover: hover){
+  .formActions button:hover{
+      color: #FFFBF4;
+      background:#1D3557;
+  }
+}
+@keyframes dropdown{
+  from{
+      transform: translateY(-100%);
+  }
+  to{
+      transform: translateY(0);
+  }
+}

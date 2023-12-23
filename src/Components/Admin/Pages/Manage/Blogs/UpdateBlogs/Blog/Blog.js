@@ -2,12 +2,13 @@ import './Blog.css'
 import {RiDeleteBin5Line} from 'react-icons/ri'
 import { useState } from 'react'
 import UpdateEvent from '../../../../../../UI/UpdateEvent/UpdateEvent'
-import Context from '../../../../../../User/Context/Context'
-import {useContext} from 'react'
 import {Link} from 'react-router-dom'
 import {TiEdit} from 'react-icons/ti'
+import {useDispatch} from 'react-redux'
+import { fetchBlogs } from '../../../../../../../Store/StateSlices/UserSlices/MusicSlice'
 
 const Blog = (props) => {
+    const dispatch = useDispatch()
     const [isOpen, setIsOpen] = useState(false)
     
     const [isVisible, setIsVisible] = useState({
@@ -15,7 +16,6 @@ const Blog = (props) => {
         edit: false,
     })
 
-    const userCtx = useContext(Context)
     
     const delay = 100;
     
@@ -39,8 +39,8 @@ const Blog = (props) => {
         props.delete()
         .then(success=>{
             if(success.yes){
+                dispatch(fetchBlogs())
                 setIsOpen(false)
-                userCtx.getBlogs()
             }
         })
     }

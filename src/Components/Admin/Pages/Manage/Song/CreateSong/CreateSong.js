@@ -8,20 +8,22 @@ import {useNavigate} from 'react-router-dom'
 import useAlert from '../../../../../../Hooks/useAlert'
 import './CreateSong.css'
 import {motion} from 'framer-motion'
-import Context from '../../../../../User/Context/Context'
+import {useDispatch} from 'react-redux'
+import { fetchSongs } from '../../../../../../Store/StateSlices/AdminSlices/ManageSlice'
+import {IoArrowBackOutline} from 'react-icons/io5'
 
 const CreateSong = () => {
-    const ctx = useContext(ManageContext)
-    const userCtx = useContext(Context)
+    const {handleCreateSubmit, createData, createDataErrors, handleCreateFileChange, handleCreateDataChange} = useContext(ManageContext)
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const {setAlert} = useAlert()
     const handleSubmit = (e) => {
         e.preventDefault()
-        ctx.handleCreateSubmit()
+        handleCreateSubmit()
         .then(success=>{
             if(success.yes){
                 setAlert('success', 'Song Created!')
-                userCtx.getSong()
+                dispatch(fetchSongs())
                 setTimeout(()=>{
                     navigate('/admin/manage')
                 },1500)
@@ -35,6 +37,7 @@ const CreateSong = () => {
         animate={{width:'100%', opacity: 1}}
         exit={{x:-window.innerWidth, opacity:0, transition: {duration: 0.7}}}
     >
+        <IoArrowBackOutline cursor='pointer' onClick={()=> navigate(-1)} color='#1D3557' size={30}/>   
         <h2>NEW RELEASE? <span>{<FaHandSpock size={35}/>}</span></h2>
         <form action ="" onSubmit={handleSubmit}>
             <div className="titleInput">
@@ -42,20 +45,20 @@ const CreateSong = () => {
                 <InputComponent
                     id={"title"}
                     label={"Title:"}
-                    error={ctx.createDataErrors.title}
+                    error={createDataErrors.title}
                     type={"text"}
                     placeholder={"Enter Title"}
-                    value={ctx.createData.title}
-                    onChange={ctx.handleCreateDataChange}
+                    value={createData.title}
+                    onChange={handleCreateDataChange}
                 />
                 <InputComponent
                     id={"date"}
                     label={"Release-Date:"}
-                    error={ctx.createDataErrors.date}
+                    error={createDataErrors.date}
                     type={"date"}
                     placeholder={"Enter Date"}
-                    value={ctx.createData.date}
-                    onChange={ctx.handleCreateDataChange}
+                    value={createData.date}
+                    onChange={handleCreateDataChange}
                 />
             </div>
             <div className="linksInput">
@@ -63,71 +66,71 @@ const CreateSong = () => {
                 <InputComponent
                     id={"appleMusic"}
                     label={"Apple Music:"}
-                    error={ctx.createDataErrors.appleMusic}
+                    error={createDataErrors.appleMusic}
                     type={"link"}
                     placeholder={"Enter new Link"}
-                    value={ctx.createData.appleMusic}
-                    onChange={ctx.handleCreateDataChange}
+                    value={createData.appleMusic}
+                    onChange={handleCreateDataChange}
                 />
                 <InputComponent
                     id={"spotify"}
                     label={"Spotify:"}
-                    error={ctx.createDataErrors.spotify}
+                    error={createDataErrors.spotify}
                     type={"link"}
                     placeholder={"Enter new Link"}
-                    value={ctx.createData.spotify}
-                    onChange={ctx.handleCreateDataChange}
+                    value={createData.spotify}
+                    onChange={handleCreateDataChange}
                 />
                 <InputComponent
                     id={"audiomack"}
                     label={"Audiomack:"}
-                    error={ctx.createDataErrors.audiomack}
+                    error={createDataErrors.audiomack}
                     type={"link"}
                     placeholder={"Enter new Link"}
-                    value={ctx.createData.audiomack}
-                    onChange={ctx.handleCreateDataChange}
+                    value={createData.audiomack}
+                    onChange={handleCreateDataChange}
                 />
                 <InputComponent
                     id={"youtube"}
                     label={"Youtube:"}
-                    error={ctx.createDataErrors.youtube}
+                    error={createDataErrors.youtube}
                     type={"link"}
                     placeholder={"Enter new Link"}
-                    value={ctx.createData.youtube}
-                    onChange={ctx.handleCreateDataChange}
+                    value={createData.youtube}
+                    onChange={handleCreateDataChange}
                 />
                 <InputComponent
                     id={"tidal"}
                     label={"Tidal:"}
-                    error={ctx.createDataErrors.tidal}
+                    error={createDataErrors.tidal}
                     type={"link"}
                     placeholder={"Enter new Link"}
-                    value={ctx.createData.tidal}
-                    onChange={ctx.handleCreateDataChange}
+                    value={createData.tidal}
+                    onChange={handleCreateDataChange}
                 />
                 <InputComponent
                     id={"boomPlay"}
                     label={"Boomplay:"}
-                    error={ctx.createDataErrors.boomPlay}
+                    error={createDataErrors.boomPlay}
                     type={"link"}
                     placeholder={"Enter new Link"}
-                    value={ctx.createData.boomPlay}
-                    onChange={ctx.handleCreateDataChange}
+                    value={createData.boomPlay}
+                    onChange={handleCreateDataChange}
                 />
                 <InputComponent
                     id={"youtubeMusic"}
                     label={"Youtube Music:"}
-                    error={ctx.createDataErrors.youtubeMusic}
+                    error={createDataErrors.youtubeMusic}
                     type={"link"}
                     placeholder={"Enter new Link"}
-                    value={ctx.createData.youtubeMusic}
-                    onChange={ctx.handleCreateDataChange}
+                    value={createData.youtubeMusic}
+                    onChange={handleCreateDataChange}
                 />
             </div>
             <div className="customary">
                 <h2>COVER-ART</h2>
                 <div className="customFile">
-                    <input type="file" className='customFileInput' onChange={ctx.handleCreateFileChange} />
+                    <input type="file" className='customFileInput' onChange={handleCreateFileChange} />
                 </div>
                 <small>Click image to add a file <span><MdOutlineAdsClick size={25}/></span></small>
             </div>

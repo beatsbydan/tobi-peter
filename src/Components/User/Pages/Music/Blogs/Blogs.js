@@ -1,19 +1,26 @@
 import './Blogs.css'
-import {useContext} from 'react'
-import Context from '../../../Context/Context'
+import {useEffect} from 'react'
 import Blog from './Blog/Blog'
 import Loading from '../../../../UI/Loading/Loading'
 import logo from '../../../../../Assets/logo.png'
+import {useSelector, useDispatch} from 'react-redux'
+import { fetchBlogs } from '../../../../../Store/StateSlices/UserSlices/MusicSlice'
 
 const Blogs = () => {
-    const ctx = useContext(Context)
+    const {status, blogs} = useSelector(state => state.music)
+    const dispatch = useDispatch()
+
+    useEffect(()=>{
+        if(status.blogs === 'idle'){
+            dispatch(fetchBlogs())
+        }
+    }, [status.blogs, dispatch])
     return (
         <ul className="pressSection">
-            {ctx.pending.isPending ? <Loading isPending={ctx.pending.isPending}/> 
+            {status.blogs === 'pending' ? <Loading/> 
             : 
-            ctx.blogs.length === 0 ? <p className="defaultText"><span><img src={logo} alt=""/></span>COMING SOON. </p> 
-            : 
-            ctx.blogs.map((blog, index)=>{
+            status.blogs === 'success' && blogs.length > 0 ?  
+            blogs.map((blog, index)=>{
                 return(
                     <Blog
                         key={index}
@@ -25,7 +32,12 @@ const Blogs = () => {
                         createdAt={blog.createdAt}
                     />
                 )
-            })}
+            })
+            :
+            status.blogs === 'success' && blogs.length === 0 ? <p className="defaultText"><span><img src={logo} alt=""/></span>COMING SOON. </p>
+            :
+            <p className="defaultText"><span><img src={logo} alt=""/></span>SOMETHING WENT WRONG. </p>
+            }
         </ul>
     )
 }

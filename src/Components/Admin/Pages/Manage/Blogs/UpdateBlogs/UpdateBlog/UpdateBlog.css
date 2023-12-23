@@ -1,7 +1,9 @@
 .updateBlog{
     width: 100%;
     max-width: 700px;
+    min-height: 400px;
     margin: auto;
+    position:relative;
 }
 .updateBlog h2{
     text-align: center;

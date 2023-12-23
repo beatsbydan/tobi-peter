@@ -1,16 +1,24 @@
-import {useContext} from 'react'
-import Context from '../../../Context/Context'
 import Show from '../Show/Show'
 import './AllShows.css'
 import {motion} from 'framer-motion'
-import Loading from '../../../../UI/Loading/Loading'
-import {AiOutlineArrowLeft} from 'react-icons/ai'
+import { IoArrowBackOutline } from 'react-icons/io5'
 import {useNavigate} from 'react-router-dom'
 import logo from '../../../../../Assets/logo.png'
+import {useSelector, useDispatch} from 'react-redux'
+import {useEffect} from 'react'
+import { fetchShows } from '../../../../../Store/StateSlices/UserSlices/ShowsSlice'
+import Loading from '../../../../UI/Loading/Loading'
 
 const AllUpcomingShows = () => {
-    const ctx = useContext(Context)
     const navigate = useNavigate()
+    const {status, shows} = useSelector(state => state.shows)
+    const dispatch = useDispatch()
+
+    useEffect(()=>{
+        if(status.all === "idle"){
+            dispatch(fetchShows())
+        }
+    },[status.all, dispatch])
     return (
         <motion.div 
             className = "allMyShows"
@@ -18,15 +26,14 @@ const AllUpcomingShows = () => {
             animate={{width:'100%'}}
             exit={{x:-window.innerWidth, transition: {duration: 0.5}}}
         >
-            <AiOutlineArrowLeft cursor='pointer' onClick={()=> navigate(-1)} color='#1D3557' size={30}/>
+            <IoArrowBackOutline cursor='pointer' onClick={()=> navigate(-1)} color='#1D3557' size={30}/>
             <h5 className="theShow">UPCOMING SHOWS</h5>
             <ul className="showsList">
                 {
-                    ctx.pending.isPending? <Loading isPending={ctx.pending.isPending}/>
+                    status.all === "pending" ? <Loading/>
                 :
-                    ctx.shows.myShows.upcomingShows.length === 0 ? <p className="defaultText"><span><img src={logo} alt=""/></span>COMING SOON.</p>                            
-                :
-                    ctx.shows.myShows.upcomingShows.map((show,index)=>{
+                    (status.all === "success" && shows.allShows.upcomingShows.length > 0) ?                           
+                    shows.allShows.upcomingShows.map((show,index)=>{
                         return(
                             <Show
                                 key={index}
@@ -38,6 +45,10 @@ const AllUpcomingShows = () => {
                             />
                         )
                     })
+                    :
+                    status.all === 'success' && shows.allShows.upcomingShows.length === 0 ? <p className="defaultText"><span><img src={logo} alt=""/></span>COMING SOON.</p>
+                    :
+                    <p className="defaultText"><span><img src={logo} alt=""/></span>SOMETHING WENT WRONG.</p>  
                 }
             </ul>
         </motion.div>

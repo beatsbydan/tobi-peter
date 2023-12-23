@@ -4,10 +4,13 @@ import ValidateAuth from '../../Auth/ValidateAuth'
 import useAlert from '../../../../Hooks/useAlert'
 import axios from 'axios'
 import useIsProcessing from '../../../../Hooks/useIsProcessing'
+import { useDispatch } from 'react-redux'
+import { setAuthAccessToken } from '../../../../Store/StateSlices/AdminSlices/AuthSlice'
 
 const AuthContextProvider = (props) => {
     const {setAlert} = useAlert()
     const {setProcessing} = useIsProcessing()
+    const dispatch = useDispatch()
 
     // AUTH DETAILS
 
@@ -250,6 +253,7 @@ const AuthContextProvider = (props) => {
                 setIsLoggedIn(true)
                 setProcessing(false)
                 setAccessToken(res.parameters.accessToken)
+                dispatch(setAuthAccessToken(res.parameters.accessToken))
             }
             else{
                 setTimeout(()=>{

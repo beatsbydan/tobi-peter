@@ -7,6 +7,7 @@ import Context from '../../../Context/Context'
 import useAlert from '../../../../../Hooks/useAlert'
 import {motion} from 'framer-motion'
 import {useNavigate} from 'react-router-dom'
+import { IoArrowBackOutline } from 'react-icons/io5'
 
 const Book = () => {
     const ctx = useContext(Context)
@@ -67,6 +68,7 @@ const Book = () => {
             animate={{width:'100%', opacity: 1}}
             exit={{x:-window.innerWidth, opacity:0, transition: {duration: 0.7}}}
         >
+            <IoArrowBackOutline cursor='pointer' onClick={()=> navigate(-1)} color='#1D3557' size={30}/>
             <form action="" onSubmit={handleSubmit}>
                 <InputComponent
                     id={"name"}

@@ -47,9 +47,7 @@ const Music = () => {
             </div>
             <div className="streamingPlatformsBlock">
                 <p>Check out my music on any of these streaming platforms: </p>
-                {song && <StreamingPlatforms
-                    song={song} isEmpty={false}
-                />}
+                <StreamingPlatforms song={song} isEmpty={false}/>
             </div>
             <div className="statsExtras">
                 <div>

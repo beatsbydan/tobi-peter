@@ -6,8 +6,12 @@ import ShowsContext from '../../../../Context/ManageContext/ShowsContext/ShowsCo
 import {useNavigate} from 'react-router-dom'
 import useAlert from '../../../../../../Hooks/useAlert'
 import {motion} from 'framer-motion'
+import {useDispatch} from 'react-redux'
+import { fetchShows } from '../../../../../../Store/StateSlices/UserSlices/ShowsSlice'
+import {IoArrowBackOutline} from 'react-icons/io5'
 
 const CreateShows = () => {
+    const dispatch = useDispatch()
     const ctx = useContext(ShowsContext)
     const {setAlert} = useAlert()
     const navigate = useNavigate()
@@ -17,6 +21,7 @@ const CreateShows = () => {
         .then(success=>{
             if(success.yes){
                 setAlert('success', 'Show Created!')
+                dispatch(fetchShows())
                 setTimeout(()=>{
                     navigate('/admin/manage')
                 },1500)
@@ -30,6 +35,7 @@ const CreateShows = () => {
             animate={{width:'100%', opacity: 1}}
             exit={{x:-window.innerWidth, opacity:0, transition: {duration: 0.7}}}
         >
+            <IoArrowBackOutline cursor='pointer' onClick={()=> navigate(-1)} color='#1D3557' size={30}/>   
             <h2>ADD A NEW SHOW WITH EASE <span><BsEmojiWink size={35}/></span></h2>
             <form action="" onSubmit={handleSubmit}>
                 <InputComponent

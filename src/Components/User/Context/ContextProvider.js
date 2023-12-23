@@ -1,5 +1,5 @@
 import Context from './Context'
-import {useState, useEffect, useReducer, useCallback} from 'react'
+import {useState, useReducer, useCallback} from 'react'
 import ValidateWhatsNew from '../Pages/WhatsNew/ValidateWhatsNew'
 import axios from 'axios'
 import useAlert from '../../../Hooks/useAlert'
@@ -93,10 +93,6 @@ const ContextProvider = (props) => {
         },3000)
     },[])
 
-    useEffect(()=>{
-        getShows()
-    },[getShows])
-    
     const filterShows = (shows) => {
         if(shows.length > 0){
             return shows.slice(0, 3)
@@ -160,10 +156,6 @@ const ContextProvider = (props) => {
         },3000)
     }
     
-    useEffect(()=>{
-        getSong()
-    },[])
-
     // BLOGS
     
     const [blogs, setBlogs] = useState([])
@@ -185,10 +177,6 @@ const ContextProvider = (props) => {
         
     }
 
-    useEffect(()=>{
-        getBlogs()
-    },[])
-
     // BIO-IMAGES
     
     const [images, setImages] = useState([])
@@ -208,10 +196,7 @@ const ContextProvider = (props) => {
             })
         },3000)
     }
-    useEffect(()=>{
-        getImages()
-    },[])
-
+    
     // BOOK TOBI PETER
     
     const [bookFieldsRegular, setBookFieldsRegular] = useState({

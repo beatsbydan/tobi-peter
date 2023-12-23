@@ -6,7 +6,7 @@
 .update h2{
     text-align: center;
     color: #1D3557;
-    margin-bottom: 1.5rem;
+    margin: 1.5rem 0;
 }
 .update h2 span{
     display: block;

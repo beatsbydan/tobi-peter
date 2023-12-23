@@ -1,16 +1,25 @@
-import {useContext} from 'react'
-import Context from '../../../Context/Context'
 import Show from '../Show/Show'
 import './AllShows.css'
-import {AiOutlineArrowLeft} from 'react-icons/ai'
+import { IoArrowBackOutline } from 'react-icons/io5'
 import { motion } from 'framer-motion';
-import Loading from '../../../../UI/Loading/Loading';
 import {useNavigate} from 'react-router-dom'
 import logo from '../../../../../Assets/logo.png'
+import {useSelector, useDispatch} from 'react-redux'
+import Loading from '../../../../UI/Loading/Loading';
+import { fetchShows } from '../../../../../Store/StateSlices/UserSlices/ShowsSlice';
+import {useEffect} from 'react'
 
 const AllPastShows = () => {
-    const ctx = useContext(Context)
+    const {status, shows} = useSelector(state => state.shows)
     const navigate = useNavigate()
+
+    const dispatch = useDispatch()
+
+    useEffect(()=>{
+        if(status.all === "idle"){
+            dispatch(fetchShows())
+        }
+    },[status.all, dispatch])
 
     return (
         <motion.div 
@@ -19,15 +28,14 @@ const AllPastShows = () => {
             animate={{width:'100%'}}
             exit={{x:-window.innerWidth, transition: {duration: 0.5}}}    
         >
-            <AiOutlineArrowLeft cursor='pointer' onClick={()=> navigate(-1)} color='#1D3557' size={30}/>
+            <IoArrowBackOutline cursor='pointer' onClick={()=> navigate(-1)} color='#1D3557' size={30}/>
             <h5 className="theShow">PAST SHOWS</h5>
             <ul className="showsList">
                 {
-                    ctx.pending.isPending? <Loading isPending={ctx.pending.isPending}/> 
+                    status.all === "pending" ? <Loading/>
                 :
-                    ctx.shows.myShows.pastShows.length === 0 ? <p className="defaultText"><span><img src={logo} alt=""/></span>COMING SOON.</p>                            
-                :
-                    ctx.shows.myShows.pastShows.map((show,index)=>{
+                    (status.all === "success" && shows.allShows.pastShows.length > 0) ?                           
+                    shows.allShows.pastShows.map((show,index)=>{
                         return(
                             <Show
                                 key={index}
@@ -38,6 +46,10 @@ const AllPastShows = () => {
                             />
                         )
                     })
+                    :
+                    status.all === 'success' && shows.allShows.pastShows.length === 0 ? <p className="defaultText"><span><img src={logo} alt=""/></span>COMING SOON.</p>
+                    :
+                    <p className="defaultText"><span><img src={logo} alt=""/></span>SOMETHING WENT WRONG.</p>
                 }
             </ul>
         </motion.div>

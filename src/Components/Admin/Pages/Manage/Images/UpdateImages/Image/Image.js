@@ -1,12 +1,14 @@
 import {RiDeleteBin5Line} from 'react-icons/ri'
 import './Image.css'
-import {useState, useContext} from 'react'
+import {useState} from 'react'
 import UpdateEvent from '../../../../../../UI/UpdateEvent/UpdateEvent'
-import Context from '../../../../../../User/Context/Context'
+import { fetchImages } from '../../../../../../../Store/StateSlices/UserSlices/MusicSlice'
+import {useDispatch} from 'react-redux'
+
 const Image = (props) => {
     const delay = 300
-    const userCtx = useContext(Context)
     const [isOpen, setIsOpen] = useState(false)
+    const dispatch = useDispatch()
     const handleOpen = () => {
         setIsOpen(!isOpen)
     }
@@ -14,7 +16,7 @@ const Image = (props) => {
         props.delete()
             .then(success=>{
                 if(success.yes){
-                    userCtx.getImages()
+                    dispatch(fetchImages())
                     setIsOpen(false)
                 }
             })

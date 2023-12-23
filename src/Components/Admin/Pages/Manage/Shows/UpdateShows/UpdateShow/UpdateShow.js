@@ -1,23 +1,37 @@
 import './UpdateShow.css'
 import InputComponent from '../../../../../../UI/InputComponent/InputComponent'
 import {BsEmojiWink} from 'react-icons/bs'
-import {useContext} from 'react'
+import {useContext, useEffect} from 'react'
 import ShowsContext from '../../../../../Context/ManageContext/ShowsContext/ShowsContext'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, useParams} from 'react-router-dom'
 import useAlert from '../../../../../../../Hooks/useAlert'
 import {motion} from 'framer-motion'
 import Loading from '../../../../../../UI/Loading/Loading'
+import logo from '../../../../../../../Assets/logo.png'
+import useIsProcessing from '../../../../../../../Hooks/useIsProcessing'
+import {IoArrowBackOutline} from 'react-icons/io5'
+import {useDispatch} from 'react-redux'
+import { fetchShows } from '../../../../../../../Store/StateSlices/UserSlices/ShowsSlice'
 
 const UpdateShow = () => {
-    const ctx = useContext(ShowsContext)
+    const {id} = useParams()
+    const {isProcessing} = useIsProcessing()
+    const dispatch = useDispatch()
+    const {updateData, updateErrors, handleUpdateSubmit, handleUpdateChange, getShow} = useContext(ShowsContext)
+    
+    useEffect(()=>{
+        getShow(id)
+    }, [getShow, id])
+    
     const {setAlert} = useAlert()
     const navigate = useNavigate()
     const handleSubmit = (e) => {
         e.preventDefault()
-        ctx.handleUpdateSubmit()
+        handleUpdateSubmit()
         .then(success=>{
             if(success.yes){
                 setAlert('success', 'Show Updated!')
+                dispatch(fetchShows())
                 setTimeout(()=>{
                     navigate('/admin/manage')
                 },1500)
@@ -31,45 +45,49 @@ const UpdateShow = () => {
             animate={{width:'100%', opacity: 1}}
             exit={{x:-window.innerWidth, opacity:0, transition: {duration: 0.7}}}
         >
-            {ctx.pending.isPending ? <Loading isPending={ctx.pending.isPending}/>:
+            <IoArrowBackOutline cursor='pointer' onClick={()=> navigate(-1)} color='#1D3557' size={30}/>
+            {isProcessing ? <Loading/> 
+            :
+            Object.values(updateData).every(element => element === "") ? <p className="defaultText"><span><img src={logo} alt=""/></span>SOMETHING WENT WRONG.</p> 
+            :
                 <>
                     <h2>UPDATE SHOW <span><BsEmojiWink size={35}/></span></h2>
                     <form action="" onSubmit={handleSubmit}>
                         <InputComponent
                             id={"title"}
                             label={"Title:"}
-                            error={ctx.updateErrors.title}
+                            error={updateErrors.title}
                             type={"text"}
                             placeholder={"Enter Title"}
-                            value={ctx.updateData.title}
-                            onChange={ctx.handleUpdateChange}
+                            value={updateData.title}
+                            onChange={handleUpdateChange}
                         />
                         <InputComponent
                             id={"venue"}
                             label={"Venue:"}
-                            error={ctx.updateErrors.venue}
+                            error={updateErrors.venue}
                             type={"text"}
                             placeholder={"Enter Venue"}
-                            value={ctx.updateData.venue}
-                            onChange={ctx.handleUpdateChange}
+                            value={updateData.venue}
+                            onChange={handleUpdateChange}
                         />
                         <InputComponent
                             id={"date"}
                             label={"Date:"}
-                            error={ctx.updateErrors.date}
+                            error={updateErrors.date}
                             type={"date"}
                             placeholder={"Enter Date"}
-                            value={ctx.updateData.date}
-                            onChange={ctx.handleUpdateChange}
+                            value={updateData.date}
+                            onChange={handleUpdateChange}
                         />
                         <InputComponent
                             id={"ticketLink"}
                             label={"Ticket-Link:"}
-                            error={ctx.updateErrors.ticketLink}
+                            error={updateErrors.ticketLink}
                             type={"link"}
                             placeholder={"Enter Link"}
-                            value={ctx.updateData.ticketLink}
-                            onChange={ctx.handleUpdateChange}
+                            value={updateData.ticketLink}
+                            onChange={handleUpdateChange}
                         />
                         <div className = "formActions">
                             <button type='submit'>UPDATE</button>

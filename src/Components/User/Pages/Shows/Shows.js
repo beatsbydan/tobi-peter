@@ -1,15 +1,31 @@
 import './Shows.css'
-import {useContext} from 'react'
-import Context from '../../Context/Context'
 import Show from './Show/Show'
 import {BiRightArrowAlt} from 'react-icons/bi'
 import Loading from '../../../UI/Loading/Loading'
 import logo from '../../../../Assets/logo.png'
 import { motion } from 'framer-motion';
 import {Link} from 'react-router-dom'
+import {useSelector, useDispatch} from 'react-redux'
+import { useEffect } from 'react'
+import { fetchShows } from '../../../../Store/StateSlices/UserSlices/ShowsSlice'
 
 const Shows = () => {
-    const ctx = useContext(Context)
+    const {status, shows} = useSelector(state => state.shows)
+    const dispatch = useDispatch()
+
+    useEffect(()=>{
+        if(status.all === "idle"){
+            dispatch(fetchShows())
+        }
+    },[status.all, dispatch])
+
+    useEffect(()=>{
+        if(status.all === 'success'){
+            
+        }
+
+    },[status.all])
+
     return ( 
         <motion.div 
             className="shows"
@@ -35,11 +51,10 @@ const Shows = () => {
                 <h5>UPCOMING SHOWS</h5>
                 <ul className='showsList'>
                     {
-                        ctx.pending.isPending ? <Loading isPending = {ctx.pending.isPending}/>
+                        status.all === "pending" ? <Loading/>
                         : 
-                        ctx.shows.upcomingShows.length === 0 ? <p className="defaultText"><span><img src={logo} alt=""/></span>COMING SOON. </p>                            
-                        : 
-                        ctx.shows.upcomingShows.map((show,index)=>{
+                        status.all === 'success' && shows.upcomingShows.length > 0 ?                            
+                        shows.upcomingShows.map((show,index)=>{
                             return(
                                 <Show
                                     key={index}
@@ -51,21 +66,24 @@ const Shows = () => {
                                 />
                             )
                         })
+                        :
+                        status.all === 'success' && shows.upcomingShows.length === 0 ? <p className="defaultText"><span><img src={logo} alt=""/></span>COMING SOON.</p>
+                        :
+                        <p className="defaultText"><span><img src={logo} alt=""/></span>SOMETHING WENT WRONG.</p>
                     }
                 </ul>
                 <div className="myShowsActions">
-                    <Link onClick={ctx.getShows} to={'/shows/allUpcomingShows'}>SEE MORE</Link>
+                    <Link to={'/shows/allUpcomingShows'}>SEE MORE</Link>
                 </div>
             </div>
             <div className="pastShows">
                 <h5>PAST SHOWS</h5>
                 <ul className='showsList'>
                     {
-                        ctx.pending.isPending ? <Loading isPending = {ctx.pending.isPending}/>
+                        status.all === "pending" ? <Loading/>
                         : 
-                        ctx.shows.pastShows.length === 0? <p className="defaultText"><span><img src={logo} alt=""/></span>COMING SOON. </p>
-                        :
-                        ctx.shows.pastShows.map((show,index)=>{
+                        status.all === 'success' && shows.pastShows.length > 0 ?                            
+                        shows.pastShows.map((show,index)=>{
                             return(
                                 <Show
                                     key={index}
@@ -76,10 +94,14 @@ const Shows = () => {
                                 />
                             )
                         })
+                        :
+                        status.all === 'success' && shows.pastShows.length === 0 ? <p className="defaultText"><span><img src={logo} alt=""/></span>COMING SOON.</p>
+                        :
+                        <p className="defaultText"><span><img src={logo} alt=""/></span>SOMETHING WENT WRONG.</p>
                     }
                 </ul>
                 <div className="myShowsActions">
-                    <Link onClick={ctx.getShows} to={'/shows/allPastShows'}>SEE MORE</Link>
+                    <Link to={'/shows/allPastShows'}>SEE MORE</Link>
                 </div>
             </div>
         </motion.div>

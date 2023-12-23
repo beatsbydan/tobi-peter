@@ -1,11 +1,12 @@
 import ProcessingContext from './ProcessingContext.js'
-import {useState} from 'react'
+import {useCallback, useState} from 'react'
 
 const ProcessingContextProvider = (props) => {
     const [isProcessing, setIsProcessing] = useState(null)
-    const setProcessing = (value) => {
+    const [isFetching, setIsFetching] = useState(null)
+    const setProcessing = useCallback((value) => {
         setIsProcessing(value)
-    }
+    },[])
     const value = {
         isProcessing: isProcessing,
         setProcessing: setProcessing

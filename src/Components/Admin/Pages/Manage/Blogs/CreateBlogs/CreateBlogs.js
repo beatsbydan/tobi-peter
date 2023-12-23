@@ -6,17 +6,23 @@ import InputComponent from '../../../../../UI/InputComponent/InputComponent'
 import useAlert from '../../../../../../Hooks/useAlert'
 import { useNavigate } from 'react-router-dom'
 import {FaBlog} from 'react-icons/fa'
+import {useDispatch} from 'react-redux'
+import { fetchBlogs } from '../../../../../../Store/StateSlices/UserSlices/MusicSlice'
+import {IoArrowBackOutline} from 'react-icons/io5'
 
 const CreateBlogs = () => {
-  const ctx = useContext(ManageContext)
+  const {handleCreateBlogSubmit, handleCreateBlogDataChange, createBlogData, createBlogErrors} = useContext(ManageContext)
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const {setAlert} = useAlert()
+  
   const handleSubmit = (e) => {
     e.preventDefault()
-    ctx.handleCreateBlogSubmit()
+    handleCreateBlogSubmit()
     .then(success=>{
       if(success.yes){
         setAlert('success', 'Blog created!')
+        dispatch(fetchBlogs())
         setTimeout(()=>{
             navigate('/admin/manage')
         },1500)
@@ -30,43 +36,44 @@ const CreateBlogs = () => {
       animate={{width:'100%', opacity: 1}}
       exit={{x:-window.innerWidth, opacity:0, transition: {duration: 0.7}}}
     >
+      <IoArrowBackOutline cursor='pointer' onClick={()=> navigate(-1)} color='#1D3557' size={30}/>   
       <h2>CREATE A BLOG  <span><FaBlog/></span></h2>
       <form action="" onSubmit={handleSubmit}>
         <InputComponent
             id={"title"}
             label={"Title:"}
-            error={ctx.createBlogErrors.title}
+            error={createBlogErrors.title}
             type={"text"}
             placeholder={"Enter title"}
-            value={ctx.createBlogData.title}
-            onChange={ctx.handleCreateBlogDataChange}
+            value={createBlogData.title}
+            onChange={handleCreateBlogDataChange}
         />
         <InputComponent
             id={"author"}
             label={"Author:"}
-            error={ctx.createBlogErrors.author}
+            error={createBlogErrors.author}
             type={"text"}
             placeholder={"Enter author"}
-            value={ctx.createBlogData.author}
-            onChange={ctx.handleCreateBlogDataChange}
+            value={createBlogData.author}
+            onChange={handleCreateBlogDataChange}
         />
         <InputComponent
             id={"text"}
             label={"Text:"}
-            error={ctx.createBlogErrors.text}
+            error={createBlogErrors.text}
             type={"textarea"}
             placeholder={"Enter text"}
-            value={ctx.createBlogData.text}
-            onChange={ctx.handleCreateBlogDataChange}
+            value={createBlogData.text}
+            onChange={handleCreateBlogDataChange}
         />
         <InputComponent
             id={"link"}
             label={"Link:"}
-            error={ctx.createBlogErrors.link}
+            error={createBlogErrors.link}
             type={"text"}
             placeholder={"Enter link"}
-            value={ctx.createBlogData.link}
-            onChange={ctx.handleCreateBlogDataChange}
+            value={createBlogData.link}
+            onChange={handleCreateBlogDataChange}
         />
         <div className="formActions">
             <button type="submit">

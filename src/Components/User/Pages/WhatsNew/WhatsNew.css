@@ -5,19 +5,9 @@
 .coverArtSection{
     width: 100%;
     min-height: 200px;
-    max-width: 600px;
+    max-width: 450px;
     margin: auto;
     position: relative;
-}
-.comingSoon{
-    width: 100%;
-    aspect-ratio: 1;
-    object-fit: cover;
-    position: relative;
-    left: 50%;
-    transform: translateX(-150%);
-    border-radius: 0.7rem;
-    animation: loadedImg 1.5s cubic-bezier(0,-0.34, 0, 1.33) forwards;
 }
 .streamingPlatformsBlock{
     margin-top: 2.7em;

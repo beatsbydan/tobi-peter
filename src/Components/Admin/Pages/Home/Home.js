@@ -1,9 +1,6 @@
 import './Home.css'
-import {useContext} from 'react' 
+import {useEffect, useContext} from 'react' 
 import AuthContext from '../../Context/AuthContext/AuthContext'
-import HomeContext from '../../Context/HomeContext/HomeContext'
-import ShowsContext from '../../Context/ManageContext/ShowsContext/ShowsContext'
-import Context from '../../../User/Context/Context'
 import InputComponent from '../../../UI/InputComponent/InputComponent'
 import StreamingPlatforms from '../../../UI/StreamingPlatforms/StreamingPlatforms'
 import useAlert from '../../../../Hooks/useAlert'
@@ -13,20 +10,41 @@ import Chart from './Chart/Chart'
 import React from 'react'
 import {motion} from 'framer-motion'
 import logo from '../../../../Assets/logo.png'
+import { useSelector, useDispatch } from 'react-redux'
+import { fetchSubscribers } from '../../../../Store/StateSlices/AdminSlices/HomeSlice'
+import { fetchMusic } from '../../../../Store/StateSlices/UserSlices/HomeSlice'
+import { fetchShows } from '../../../../Store/StateSlices/UserSlices/ShowsSlice'
+import Loading from '../../../UI/Loading/Loading'
 
 const Home = () => {
+    const {status, subscribers} = useSelector(state => state.adminHome)
+    const {status: userMusicStatus, music} = useSelector(state => state.home)
+    const {status: adminShowsStatus, shows} = useSelector(state => state.shows)
+    const dispatch = useDispatch()
     const authCtx = useContext(AuthContext)
-    const homeCtx = useContext(HomeContext)
-    const {shows} = useContext(ShowsContext)
-    const {song} = useContext(Context)
     const {setAlert} = useAlert()
-    const date = new Date(shows.upcomingShows[0]?.date)
+
+    useEffect(()=>{
+        if(status.subscribers === "idle"){
+            dispatch(fetchSubscribers())
+        }
+        if(userMusicStatus === "idle"){
+            dispatch(fetchMusic())
+        }
+        if(adminShowsStatus.all === "idle"){
+            dispatch(fetchShows())
+        }
+    },[dispatch, status.subscribers, userMusicStatus, adminShowsStatus])
+
+    const date = new Date(shows?.upcomingShows[0]?.date)
     const myDate = date.getDate()
     const myMonth = date.getMonth()
+
     const getMonth = (myMonth) => {
         date.setMonth(myMonth)
         return date.toLocaleString('en-US', { month: 'short' }).toUpperCase();
     }
+
     const txtMonth = getMonth(myMonth)
 
     const handleSubmit = (e) => {
@@ -38,6 +56,7 @@ const Home = () => {
             }
         })
     }
+    
     const defaultSong = {
         streamingLink: {
             appleMusic: '',
@@ -62,13 +81,13 @@ const Home = () => {
             </div>
             <div className="statsBlock columnFlex">
                 <h3>STATISTICS</h3>
-                <p>Let's map out your progress with your shows and events!</p>
+                <p>Let's map out your progress of your shows and events!</p>
                 <div className="showsChart">
                     <Chart/>
                 </div>
                 <div className="subscribers">
                     <h5>SUBSCRIBERS</h5>
-                    <p>Yoo! You've got <span>{homeCtx.subscribers?.length || 0}</span> subscriber(s)!</p>
+                    <p>Yoo! You've got <span>{subscribers.length}</span> subscriber(s)!</p>
                 </div>
             </div>
             <div className="events columnFlex">
@@ -79,13 +98,18 @@ const Home = () => {
                     <div className="myNewSong">
                         <div className="myNewSongBlock">
                             {
-                                !song ? <p className="defaultText"><span><img src={logo} alt=""/></span>SONG UNAVAILABLE. </p> 
-                                : <img className='newSongImg' src={song.coverArt} alt =''/>
+                                userMusicStatus === 'pending' ? <Loading/> 
+                                : 
+                                (userMusicStatus === 'success' && music?.coverArt) ? <img className='newSongImg' src={music?.coverArt} alt="" /> 
+                                :
+                                (userMusicStatus === 'success' && !music?.coverArt) ? <p className="defaultText"><span><img src={logo} alt=""/></span>SONG UNAVAILABLE.</p>
+                                :
+                                <p className="defaultText"><span><img src={logo} alt=""/></span>SOMETHING WENT WRONG.</p> 
                             }
                         </div>
-                        {!song ? '' : <p>Title: {song.title?.toUpperCase()}</p>}
+                        {!music?.title ? '' : <p className="songTitle">Title: {music?.title?.toUpperCase()}</p>}
                         {
-                            song ? <StreamingPlatforms song={song} isEmpty={false}/>
+                            music ? <StreamingPlatforms song={music} isEmpty={false}/>
                             :
                             <StreamingPlatforms song={defaultSong} isEmpty={true}/>
                         }
@@ -100,13 +124,13 @@ const Home = () => {
                             <div className="show">
                                 <div className='left'>
                                     <div className='date'>
-                                        <small className='month'>{txtMonth || 'None'}</small>
-                                        <h5 className='day'>{myDate || 'None'}</h5>
+                                        <small className='month'>{txtMonth}</small>
+                                        <h5 className='day'>{myDate}</h5>
                                     </div>
                                     <h5 className='desc'>DJ</h5>
                                     <div className='location'>
-                                        <h5 className='title'>{shows.upcomingShows[0].title || 'None'}</h5>
-                                        <small className='venue'>{shows.upcomingShows[0].venue || 'None'}</small>
+                                        <h5 className='title'>{shows.upcomingShows[0].title}</h5>
+                                        <small className='venue'>{shows.upcomingShows[0].venue}</small>
                                     </div>    
                                 </div>
                                 {<a target='_blank' rel="noreferrer" href={shows.upcomingShows[0].ticketLink}>
