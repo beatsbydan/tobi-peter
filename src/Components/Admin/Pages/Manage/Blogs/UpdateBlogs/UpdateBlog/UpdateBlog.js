@@ -14,7 +14,7 @@ import logo from '../../../../../../../Assets/logo.png'
 import {IoArrowBackOutline} from 'react-icons/io5'
 
 const UpdateBlog = () => {
-    const {isProcessing} = useIsProcessing()
+    const {isFetching} = useIsProcessing()
     const {id} = useParams()
     const {getBlog, updateBlogData, updateBlogErrors, handleUpdateBlogDataChange, handleUpdateBlogSubmit} = useContext(ManageContext)
     const navigate = useNavigate()
@@ -47,7 +47,7 @@ const UpdateBlog = () => {
         exit={{x:-window.innerWidth, opacity:0, transition: {duration: 0.7}}}
         >
             <IoArrowBackOutline cursor='pointer' onClick={()=> navigate(-1)} color='#1D3557' size={30}/>   
-            {isProcessing ? <Loading/> :
+            {isFetching ? <Loading/> :
             Object.values(updateBlogData).every(element => element === "") ? <p className="defaultText"><span><img src={logo} alt=""/></span>SOMETHING WENT WRONG.</p> 
             :
             <>

@@ -11,7 +11,7 @@ import useUserContext from '../../../../Hooks/useUserContext'
 
 const ManageContextProvider = (props) => {
     const {setAlert} = useAlert()
-    const {setProcessing} = useIsProcessing()
+    const {setProcessing, setFetching} = useIsProcessing()
     const { getSong: getRecentSong} = useUserContext()
     const {authDetails} = useAuth()
     const [song, setSong] = useState({})
@@ -68,13 +68,13 @@ const ManageContextProvider = (props) => {
     }
     
     const getSong = useCallback(async (id) => {
-        setProcessing(true)
+        setFetching(true)
         dispatchPending({type: 'PENDING'})
         await axios.get(`${process.env.REACT_APP_BASE_URL}/song/${id}`)
         .then(res=>{
             if(res.status === 200){
                 setSong(res.data.song)
-                setProcessing(false)
+                setFetching(false)
                 setUpdateData({
                     date: getFormattedDate(res.data.song.releaseDate),
                     title: res.data.song.title,
@@ -91,12 +91,12 @@ const ManageContextProvider = (props) => {
         })
         .catch(err=>{
             setTimeout(()=>{
-                setProcessing(false)
+                setFetching(false)
             },1000)
             setAlert('failure', 'Something went wrong!')
             return err
         })
-    }, [setProcessing, setAlert])
+    }, [setFetching, setAlert])
     
     const deleteSong = async (id) =>{
         setProcessing(true)
@@ -201,18 +201,20 @@ const ManageContextProvider = (props) => {
                 setProcessing(false)
                 getSongs()
                 getRecentSong()
-                setCreateData({
-                    date:'',
-                    title:'',
-                    appleMusic: '',
-                    spotify: '',
-                    audiomack: '',
-                    youtube: '',
-                    tidal: '',
-                    boomPlay: '',
-                    youtubeMusic: ''
-                })
-                setCreateFile({})
+                setTimeout(()=>{
+                    setCreateData({
+                        date:'',
+                        title:'',
+                        appleMusic: '',
+                        spotify: '',
+                        audiomack: '',
+                        youtube: '',
+                        tidal: '',
+                        boomPlay: '',
+                        youtubeMusic: ''
+                    })
+                    setCreateFile({})
+                }, 1500)
                 success.yes = true
             }
             else{
@@ -358,12 +360,14 @@ const ManageContextProvider = (props) => {
             if(res.none){
                 setProcessing(false)
                 success.yes = true
-                setUpdateBlogData({
-                    title: '',
-                    author: '',
-                    text: '',
-                    link: ''
-                })
+                setTimeout(()=>{
+                    setCreateBlogData({
+                        title: '',
+                        author: '',
+                        text: '',
+                        link: ''
+                    })
+                },1500)
             }
             else{
                 setTimeout(()=>{
@@ -406,14 +410,14 @@ const ManageContextProvider = (props) => {
     const [blog, setBlog] = useState({})
     
     const getBlog = useCallback((id) => {
-        setProcessing(true)
+        setFetching(true)
         dispatchPending({type: 'PENDING'})
         setTimeout(()=>{
             axios.get(`${process.env.REACT_APP_BASE_URL}/blog/${id}`)
             .then(res=>{
                 if(res.status === 200){
                     setBlog(res.data.blog)
-                    setProcessing(false)
+                    setFetching(false)
                     setUpdateBlogData({
                         title: res.data.blog.title,
                         author: res.data.blog.author,
@@ -425,13 +429,13 @@ const ManageContextProvider = (props) => {
             })
             .catch(err=>{
                 setTimeout(()=>{
-                    setProcessing(false)
+                    setFetching(false)
                 },1000)
                 setAlert('failure', 'Something went wrong!')
                 return err
             })
         },3000)
-    }, [setProcessing, setAlert])
+    }, [setFetching, setAlert])
 
     // BIO-IMAGES
     

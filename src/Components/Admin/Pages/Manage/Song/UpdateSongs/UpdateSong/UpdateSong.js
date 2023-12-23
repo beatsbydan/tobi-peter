@@ -13,7 +13,7 @@ import {IoArrowBackOutline} from 'react-icons/io5'
 
 const UpdateSong = () => {
     const {id} = useParams()
-    const {isProcessing} = useIsProcessing()
+    const {isFetching} = useIsProcessing()
     const {getSong, handleUpdateSubmit, updateData, updateDataErrors, handleUpdateDataChange} = useContext(ManageContext)
     const navigate = useNavigate()
     const {setAlert} = useAlert()
@@ -40,7 +40,7 @@ const UpdateSong = () => {
         exit={{x:-window.innerWidth, opacity:0, transition: {duration: 0.7}}}
     >
         <IoArrowBackOutline cursor='pointer' onClick={()=> navigate(-1)} color='#1D3557' size={30}/>   
-        {isProcessing ? <Loading/> :
+        {isFetching ? <Loading/> :
             <>
                 <h2>UPDATE SONG <span>{<MdOutlineUpdate size={35}/>}</span></h2>
                 <form action ="" onSubmit={handleSubmit}>

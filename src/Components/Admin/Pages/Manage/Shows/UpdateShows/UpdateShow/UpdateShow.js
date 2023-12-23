@@ -15,7 +15,7 @@ import { fetchShows } from '../../../../../../../Store/StateSlices/UserSlices/Sh
 
 const UpdateShow = () => {
     const {id} = useParams()
-    const {isProcessing} = useIsProcessing()
+    const {isFetching} = useIsProcessing()
     const dispatch = useDispatch()
     const {updateData, updateErrors, handleUpdateSubmit, handleUpdateChange, getShow} = useContext(ShowsContext)
     
@@ -46,7 +46,7 @@ const UpdateShow = () => {
             exit={{x:-window.innerWidth, opacity:0, transition: {duration: 0.7}}}
         >
             <IoArrowBackOutline cursor='pointer' onClick={()=> navigate(-1)} color='#1D3557' size={30}/>
-            {isProcessing ? <Loading/> 
+            {isFetching ? <Loading/> 
             :
             Object.values(updateData).every(element => element === "") ? <p className="defaultText"><span><img src={logo} alt=""/></span>SOMETHING WENT WRONG.</p> 
             :

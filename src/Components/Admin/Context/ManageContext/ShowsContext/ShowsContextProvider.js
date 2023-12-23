@@ -7,7 +7,7 @@ import axios from 'axios'
 import useIsProcessing from '../../../../../Hooks/useIsProcessing'
 
 const ShowsContextProvider = (props) => {
-    const {setProcessing} = useIsProcessing()
+    const {setProcessing, setFetching} = useIsProcessing()
     const {setAlert} = useAlert()
     const {authDetails} = useAuth()
 
@@ -106,12 +106,15 @@ const ShowsContextProvider = (props) => {
             if(res.none){
                 success.yes = true
                 setProcessing(false)
-                setUpdateData({
-                    title: '',
-                    venue: '',
-                    date: '',
-                    ticketLink: ''
-                })
+                setFetching(false)
+                setTimeout(()=>{
+                    setUpdateData({
+                        title: '',
+                        venue: '',
+                        date: '',
+                        ticketLink: ''
+                    })
+                }, 1500)
             }
             else{
                 setTimeout(()=>{
@@ -127,12 +130,12 @@ const ShowsContextProvider = (props) => {
     const [show, setShow] = useState({})
     
     const getShow = useCallback((id) => {
-        setProcessing(true)
+        setFetching(true)
         setTimeout(async()=>{
             await axios.get(`${process.env.REACT_APP_BASE_URL}/show/${id}`)
             .then(res=>{
                 if(res.status === 200){
-                    setProcessing(false)
+                    setFetching(false)
                     setShow(res.data.show)
                     setUpdateData({
                         title: res.data.show.title,
@@ -144,13 +147,13 @@ const ShowsContextProvider = (props) => {
             })
             .catch(err=>{
                 setTimeout(()=>{
-                    setProcessing(false)
+                    setFetching(false)
                 },1000)
                 setAlert('failure', 'Something went wrong!')
                 return err
             })
         },3000)
-    }, [setAlert, setProcessing])
+    }, [setAlert, setFetching])
     
     const deleteShow = async (id) => {
         setProcessing(true)

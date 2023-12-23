@@ -7,9 +7,14 @@ const ProcessingContextProvider = (props) => {
     const setProcessing = useCallback((value) => {
         setIsProcessing(value)
     },[])
+    const setFetching = useCallback((value)=>{
+      setIsFetching(value)
+    },[])
     const value = {
+        isFetching: isFetching,
         isProcessing: isProcessing,
-        setProcessing: setProcessing
+        setProcessing: setProcessing,
+        setFetching: setFetching
     }
   return (
     <ProcessingContext.Provider value={value}>

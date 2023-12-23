@@ -12,7 +12,6 @@ import AlertPopUp from './Components/UI/AlertPopUp/AlertPopUp'
 import AnimatedRoutes from './Components/AnimatedRoutes/AnimatedRoutes';
 import Processing from './Components/UI/IsProcessing/Processing';
 import ProcessingContextProvider from './Components/UI/IsProcessing/ProcessingContext/ProcessingContextProvider';
-import UnderMaintenance from './Components/UI/UnderMaintenance/UnderMaintenance';
 // import UnderMaintenance from './Components/UI/UnderMaintenance/UnderMaintenance';
 
 function App() {
@@ -27,12 +26,12 @@ function App() {
                     <div className="App">
                       <AlertPopUp/>
                       <header>
-                        {/* { location.pathname.includes("/admin") ? <AdminNavbar/> : <Navbar/>} */}
+                        { location.pathname.includes("/admin") ? <AdminNavbar/> : <Navbar/>}
                       </header>
                       <main>
                         <Processing/>
-                        {/* <AnimatedRoutes/> */}
-                        <UnderMaintenance/>
+                        <AnimatedRoutes/>
+                        {/* <UnderMaintenance/> */}
                       </main>
                       <Footer/>
                     </div>

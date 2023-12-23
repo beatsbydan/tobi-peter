@@ -199,7 +199,7 @@ a {
 }
 .formActions{
   width:100%;
-  margin: auto;
+  margin:2rem auto;
   text-align: center;
 }
 .formActions button{
