@@ -31,14 +31,14 @@ const Music = () => {
             </div>
             <div className="bio">
                 <p>
-                    Tobi Peter is a songwriter, DJ, music producer & animator. The Lagos based producer takes musical inspiration from <span>Thomas Wesley</span> (also known as <span>Diplo</span>).
-                    Much like <span>Diplo</span>, Tobi Peter makes music across a wide range of genres. In recent times, he has established himself as a producer to be reckoned with as long as EDM, house or amapiano in Nigeria is concerned.
+                    Tobi Peter is an international DJ, music producer and songwriter based in Lagos, Nigeria.
+                    Tobi makes music across a wide range of genres, however, in recent times, he has established himself as a producer & DJ to be reckoned with as long as house or amapiano in Africa is concerned.
                 </p>
                 <p>
                     While DJing, Tobi Peter can be seen wearing his signature blue agbada which serves as an appeal to the eyes while he serenades the audience with his unique set.
                 </p>
                 <p>
-                    He has received praise and commendation for his artistic display both as an animator and a producer from <span>Diplo, Walshy Fire, Major Lazer, Major League Djz, Don Jazzy, Dr Sid, M.I., Falz the Bahd Guy</span> amongst others.
+                    He has received praise and commendation for his artistic display both as an animator and a producer from <span>Diplo, Sarz, Walshy Fire, Major Lazer, Major League Djz, Don Jazzy, Dr Sid, M.I., Falz the Bahd Guy</span> amongst others.
                 </p>
                 <p>Tobi has put out 6 EPs in his career as a producer/DJ with his latest release cementing his status as an elite amapiano producer.</p>
             </div>
