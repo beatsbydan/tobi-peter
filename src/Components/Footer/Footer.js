@@ -1,8 +1,9 @@
 import './Footer.css'
 const Footer = () => {
+    const year = new Date().getFullYear();
     return ( 
         <footer>
-            2023 TOBI PETER
+            {year} TOBI PETER
         </footer>
     );
 }
