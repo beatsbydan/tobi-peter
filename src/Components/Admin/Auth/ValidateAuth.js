@@ -29,7 +29,7 @@ const ValidateAuth = async (entry, token) => {
                 }
             })
             .then(res=>{
-                if(res.data.status.toLowerCase() === 'success'){
+                if(res?.data?.status.toLowerCase() === 'success'){
                     result.errors.none = true
                 }
             })
@@ -57,13 +57,13 @@ const ValidateAuth = async (entry, token) => {
                 withCredentials:true
             })
             .then(res=>{
-                if(res.data.status.toLowerCase() === 'success'){
+                if(res?.data?.status.toLowerCase() === 'success'){
                     result.errors.none = true
                     result.parameters.accessToken = res.data.token
                 }
             })
             .catch(err=>{
-                if(err.response.status === 401){
+                if(err?.response?.status === 401){
                     result.errors.email = 'Invalid Credentials'
                     result.errors.password = 'Invalid Credentials'
                 }
@@ -84,12 +84,12 @@ const ValidateAuth = async (entry, token) => {
                 }
             })
             .then(res=>{
-                if(res.data.status.toLowerCase() === 'success'){
+                if(res?.data?.status.toLowerCase() === 'success'){
                     result.errors.none = true
                 }
             })
             .catch(err=>{
-                if(err.response.status === 404){
+                if(err?.response?.status === 404){
                     result.errors.resetEmail = "Not Tobi Peter."
                 }
                 return
@@ -118,7 +118,7 @@ const ValidateAuth = async (entry, token) => {
                 }
             })
             .then(res=>{
-                if(res.data.status.toLowerCase() === 'success'){
+                if(res?.data?.status.toLowerCase() === 'success'){
                     result.errors.none = true
                 }
             })

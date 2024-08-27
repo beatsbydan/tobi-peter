@@ -29,16 +29,14 @@ const AdminNavbar = () => {
         .then(success=>{
             if(success.yes){
                 setAlert('success', 'Logout Successful!')
-                setTimeout(()=>{
-                    navigate('/admin/login')
-                },3000)
-                setIsLoggedIn(false)
+                navigate('/admin/login')
+                setIsLoggedIn("logged-out")
             }
         })
     }
     return ( 
         <React.Fragment>
-            {authDetails.isLoggedIn && <div className='navbar'>
+            {authDetails.isLoggedIn === true && <div className='navbar'>
                 <nav>
                     <NavLink to={'/admin/home'}>
                         <img className='logo' src={logo} alt=''/>
