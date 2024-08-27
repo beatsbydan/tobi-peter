@@ -4,6 +4,7 @@ import {useState, useEffect} from 'react'
 import useRefreshToken from '../../../Hooks/useRefreshToken'
 import useAuth from '../../../Hooks/useAuth'
 import Loading from '../../../Components/UI/Loading/Loading'
+
 const PersistLogIn = () => {
   const [isPending, setIsPending] = useState(true)
   const refresh = useRefreshToken()
@@ -14,7 +15,7 @@ const PersistLogIn = () => {
         await refresh()
       }
       catch(err){
-        console.log(err)
+        console.error(err)
       }
       finally{
         setIsPending(false)

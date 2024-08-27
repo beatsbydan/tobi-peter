@@ -9,6 +9,7 @@
 }
 .logo{
     width:60px;
+    height: 60px;
     cursor:pointer;
 }
 nav{
@@ -21,7 +22,7 @@ nav{
 }
 nav ul{
     width: 100%;
-    max-width: 680px;
+    max-width: 730px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -42,18 +43,24 @@ nav ul a li{
 }
 .right{
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+}
+.shopNav{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
 }
 .hamburger,.close{
     display: none;
 }
 .close{
     position: fixed;
-    right: 7%;
+    right: 5%;
     z-index: 1000;
 }
 @media screen and (max-width:750px){
@@ -61,7 +68,7 @@ nav ul a li{
         display: block;
     }
     nav ul{
-        width: 80%;
+        width: 100%;
         z-index: 100;
         flex-direction: column;
         gap: 6rem;
@@ -70,12 +77,12 @@ nav ul a li{
         right: 0;
         bottom: 0;
         top:0;
-        background-color: rgba(0, 0, 0, 0.909);
+        background-color: #FFFBF4;
         transform: translateX(100%);
-        transition: 0.5s ease-in;
+        transition: 0.5s cubic-bezier(0.39, 0.575, 0.565, 1);
     }
     nav ul a li{
-        color: #FFFBF4;
+        color: #495464;
     }
     nav ul a {
         width: 100%;

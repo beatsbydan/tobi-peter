@@ -47,7 +47,6 @@ const WhatsNew = () => {
         dispatch(clearSubscriptionErrors())
         e.preventDefault()
         const errors = ValidateWhatsNew(email)
-        console.log(errors)
         setError(errors)
         if(errors.none){
             const data = {

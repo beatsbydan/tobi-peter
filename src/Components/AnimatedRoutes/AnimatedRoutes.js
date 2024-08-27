@@ -5,7 +5,6 @@ import {AnimatePresence} from 'framer-motion'
 
 import ProtectedRoutes from '../Admin/Protected/ProtectedRoutes'
 import PersistLogin from '../Admin/PersistLogIn/PersistLogIn'
-import ScrollToTop from '../ScrollToTop';
 import Loading from '../UI/Loading/Loading'
 
 // LAZY ROUTES
@@ -104,7 +103,6 @@ const AnimatedRoutes = () => {
     const location = useLocation()
     return (
         <AnimatePresence>
-            <ScrollToTop/>
             <Routes location={location} key={location.pathname}>
                 {/* USER ROUTES */}
                 <Route exact path ='/' element={<WhatsNew/>}/>
@@ -124,7 +122,7 @@ const AnimatedRoutes = () => {
                 <Route path='/admin' element={<Admin/>}/>
                 <Route path='/admin/login' element={<Login/>}/>
                 <Route path='/admin/register' element={<Register/>}/>
-                <Route path = '/unatuhorized' element = {<Unauthorized/>}/>
+                <Route path = '/unauthorized' element = {<Unauthorized/>}/>
                 <Route path = '/admin/reset' element={<ForgotPassword/>}/>
 
                 {/* PROTECTED ROUTES */}

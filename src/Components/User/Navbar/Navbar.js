@@ -4,6 +4,7 @@ import {useState} from 'react'
 import {RxHamburgerMenu} from 'react-icons/rx'
 import {VscChromeClose} from 'react-icons/vsc'
 import './Navbar.css'
+
 const Navbar = () => {
     const activeClass = 'currPage'
     const defaultClass = ''
@@ -39,7 +40,7 @@ const Navbar = () => {
                         </NavLink>
                     </div>
                 </ul>
-                {isOpen ? <VscChromeClose size={30} onClick={handleNav} color='#FFFBF4' className='close'/> : <RxHamburgerMenu onClick={handleNav} size={30} className='hamburger'/>}
+                {isOpen ? <VscChromeClose size={30} onClick={handleNav} color='#495464' className='close'/> : <RxHamburgerMenu onClick={handleNav} size={30} className='hamburger'/>}
             </nav>
         </div>
     );
