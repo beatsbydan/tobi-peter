@@ -17,9 +17,9 @@ const LazyImage = ({ src, alt, type }) => {
 
     return (
         <>
-            {type === "image" ? 
+            {type === "image" || type === "epk" ? 
             <img
-                className='comingSoon'
+                className={type === "image" ? 'comingSoon' : 'epkImg'}
                 src={loaded ? src : logo}
                 alt={alt}
             />:

@@ -57,7 +57,6 @@ const ShowsSlice = createSlice({
             })
             .addCase(fetchShows.rejected, (state, action)=>{
                 state.status.all = 'rejected'
-                console.log(action.error)
             })
     }
 

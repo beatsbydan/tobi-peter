@@ -1,0 +1,180 @@
+.tobiPeter{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+}
+.tobiPeter .imageBlock{
+    width: 100%;
+    max-width: 250px;
+    aspect-ratio: 1;
+}
+.tobiPeter .imageBlock .comingSoon{
+    transform: translateX(-50%);
+}
+
+.epk .tobiPeter h2{
+    letter-spacing: 0.08rem;
+    color: rgba(29, 53, 87, 1);
+    font-weight: 500;
+    padding-bottom: 0;
+    padding-left: 0;
+    border-bottom: none;
+    width: auto;
+    margin-top: 0;
+}
+.epk p{
+    color: rgba(73, 84, 100, 1);
+    line-height: 2.5em;
+}
+.epk h2{
+    width:100%;
+    color: rgba(29, 53, 87, 1);
+    font-weight: 500;
+    padding-bottom: 0.5rem;
+    padding-left: 10px;
+    border-bottom: 1.5px solid rgba(29, 53, 87, 1);
+    margin-top: 3em;
+}
+.bottomBio{
+    margin-top:2em;
+}
+.statsBlock{
+    width:100%;
+}
+.statsBlock h2{
+    margin-bottom: 2em;
+}
+.statsBlock .one, .statsBlock .two{
+    width: 100%;
+    padding: 3.5rem 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(217, 217, 217, 0.21);
+    border-radius: 9px;
+    color: rgba(73, 84, 100, 1);
+    text-align: center;
+}
+.statsBlock .one p span{
+    display: block;
+}
+.epk .statsBlock .one p{
+    line-height: normal;
+    margin-top: 1rem;
+}
+.statsBlock h1{
+    font-weight: 500;
+    font-size: 64px;
+}
+.statsBlock .two{
+    margin-top: 3.5rem;;
+}
+.careerInfo{
+    width: 100%;
+}
+.careerInfo div ul{
+    width: 100%;
+}
+.careerInfo div:first-child ul li{
+    position: relative;
+    display: flex;
+    align-items: start;
+    gap: 0.8rem;
+}
+.careerInfo div:first-child ul li p{
+    padding-left: 15px;
+}
+.careerInfo div:first-child ul li:nth-child(3) span{
+    font-weight:700;
+}
+.epk .careerInfo div:last-child h2{
+    border-bottom: none;
+    padding-left: 0;
+}
+.careerInfo div:first-child ul{
+    margin: 1.5rem 0;
+}
+.careerInfo div:last-child ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    font-size: 34px;
+    margin-top: 0.8rem;
+    color:rgba(73, 84, 100, 0.5);
+}
+.epkContact .mailBlock{
+    display: flex;
+    align-items: start;
+    gap: 0.8rem;
+    margin-top: 1em;
+    position: relative;
+}
+.epk .mailBlock p{
+    padding-left: 15px;
+}
+.epk .mailBlock p span{
+    font-weight:700;
+}
+.epkCollaborations{
+    width: 100%;
+}
+.epkCollaborations section{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 3rem;
+}
+.epkCollaborations section div{
+    width:50%;
+    max-width: 153px;
+    display: flex;
+    justify-self: center;
+}
+.epkCollaborations section div .epkImg{
+    width: 100%;
+    object-fit: contain;
+}
+.sets{
+    width: 100%;
+}
+.sets div{
+    margin-top: 0.75rem;
+}
+.videoElement{
+    width: 100%;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.7rem;
+}
+
+@media screen and (max-width: 850px){
+    .statsBlock .one, .statsBlock .two{
+        flex-direction: column;
+        gap: 2rem;
+    }
+    .statsBlock .one p span{
+        display: inline;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .epk h2{
+        font-size: 18px;
+    }
+    .epkCollaborations section{
+        gap: 1rem;
+    }
+    .epkCollaborations section div{
+        margin:auto;
+    }
+    .careerInfo div:last-child ul li{
+        text-align: center;
+    }
+}

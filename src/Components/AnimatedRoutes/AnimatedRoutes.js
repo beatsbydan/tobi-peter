@@ -23,6 +23,9 @@ const Animation = loadable(()=> import('../User/Pages/Animation/Animation'),{
 const Partner = loadable(()=> import('../User/Pages/Partner/Partner'),{
     fallback: <Loading/>
 })
+const EPK = loadable(()=> import('../User/Pages/Epk/Epk'),{
+    fallback: <Loading/>
+})
 const Admin = loadable(()=> import('../Admin/Admin'),{
     fallback: <Loading/>
 })
@@ -106,14 +109,15 @@ const AnimatedRoutes = () => {
             <Routes location={location} key={location.pathname}>
                 {/* USER ROUTES */}
                 <Route exact path ='/' element={<WhatsNew/>}/>
-                <Route path ='/music' element={<Music/>}/>
-                <Route path ='/animation' element={<Animation/>}/>
-                <Route path ='/shows' element={<Shows/>}/>
-                <Route path ='/partner' element={<Partner/>}/>
-                <Route path='/shows/allPastShows' element={<AllPastShows/>}/>
-                <Route path='/shows/allUpcomingShows' element={<AllUpcomingShows/>}/>
-                <Route path='/shows/book' element={<Book/>}/>
-                <Route path='/unavailable' element={<Unavailable/>}/>
+                <Route path = '/music' element={<Music/>}/>
+                <Route path = '/animation' element={<Animation/>}/>
+                <Route path = '/shows' element={<Shows/>}/>
+                <Route path = '/partner' element={<Partner/>}/>
+                <Route path = '/epk' element={<EPK/>}/>
+                <Route path = '/shows/allPastShows' element={<AllPastShows/>}/>
+                <Route path = '/shows/allUpcomingShows' element={<AllUpcomingShows/>}/>
+                <Route path = '/shows/book' element={<Book/>}/>
+                <Route path = '/unavailable' element={<Unavailable/>}/>
                 
                 {/* NOT_FOUND */}
                 <Route path="*" element={<NotFound/>}/>

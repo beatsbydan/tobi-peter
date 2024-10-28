@@ -1,0 +1,8 @@
+.bulletPoint{
+    background-color: rgba(73, 84, 100, 1);
+    width: 5.5px;
+    height: 5.5px;
+    margin-top: 0.85rem;
+    position: absolute;
+    border-radius: 100%;
+}
