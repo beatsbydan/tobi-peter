@@ -4,23 +4,24 @@ import { useSelector, useDispatch } from 'react-redux'
 import { fetchShows } from '../../../../Store/StateSlices/UserSlices/ShowsSlice'
 import LazyImage from '../../../UI/LazyImage/LazyImage'
 import epk from '../../../../Assets/EPK/epk.svg'
-import interswitch from '../../../../Assets/EPK/interswitch.svg'
-import infinix from '../../../../Assets/EPK/infinix.svg'
-import bbc from '../../../../Assets/EPK/bbc.svg'
+import interswitch from '../../../../Assets/EPK/interswitch.png'
+import infinix from '../../../../Assets/EPK/infinix.png'
+import bbc from '../../../../Assets/EPK/bbc.png'
 import hennessy from '../../../../Assets/EPK/hennessy.svg'
-import goodBeach from '../../../../Assets/EPK/the-good-beach.svg'
-import redBull from '../../../../Assets/EPK/red-bull.svg'
-import beefeater from '../../../../Assets/EPK/beefeater.svg'
+import goodBeach from '../../../../Assets/EPK/the-good-beach.png'
+import redBull from '../../../../Assets/EPK/red-bull.jpg'
+import beefeater from '../../../../Assets/EPK/beefeater.png'
 import lagos from '../../../../Assets/EPK/lagos.svg'
-import monkeyShoulder from '../../../../Assets/EPK/monkey-shoulder.svg'
-import ashluxe from '../../../../Assets/EPK/ashluxe.svg'
-import mavin from '../../../../Assets/EPK/mavin.svg'
-import gamr from '../../../../Assets/EPK/gamr.svg'
-import landmark from '../../../../Assets/EPK/landmark.svg'
-import pulse from '../../../../Assets/EPK/pulse.svg'
-import flyingFish from '../../../../Assets/EPK/flying-fish.svg'
+import monkeyShoulder from '../../../../Assets/EPK/monkey-shoulder.png'
+import ashluxe from '../../../../Assets/EPK/ashluxe.png'
+import mavin from '../../../../Assets/EPK/mavin.png'
+import gamr from '../../../../Assets/EPK/gamr.png'
+import landmark from '../../../../Assets/EPK/landmark.png'
+import pulse from '../../../../Assets/EPK/pulse.png'
+import flyingFish from '../../../../Assets/EPK/flying-fish.png'
 import BulletPoint from '../../../UI/BulletPoint/BulletPoint'
 import VideoPlayer from '../../../UI/Video/VideoPlayer'
+import Counter from '../../../UI/Counter/Counter'
 import './Epk.css'
 
 const Epk = () => {
@@ -76,37 +77,37 @@ const Epk = () => {
                 <h2>STATS</h2>
                 <div className='one'>
                     <div>
-                        <h1>{showsStats.allTimeShows}</h1>
+                        <Counter targetNumber={showsStats.allTimeShows}/>
                         <p>SHOWS<span>(ALL TIME)</span></p>
                     </div>
                     <div>
-                        <h1>{showsStats.showsThisYear}</h1>
+                        <Counter targetNumber={showsStats.showsThisYear}/>
                         <p>SHOWS<span>(THIS YEAR)</span></p>
                     </div>
                     <div>
-                        <h1>11.3k+</h1>
+                        <Counter targetNumber={11} largeValue="11.3k+"/>
                         <p>MONTHLY <span>LISTENERS</span></p>
                     </div>
                     <div>
-                        <h1>120+</h1>
+                        <Counter targetNumber={120} largeValue="120+"/>
                         <p>REMIXES <span>(ALL TIME)</span></p>
                     </div>
                 </div>
                 <div className='two'>
                     <div>
-                        <h1>12</h1>
+                        <Counter targetNumber={12}/>
                         <p>SINGLES</p>
                     </div>
                     <div>
-                        <h1>6</h1>
+                        <Counter targetNumber={6}/>
                         <p>EPS</p>
                     </div>
                     <div>
-                        <h1>2</h1>
+                        <Counter targetNumber={2}/>
                         <p>MIXTAPES</p>
                     </div>
                     <div>
-                        <h1>500k+</h1>
+                        <Counter targetNumber={500} largeValue="500k+"/>
                         <p>STREAMS</p>
                     </div>
                 </div>
