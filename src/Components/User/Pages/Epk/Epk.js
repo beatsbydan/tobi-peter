@@ -188,6 +188,16 @@ const Epk = () => {
                 </div>
 
                 <div>
+                    <h2>AWARDS</h2>
+                    <ul>
+                        <li>
+                            <BulletPoint/>
+                            <p>Male DJ of the year - <span>Beatz Award 2024</span>.</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
                     <h2>ENDORSEMENTS</h2>
                     <p>
                         TOBI PETER HAS BEEN ENDORSED/PRAISED FOR HIS EXCEPTIONAL TALENT BY THE FOLLOWING INDUSTRY EXPERTS:

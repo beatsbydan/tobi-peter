@@ -78,24 +78,24 @@
 .careerInfo div ul{
     width: 100%;
 }
-.careerInfo div:first-child ul li{
+.careerInfo div:first-child ul li, .careerInfo div:nth-child(2) ul li{
     position: relative;
     display: flex;
     align-items: flex-start;
     gap: 0.8rem;
 }
-.careerInfo div:first-child ul li p{
+.careerInfo div:first-child ul li p, .careerInfo div:nth-child(2) ul li p{
     padding-left: 15px;
 }
-.careerInfo div:first-child ul li:nth-child(3) span{
+.careerInfo div:first-child ul li:nth-child(3) span, .careerInfo div:nth-child(2) ul li span{
     font-weight:700;
 }
 .epk .careerInfo div:last-child h2{
     border-bottom: none;
     padding-left: 0;
 }
-.careerInfo div:first-child ul{
-    margin: 1.5rem 0;
+.careerInfo div:first-child ul, .careerInfo div:nth-child(2) ul{
+    margin: 1.2rem 0;
 }
 .careerInfo div:last-child ul{
     display: flex;
