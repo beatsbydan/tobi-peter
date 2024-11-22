@@ -223,6 +223,10 @@ const Epk = () => {
                         <VideoPlayer url={"https://www.youtube.com/embed/BATaKAm43Mk?si=HpGHzDAAWgSDIYJ4"}/>
                         <p>DISCONNECT</p>
                     </div>
+                    <div className="videoElement">
+                        <VideoPlayer url={"https://www.youtube.com/embed/-ltldjWaBEI?si=WAuWn1qq5bTjcBCz"}/>
+                        <p>Element House</p>
+                    </div>
                     <div className='videoElement'>
                         <VideoPlayer url={"https://www.youtube.com/embed/7Se_9xftnqY?si=6QAP52NgeUZ3U72l"}/>
                         <p>LEAP HERE PARTY</p>
