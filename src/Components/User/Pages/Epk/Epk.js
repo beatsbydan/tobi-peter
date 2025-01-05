@@ -211,12 +211,12 @@ const Epk = () => {
                         <li>WALSHY FIRE</li>
                         <li>SARZ</li>
                         <li>DON JAZZY</li>
-                        <li>MAJOR LEAGUE DJZ</li>
                         <li>M.I.</li>
                         <li>SKALES</li>
                         <li>FALZ</li>
                         <li>DR SID</li>
                         <li>PHEELZ</li>
+                        <li>MAJOR LEAGUE DJZ</li>
                     </ul>
                 </div>
             </div>

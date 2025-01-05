@@ -125,16 +125,19 @@
     width: 100%;
 }
 .epkCollaborations section{
+    max-width: 850px;
+    margin: auto;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 3rem;
+    gap: 4.5rem;
 }
 .epkCollaborations section div{
     width:50%;
     max-width: 153px;
     display: flex;
     justify-self: center;
+    align-self: center;
 }
 .epkCollaborations section div .epkImg{
     width: 100%;
