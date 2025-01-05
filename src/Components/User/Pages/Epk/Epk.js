@@ -19,6 +19,7 @@ import gamr from '../../../../Assets/EPK/gamr.png'
 import landmark from '../../../../Assets/EPK/landmark.png'
 import pulse from '../../../../Assets/EPK/pulse.png'
 import flyingFish from '../../../../Assets/EPK/flying-fish.png'
+import xp from '../../../../Assets/EPK/xp.jpg'
 import BulletPoint from '../../../UI/BulletPoint/BulletPoint'
 import VideoPlayer from '../../../UI/Video/VideoPlayer'
 import Counter from '../../../UI/Counter/Counter'
@@ -161,6 +162,9 @@ const Epk = () => {
                     <div>
                         <LazyImage src={flyingFish} type="epk" alt="" />
                     </div>
+                    <div>
+                        <LazyImage src={xp} type="epk" alt="" />
+                    </div>
                 </section>
             </div>
 
@@ -212,6 +216,7 @@ const Epk = () => {
                         <li>SKALES</li>
                         <li>FALZ</li>
                         <li>DR SID</li>
+                        <li>PHEELZ</li>
                     </ul>
                 </div>
             </div>
