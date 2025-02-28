@@ -17,7 +17,7 @@ import ashluxe from '../../../../Assets/EPK/ashluxe.png'
 import mavin from '../../../../Assets/EPK/mavin.png'
 import gamr from '../../../../Assets/EPK/gamr.png'
 import landmark from '../../../../Assets/EPK/landmark.png'
-import pulse from '../../../../Assets/EPK/pulse.png'
+import budweiser from '../../../../Assets/EPK/budweiser.png'
 import flyingFish from '../../../../Assets/EPK/flying-fish.png'
 import xp from '../../../../Assets/EPK/xp.jpg'
 import BulletPoint from '../../../UI/BulletPoint/BulletPoint'
@@ -157,7 +157,7 @@ const Epk = () => {
                         <LazyImage src={landmark} type="epk" alt="" />
                     </div>
                     <div>
-                        <LazyImage src={pulse} type="epk" alt="" />
+                        <LazyImage src={budweiser} type="epk" alt="" />
                     </div>
                     <div>
                         <LazyImage src={flyingFish} type="epk" alt="" />
@@ -229,8 +229,12 @@ const Epk = () => {
                         <p>DISCONNECT</p>
                     </div>
                     <div className="videoElement">
+                        <VideoPlayer url={"https://www.youtube.com/embed/mYPxaD2CGUc?si=Yl4S16nsr7k6fJu7"}/>
+                        <p>RESET THURSDAYS</p>
+                    </div>
+                    <div className="videoElement">
                         <VideoPlayer url={"https://www.youtube.com/embed/-ltldjWaBEI?si=WAuWn1qq5bTjcBCz"}/>
-                        <p>Element House</p>
+                        <p>ELEMENT HOUSE</p>
                     </div>
                     <div className='videoElement'>
                         <VideoPlayer url={"https://www.youtube.com/embed/7Se_9xftnqY?si=6QAP52NgeUZ3U72l"}/>
