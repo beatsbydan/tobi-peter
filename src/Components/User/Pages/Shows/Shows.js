@@ -42,10 +42,10 @@ const Shows = () => {
                     DOWNLOAD EPK
                     <BiRightArrowAlt/>
                 </a> */}
-                <Link to={'/unavailable'}>
+                {/* <Link to={'/unavailable'}>
                     DOWNLOAD EPK 
                     <BiRightArrowAlt className='arrow' size={15}/>
-                </Link>
+                </Link> */}
             </div>
             <div className="upcomingShows">
                 <h5>UPCOMING SHOWS</h5>
