@@ -5,7 +5,7 @@ const VideoPlayer= ({ url }) => {
     
     return (
         <iframe
-            className='videoElement'
+            className='videoElement videoPlayer'
             width="100%"
             height="100%"
             src={`${url}`}

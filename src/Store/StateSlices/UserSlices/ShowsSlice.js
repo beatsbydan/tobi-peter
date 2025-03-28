@@ -50,10 +50,10 @@ const ShowsSlice = createSlice({
             })
             .addCase(fetchShows.fulfilled, (state, action)=>{
                 state.status.all = 'success'
-                state.shows.allShows.upcomingShows = [...action.payload.pendingShows]
-                state.shows.upcomingShows = filterShows([...action.payload.pendingShows])
-                state.shows.allShows.pastShows = [...action.payload.completedShows]
-                state.shows.pastShows = filterShows([...action.payload.completedShows])
+                state.shows.allShows.upcomingShows = [...action.payload?.pendingShows]
+                state.shows.upcomingShows = filterShows([...action.payload?.pendingShows])
+                state.shows.allShows.pastShows = [...action.payload?.completedShows]
+                state.shows.pastShows = filterShows([...action.payload?.completedShows])
             })
             .addCase(fetchShows.rejected, (state, action)=>{
                 state.status.all = 'rejected'

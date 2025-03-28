@@ -60,7 +60,7 @@ const HomeSlice = createSlice({
             })
             .addCase(fetchMusic.fulfilled, (state, action)=>{
                 state.status = 'success'
-                state.music = {...action.payload.recentSong}
+                state.music = {...action.payload?.recentSong}
             })
             .addCase(fetchMusic.rejected, (state, action)=>{
                 state.status = 'failure'
