@@ -5,7 +5,7 @@ import { fetchShows } from '../../../../Store/StateSlices/UserSlices/ShowsSlice'
 import LazyImage from '../../../UI/LazyImage/LazyImage'
 import epk from '../../../../Assets/EPK/epk.svg'
 import interswitch from '../../../../Assets/EPK/interswitch.png'
-import infinix from '../../../../Assets/EPK/infinix.png'
+// import infinix from '../../../../Assets/EPK/infinix.png'
 import bbc from '../../../../Assets/EPK/bbc.png'
 import hennessy from '../../../../Assets/EPK/hennessy.svg'
 import goodBeach from '../../../../Assets/EPK/the-good-beach.png'
@@ -15,10 +15,12 @@ import lagos from '../../../../Assets/EPK/lagos.png'
 import monkeyShoulder from '../../../../Assets/EPK/monkey-shoulder.png'
 import ashluxe from '../../../../Assets/EPK/ashluxe.png'
 import mavin from '../../../../Assets/EPK/mavin.png'
-import gamr from '../../../../Assets/EPK/gamr.png'
+// import gamr from '../../../../Assets/EPK/gamr.png'
 import landmark from '../../../../Assets/EPK/landmark.png'
 import budweiser from '../../../../Assets/EPK/budweiser.png'
 import flyingFish from '../../../../Assets/EPK/flying-fish.png'
+import sony from '../../../../Assets/EPK/sony.png'
+import jaggermeister from '../../../../Assets/EPK/jaggermeister.jpg'
 import xp from '../../../../Assets/EPK/xp.jpg'
 import BulletPoint from '../../../UI/BulletPoint/BulletPoint'
 import VideoPlayer from '../../../UI/Video/VideoPlayer'
@@ -116,45 +118,39 @@ const Epk = () => {
 
             <div className='epkCollaborations'>
                 <h2>NOTABLE COLLABORATIONS</h2>
-                <section>
+                <section className="">
                     <div>
                         <LazyImage src={interswitch} type="epk" alt="" />
                     </div>
                     <div>
-                        <LazyImage src={infinix} type="epk" alt="" />
+                        <LazyImage src={sony} type="epk" alt="" />
                     </div>
                     <div>
                         <LazyImage src={bbc} type="epk" alt="" />
                     </div>
                     <div>
-                        <LazyImage src={hennessy} type="epk" alt="" />
-                    </div>
-                    <div>
-                        <LazyImage src={goodBeach} type="epk" alt="" />
+                        <LazyImage src={xp} type="epk" alt="" />
                     </div>
                     <div>
                         <LazyImage src={redBull} type="epk" alt="" />
                     </div>
                     <div>
-                        <LazyImage src={beefeater} type="epk" alt="" />
+                        <LazyImage src={mavin} type="epk" alt="" />
                     </div>
                     <div>
                         <LazyImage src={lagos} type="epk" alt="" />
                     </div>
                     <div>
-                        <LazyImage src={monkeyShoulder} type="epk" alt="" />
+                        <LazyImage src={goodBeach} type="epk" alt="" />
                     </div>
                     <div>
-                        <LazyImage src={ashluxe} type="epk" alt="" />
+                        <LazyImage src={hennessy} type="epk" alt="" />
                     </div>
                     <div>
-                        <LazyImage src={mavin} type="epk" alt="" />
+                        <LazyImage src={jaggermeister} type="epk" alt="" />
                     </div>
                     <div>
-                        <LazyImage src={gamr} type="epk" alt="" />
-                    </div>
-                    <div>
-                        <LazyImage src={landmark} type="epk" alt="" />
+                        <LazyImage src={beefeater} type="epk" alt="" />
                     </div>
                     <div>
                         <LazyImage src={budweiser} type="epk" alt="" />
@@ -163,7 +159,13 @@ const Epk = () => {
                         <LazyImage src={flyingFish} type="epk" alt="" />
                     </div>
                     <div>
-                        <LazyImage src={xp} type="epk" alt="" />
+                        <LazyImage src={monkeyShoulder} type="epk" alt="" />
+                    </div>
+                    <div>
+                        <LazyImage src={ashluxe} type="epk" alt="" />
+                    </div>
+                    <div>
+                        <LazyImage src={landmark} type="epk" alt="" />
                     </div>
                 </section>
             </div>

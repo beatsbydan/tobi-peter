@@ -131,6 +131,7 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 4.5rem;
+    margin-top: 50px;
 }
 .epkCollaborations section div{
     width:50%;
