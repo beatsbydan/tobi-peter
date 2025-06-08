@@ -5,22 +5,20 @@ import { fetchShows } from '../../../../Store/StateSlices/UserSlices/ShowsSlice'
 import LazyImage from '../../../UI/LazyImage/LazyImage'
 import epk from '../../../../Assets/EPK/epk.svg'
 import interswitch from '../../../../Assets/EPK/interswitch.png'
-// import infinix from '../../../../Assets/EPK/infinix.png'
 import bbc from '../../../../Assets/EPK/bbc.png'
 import hennessy from '../../../../Assets/EPK/hennessy.svg'
 import goodBeach from '../../../../Assets/EPK/the-good-beach.png'
-import redBull from '../../../../Assets/EPK/red-bull.jpg'
+import redBull from '../../../../Assets/EPK/red-bull.png'
 import beefeater from '../../../../Assets/EPK/beefeater.png'
 import lagos from '../../../../Assets/EPK/lagos.png'
 import monkeyShoulder from '../../../../Assets/EPK/monkey-shoulder.png'
 import ashluxe from '../../../../Assets/EPK/ashluxe.png'
 import mavin from '../../../../Assets/EPK/mavin.png'
-// import gamr from '../../../../Assets/EPK/gamr.png'
 import landmark from '../../../../Assets/EPK/landmark.png'
 import budweiser from '../../../../Assets/EPK/budweiser.png'
 import flyingFish from '../../../../Assets/EPK/flying-fish.png'
 import sony from '../../../../Assets/EPK/sony.png'
-import jaggermeister from '../../../../Assets/EPK/jaggermeister.jpg'
+import jaggermeister from '../../../../Assets/EPK/Jaggermeister.png'
 import xp from '../../../../Assets/EPK/xp.jpg'
 import BulletPoint from '../../../UI/BulletPoint/BulletPoint'
 import VideoPlayer from '../../../UI/Video/VideoPlayer'
@@ -210,6 +208,7 @@ const Epk = () => {
                     </p>
                     <ul>
                         <li>DIPLO</li>
+                        <li>MR EAZI</li>
                         <li>WALSHY FIRE</li>
                         <li>SARZ</li>
                         <li>DON JAZZY</li>
