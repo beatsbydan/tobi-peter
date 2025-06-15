@@ -12,7 +12,7 @@ const Music = () => {
             appleMusic: 'https://music.apple.com/ng/artist/tobi-peter/1459306113',
             spotify: 'https://open.spotify.com/artist/6akFVTtPvrAsoyLSv8U6nw',
             audiomack: 'https://audiomack.com/tobi-peter',
-            youtube: 'https://youtube.com/channel/UCO4KidrAHVyduGJUiOkGJNw',
+            youtube: 'https://www.youtube.com/@tobipeter8',
             tidal: 'https://tidal.com/browse/artist/15111616',
             boomPlay: 'https://music.youtube.com/channel/UCO4KidrAHVyduGJUiOkGJNw',
             youtubeMusic: 'https://music.youtube.com/channel/UCO4KidrAHVyduGJUiOkGJNw'
