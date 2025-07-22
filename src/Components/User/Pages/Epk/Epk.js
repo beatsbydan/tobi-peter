@@ -90,7 +90,7 @@ const Epk = () => {
                         <p>MONTHLY <span>LISTENERS</span></p>
                     </div>
                     <div>
-                        <Counter targetNumber={120} largeValue="120+"/>
+                        <Counter targetNumber={150} largeValue="150+"/>
                         <p>REMIXES <span>(ALL TIME)</span></p>
                     </div>
                 </div>
@@ -104,7 +104,7 @@ const Epk = () => {
                         <p>EPS</p>
                     </div>
                     <div>
-                        <Counter targetNumber={2}/>
+                        <Counter targetNumber={10}/>
                         <p>MIXTAPES</p>
                     </div>
                     <div>
@@ -174,7 +174,7 @@ const Epk = () => {
                     <ul>
                         <li>
                             <BulletPoint/>
-                            <p>SOLD OUT HEADLINE SHOW</p>
+                            <p>SOLD OUT HEADLINE SHOWS</p>
                         </li>
                         <li>
                             <BulletPoint/>
@@ -187,6 +187,10 @@ const Epk = () => {
                         <li>
                             <BulletPoint/>
                             <p>GOOD BEACH RESIDENCY.</p>
+                        </li>
+                        <li>
+                            <BulletPoint/>
+                            <p>QATAR TOUR.</p>
                         </li>
                     </ul>
                 </div>
@@ -226,6 +230,10 @@ const Epk = () => {
                 <h2>SETS</h2>
                 <div>
                     <div className="videoElement">
+                        <VideoPlayer url={"https://www.youtube.com/embed/MBgmFdKsEOA?si=JOMpMAdXub46r7nJ"}/>
+                        <p>GOSPEL HOUSE 002</p>
+                    </div>
+                    <div className="videoElement">
                         <VideoPlayer url={"https://www.youtube.com/embed/rJS_9ZPGP68?si=OzJsXGfS8XMA-faK"}/>
                         <p>GOSPEL HOUSE 001</p>
                     </div>
@@ -241,10 +249,10 @@ const Epk = () => {
                         <VideoPlayer url={"https://www.youtube.com/embed/-ltldjWaBEI?si=WAuWn1qq5bTjcBCz"}/>
                         <p>ELEMENT HOUSE</p>
                     </div>
-                    <div className='videoElement'>
+                    {/* <div className='videoElement'>
                         <VideoPlayer url={"https://www.youtube.com/embed/7Se_9xftnqY?si=6QAP52NgeUZ3U72l"}/>
                         <p>LEAP HERE PARTY</p>
-                    </div>
+                    </div> */}
                     <div className="videoElement">
                         <VideoPlayer url={"https://www.youtube.com/embed/u0GiPDLVs-c?si=-f7Yf0TMvcLGRvsO"}/>
                         <p>ANA.LOG EPISODE 01</p>
