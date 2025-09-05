@@ -96,7 +96,7 @@ const Epk = () => {
                 </div>
                 <div className='two'>
                     <div>
-                        <Counter targetNumber={12}/>
+                        <Counter targetNumber={13}/>
                         <p>SINGLES</p>
                     </div>
                     <div>
