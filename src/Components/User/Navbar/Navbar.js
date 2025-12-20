@@ -41,6 +41,9 @@ const Navbar = () => {
                         <NavLink onClick={closeNav} className={({isActive})=>(isActive ? activeClass: defaultClass)} to={'epk'}>
                             <li>EPK</li>
                         </NavLink>
+                        <NavLink onClick={closeNav} className={({isActive})=>(isActive ? activeClass: defaultClass)} to={'shop'}>
+                            <li>SHOP</li>
+                        </NavLink>
                     </div>
                 </ul>
                 {isOpen ? <VscChromeClose size={30} onClick={handleNav} color='#495464' className='close'/> : <RxHamburgerMenu onClick={handleNav} size={30} className='hamburger'/>}

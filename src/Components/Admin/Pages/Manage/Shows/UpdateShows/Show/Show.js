@@ -86,7 +86,7 @@ const Show = (props) => {
                 <div className="editLeft">
                     <div className="edit">
                         <small className={isVisible.edit ? "visible altText" : "altText"}>Edit</small>
-                        <Link to={`/admin/manage/shows/updateShows/updateShow/${props.id}`}>
+                        <Link to={`/admin/manage/shows/update-shows/update-show/${props.id}`}>
                             <TiEdit size={27} onMouseEnter={handleEditVisibility} onMouseLeave={handleEditVisibility}/>
                         </Link>
                     </div>

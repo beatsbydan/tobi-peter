@@ -14,11 +14,11 @@ const Manage = () => {
             <div className="showsBlock">
                 <h2>SHOWS</h2>
                 <div className="createBlock">
-                    <Link to={'/admin/manage/shows/createShow'}>
+                    <Link to={'/admin/manage/shows/create-show'}>
                         CREATE SHOW
                         <BiRightArrowAlt size={20}/>
                     </Link>
-                    <Link to={'/admin/manage/shows/updateShows'}>
+                    <Link to={'/admin/manage/shows/update-shows'}>
                         UPDATE SHOWS
                         <BiRightArrowAlt size={20}/>
                     </Link>
@@ -27,11 +27,11 @@ const Manage = () => {
             <div className="musicBlock">
                 <h2>MUSIC</h2>
                 <div className="createBlock">
-                    <Link to={'/admin/manage/songs/createSong'}>
+                    <Link to={'/admin/manage/songs/create-song'}>
                         CREATE SONG
                         <BiRightArrowAlt size={20}/>
                     </Link>
-                    <Link to={'/admin/manage/songs/updateSongs'}>
+                    <Link to={'/admin/manage/songs/update-songs'}>
                         UPDATE SONGS
                         <BiRightArrowAlt size={20}/>
                     </Link>
@@ -40,11 +40,11 @@ const Manage = () => {
             <div className="blogsBlock">
                 <h2>BLOGS</h2>
                 <div className="createBlock">
-                    <Link to={'/admin/manage/blogs/createBlog'}>
+                    <Link to={'/admin/manage/blogs/create-blog'}>
                         CREATE BLOG
                         <BiRightArrowAlt size={20}/>
                     </Link>
-                    <Link to={'/admin/manage/blogs/updateBlogs'}>
+                    <Link to={'/admin/manage/blogs/update-blogs'}>
                         UPDATE BLOGS
                         <BiRightArrowAlt size={20}/>
                     </Link>
@@ -53,11 +53,11 @@ const Manage = () => {
             <div className="imagesBlock">
                 <h2>BIO-IMAGES</h2>
                 <div className="createBlock">
-                    <Link to={'/admin/manage/images/addImage'}>
+                    <Link to={'/admin/manage/images/add-image'}>
                         ADD IMAGE
                         <BiRightArrowAlt size={20}/>
                     </Link>
-                    <Link to={'/admin/manage/images/updateImages'}>
+                    <Link to={'/admin/manage/images/update-images'}>
                         UPDATE IMAGES
                         <BiRightArrowAlt size={20}/>
                     </Link>

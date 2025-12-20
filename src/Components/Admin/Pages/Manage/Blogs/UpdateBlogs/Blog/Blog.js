@@ -50,7 +50,7 @@ const Blog = (props) => {
             <div className="editableBlog">
                 <div className="edit">
                     <small className={isVisible.edit ? "visible altText" : "altText"}>Edit</small>
-                    <Link to={`/admin/manage/blogs/updateBlogs/updateBlog/${props.id}`} onClick={props.getBlog}>
+                    <Link to={`/admin/manage/blogs/update-blogs/update-blog/${props.id}`} onClick={props.getBlog}>
                         <TiEdit size={27} onMouseEnter={handleEditVisibility} onMouseLeave={handleEditVisibility}/>
                     </Link>
                 </div>

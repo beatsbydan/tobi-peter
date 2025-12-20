@@ -73,7 +73,7 @@ const Shows = () => {
                     }
                 </ul>
                 <div className="myShowsActions">
-                    <Link to={'/shows/allUpcomingShows'}>SEE MORE</Link>
+                    <Link to={'/shows/all-upcoming-shows'}>SEE MORE</Link>
                 </div>
             </div>
             <div className="pastShows">
@@ -101,7 +101,7 @@ const Shows = () => {
                     }
                 </ul>
                 <div className="myShowsActions">
-                    <Link to={'/shows/allPastShows'}>SEE MORE</Link>
+                    <Link to={'/shows/all-past-shows'}>SEE MORE</Link>
                 </div>
             </div>
         </motion.div>

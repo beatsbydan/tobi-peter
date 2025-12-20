@@ -63,7 +63,7 @@ const Update = () => {
                     }
                 </ul>
                 <div className="myShowsActions">
-                    <Link to={'/admin/manage/shows/updateShows/allUpcomingShows'}>SEE MORE</Link>
+                    <Link to={'/admin/manage/shows/update-shows/all-upcoming-shows'}>SEE MORE</Link>
                 </div>
             </div>
             <div className="pastShows">
@@ -96,7 +96,7 @@ const Update = () => {
                     }
                 </ul>
                 <div className="myShowsActions">
-                    <Link to={'/admin/manage/shows/updateShows/allPastShows'}>SEE MORE</Link>
+                    <Link to={'/admin/manage/shows/update-shows/all-past-shows'}>SEE MORE</Link>
                 </div>
             </div>
         </motion.div>
