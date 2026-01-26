@@ -1,5 +1,5 @@
 import React from 'react'
-import {Routes, Route, useLocation} from 'react-router-dom'
+import {Routes, Route, useLocation, Navigate} from 'react-router-dom'
 import {AnimatePresence} from 'framer-motion'
 import ProtectedRoutes from '../Admin/Protected/ProtectedRoutes'
 import PersistLogin from '../Admin/PersistLogIn/PersistLogIn'
@@ -45,7 +45,8 @@ const AnimatedRoutes = () => {
         <AnimatePresence>
             <Routes location={location} key={location.pathname}>
                 {/* USER ROUTES */}
-                <Route exact path='/' element={<WhatsNew/>}/>
+                <Route exact path='/' element={<Navigate to="/shows" replace/>}/>
+                <Route exact path='/whats-new' element={<WhatsNew/>}/>
                 <Route path='/music' element={<Music/>}/>
                 <Route path='/animation' element={<Animation/>}/>
                 <Route path='/shows'>

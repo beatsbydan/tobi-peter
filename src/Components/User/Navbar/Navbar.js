@@ -18,11 +18,11 @@ const Navbar = () => {
     return ( 
         <div className="navbar">
             <nav>
-                <NavLink to={'/'}>
+                <NavLink to={'/whats-new'}>
                     <img className='logo' src={logo} alt=''/>
                 </NavLink>
                 <ul className={isOpen ? 'responsiveNav' : ''} >
-                    <NavLink onClick={closeNav} className={({isActive})=>(isActive ? activeClass: defaultClass)} to={'/'}>
+                    <NavLink onClick={closeNav} className={({isActive})=>(isActive ? activeClass: defaultClass)} to={'/whats-new'}>
                         <li>WHAT'S NEW</li>
                     </NavLink>
                     <div className="right">
