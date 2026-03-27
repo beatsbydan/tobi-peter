@@ -38,7 +38,6 @@ import {
     WhatsNew 
 } from './Routes'
 
-
 const AnimatedRoutes = () => {
     const location = useLocation()
     return (
