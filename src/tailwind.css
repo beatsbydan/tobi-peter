@@ -1,0 +1,201 @@
+/*
+ * CRITICAL — layer ordering. Per the CSS Cascade Layers spec, styles with NO `@layer` wrapper
+ * form an implicit final layer that beats every named layer regardless of specificity or source
+ * order. `@import "tailwindcss"` puts everything Tailwind generates inside (in ascending
+ * priority) `@layer theme, base, components, utilities`, so any of this app's remaining plain CSS
+ * (App.css, index.css, and any not-yet-converted component CSS) would otherwise silently beat
+ * every Tailwind utility class it happens to overlap with — e.g. App.css's unlayered
+ * `p { font-size: 0.85rem }` was overriding a component's `text-[2rem]` utility on a `<p>`.
+ *
+ * `legacy` must sit ABOVE `base` (Preflight) but BELOW `components`/`utilities`:
+ *   - above `base`: otherwise Preflight's blanket `* { margin: 0; padding: 0 }` reset beats
+ *     App.css's *intentional* overrides like `main { padding: 9em 0 8em 0 }` — margin/padding is
+ *     exactly what Preflight resets on the universal selector, so this isn't hypothetical, it
+ *     broke the app's layout the first time this was tried with `legacy` ordered last/lowest.
+ *   - below `utilities`: so a converted component's Tailwind classes still win over App.css's
+ *     global element/class rules, which was the original problem this layer exists to fix.
+ * This full declaration (not just `@layer legacy;`) is what pins that exact position — see
+ * https://developer.mozilla.org/en-US/docs/Web/CSS/@layer for why order must be established
+ * before Tailwind's own `@layer theme, base, components, utilities;` runs.
+ */
+@layer theme, base, legacy, components, utilities;
+@import 'tailwindcss';
+
+/*
+ * Theme tokens reverse-engineered from the hardcoded literals in App.css/index.css.
+ *
+ * `--font-sans` is redefined (not just added) because Tailwind's Preflight base layer sets
+ * `html { font-family: var(--default-font-family) }` which resolves to `--font-sans`, and an
+ * `html` type-selector rule beats App.css's `* { font-family: var(--inter) }` on specificity
+ * regardless of import order. Overriding `--font-sans` to the site's actual font means Preflight
+ * lands on the same font the site already uses instead of Tailwind's default system-ui stack —
+ * confirmed via an isolated `@tailwindcss/cli` build to produce zero visual diff, so this file is
+ * safe to import (see src/index.jsx, imported before index.css so component CSS still wins ties).
+ */
+@theme {
+  --font-sans: 'Inter', sans-serif;
+  --font-caesar: 'Caesar Dressing', cursive;
+
+  --color-ink: #1d3557;
+  --color-muted: #495464;
+  --color-cream: #fffbf4;
+  --color-hairline: #d9d9d9;
+  --color-danger: #d64545;
+
+  /* Loading spinner animations (src/Components/UI/Loading) */
+  --animate-loader-rotate: rotate 1.5s linear infinite;
+  --animate-loader-circle:
+    loader-color 6s ease-in-out infinite, loader-dash 1.5s ease-in-out infinite;
+}
+
+/*
+ * Tailwind v4 doesn't recognize `last baseline` as a valid `align-items` keyword, so the arbitrary
+ * value form `items-[last_baseline]` (used by WhatsNew.jsx's subscription form) silently compiles
+ * to nothing — no CSS rule is generated, no build warning either, so the class name just sits in
+ * the markup doing nothing. The form's grid then fell back to the initial `align-items: normal`
+ * value, which stretches grid items to fill the row by default — since the row's height is set by
+ * the taller of the two grid cells (the email-input column, which stacks an error-message `<small>`
+ * above the `<input>`), the JOIN button stretched to match that full height instead of sitting at
+ * the input's own baseline, so it rendered visibly taller than the input and misaligned with it.
+ * Defining the utility explicitly here (Tailwind v4's `@utility` directive) makes it actually emit
+ * `align-items: last baseline`, matching the original pre-Tailwind CSS's `.vip form { align-items:
+ * last baseline }`. Confirmed via getComputedStyle + boundingClientRect that the button's height now
+ * matches the input's and both share a baseline, at both desktop and the sub-450px stacked layout.
+ */
+@utility items-last-baseline {
+  align-items: last baseline;
+}
+
+/*
+ * `loaded` backs the Music page's PRESS list-item entrance animation (Blog.jsx, referenced via the
+ * raw arbitrary value `[animation:loaded_...]`). A duplicate `@keyframes loaded` used to live in
+ * App.css's now-deleted dead `.show` block (leftover from Show.jsx's pre-Tailwind styling,
+ * unreferenced by any component since Show.jsx fully converted to Tailwind utilities) and animated
+ * the legacy `transform` property, while Blog.jsx's `-translate-x-[150%]` utility set the standalone
+ * `translate` property — the two didn't interact, so every PRESS blog card rendered permanently
+ * stuck at `translate: -150%`, i.e. shifted fully out of view, which is why the section looked like
+ * empty vertical space with nothing rendered in it. Fixed by having both the keyframes and Blog.jsx's
+ * className use `translate` (Blog.jsx's redundant static `-translate-x-[150%]` utility was removed —
+ * the 0% keyframe frame sets that same value).
+ *
+ * `LazyImage`'s `type="image"` entrance used to have the same shape of bug via a sibling
+ * `@keyframes loadedImg`, fixed the same way — since removed entirely in favor of converting that
+ * entrance to the same framer-motion fade-up reveal Show.jsx's cards use (see LazyImage.jsx), for a
+ * consistent entrance style across the site instead of two different techniques (CSS keyframe slide
+ * vs. framer-motion fade) doing visually similar jobs.
+ */
+@keyframes loaded {
+  0% {
+    translate: -150% 0;
+  }
+  100% {
+    translate: 0 0;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes loader-color {
+  100%,
+  0% {
+    stroke: #1d3557;
+  }
+  25% {
+    stroke: rgba(0, 0, 0, 0.311);
+  }
+  50% {
+    stroke: #1d3557;
+  }
+  75% {
+    stroke: rgba(0, 0, 0, 0.311);
+  }
+}
+@keyframes loader-dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124;
+  }
+}
+/*
+ * Preflight also hardcodes `line-height: 1.5` on `html` (not theme-configurable — it's a literal
+ * in preflight.css, not a `--default-*` var). The site never set a line-height above the `p`
+ * level, so every non-`<p>` text element (headings, nav links, buttons) previously inherited the
+ * browser's UA-default line-height and would otherwise shift by a pixel or two once Preflight
+ * loads. Restoring `normal` here (same `base` layer, later in source = wins the tie) matches the
+ * pre-Tailwind rendering — confirmed via pixelmatch A/B screenshots against the unmodified site.
+ */
+@layer base {
+  html {
+    line-height: normal;
+  }
+
+  /*
+   * Preflight also sets `h1..h6 { font-size: inherit; font-weight: inherit }`. No component CSS
+   * in this codebase sets an explicit size/weight for every heading it uses (many rely on the
+   * browser's UA-default heading styles), so this silently shrunk unstyled headings to their
+   * parent's font-size — e.g. Epk.jsx's "TOBI PETER" <h2> dropped from 24px to 16px. Restoring
+   * the standard UA-default values here (margins are already 0 from App.css's own `* { margin: 0 }`
+   * reset, so only size/weight need restoring) — confirmed via getComputedStyle diffing against
+   * the unmodified site.
+   */
+  h1 {
+    font-size: 2em;
+    font-weight: bold;
+  }
+  h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  h3 {
+    font-size: 1.17em;
+    font-weight: bold;
+  }
+  h4 {
+    font-size: 1em;
+    font-weight: bold;
+  }
+  h5 {
+    font-size: 0.83em;
+    font-weight: bold;
+  }
+  h6 {
+    font-size: 0.67em;
+    font-weight: bold;
+  }
+
+  /*
+   * Preflight also sets `small { font-size: 80% }` (a Normalize.css-derived convention), which is
+   * NOT the same as the browser's native UA-default for `<small>` — real browsers use the CSS
+   * absolute-size keyword table, where `smaller` (small's effective sizing relative to its parent)
+   * computes to 1/1.2 ≈ 83.33% of the parent, not 80%. Barely perceptible per element (a ~0.5px
+   * difference at a 16px base) but present on every unstyled `<small>` site-wide (date/venue text
+   * in Show.jsx, the global Processing indicator, etc) — confirmed via getComputedStyle diffing
+   * against the unmodified site, same methodology as the heading restoration above.
+   */
+  small {
+    font-size: smaller;
+  }
+}
+
+/*
+ * Full verification: pixelmatch A/B screenshots + getComputedStyle diffing (both with and
+ * without this file imported, same session) on the EPK page, before vs. after the two fixes
+ * above. Residual diff after both fixes: 0.33% of pixels, isolated entirely to the header logo
+ * being 3px shorter (60px vs. 63px) — that's Preflight's `img { display: block }` removing an
+ * inline-image line-box gap that was never intentional (`.logo` already declares `height: 60px`
+ * explicitly in Navbar.css); left as-is since it's a normalization, not a design change.
+ */

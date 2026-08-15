@@ -1,261 +1,166 @@
-*{
-  padding:0;
-  margin:0;
-  box-sizing: border-box;
-  font-family: var(--inter);
-}
-body{
-  overflow-x:hidden;
-}
-body,footer{
-  background-color: #FFFBF4;
-}
-:root{
-  /* FONT-FAMILIES */
-  --caesar:'Caesar Dressing', cursive;
-  --inter:'Inter', sans-serif;
-}
-ul{
-  list-style: none;
-}
-a{
-  color: #1D3557;
-  text-decoration: none;
-  font-size: 0.85rem;
-}
-a:active, button:active{
-  outline: none;
-}
-.App{
-  min-height: 100vh;
-  position: relative;
-}
-header{
-  width: 100%;
-  max-width:1050px;
-  position: fixed;
-  left: 50%;
-  z-index: 100;
-  transform: translateX(-50%);
-  background-color: #FFFBF4;
-}
-main{
-  width: 85%;
-  max-width: 1000px;
-  margin: auto;
-  padding: 9em 0 8em 0;
-}
-p{
-  font-size: 0.85rem;
-  line-height: 1.6em;
-}
-button:focus{
-  outline: none;
-}
-ul{
-  list-style:none;
-}
-input,
-textarea,
-button,
-select,
-a {
-    -webkit-tap-highlight-color: transparent;
-}
-.defaultText{
-  width: 100%;
-  font-weight: 500;
-  font-size:0.85rem;
-  color: #495464;
-  text-align: center;
-  position: absolute;
-  top: 50%;
-  left:50%;
-  transform:translate(-50%, -50%);
-  margin-bottom: 1.5rem;
-}
-.defaultText span{
-  display:block;
-}
-.defaultText span img{
-  width:45px;
-  height:45px;
-}
-.showsList{
-  position: relative;
-  min-height:150px;
-}
-@media screen and (max-width:750px){
-  header{
-    left: 0;
-    right: 0;
-    transform: unset;
+/* Wrapped in the `legacy` layer (declared in src/tailwind.css) so Tailwind utility classes used
+   by already-converted components always win over these global rules, regardless of specificity —
+   see the comment at the top of src/tailwind.css for why this is necessary. */
+@layer legacy {
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: var(--inter);
+  }
+  body {
+    overflow-x: hidden;
+  }
+  body,
+  footer {
+    background-color: #fffbf4;
+  }
+  :root {
+    /* FONT-FAMILIES */
+    --caesar: 'Caesar Dressing', cursive;
+    --inter: 'Inter', sans-serif;
+  }
+  ul {
+    list-style: none;
+  }
+  a {
+    color: #1d3557;
+    text-decoration: none;
+    font-size: 0.85rem;
+  }
+  a:active,
+  button:active {
+    outline: none;
+  }
+  .App {
+    min-height: 100vh;
+    position: relative;
+  }
+  header {
+    width: 100%;
+    max-width: 1050px;
+    position: fixed;
+    left: 50%;
+    z-index: 100;
+    transform: translateX(-50%);
+    background-color: #fffbf4;
+  }
+  main {
+    width: 85%;
+    max-width: 1000px;
     margin: auto;
+    padding: 9em 0 8em 0;
   }
-}
-.show{
-  background: #D9D9D936;
-  width: 100%;
-  padding: 1.1rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 0.6rem;
-  cursor: pointer;
-  transform: translateX(-150%);
-  animation: loaded 1.5s cubic-bezier(0,-0.34, 0, 1.33) forwards;
-}
-.show a{
-  border-radius: 0.6rem;
-  width: 90%;
-  max-width: 200px;
-  text-align: center;
-  transition: 0.3s ease;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 0.5rem;
-}
-.delete{
-  position:relative;
-  right:0;
-}
-.left{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap:2.4rem;
-}
-.desc{
-  margin-top: 0.7rem;
-}
-.date, .location{
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-}
-.ticket{
-  transform:rotate(45deg)
-}
-.myArrow{
-  display:none;
-}
-.date{
-  text-align: center;
-  padding: 0.7rem;
-  border-radius: 0.5rem;
-  background: #D9D9D9B5;
-}
-.location{
-  align-items: flex-start;
-}
-@media (hover: hover) {
-  .show a:hover{
-      gap:1.2rem;
+  p {
+    font-size: 0.85rem;
+    line-height: 1.6em;
   }
-  .show:hover{
-      box-shadow: 0px 1px 2px 4px #4954640c;
+  button:focus {
+    outline: none;
   }
-}
-@media screen and (max-width:750px){
-  .show{
-      max-width: 550px;
+  ul {
+    list-style: none;
+  }
+  input,
+  textarea,
+  button,
+  select,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+  .defaultText {
+    width: 100%;
+    font-weight: 500;
+    font-size: 0.85rem;
+    color: #495464;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-bottom: 1.5rem;
+  }
+  .defaultText span {
+    display: block;
+  }
+  /*
+   * `margin: 0 auto` is a Tailwind-Preflight-era addition, not part of the original CSS. Preflight
+   * sets `img { display: block }` (its own image-reset convention), which took this logo out of
+   * inline flow — `.defaultText`'s `text-align: center` only centers inline content, so a
+   * block-level image with a fixed width just left-aligns inside its full-width `span` instead.
+   * Pre-Tailwind, `<img>` defaulted to `display: inline`, so `text-align: center` centered it with
+   * no extra rule needed. Shared by every "empty/error state" callsite (WhatsNew, Epk, Blogs,
+   * ImageCarousel) since they all reuse this one `.defaultText` class.
+   */
+  .defaultText span img {
+    width: 45px;
+    height: 45px;
+    margin: 0 auto;
+  }
+  .showsList {
+    position: relative;
+    min-height: 150px;
+  }
+  @media screen and (max-width: 750px) {
+    header {
+      left: 0;
+      right: 0;
+      transform: unset;
       margin: auto;
-      padding: 1.2rem;
+    }
   }
-  .desc{
-      display: none;
+  .formActions {
+    width: 100%;
+    margin: 2rem auto;
+    text-align: center;
   }
-  .show a{
-      padding: unset;
-      width: 120px;
+  .formActions button {
+    width: 100%;
+    max-width: 150px;
+    color: #1d3557;
+    padding: 0.8rem;
+    font-weight: 500;
+    border: 0.1rem solid #1d3557;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    background-color: transparent;
+    transition: 0.3s ease;
+    margin: auto;
+    text-align: center;
   }
-  .left{
-      gap: 1.3rem;
+  @media (hover: hover) {
+    .formActions button:hover {
+      color: #fffbf4;
+      background: #1d3557;
+    }
   }
-  .show a span{
-      display: none;
+  .slide-in {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: white;
+    transform-origin: bottom;
+    background-image: url('https://res.cloudinary.com/dlgzlrzfh/image/upload/v1784421297/logo_idpqos.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    z-index: 1000;
   }
-  .myArrow{
-      display:block;
-  }
-  .location h5{
-      text-align: left;
-  }
-  .date{
-      gap: 0.1rem;
-      justify-content: space-between;
-  }
-}
-@keyframes loaded{
-  0%{
-      transform: translateX(-150%);
-  }
-  100%{
-      transform: translateX(0);
-  }
-}
-.formActions{
-  width:100%;
-  margin:2rem auto;
-  text-align: center;
-}
-.formActions button{
-  width: 100%;
-  max-width: 150px;
-  color:#1D3557;
-  padding: 0.8rem;
-  font-weight: 500;
-  border: 0.1rem solid #1D3557;
-  border-radius: 0.3rem;
-  cursor: pointer;
-  background-color: transparent;
-  transition: 0.3s ease;
-  margin: auto;
-  text-align: center;
-}
-@media (hover: hover){
-  .formActions button:hover{
-      color: #FFFBF4;
-      background:#1D3557;
-  }
-}
-@keyframes dropdown{
-  from{
-      transform: translateY(-100%);
-  }
-  to{
-      transform: translateY(0);
-  }
-}
-.slide-in{
-  position:fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: white;
-  transform-origin: bottom;
-  background-image: url('./Assets/logo.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center center;
-  z-index: 1000;
-}
 
-.slide-out{
-  position:fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: white;
-  transform-origin: top;
-  background-image: url('./Assets/logo.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center center;
-  z-index: 1000;
-}
+  .slide-out {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: white;
+    transform-origin: top;
+    background-image: url('https://res.cloudinary.com/dlgzlrzfh/image/upload/v1784421297/logo_idpqos.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    z-index: 1000;
+  }
+} /* end @layer legacy */

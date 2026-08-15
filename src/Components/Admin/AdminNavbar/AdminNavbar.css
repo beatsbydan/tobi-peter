@@ -1,17 +1,17 @@
-.myNav{
-    max-width: 400px;
+.myNav {
+  max-width: 400px;
 }
-.logout{
-    border:none;
-    color:#1D3557;
-    cursor:pointer;
-    background-color:transparent;
+.logout {
+  border: none;
+  color: #1d3557;
+  cursor: pointer;
+  background-color: transparent;
 }
-@media screen and (max-width:750px){
-    .myNav{
-        gap: 2rem;
-    }
-    .logout{
-        color:white;
-    }
+@media screen and (max-width: 750px) {
+  .myNav {
+    gap: 2rem;
+  }
+  .logout {
+    color: white;
+  }
 }
