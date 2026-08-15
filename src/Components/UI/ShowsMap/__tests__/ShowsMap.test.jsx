@@ -24,7 +24,15 @@ const emptyTopology = {
 }
 
 beforeEach(() => {
-  vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ json: () => Promise.resolve(emptyTopology) }))
+  // `react-simple-maps`'s internal fetchGeographies checks `res.ok` before calling `res.json()` —
+  // without it, the mock silently fell down its catch branch (logging "There was a problem when
+  // fetching the data" and resolving to `undefined`) instead of actually returning `emptyTopology`.
+  // Tests still passed either way (both paths end up with zero geographies), but only with `ok: true`
+  // does this stub genuinely exercise the intended empty-topology response instead of an error path.
+  vi.stubGlobal(
+    'fetch',
+    vi.fn().mockResolvedValue({ ok: true, json: () => Promise.resolve(emptyTopology) }),
+  )
 })
 
 afterEach(() => {

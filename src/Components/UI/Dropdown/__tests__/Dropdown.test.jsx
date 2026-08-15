@@ -1,4 +1,4 @@
-import { render, screen, waitForElementToBeRemoved } from '@testing-library/react'
+import { render, screen, waitFor, waitForElementToBeRemoved } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, test, vi } from 'vitest'
 import Dropdown from '../Dropdown'
@@ -47,6 +47,14 @@ describe('Dropdown', () => {
 
     await user.click(screen.getByRole('button'))
     expect(screen.getByRole('listbox')).toBeInTheDocument()
+
+    // Dropdown focuses the search input on open via an effect, and `user.keyboard` targets whatever
+    // currently has focus — without waiting for it, this races the effect (passed locally, flaked on
+    // CI) since nothing else here forces focus onto the input first, unlike the other Escape-using
+    // test below, which types into it beforehand and so never hits this race.
+    await waitFor(() =>
+      expect(screen.getByRole('textbox', { name: /search options/i })).toHaveFocus(),
+    )
 
     await user.keyboard('{Escape}')
     await waitForElementToBeRemoved(() => screen.queryByRole('listbox'))
