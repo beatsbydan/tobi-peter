@@ -11,6 +11,7 @@ import ShowsMap from '../../../UI/ShowsMap/ShowsMap'
 import Loading from '../../../UI/Loading/Loading'
 import { fadeUp, pageTransition, staggerContainer, staggerItem } from '../../../../lib/motion'
 import { LOGO_URL, cloudinaryTransform } from '../../../../lib/cloudinary'
+import endorsements from '../../../../data/endorsement.json'
 
 const heading =
   'w-full border-b-[1.5px] border-ink pb-[0.5rem] pl-[10px] font-medium text-ink mt-[3em] max-[500px]:text-[18px]'
@@ -306,6 +307,36 @@ const Epk = () => {
       </div>
 
       <div className="w-full">
+        <h2 className={heading}>ENDORSEMENTS/CO-SIGNS</h2>
+        <p className="leading-[2.5em] text-muted text-justify">
+          TOBI PETER HAS BEEN ENDORSED/PRAISED FOR HIS EXCEPTIONAL TALENT BY THE FOLLOWING INDUSTRY
+          EXPERTS:
+        </p>
+        <motion.section
+          {...staggerContainer}
+          className="mx-auto mt-[2.5rem] flex flex-wrap justify-center gap-x-[2.5rem] gap-y-[2rem]"
+        >
+          {endorsements.map((artist) => (
+            <motion.div
+              key={artist.name}
+              {...staggerItem}
+              className="flex w-[100px] flex-col items-center gap-[0.7rem] max-[500px]:w-[76px]"
+            >
+              <LazyImage
+                src={cloudinaryTransform(artist.image)}
+                type="image"
+                rounded="full"
+                alt={artist.name}
+              />
+              <p className="text-center text-[0.7rem] leading-tight font-medium text-muted uppercase max-[500px]:text-[0.6rem]">
+                {artist.name}
+              </p>
+            </motion.div>
+          ))}
+        </motion.section>
+      </div>
+
+      <div className="w-full">
         <motion.div {...fadeUp}>
           <h2 className={heading}>CAREER HIGHLIGHTS</h2>
           <ul className="my-[1.2rem] w-full">
@@ -355,29 +386,6 @@ const Epk = () => {
             </li>
           </ul>
         </motion.div>
-
-        <div>
-          <h2 className="mt-[3em] w-full pb-[0.5rem] font-medium text-ink max-[500px]:text-[18px]">
-            ENDORSEMENTS
-          </h2>
-          <p className="leading-[2.5em] text-muted text-justify">
-            TOBI PETER HAS BEEN ENDORSED/PRAISED FOR HIS EXCEPTIONAL TALENT BY THE FOLLOWING
-            INDUSTRY EXPERTS:
-          </p>
-          <ul className="mt-[0.8rem] flex flex-wrap items-center justify-center gap-[2.5rem] text-[34px] font-medium text-[rgba(73,84,100,0.5)] max-[500px]:text-center">
-            <li>DIPLO</li>
-            <li>MR EAZI</li>
-            <li>WALSHY FIRE</li>
-            <li>SARZ</li>
-            <li>DON JAZZY</li>
-            <li>M.I.</li>
-            <li>SKALES</li>
-            <li>FALZ</li>
-            <li>DR SID</li>
-            <li>PHEELZ</li>
-            <li>MAJOR LEAGUE DJZ</li>
-          </ul>
-        </div>
       </div>
 
       <div className="w-full">
