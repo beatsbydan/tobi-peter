@@ -183,9 +183,10 @@ const Book = () => {
           <motion.button
             {...tapScale}
             type="submit"
-            className="mx-auto w-full max-w-[150px] cursor-pointer rounded-[0.3rem] border-[0.1rem] border-[var(--color-ink)] bg-transparent p-[0.8rem] text-[13.3333px] text-center font-medium text-[var(--color-ink)] transition-colors duration-300 ease-in-out hover:bg-[var(--color-ink)] hover:text-[var(--color-cream)]"
+            disabled={ctx.isSubmitting}
+            className="mx-auto w-full max-w-[150px] cursor-pointer rounded-[0.3rem] border-[0.1rem] border-[var(--color-ink)] bg-transparent p-[0.8rem] text-[13.3333px] text-center font-medium text-[var(--color-ink)] transition-colors duration-300 ease-in-out hover:bg-[var(--color-ink)] hover:text-[var(--color-cream)] disabled:cursor-not-allowed disabled:opacity-60"
           >
-            SUBMIT
+            {ctx.isSubmitting ? 'SUBMITTING…' : 'SUBMIT'}
           </motion.button>
         </div>
       </form>

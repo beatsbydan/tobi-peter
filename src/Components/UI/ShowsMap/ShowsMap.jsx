@@ -2,29 +2,10 @@ import { useState, useMemo, useRef, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ComposableMap, Geographies, Geography, Marker, ZoomableGroup } from 'react-simple-maps'
 import { useShowsColorScale } from '../../../Hooks/useShowsColorScale'
+import useIsMobile from '../../../Hooks/useIsMobile'
 import { duration, easing, usePrefersReducedMotion } from '../../../lib/motion'
 
 const GEO_URL = '/world-110m.json'
-
-// Mirrors `usePrefersReducedMotion`'s matchMedia pattern (lib/motion.js). Drives the map's own
-// width/height/scale below — CSS alone can bleed the *container* wider on mobile (see Epk.jsx's
-// `max-[700px]:` bleed), but can't change the SVG's viewBox aspect ratio or how zoomed-in the
-// projection is, both of which are ComposableMap props, not CSS.
-function useIsMobile(breakpoint) {
-  const query = `(max-width: ${breakpoint}px)`
-  const [isMobile, setIsMobile] = useState(
-    () => typeof window !== 'undefined' && window.matchMedia(query).matches,
-  )
-
-  useEffect(() => {
-    const mql = window.matchMedia(query)
-    const onChange = (event) => setIsMobile(event.matches)
-    mql.addEventListener('change', onChange)
-    return () => mql.removeEventListener('change', onChange)
-  }, [query])
-
-  return isMobile
-}
 
 export default function ShowsMap({ byCountry, byCity }) {
   const { getColor, countMap } = useShowsColorScale(byCountry)

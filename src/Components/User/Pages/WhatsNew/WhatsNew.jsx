@@ -1,20 +1,20 @@
-import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { useState, useRef, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { BiMusic } from 'react-icons/bi'
 import Socials from '../../../UI/Socials/Socials'
 import Loading from '../../../UI/Loading/Loading'
 import StreamingPlatforms from '../../../UI/StreamingPlatforms/StreamingPlatforms'
 import useAlert from '../../../../Hooks/useAlert'
-import useIsProcessing from '../../../../Hooks/useIsProcessing'
+import useIsMobile from '../../../../Hooks/useIsMobile'
 import ValidateWhatsNew from './ValidateWhatsNew'
 import LazyImage from '../../../UI/LazyImage/LazyImage'
 import { useRecentSongQuery } from '../../../../queries/useSongs'
 import { useSendSubscriptionMutation } from '../../../../queries/useSubscribe'
-import { pageTransition, tapScale } from '../../../../lib/motion'
+import { pageTransition, tapScale, duration, easing } from '../../../../lib/motion'
 import { LOGO_URL } from '../../../../lib/cloudinary'
 
 const WhatsNew = () => {
   const { setAlert } = useAlert()
-  const { setProcessing } = useIsProcessing()
   const { data: music, isPending, isSuccess } = useRecentSongQuery()
   const sendSubscriptionMutation = useSendSubscriptionMutation()
 
@@ -34,6 +34,69 @@ const WhatsNew = () => {
   const [error, setError] = useState({})
   const [subscriptionError, setSubscriptionError] = useState(null)
 
+  // Song-details card: hover-to-reveal on desktop, tap-to-toggle on mobile (no hover there). The
+  // clear-on-leave delay is the same fix ShowsMap's country panel needed — the card sits outside the
+  // image's own box, so a bare mouseleave would hide it before the cursor can reach it; delaying the
+  // clear and cancelling it if the card itself is entered (not just the image) fixes that.
+  const [cardOpen, setCardOpen] = useState(false)
+  const isMobile = useIsMobile(700)
+  const containerRef = useRef(null)
+  const clearTimeoutRef = useRef(null)
+
+  const cancelClear = () => {
+    if (clearTimeoutRef.current) {
+      clearTimeout(clearTimeoutRef.current)
+      clearTimeoutRef.current = null
+    }
+  }
+  const clearSoon = () => {
+    cancelClear()
+    clearTimeoutRef.current = setTimeout(() => setCardOpen(false), 150)
+  }
+  useEffect(() => cancelClear, [])
+
+  const handleImageMouseEnter = () => {
+    if (!isMobile) {
+      cancelClear()
+      setCardOpen(true)
+    }
+  }
+  const handleImageMouseLeave = () => {
+    if (!isMobile) clearSoon()
+  }
+  const handleCardMouseEnter = () => {
+    if (!isMobile) cancelClear()
+  }
+  const handleCardMouseLeave = () => {
+    if (!isMobile) clearSoon()
+  }
+  const handleImageClick = () => {
+    if (isMobile) setCardOpen((open) => !open)
+  }
+  const handleImageKeyDown = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault()
+      setCardOpen((open) => !open)
+    }
+  }
+  const handleCardClick = () => {
+    // The card has nothing interactive in it — tapping it on mobile dismisses, same as tapping
+    // anywhere else outside the image.
+    if (isMobile) setCardOpen(false)
+  }
+
+  // Tapping/clicking anywhere outside the image+card dismisses it — the only way to close it on
+  // mobile once open, since there's no hover to fall back on there.
+  useEffect(() => {
+    const handleOutsideClick = (evt) => {
+      if (!containerRef.current?.contains(evt.target)) {
+        setCardOpen(false)
+      }
+    }
+    document.addEventListener('click', handleOutsideClick)
+    return () => document.removeEventListener('click', handleOutsideClick)
+  }, [])
+
   const handleChange = (e) => {
     setEmail(e.target.value)
   }
@@ -44,23 +107,18 @@ const WhatsNew = () => {
     const errors = ValidateWhatsNew(email)
     setError(errors)
     if (errors.none) {
-      setProcessing(true)
       sendSubscriptionMutation.mutate(
         { email },
         {
           onSuccess: () => {
             setEmail('')
-            setProcessing(false)
             setAlert('success', 'Subscription Successful!')
           },
           onError: (err) => {
             if (err?.response?.status === 403) {
               setSubscriptionError('You are registered')
             }
-            setTimeout(() => {
-              setEmail('')
-              setProcessing(false)
-            }, 1000)
+            setEmail('')
             setAlert('failure', 'Something went wrong!')
           },
         },
@@ -71,11 +129,51 @@ const WhatsNew = () => {
   return (
     <motion.div className="w-full font-sans" {...pageTransition}>
       <h1 className="sr-only">What's New</h1>
-      <div className="relative w-full min-h-50 max-w-112.5 mx-auto">
+      <div ref={containerRef} className="relative w-full min-h-50 max-w-112.5 mx-auto">
         {isPending ? (
           <Loading />
         ) : isSuccess && music?.coverArt ? (
-          <LazyImage src={music?.coverArt} type="image" alt="" />
+          <>
+            <div
+              role="button"
+              tabIndex={0}
+              aria-expanded={cardOpen}
+              aria-controls="whats-new-song-card"
+              aria-label={cardOpen ? 'Hide song details' : 'Show song details'}
+              onMouseEnter={handleImageMouseEnter}
+              onMouseLeave={handleImageMouseLeave}
+              onClick={handleImageClick}
+              onKeyDown={handleImageKeyDown}
+              className="cursor-pointer rounded-[0.7rem] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+            >
+              <LazyImage src={music?.coverArt} type="image" alt="" />
+            </div>
+            <AnimatePresence>
+              {cardOpen && (
+                <motion.div
+                  id="whats-new-song-card"
+                  role="note"
+                  onMouseEnter={handleCardMouseEnter}
+                  onMouseLeave={handleCardMouseLeave}
+                  onClick={handleCardClick}
+                  initial={isMobile ? { opacity: 0, y: 10 } : { opacity: 0, x: -10 }}
+                  animate={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, x: 0 }}
+                  exit={isMobile ? { opacity: 0, y: 10 } : { opacity: 0, x: -10 }}
+                  transition={{ duration: duration.fast, ease: easing.standard }}
+                  className={
+                    isMobile
+                      ? 'absolute inset-x-4 bottom-4 z-10 rounded-[0.6rem] border border-hairline bg-cream p-4 shadow-[0_4px_12px_rgba(0,0,0,0.18)]'
+                      : 'absolute top-1/2 left-full ml-4 w-56 -translate-y-1/2 rounded-[0.6rem] border border-hairline bg-cream p-4 shadow-[0_4px_12px_rgba(0,0,0,0.18)]'
+                  }
+                >
+                  <h6 className="flex items-center gap-2 text-sm font-semibold text-ink">
+                    <BiMusic size={16} />
+                    {music.title}
+                  </h6>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </>
         ) : isSuccess && !music?.coverArt ? (
           <p className="defaultText">
             <span>
@@ -127,10 +225,11 @@ const WhatsNew = () => {
           </div>
           <motion.button
             type="submit"
+            disabled={sendSubscriptionMutation.isPending}
             {...tapScale}
-            className="cursor-pointer rounded-[0.3rem] border-[0.1rem] border-ink bg-transparent p-[0.8rem] text-[13.3333px] font-medium text-ink [transition:all_0.3s_ease] hover:bg-ink hover:text-cream active:bg-ink active:text-cream"
+            className="cursor-pointer rounded-[0.3rem] border-[0.1rem] border-ink bg-transparent p-[0.8rem] text-[13.3333px] font-medium text-ink [transition:all_0.3s_ease] hover:bg-ink hover:text-cream active:bg-ink active:text-cream disabled:cursor-not-allowed disabled:opacity-60"
           >
-            JOIN
+            {sendSubscriptionMutation.isPending ? 'JOINING…' : 'JOIN'}
           </motion.button>
         </form>
       </div>

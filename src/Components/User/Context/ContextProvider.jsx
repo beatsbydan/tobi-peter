@@ -1,13 +1,11 @@
 import Context from './Context'
 import { useState } from 'react'
 import useAlert from '../../../Hooks/useAlert'
-import useIsProcessing from '../../../Hooks/useIsProcessing'
 import { useSendBookingMutation } from '../../../queries/useBooking'
 import { validateBookingFields } from '../../../validators/validateBooking'
 
 const ContextProvider = (props) => {
   const { setAlert } = useAlert()
-  const { setProcessing } = useIsProcessing()
   const sendBookingMutation = useSendBookingMutation()
 
   // BOOK TOBI PETER
@@ -58,7 +56,6 @@ const ContextProvider = (props) => {
   }
 
   const handleBookFieldsSubmit = async () => {
-    setProcessing(true)
     const bookFields = {
       name: bookFieldsRegular.name,
       eventName: bookFieldsRegular.eventName,
@@ -74,17 +71,14 @@ const ContextProvider = (props) => {
     if (Object.keys(fieldErrors).length > 0) {
       setBookFieldsErrors(fieldErrors)
       setAlert('failure', 'Something went wrong!')
-      setProcessing(false)
       return { yes: false }
     }
     try {
       await sendBookingMutation.mutateAsync(bookFields)
       setBookFieldsErrors({})
-      setProcessing(false)
       return { yes: true }
     } catch {
       setAlert('failure', 'Something went wrong!')
-      setProcessing(false)
       return { yes: false }
     }
   }
@@ -95,6 +89,7 @@ const ContextProvider = (props) => {
     bookFieldsRegular: bookFieldsRegular,
     bookFieldsSpecifics: bookFieldsSpecifics,
     bookFieldsErrors: bookFieldsErrors,
+    isSubmitting: sendBookingMutation.isPending,
     setShowType: setShowType,
     setShowGuests: setShowGuests,
     setShowDescription: setShowDescription,

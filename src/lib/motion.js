@@ -133,11 +133,3 @@ export const toastTransition = {
     transition: { duration: duration.fast, ease: easing.standard },
   },
 }
-
-// Slide-from-right panel enter/exit (the global Processing indicator). Non-bouncy both ways —
-// this is a persistent status panel, not a one-shot toast, so it skips toastTransition's bounce.
-export const panelTransitionRight = {
-  initial: { opacity: 0, x: 40 },
-  animate: { opacity: 1, x: 0, transition: { duration: duration.base, ease: easing.standard } },
-  exit: { opacity: 0, x: 40, transition: { duration: duration.fast, ease: easing.standard } },
-}

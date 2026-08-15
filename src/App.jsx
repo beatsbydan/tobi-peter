@@ -9,8 +9,6 @@ import AuthContextProvider from './Components/Admin/Context/AuthContext/AuthCont
 import AlertContextProvider from './Components/UI/AlertContext/AlertContextProvider'
 import AlertPopUp from './Components/UI/AlertPopUp/AlertPopUp'
 import AnimatedRoutes from './Components/AnimatedRoutes/AnimatedRoutes'
-import Processing from './Components/UI/IsProcessing/Processing'
-import ProcessingContextProvider from './Components/UI/IsProcessing/ProcessingContext/ProcessingContextProvider'
 import useAuth from './Hooks/useAuth'
 import ErrorBoundary from './Components/UI/ErrorBoundary/ErrorBoundary'
 import SkipToContent from './Components/UI/SkipToContent/SkipToContent'
@@ -67,16 +65,13 @@ function App() {
     // for users who haven't requested reduced motion.
     <MotionConfig reducedMotion="user">
       <AlertContextProvider>
-        <ProcessingContextProvider>
-          <ContextProvider>
-            <AuthContextProvider>
-              <AlertPopUp />
-              <Processing />
-              <ScrollToggle />
-              {isAdmin ? <AdminShell /> : <PublicShell />}
-            </AuthContextProvider>
-          </ContextProvider>
-        </ProcessingContextProvider>
+        <ContextProvider>
+          <AuthContextProvider>
+            <AlertPopUp />
+            <ScrollToggle />
+            {isAdmin ? <AdminShell /> : <PublicShell />}
+          </AuthContextProvider>
+        </ContextProvider>
       </AlertContextProvider>
     </MotionConfig>
   )
