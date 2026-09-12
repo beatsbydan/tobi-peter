@@ -32,8 +32,8 @@ const collaborations = [
   {
     name: 'Sony Music Publishing',
     src: cloudinaryTransform(
-      'https://res.cloudinary.com/dlgzlrzfh/image/upload/v1789194960/Sony_Music_Publishing_logo.svg_rrrnqs.webp'
-    )
+      'https://res.cloudinary.com/dlgzlrzfh/image/upload/v1789194960/Sony_Music_Publishing_logo.svg_rrrnqs.webp',
+    ),
   },
   {
     name: 'BBC',
@@ -122,15 +122,15 @@ const collaborations = [
   {
     name: 'Praimo',
     src: cloudinaryTransform(
-      'https://res.cloudinary.com/dlgzlrzfh/image/upload/v1789194960/logo_2_1200x1200_ptcnxb.png'
-    )
+      'https://res.cloudinary.com/dlgzlrzfh/image/upload/v1789194960/logo_2_1200x1200_ptcnxb.png',
+    ),
   },
   {
     name: 'AIAIAI',
     src: cloudinaryTransform(
-      'https://res.cloudinary.com/dlgzlrzfh/image/upload/v1789194960/logo-aiaiai_lwfww5.png'
-    )
-  }
+      'https://res.cloudinary.com/dlgzlrzfh/image/upload/v1789194960/logo-aiaiai_lwfww5.png',
+    ),
+  },
 ]
 
 const Epk = () => {
