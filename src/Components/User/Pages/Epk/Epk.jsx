@@ -166,7 +166,7 @@ const Epk = () => {
         <div className="aspect-square w-full max-w-[250px]">
           <LazyImage
             src={cloudinaryTransform(
-              'https://res.cloudinary.com/dlgzlrzfh/image/upload/v1784421424/epk_wrylvl.svg',
+              'https://res.cloudinary.com/dlgzlrzfh/image/upload/v1789324460/tobi_artpp7.jpg',
             )}
             type="image"
             rounded="full"
